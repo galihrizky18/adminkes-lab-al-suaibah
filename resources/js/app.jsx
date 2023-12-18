@@ -10,7 +10,7 @@ const appName =
     "Laboratorium Adminkes Al-Suaibah Palembang";
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${title} | ${appName}`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.jsx`,
