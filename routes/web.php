@@ -19,4 +19,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Dashboard');
 });
+Route::get('/tes', function () {
+    return Inertia::render('Tes');
+});
 

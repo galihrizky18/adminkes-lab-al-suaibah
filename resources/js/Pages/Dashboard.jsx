@@ -4,7 +4,7 @@ import Navbar from "@/Components/Navbar";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="h-screen">
             <Head title="Dashboard" />
             {/* Navbar */}
             <Navbar />
