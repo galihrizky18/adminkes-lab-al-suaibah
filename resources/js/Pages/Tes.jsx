@@ -1,28 +1,51 @@
 import React from "react";
-import {
-    MantineProvider,
-    Button,
-    Group,
-    Text,
-    Collapse,
-    Box,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 
 const Tes = () => {
-    const [opened, { toggle }] = useDisclosure(false);
     return (
-        <MantineProvider>
-            <Box maw={400} mx="auto">
-                <Group justify="center" mb={5}>
-                    <Button onClick={toggle}>Toggle content</Button>
-                </Group>
-
-                <Collapse in={opened}>
-                    <Text>asdsaddddddddddd</Text>
-                </Collapse>
-            </Box>
-        </MantineProvider>
+        <div className=" items-start">
+            <section className=" h-[2000px]">
+                <div className="title1 h-[200px] border border-black">
+                    <div className="titel bg-pink-500">adasdadasd</div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Officiis esse quam ipsum aliquam impedit eum ea voluptas
+                        officia ipsa aspernatur.
+                    </p>
+                </div>
+                <div className="title1 sticky top-3 h-[200px] border border-black">
+                    <div className="titel  bg-blue-500">adasdadasd</div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Officiis esse quam ipsum aliquam impedit eum ea voluptas
+                        officia ipsa aspernatur.
+                    </p>
+                </div>
+                <div className="title1 h-[200px] border border-black">
+                    <div className="titel bg-red-500">adasdadasd</div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Officiis esse quam ipsum aliquam impedit eum ea voluptas
+                        officia ipsa aspernatur.
+                    </p>
+                </div>
+                <div className="title1 h-[200px] border border-black">
+                    <div className="titel bg-green-500">adasdadasd</div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Officiis esse quam ipsum aliquam impedit eum ea voluptas
+                        officia ipsa aspernatur.
+                    </p>
+                </div>
+                <div className="title1 h-[200px] border border-black">
+                    <div className="titel bg-pink-500">adasdadasd</div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Officiis esse quam ipsum aliquam impedit eum ea voluptas
+                        officia ipsa aspernatur.
+                    </p>
+                </div>
+            </section>
+        </div>
     );
 };
 

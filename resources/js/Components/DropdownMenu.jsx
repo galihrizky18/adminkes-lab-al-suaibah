@@ -58,7 +58,7 @@ const DropdownMenu = () => {
                                 onClick={() => {
                                     toggle(), setBuka(!buka);
                                 }}
-                                className={`"rounded-lg px-3 py-1 flex items-start items-center justify-between rounded-lg ${
+                                className={`"rounded-lg px-3 py-1 flex tems-center justify-between rounded-lg ${
                                     buka ? "bg-[#019A27] text-white" : ""
                                 } hover:bg-[#019A27] hover:text-white mb-3`}
                             >

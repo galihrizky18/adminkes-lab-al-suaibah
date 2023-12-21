@@ -9,7 +9,7 @@ import DropdownMenu from "./DropdownMenu";
 
 const Navbar = () => {
     return (
-        <div className="flex flex-row justify-center sm:justify-between px-5 py-2 sm:px-9 sm:py-3 items-center bg-white shadow-lg ">
+        <div className="w-full flex flex-row justify-center sm:justify-between px-5 py-2 sm:px-9 sm:py-3 items-center bg-white shadow-lg ">
             <div className="flex flex-row justify-between items-center gap-4 sm:gap-3">
                 <DropdownMenu />
 

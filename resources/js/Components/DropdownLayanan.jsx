@@ -6,9 +6,9 @@ const DropdownLayanan = () => {
         { key: "Pendaftaran", label: "Pendaftaran" },
         { key: "Poli Umum", label: "Poli Umum" },
         { key: "Poli Anak", label: "Poli Anak" },
+        { key: "Poli Gigi", label: "Poli Gigi" },
         { key: "Apotek", label: "Apotek" },
         { key: "Laboratorium", label: "Laboratorium" },
-        { key: "Poli Gigi", label: "Poli Gigi" },
         { key: "KIA", label: "KIA" },
     ];
 

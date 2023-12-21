@@ -16,6 +16,7 @@ export default {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 roboto: ["Roboto", "sans-serif"],
                 open: ["Open Sans", "sans-serif"],
+                montserrat: ["Montserrat", "sans-serif"],
             },
         },
     },
