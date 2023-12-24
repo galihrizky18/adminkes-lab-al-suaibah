@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +20,23 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Dashboard');
-});
+Route::get('/', [DashboardController::class, 'dashbaord']);
+
+Route::get('/pendaftaran', [PendaftaranController::class, 'pagePendaftaran']);
+Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasienBaru']);
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/tes', function () {
     return Inertia::render('Tes');
 });

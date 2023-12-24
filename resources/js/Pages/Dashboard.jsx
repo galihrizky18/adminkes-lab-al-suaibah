@@ -1,19 +1,20 @@
 import React from "react";
 import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
-import Hero from "@/Components/Hero";
-import LayananSection from "@/Components/LayananSection";
+import Hero from "@/Components/dashboard/Hero";
+import LayananSection from "@/Components/dashboard/LayananSection";
+import About from "@/Components/dashboard/About";
 
 import iconPhone from "../../../public/asset/icon/icon-telephone.svg";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="">
             <Head title="Dashboard" />
 
             {/* Header Section */}
-            <section className="bg-[#278645] flex flex-row px-20 items-center h-14 font-open">
-                <div className=" flex flex-row text-white items-center gap-3 ">
+            <section className="bg-[#278645] flex flex-row px-20 items-center h-14 font-open ">
+                <div className=" flex flex-row w-full text-white items-center gap-3 ">
                     <div className="icon">
                         <img src={iconPhone} alt="" width={30} />
                     </div>
@@ -24,7 +25,7 @@ const Dashboard = () => {
             </section>
 
             {/* Navbar */}
-            <section className="sticky top-0 z-10">
+            <section className="sticky top-0 z-10 ">
                 <Navbar />
             </section>
 
@@ -34,11 +35,16 @@ const Dashboard = () => {
             </section>
 
             {/* Layanan */}
-            <section className="p-3 sm:p-10 ">
+            <section className="p-3 sm:p-10">
                 <LayananSection />
             </section>
 
-            <h1>Ini Dahboard</h1>
+            {/* About */}
+            <section className="sm:h-[85vh] border border-black">
+                <About />
+            </section>
+
+            <h1 className=" h-[500px] border border-black">Ini Dahboard</h1>
         </div>
     );
 };

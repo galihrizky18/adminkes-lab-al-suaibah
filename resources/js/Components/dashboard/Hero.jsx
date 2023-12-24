@@ -3,8 +3,8 @@ import { Carousel } from "@mantine/carousel";
 import { MantineProvider } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 
-import Gambar1 from "../../../public/asset/image/dashboard.png";
-import Gambar2 from "../../../public/asset/image/dashboard2.png";
+import Gambar1 from "../../../../public/asset/image/dashboard.png";
+import Gambar2 from "../../../../public/asset/image/dashboard2.png";
 
 const Hero = () => {
     const autoplay = useRef(Autoplay({ delay: 2000 }));

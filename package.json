@@ -25,8 +25,10 @@
     "dependencies": {
         "@mantine/carousel": "^7.3.2",
         "@mantine/core": "^7.3.2",
+        "@mantine/dates": "^7.3.2",
         "@mantine/hooks": "^7.3.2",
         "@mantine/modals": "^7.3.2",
+        "dayjs": "^1.11.10",
         "embla-carousel-autoplay": "^8.0.0-rc15",
         "embla-carousel-react": "^7.1.0"
     }

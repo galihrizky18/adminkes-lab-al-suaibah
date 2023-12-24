@@ -3,13 +3,13 @@ import { Link } from "@inertiajs/react";
 
 const DropdownLayanan = () => {
     const menu = [
-        { key: "Pendaftaran", label: "Pendaftaran" },
-        { key: "Poli Umum", label: "Poli Umum" },
-        { key: "Poli Anak", label: "Poli Anak" },
-        { key: "Poli Gigi", label: "Poli Gigi" },
-        { key: "Apotek", label: "Apotek" },
-        { key: "Laboratorium", label: "Laboratorium" },
-        { key: "KIA", label: "KIA" },
+        { key: "Pendaftaran", label: "Pendaftaran", url: "pendaftaran" },
+        { key: "Poli Umum", label: "Poli Umum", url: "#" },
+        { key: "Poli Anak", label: "Poli Anak", url: "#" },
+        { key: "Poli Gigi", label: "Poli Gigi", url: "#" },
+        { key: "Apotek", label: "Apotek", url: "#" },
+        { key: "Laboratorium", label: "Laboratorium", url: "#" },
+        { key: "KIA", label: "KIA", url: "#" },
     ];
 
     return (
@@ -28,6 +28,7 @@ const DropdownLayanan = () => {
                 {menu.map((data, i) => (
                     <Link
                         key={i}
+                        href={`/${data.url}`}
                         className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-[#019A27] hover:font-bold "
                     >
                         <li>{data.label}</li>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import BuergerIcon from "../../../public/asset/burger-menu.svg";
 import {
     MantineProvider,
     Button,
@@ -11,8 +10,9 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "@inertiajs/react";
 
-import ArrowLeft from "../../../public/asset/arrow-left.svg";
-import ArrowBottom from "../../../public/asset/arrow-bottom.svg";
+import BuergerIcon from "../../../../public/asset/burger-menu.svg";
+import ArrowLeft from "../../../../public/asset/arrow-left.svg";
+import ArrowBottom from "../../../../public/asset/arrow-bottom.svg";
 
 const DropdownMenu = () => {
     const [opened, { toggle }] = useDisclosure(false);
@@ -20,13 +20,13 @@ const DropdownMenu = () => {
     const [burgerOpened, setBurgerOpened] = useState(false);
 
     const menu = [
-        { key: "Pendaftaran", label: "Pendaftaran" },
-        { key: "Poli Umum", label: "Poli Umum" },
-        { key: "Poli Anak", label: "Poli Anak" },
-        { key: "Apotek", label: "Apotek" },
-        { key: "Laboratorium", label: "Laboratorium" },
-        { key: "Poli Gigi", label: "Poli Gigi" },
-        { key: "KIA", label: "KIA" },
+        { key: "Pendaftaran", label: "Pendaftaran", url: "pendaftaran" },
+        { key: "Poli Umum", label: "Poli Umum", url: "#" },
+        { key: "Poli Anak", label: "Poli Anak", url: "#" },
+        { key: "Apotek", label: "Apotek", url: "#" },
+        { key: "Laboratorium", label: "Laboratorium", url: "#" },
+        { key: "Poli Gigi", label: "Poli Gigi", url: "#" },
+        { key: "KIA", label: "KIA", url: "#" },
     ];
 
     return (
@@ -74,7 +74,7 @@ const DropdownMenu = () => {
 
                             <Collapse in={opened} className="ml-7">
                                 {menu.map((data, i) => (
-                                    <Link key={i}>
+                                    <Link key={i} href={`/${data.url}`}>
                                         <li className="mb-3 rounded-lg px-3 py-1  hover:bg-[#019A27] hover:text-white">
                                             {data.label}
                                         </li>
