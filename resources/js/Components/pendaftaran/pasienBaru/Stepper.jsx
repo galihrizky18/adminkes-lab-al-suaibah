@@ -6,7 +6,20 @@ import ClinicRegisSec from "./ClinicRegisSec";
 import ReviewStep from "./ReviewStep";
 import ComplateTask from "./ComplateTask";
 
-const Steppers = () => {
+const Steppers = ({
+    setRadioKelaminValue,
+    setTextNikValue,
+    setTextNamaValue,
+    setSearchValueProv,
+    setSearchValueCity,
+    setTanggalLahirValue,
+    setAlamatValue,
+    setPoliValue,
+    setdateJadwalKunjunganValue,
+    setNoHpValue,
+    setEmailValue,
+    dataPendaftar,
+}) => {
     // Stepper
     const [active, setActive] = useState(0);
     const nextStep = () =>
@@ -15,7 +28,7 @@ const Steppers = () => {
         setActive((current) => (current > 0 ? current - 1 : current));
 
     return (
-        <div className="h-full  w-[80%] rounded-xl shadow-xl bg-white ">
+        <div className="h-full w-[80%] rounded-xl shadow-xl bg-white ">
             <MantineProvider>
                 <div className="flex h-full px-5 py-3 flex-col justify-between">
                     <Stepper
@@ -29,7 +42,16 @@ const Steppers = () => {
                             label="Registration "
                             description="Data Pasien"
                         >
-                            <RegistrationSec />
+                            <RegistrationSec
+                                setRadioKelaminValue={setRadioKelaminValue}
+                                setTextNikValue={setTextNikValue}
+                                setTextNamaValue={setTextNamaValue}
+                                setSearchValueProv={setSearchValueProv}
+                                setSearchValueCity={setSearchValueCity}
+                                setTanggalLahirValue={setTanggalLahirValue}
+                                setAlamatValue={setAlamatValue}
+                                dataPendaftar={dataPendaftar}
+                            />
                         </Stepper.Step>
 
                         {/* Clinic Registration */}
@@ -37,13 +59,21 @@ const Steppers = () => {
                             label="Clinic Registration"
                             description="Pendaftaran Poli"
                         >
-                            <ClinicRegisSec />
+                            <ClinicRegisSec
+                                setPoliValue={setPoliValue}
+                                setdateJadwalKunjunganValue={
+                                    setdateJadwalKunjunganValue
+                                }
+                                setNoHpValue={setNoHpValue}
+                                setEmailValue={setEmailValue}
+                                dataPendaftar={dataPendaftar}
+                            />
                         </Stepper.Step>
                         <Stepper.Step
                             label="Review"
                             description="Cek Data Form"
                         >
-                            <ReviewStep />
+                            <ReviewStep dataPendaftar={dataPendaftar} />
                         </Stepper.Step>
 
                         <Stepper.Completed>

@@ -7,8 +7,9 @@ const ComplateTask = () => {
                 TERIMA KASIH
             </div>
             <div className="body mt-3 ">
-                Data Telah Di Rekam, Harap Menunggu Info Selanjutnya Melalui
-                Nomor dan Email Anda
+                Data Telah Di Rekam, Harap Menunggu Info Selanjutnya Melalui{" "}
+                <span className="font-bold">Nomor</span> dan{" "}
+                <span className="font-bold">Email</span> Anda
             </div>
         </div>
     );

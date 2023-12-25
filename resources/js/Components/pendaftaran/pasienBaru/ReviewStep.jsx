@@ -2,9 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { MantineProvider, Select, TextInput } from "@mantine/core";
 
-const ReviewStep = () => {
-    // Text Input
-    const [noHpValue, setNoHpValue] = useState("");
+const ReviewStep = ({ dataPendaftar }) => {
+    // Data Pendaftar
+    const pasien = dataPendaftar;
+
+    // Filter Data
+    const getData = (name) => {
+        return pasien ? pasien.find((e) => e.name === name).value : null;
+    };
     return (
         <MantineProvider>
             <div className="mt-3 px-3">
@@ -19,7 +24,7 @@ const ReviewStep = () => {
                                 Nama Pasien
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                Yudi Asnanda
+                                {getData("namaPasien")}
                             </div>
                         </div>
 
@@ -29,7 +34,7 @@ const ReviewStep = () => {
                                 Tanggal Lahir
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                20/03/2023
+                                {getData("tanggalLahir")}
                             </div>
                         </div>
 
@@ -39,7 +44,7 @@ const ReviewStep = () => {
                                 Provinsi
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                Sumatera Selatan
+                                {getData("provinsi")}
                             </div>
                         </div>
 
@@ -49,7 +54,7 @@ const ReviewStep = () => {
                                 Kota
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                Palembang
+                                {getData("kota")}
                             </div>
                         </div>
 
@@ -59,7 +64,7 @@ const ReviewStep = () => {
                                 Poli
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                Poli Klinik Anak
+                                {getData("poli")}
                             </div>
                         </div>
 
@@ -69,7 +74,7 @@ const ReviewStep = () => {
                                 Jadwal Kunjungan
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                13/04/2003
+                                {getData("jadwalKunjungan")}
                             </div>
                         </div>
 
@@ -79,7 +84,7 @@ const ReviewStep = () => {
                                 Nomor Telepon
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                08123456789
+                                {getData("noHp")}
                             </div>
                         </div>
 
@@ -89,7 +94,7 @@ const ReviewStep = () => {
                                 Email
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold">
-                                abcdefg@gmail.com
+                                {getData("email")}
                             </div>
                         </div>
                     </div>

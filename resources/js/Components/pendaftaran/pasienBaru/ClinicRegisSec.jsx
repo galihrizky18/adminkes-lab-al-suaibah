@@ -2,16 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { MantineProvider, Select, TextInput } from "@mantine/core";
 
-const ClinicRegisSec = () => {
-    // Search Input
-    const [poliValue, setPoliValue] = useState("");
-
-    // Date Input
-    const [dateValue, setDateValue] = useState();
-
-    // Text Input
-    const [noHpValue, setNoHpValue] = useState("");
-    const [emailValue, setEmailValue] = useState("");
+const ClinicRegisSec = ({
+    setPoliValue,
+    setdateJadwalKunjunganValue,
+    setNoHpValue,
+    setEmailValue,
+    dataPendaftar,
+}) => {
+    // Data Pendafter
+    const getData = (name) => {
+        return dataPendaftar
+            ? dataPendaftar.find((e) => e.name === name).value
+            : null;
+    };
 
     const poli = [
         { value: "poliumum", label: "Poli Umum" },
@@ -21,10 +24,6 @@ const ClinicRegisSec = () => {
         { value: "lab", label: "Laboratorium" },
         { value: "kia", label: "Kesehatan Ibu Anak" },
     ];
-
-    useEffect(() => {
-        console.log(poliValue);
-    }, [poliValue]);
 
     return (
         <MantineProvider>
@@ -42,8 +41,8 @@ const ClinicRegisSec = () => {
                             <div className=" w-full">
                                 <Select
                                     placeholder="--- Pilih Poli ---"
-                                    searchValue={poliValue}
-                                    onSearchChange={setPoliValue}
+                                    value={getData("poli")}
+                                    onChange={setPoliValue}
                                     data={poli}
                                     radius="md"
                                     searchable
@@ -61,8 +60,11 @@ const ClinicRegisSec = () => {
                                 <input
                                     type="date"
                                     className="w-full border border-gray-300 text-gray-400 rounded-lg"
+                                    value={getData("jadwalKunjungan")}
                                     onChange={(e) =>
-                                        setDateValue(e.currentTarget.value)
+                                        setdateJadwalKunjunganValue(
+                                            e.currentTarget.value
+                                        )
                                     }
                                 />
                             </div>
@@ -77,7 +79,7 @@ const ClinicRegisSec = () => {
                                 <TextInput
                                     radius="md"
                                     placeholder="Nomor Handphone"
-                                    value={noHpValue}
+                                    value={getData("noHp")}
                                     onChange={(event) =>
                                         setNoHpValue(event.currentTarget.value)
                                     }
@@ -94,7 +96,7 @@ const ClinicRegisSec = () => {
                                 <TextInput
                                     radius="md"
                                     placeholder="Email"
-                                    value={emailValue}
+                                    value={getData("email")}
                                     onChange={(event) =>
                                         setEmailValue(event.currentTarget.value)
                                     }

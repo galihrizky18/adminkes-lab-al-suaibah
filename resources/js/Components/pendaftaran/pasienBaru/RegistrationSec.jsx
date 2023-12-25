@@ -7,26 +7,23 @@ import {
     Radio,
     Textarea,
 } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
 
-const RegistrationSec = () => {
-    // Radio
-    const [radioValue, setRadioValue] = useState("");
-
-    // Text Input
-    const [textNikValue, setTextNikValue] = useState("");
-    const [textNamaValue, setTextNamaValue] = useState("");
-    
-
-    // Search Input
-    const [searchValueProv, setSearchValueProv] = useState("");
-    const [searchValueCity, setSearchValueCity] = useState("");
-
-    // Date Input
-    const [dateValue, setDateValue] = useState();
-
-    // TextArea Input
-    const [alamatValue, setAlamatValue] = useState("");
+const RegistrationSec = ({
+    setRadioKelaminValue,
+    setTextNikValue,
+    setTextNamaValue,
+    setSearchValueProv,
+    setSearchValueCity,
+    setTanggalLahirValue,
+    setAlamatValue,
+    dataPendaftar,
+}) => {
+    // Data Pendafter
+    const getData = (name) => {
+        return dataPendaftar
+            ? dataPendaftar.find((e) => e.name === name).value
+            : null;
+    };
 
     const prov = [
         { value: "sumsel", label: "Sumatera Selatan" },
@@ -55,7 +52,7 @@ const RegistrationSec = () => {
                                 <TextInput
                                     radius="md"
                                     placeholder="Nomor Induk Penduduk (NIK)"
-                                    value={textNikValue}
+                                    value={getData("nik")}
                                     onChange={(event) =>
                                         setTextNikValue(
                                             event.currentTarget.value
@@ -74,7 +71,7 @@ const RegistrationSec = () => {
                                 <TextInput
                                     radius="md"
                                     placeholder="Nama Pasien"
-                                    value={textNamaValue}
+                                    value={getData("namaPasien")}
                                     onChange={(event) =>
                                         setTextNamaValue(
                                             event.currentTarget.value
@@ -91,10 +88,10 @@ const RegistrationSec = () => {
                             </div>
                             <div className=" w-full flex flex-row ">
                                 <Radio.Group
-                                    value={radioValue}
-                                    onChange={setRadioValue}
+                                    onChange={setRadioKelaminValue}
                                     name="gender"
                                     className="w-full h-full "
+                                    value={getData("jenisKelamin")}
                                 >
                                     <div className="w-full h-full flex flex-row items-center gap-7 ">
                                         <Radio
@@ -118,12 +115,15 @@ const RegistrationSec = () => {
                                 Tanggal Lahir
                             </div>
                             <div className=" w-full">
-                                <DateInput
-                                    clearable
-                                    value={dateValue}
-                                    onChange={setDateValue}
-                                    radius="md"
-                                    placeholder="Input placeholder"
+                                <input
+                                    type="date"
+                                    className="w-full border border-gray-300 text-gray-400 rounded-lg"
+                                    value={getData("tanggalLahir")}
+                                    onChange={(e) =>
+                                        setTanggalLahirValue(
+                                            e.currentTarget.value
+                                        )
+                                    }
                                 />
                             </div>
                         </div>
@@ -136,8 +136,8 @@ const RegistrationSec = () => {
                             <div className=" w-full">
                                 <Select
                                     placeholder="Provinsi"
-                                    searchValue={searchValueProv}
-                                    onSearchChange={setSearchValueProv}
+                                    value={getData("provinsi")}
+                                    onChange={setSearchValueProv}
                                     data={prov}
                                     radius="md"
                                     searchable
@@ -154,8 +154,8 @@ const RegistrationSec = () => {
                             <div className=" w-full">
                                 <Select
                                     placeholder="Kota"
-                                    searchValue={searchValueCity}
-                                    onSearchChange={setSearchValueCity}
+                                    value={getData("kota")}
+                                    onChange={setSearchValueCity}
                                     data={city}
                                     radius="md"
                                     searchable
@@ -171,7 +171,7 @@ const RegistrationSec = () => {
                             </div>
                             <div className=" w-full">
                                 <Textarea
-                                    value={alamatValue}
+                                    value={getData("alamat")}
                                     onChange={(event) =>
                                         setAlamatValue(
                                             event.currentTarget.value
@@ -182,8 +182,6 @@ const RegistrationSec = () => {
                                 />
                             </div>
                         </div>
-
-                        
                     </div>
                 </div>
             </div>

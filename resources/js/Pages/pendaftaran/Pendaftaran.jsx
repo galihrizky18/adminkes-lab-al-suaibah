@@ -40,7 +40,7 @@ const Pendaftaran = () => {
                         {menu.map((data, i) => (
                             <Link
                                 key={i}
-                                className={`w-80 rounded-xl shadow-lg bg-[#${data.warna}]`}
+                                className={`w-80 rounded-xl shadow-lg bg-[#36b33c]`}
                                 href={`${data.url}`}
                             >
                                 <Card title={data.label} img={data.img} />
