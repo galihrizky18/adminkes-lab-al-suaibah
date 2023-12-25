@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { MantineProvider, Stepper, Button, Group } from "@mantine/core";
 import RegistrationSec from "./RegistrationSec";
+import ClinicRegisSec from "./ClinicRegisSec";
+import ReviewStep from "./ReviewStep";
+import ComplateTask from "./ComplateTask";
 
 const Steppers = () => {
     // Stepper
@@ -12,7 +15,7 @@ const Steppers = () => {
         setActive((current) => (current > 0 ? current - 1 : current));
 
     return (
-        <div className="h-full w-[80%] rounded-xl shadow-xl bg-white ">
+        <div className="h-full  w-[80%] rounded-xl shadow-xl bg-white ">
             <MantineProvider>
                 <div className="flex h-full px-5 py-3 flex-col justify-between">
                     <Stepper
@@ -34,17 +37,17 @@ const Steppers = () => {
                             label="Clinic Registration"
                             description="Pendaftaran Poli"
                         >
-                            Step 2 content: Verify email
+                            <ClinicRegisSec />
                         </Stepper.Step>
                         <Stepper.Step
-                            label="Final step"
-                            description="Get full access"
+                            label="Review"
+                            description="Cek Data Form"
                         >
-                            Step 3 content: Get full access
+                            <ReviewStep />
                         </Stepper.Step>
 
                         <Stepper.Completed>
-                            Completed, click back button to get to previous step
+                            <ComplateTask />
                         </Stepper.Completed>
                     </Stepper>
 

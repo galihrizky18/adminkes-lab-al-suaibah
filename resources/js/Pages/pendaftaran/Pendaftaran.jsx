@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Card from "@/Components/pendaftaran/Card";
@@ -13,16 +13,17 @@ const Pendaftaran = () => {
             label: "PENDAFTRAN PASIEN BARU",
             img: NewPatient,
             url: "/pendaftaran/pasien-baru",
-            warna: "#36b33c",
+            warna: "36b33c",
         },
         {
             key: "pasienLama",
             label: "PASIEN LAMA",
             img: OldPatient,
             url: "#",
-            warna: "#3641a5",
+            warna: "3641a5",
         },
     ];
+
     return (
         <div>
             <Head title="Pendaftaran" />
@@ -39,15 +40,10 @@ const Pendaftaran = () => {
                         {menu.map((data, i) => (
                             <Link
                                 key={i}
-                                // className={`w-80 rounded-xl shadow-lg bg-[${data.warna}]`}
-                                className={`w-80 rounded-xl shadow-lg bg-[${data.warna}]`}
+                                className={`w-80 rounded-xl shadow-lg bg-[#${data.warna}]`}
                                 href={`${data.url}`}
                             >
-                                <Card
-                                    title={data.label}
-                                    img={data.img}
-                                    color={data.color}
-                                />
+                                <Card title={data.label} img={data.img} />
                             </Link>
                         ))}
                     </div>

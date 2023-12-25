@@ -15,6 +15,8 @@ const RegistrationSec = () => {
 
     // Text Input
     const [textNikValue, setTextNikValue] = useState("");
+    const [textNamaValue, setTextNamaValue] = useState("");
+    
 
     // Search Input
     const [searchValueProv, setSearchValueProv] = useState("");
@@ -38,7 +40,7 @@ const RegistrationSec = () => {
     ];
     return (
         <MantineProvider>
-            <div className="mt-3 h-[400px] px-3 ">
+            <div className="mt-3 px-3">
                 <div className="title text-center pb-3 text-xl border-b border-gray-300">
                     DATA PASIEN
                 </div>
@@ -71,7 +73,13 @@ const RegistrationSec = () => {
                             <div className=" w-full">
                                 <TextInput
                                     radius="md"
-                                    placeholder="Namaa Pasien"
+                                    placeholder="Nama Pasien"
+                                    value={textNamaValue}
+                                    onChange={(event) =>
+                                        setTextNamaValue(
+                                            event.currentTarget.value
+                                        )
+                                    }
                                 />
                             </div>
                         </div>
@@ -174,6 +182,8 @@ const RegistrationSec = () => {
                                 />
                             </div>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>

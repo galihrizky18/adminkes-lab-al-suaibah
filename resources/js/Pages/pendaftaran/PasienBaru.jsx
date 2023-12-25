@@ -11,7 +11,7 @@ const PasienBaru = () => {
             <Navbar />
 
             {/* Stepper */}
-            <div className="h-screen flex justify-center p-10  ">
+            <div className=" flex justify-center p-10  ">
                 <Stepper />
             </div>
         </div>
