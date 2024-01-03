@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PoliUmumController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/', [DashboardController::class, 'dashbaord']);
 Route::get('/pendaftaran', [PendaftaranController::class, 'pagePendaftaran']);
 Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasienBaru']);
 Route::get('/pendaftaran/pasien-lama', [PendaftaranController::class, 'pagePasienLama']);
+
+Route::get('/poli-umum', [PoliUmumController::class, 'dashboard']);
 
 
 

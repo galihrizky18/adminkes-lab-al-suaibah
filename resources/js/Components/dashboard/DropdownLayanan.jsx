@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 const DropdownLayanan = () => {
     const menu = [
         { key: "Pendaftaran", label: "Pendaftaran", url: "pendaftaran" },
-        { key: "Poli Umum", label: "Poli Umum", url: "#" },
+        { key: "Poli Umum", label: "Poli Umum", url: "poli-umum" },
         { key: "Poli Anak", label: "Poli Anak", url: "#" },
         { key: "Poli Gigi", label: "Poli Gigi", url: "#" },
         { key: "Apotek", label: "Apotek", url: "#" },

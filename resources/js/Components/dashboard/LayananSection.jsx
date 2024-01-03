@@ -22,7 +22,7 @@ const LayananSection = () => {
             key: "poli-umum",
             label: "POLI UMUM",
             img: IconPoliUmum,
-            url: "#",
+            url: "poli-umum",
         },
         { key: "poli-anak", label: "POLI ANAK", img: IconPoliAnak, url: "#" },
         { key: "poli-gigi", label: "POLI GIGI", img: IconPoliGigi, url: "#" },
@@ -41,7 +41,7 @@ const LayananSection = () => {
                     <Link
                         key={i}
                         href={`/${data.url}`}
-                        className="bg-[#278645] sm:w-24 flex-wrap py-3 rounded-xl shadow-lg text-center hover:scale-110 transition-all duration-300"
+                        className="bg-[#278645] sm:w-24 flex-wrap py-3 rounded-xl shadow-lg text-center hover:scale-110 transition-all duration-200"
                     >
                         <CardLayanan img={data.img} title={data.label} />
                     </Link>

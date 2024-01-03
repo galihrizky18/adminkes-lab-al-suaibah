@@ -5,6 +5,7 @@ import Card from "@/Components/pendaftaran/Card";
 
 import NewPatient from "../../../../public/asset/icon/icon-new-patient.svg";
 import OldPatient from "../../../../public/asset/icon/icon-old-patient.svg";
+import Footer from "@/Components/dashboard/Footer";
 
 const Pendaftaran = () => {
     const menu = [
@@ -49,6 +50,9 @@ const Pendaftaran = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };
