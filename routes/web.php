@@ -24,6 +24,7 @@ Route::get('/', [DashboardController::class, 'dashbaord']);
 
 Route::get('/pendaftaran', [PendaftaranController::class, 'pagePendaftaran']);
 Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasienBaru']);
+Route::get('/pendaftaran/pasien-lama', [PendaftaranController::class, 'pagePasienLama']);
 
 
 

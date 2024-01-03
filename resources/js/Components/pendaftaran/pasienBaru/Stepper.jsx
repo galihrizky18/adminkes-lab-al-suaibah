@@ -18,6 +18,7 @@ const Steppers = ({
     setdateJadwalKunjunganValue,
     setNoHpValue,
     setEmailValue,
+    setDokterValue,
     dataPendaftar,
 }) => {
     // Stepper
@@ -28,7 +29,7 @@ const Steppers = ({
         setActive((current) => (current > 0 ? current - 1 : current));
 
     return (
-        <div className="h-full w-[80%] rounded-xl shadow-xl bg-white ">
+        <div className="h-full text-sm sm:text-base sm:w-[80%] rounded-xl shadow-xl bg-white ">
             <MantineProvider>
                 <div className="flex h-full px-5 py-3 flex-col justify-between">
                     <Stepper
@@ -66,6 +67,7 @@ const Steppers = ({
                                 }
                                 setNoHpValue={setNoHpValue}
                                 setEmailValue={setEmailValue}
+                                setDokterValue={setDokterValue}
                                 dataPendaftar={dataPendaftar}
                             />
                         </Stepper.Step>

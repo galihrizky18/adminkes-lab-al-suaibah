@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { MantineProvider, Select, TextInput } from "@mantine/core";
+import { MantineProvider, Select, TextInput, NumberInput } from "@mantine/core";
 
 const ClinicRegisSec = ({
     setPoliValue,
     setdateJadwalKunjunganValue,
     setNoHpValue,
     setEmailValue,
+    setDokterValue,
     dataPendaftar,
 }) => {
     // Data Pendafter
@@ -23,6 +24,16 @@ const ClinicRegisSec = ({
         { value: "apotek", label: "Apotek" },
         { value: "lab", label: "Laboratorium" },
         { value: "kia", label: "Kesehatan Ibu Anak" },
+    ];
+    const dokter = [
+        { value: "galih", label: "Dr. Galih Rizky" },
+        { value: "nur", label: "Dr. Nur Alfatiha" },
+        { value: "mery", label: "Dr. Mery Suryani" },
+        { value: "renal", label: "Dr. Renal Yusuf" },
+        { value: "endah", label: "Dr. Endah Novareta" },
+        { value: "deon", label: "Dr. Riana Dewi" },
+        { value: "bila", label: "Dr. Senja Nabila" },
+        { value: "mayang", label: "Dr. Mayang Sari" },
     ];
 
     return (
@@ -44,6 +55,24 @@ const ClinicRegisSec = ({
                                     value={getData("poli")}
                                     onChange={setPoliValue}
                                     data={poli}
+                                    radius="md"
+                                    searchable
+                                    className="border border-b-violet-50"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Pilih Dokter */}
+                        <div className="item h-10 flex flex-row ">
+                            <div className="title w-[50%] flex items-center">
+                                Dokter
+                            </div>
+                            <div className=" w-full">
+                                <Select
+                                    placeholder="--- Pilih Dokter ---"
+                                    value={getData("dokter")}
+                                    onChange={setDokterValue}
+                                    data={dokter}
                                     radius="md"
                                     searchable
                                     className="border border-b-violet-50"
@@ -76,13 +105,11 @@ const ClinicRegisSec = ({
                                 Nomor Handphone
                             </div>
                             <div className=" w-full">
-                                <TextInput
+                                <NumberInput
                                     radius="md"
                                     placeholder="Nomor Handphone"
                                     value={getData("noHp")}
-                                    onChange={(event) =>
-                                        setNoHpValue(event.currentTarget.value)
-                                    }
+                                    onChange={setNoHpValue}
                                 />
                             </div>
                         </div>

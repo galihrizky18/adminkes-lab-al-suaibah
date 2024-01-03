@@ -19,7 +19,7 @@ const Pendaftaran = () => {
             key: "pasienLama",
             label: "PASIEN LAMA",
             img: OldPatient,
-            url: "#",
+            url: "/pendaftaran/pasien-lama",
             warna: "3641a5",
         },
     ];
@@ -32,7 +32,7 @@ const Pendaftaran = () => {
             <Navbar />
 
             <div className="flex h-[85vh] justify-center items-center">
-                <div className="card-pendaftaran w-[65%] h-[80%] px-5 py-3 rounded-xl shadow-lg bg-white">
+                <div className="card-pendaftaran w-[90%] sm:w-[65%] h-[80%] px-5 py-3 rounded-xl shadow-lg bg-white">
                     <div className="title text-center pb-2 text-2xl text-[#638d72] font-bold border-b border-gray-400">
                         PENDAFTARAN PASIEN
                     </div>
@@ -40,7 +40,7 @@ const Pendaftaran = () => {
                         {menu.map((data, i) => (
                             <Link
                                 key={i}
-                                className={`w-80 rounded-xl shadow-lg bg-[#36b33c]`}
+                                className={`w-80 rounded-xl shadow-lg bg-[#36b33c] hover:scale-105 transition-all duration-300`}
                                 href={`${data.url}`}
                             >
                                 <Card title={data.label} img={data.img} />

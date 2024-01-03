@@ -17,7 +17,7 @@ const DropdownLayanan = () => {
             <div
                 tabIndex={0}
                 role="button"
-                className="h-full flex flex-row items-center"
+                className="h-full flex flex-row items-center hover:text-[#278645] hover:scale-110 transition-all"
             >
                 Layanan
             </div>

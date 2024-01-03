@@ -68,6 +68,16 @@ const ReviewStep = ({ dataPendaftar }) => {
                             </div>
                         </div>
 
+                        {/* Dokter Terpilih*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Dokter
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("dokter")}
+                            </div>
+                        </div>
+
                         {/* Jadwal Kunjungan*/}
                         <div className="item h-8 flex flex-row">
                             <div className="title w-[50%] flex items-center">

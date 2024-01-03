@@ -6,6 +6,9 @@ import LayananSection from "@/Components/dashboard/LayananSection";
 import About from "@/Components/dashboard/About";
 
 import iconPhone from "../../../public/asset/icon/icon-telephone.svg";
+import JadwalDokter from "@/Components/dashboard/JadwalDokter";
+import Footer from "@/Components/dashboard/Footer";
+import VisiMisi from "@/Components/dashboard/VisiMisi";
 
 const Dashboard = () => {
     return (
@@ -39,12 +42,27 @@ const Dashboard = () => {
                 <LayananSection />
             </section>
 
+            {/* Visi dan Misi  */}
+            <section className="p-3 sm:p-10">
+                <VisiMisi />
+            </section>
+
             {/* About */}
-            <section className="sm:h-[85vh] border border-black">
+            <section className="mt-5 sm:h-[85vh]">
                 <About />
             </section>
 
-            <h1 className=" h-[500px] border border-black">Ini Dahboard</h1>
+            {/* Jadwal Dokter */}
+            <section className="p-3 sm:p-10">
+                <JadwalDokter />
+            </section>
+
+            <h1 className=" h-[300px] " />
+
+            {/* Footer */}
+            <section>
+                <Footer />
+            </section>
         </div>
     );
 };

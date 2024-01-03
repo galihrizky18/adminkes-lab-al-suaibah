@@ -14,4 +14,7 @@ class PendaftaranController extends Controller
     public function pagePasienBaru(){
         return Inertia::render('pendaftaran/PasienBaru');
     }
+    public function pagePasienLama(){
+        return Inertia::render('pendaftaran/PasienLama');
+    }
 }

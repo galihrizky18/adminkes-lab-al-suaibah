@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Stepper from "@/Components/pendaftaran/pasienBaru/Stepper";
@@ -11,13 +10,17 @@ const PasienBaru = () => {
     // Text Input
     const [textNikValue, setTextNikValue] = useState("");
     const [textNamaValue, setTextNamaValue] = useState("");
-    const [noHpValue, setNoHpValue] = useState("");
+
     const [emailValue, setEmailValue] = useState("");
+
+    // Number Input
+    const [noHpValue, setNoHpValue] = useState("");
 
     // Search Input
     const [searchValueProv, setSearchValueProv] = useState("");
     const [searchValueCity, setSearchValueCity] = useState("");
     const [poliValue, setPoliValue] = useState("");
+    const [dokterValue, setDokterValue] = useState("");
 
     // Date Input
     const [tanggalLahirValue, setTanggalLahirValue] = useState();
@@ -71,6 +74,10 @@ const PasienBaru = () => {
             name: "email",
             value: emailValue,
         },
+        {
+            name: "dokter",
+            value: dokterValue,
+        },
     ];
 
     useEffect(() => {
@@ -84,7 +91,7 @@ const PasienBaru = () => {
             <Navbar />
 
             {/* Stepper */}
-            <div className=" flex justify-center p-10  ">
+            <div className=" flex justify-center p-5 sm:p-10 ">
                 <Stepper
                     setRadioKelaminValue={setRadioKelaminValue}
                     setTextNikValue={setTextNikValue}
@@ -98,6 +105,7 @@ const PasienBaru = () => {
                     setdateJadwalKunjunganValue={setdateJadwalKunjunganValue}
                     setNoHpValue={setNoHpValue}
                     setEmailValue={setEmailValue}
+                    setDokterValue={setDokterValue}
                     dataPendaftar={dataPendaftar}
                 />
             </div>
