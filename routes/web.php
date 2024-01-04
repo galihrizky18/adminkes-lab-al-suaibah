@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PoliAnakController;
+use App\Http\Controllers\PoliGigiController;
 use App\Http\Controllers\PoliUmumController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -28,6 +30,8 @@ Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasie
 Route::get('/pendaftaran/pasien-lama', [PendaftaranController::class, 'pagePasienLama']);
 
 Route::get('/poli-umum', [PoliUmumController::class, 'dashboard']);
+Route::get('/poli-anak', [PoliAnakController::class, 'dashboard']);
+Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
 
 
 

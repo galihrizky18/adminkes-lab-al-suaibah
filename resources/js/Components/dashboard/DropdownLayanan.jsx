@@ -5,8 +5,8 @@ const DropdownLayanan = () => {
     const menu = [
         { key: "Pendaftaran", label: "Pendaftaran", url: "pendaftaran" },
         { key: "Poli Umum", label: "Poli Umum", url: "poli-umum" },
-        { key: "Poli Anak", label: "Poli Anak", url: "#" },
-        { key: "Poli Gigi", label: "Poli Gigi", url: "#" },
+        { key: "Poli Anak", label: "Poli Anak", url: "poli-anak" },
+        { key: "Poli Gigi", label: "Poli Gigi", url: "poli-gigi" },
         { key: "Apotek", label: "Apotek", url: "#" },
         { key: "Laboratorium", label: "Laboratorium", url: "#" },
         { key: "KIA", label: "KIA", url: "#" },

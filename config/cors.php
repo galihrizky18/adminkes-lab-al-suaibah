@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'web/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:8000/','https://rjdk35db-8000.asse.devtunnels.ms/'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => ['https://rjdk35db-8000.asse.devtunnels.ms/'],
 

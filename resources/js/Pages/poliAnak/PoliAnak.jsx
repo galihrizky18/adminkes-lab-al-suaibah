@@ -2,10 +2,10 @@ import React from "react";
 import { MantineProvider } from "@mantine/core";
 import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
-import CollapseComponents from "@/Components/poliUmum/CollapseComponents";
 import Footer from "@/Components/dashboard/Footer";
+import CollapseComponents from "@/Components/poliAnak/CollapseComponents";
 
-const PoliUmum = () => {
+const PoliAnak = () => {
     return (
         <MantineProvider>
             <Head title="Poli Umum" />
@@ -17,7 +17,7 @@ const PoliUmum = () => {
             <div className=" w-full h-full flex flex-col gap-5 justify-center items-center p-5 sm:p-10 ">
                 {/* Title */}
                 <div className="w-full sm:w-[50%] bg-white px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
-                    Poli Umum
+                    Poli Anak
                 </div>
 
                 {/* Body */}
@@ -38,4 +38,4 @@ const PoliUmum = () => {
     );
 };
 
-export default PoliUmum;
+export default PoliAnak;
