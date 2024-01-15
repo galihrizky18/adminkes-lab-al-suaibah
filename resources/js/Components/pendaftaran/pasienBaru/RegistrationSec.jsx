@@ -118,7 +118,6 @@ const RegistrationSec = ({
                                 <input
                                     type="date"
                                     className="w-full border border-gray-300 text-gray-400 rounded-lg"
-                                    value={getData("tanggalLahir")}
                                     onChange={(e) =>
                                         setTanggalLahirValue(
                                             e.currentTarget.value

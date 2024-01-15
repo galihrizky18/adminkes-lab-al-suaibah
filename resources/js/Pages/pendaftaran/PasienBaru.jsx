@@ -10,7 +10,6 @@ const PasienBaru = () => {
     // Text Input
     const [textNikValue, setTextNikValue] = useState("");
     const [textNamaValue, setTextNamaValue] = useState("");
-
     const [emailValue, setEmailValue] = useState("");
 
     // Number Input
@@ -79,10 +78,6 @@ const PasienBaru = () => {
             value: dokterValue,
         },
     ];
-
-    useEffect(() => {
-        console.log(searchValueProv);
-    }, [searchValueProv]);
 
     return (
         <div className="">

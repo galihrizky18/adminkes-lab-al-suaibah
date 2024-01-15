@@ -36,9 +36,14 @@ const LayananSection = () => {
             img: IconPoliGigi,
             url: "poli-gigi",
         },
-        { key: "apotek", label: "APOTEK", img: IconApotek, url: "#" },
-        { key: "labor", label: "LABORATORIUM", img: IconLabor, url: "#" },
-        { key: "kia", label: "KIA", img: IconKia, url: "#" },
+        { key: "apotek", label: "APOTEK", img: IconApotek, url: "apotek" },
+        {
+            key: "labor",
+            label: "LABORATORIUM",
+            img: IconLabor,
+            url: "laboratorium",
+        },
+        { key: "kia", label: "KIA", img: IconKia, url: "kia" },
     ];
 
     return (

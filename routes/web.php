@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApotekController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KIAController;
+use App\Http\Controllers\LabController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliAnakController;
 use App\Http\Controllers\PoliGigiController;
@@ -32,6 +35,13 @@ Route::get('/pendaftaran/pasien-lama', [PendaftaranController::class, 'pagePasie
 Route::get('/poli-umum', [PoliUmumController::class, 'dashboard']);
 Route::get('/poli-anak', [PoliAnakController::class, 'dashboard']);
 Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
+Route::get('/apotek', [ApotekController::class, 'dashboard']);
+Route::get('/laboratorium', [LabController::class, 'dashboard']);
+Route::get('/kia', [KIAController::class, 'dashboard']);
+
+
+// Upload Data
+Route::post('/pendaftaran/pasien-baru', [PendaftaranController::class, 'saveToDatabase']);
 
 
 
@@ -45,6 +55,8 @@ Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
 
 
 
+
+ 
 Route::get('/tes', function () {
     return Inertia::render('Tes');
 });

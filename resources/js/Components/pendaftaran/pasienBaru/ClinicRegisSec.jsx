@@ -89,7 +89,6 @@ const ClinicRegisSec = ({
                                 <input
                                     type="date"
                                     className="w-full border border-gray-300 text-gray-400 rounded-lg"
-                                    value={getData("jadwalKunjungan")}
                                     onChange={(e) =>
                                         setdateJadwalKunjunganValue(
                                             e.currentTarget.value
