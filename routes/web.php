@@ -8,8 +8,6 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliAnakController;
 use App\Http\Controllers\PoliGigiController;
 use App\Http\Controllers\PoliUmumController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -38,6 +36,9 @@ Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
 Route::get('/apotek', [ApotekController::class, 'dashboard']);
 Route::get('/laboratorium', [LabController::class, 'dashboard']);
 Route::get('/kia', [KIAController::class, 'dashboard']);
+
+
+
 
 
 // Upload Data

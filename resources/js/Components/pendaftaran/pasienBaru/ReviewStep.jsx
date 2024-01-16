@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { MantineProvider, Select, TextInput } from "@mantine/core";
+import { layanan } from "../../../lib/ArrayData";
 
-const ReviewStep = ({ dataPendaftar }) => {
+const ReviewStep = ({ dataPendaftar, dataDokter }) => {
     // Data Pendaftar
     const pasien = dataPendaftar;
 
@@ -10,6 +10,19 @@ const ReviewStep = ({ dataPendaftar }) => {
     const getData = (name) => {
         return pasien ? pasien.find((e) => e.name === name).value : null;
     };
+
+    // Selected Layanan
+    const layanans = layanan.find(
+        (item) => item.value === getData("id_layanan")
+    );
+    const selectedLayanan = layanans ? layanans.label : "";
+
+    // Selected Dokter
+    const dokters = dataDokter.find(
+        (item) => item.id_dokter === getData("id_dokter")
+    );
+    const selectedDokter = dokters ? dokters.nama_dokter : "";
+
     return (
         <MantineProvider>
             <div className="mt-3 px-3">
@@ -24,7 +37,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Nama Pasien
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("namaPasien")}
+                                {getData("name")}
                             </div>
                         </div>
 
@@ -34,7 +47,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Tanggal Lahir
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("tanggalLahir")}
+                                {getData("birth")}
                             </div>
                         </div>
 
@@ -44,7 +57,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Provinsi
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("provinsi")}
+                                {getData("province")}
                             </div>
                         </div>
 
@@ -54,7 +67,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Kota
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("kota")}
+                                {getData("city")}
                             </div>
                         </div>
 
@@ -64,7 +77,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Poli
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("poli")}
+                                {selectedLayanan}
                             </div>
                         </div>
 
@@ -74,7 +87,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Dokter
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("dokter")}
+                                {selectedDokter}
                             </div>
                         </div>
 
@@ -84,7 +97,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Jadwal Kunjungan
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("jadwalKunjungan")}
+                                {getData("jadwal")}
                             </div>
                         </div>
 
@@ -94,7 +107,7 @@ const ReviewStep = ({ dataPendaftar }) => {
                                 Nomor Telepon
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("noHp")}
+                                {getData("no_telepon")}
                             </div>
                         </div>
 

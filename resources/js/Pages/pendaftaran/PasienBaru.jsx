@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Stepper from "@/Components/pendaftaran/pasienBaru/Stepper";
 
-const PasienBaru = () => {
+const PasienBaru = ({ dataDokter }) => {
     // Radio
     const [radioKelaminValue, setRadioKelaminValue] = useState("");
 
@@ -34,39 +34,39 @@ const PasienBaru = () => {
             value: textNikValue,
         },
         {
-            name: "namaPasien",
+            name: "name",
             value: textNamaValue,
         },
         {
-            name: "jenisKelamin",
+            name: "gender",
             value: radioKelaminValue,
         },
         {
-            name: "tanggalLahir",
+            name: "birth",
             value: tanggalLahirValue,
         },
         {
-            name: "provinsi",
+            name: "province",
             value: searchValueProv,
         },
         {
-            name: "kota",
+            name: "city",
             value: searchValueCity,
         },
         {
-            name: "alamat",
+            name: "address",
             value: alamatValue,
         },
         {
-            name: "poli",
+            name: "id_layanan",
             value: poliValue,
         },
         {
-            name: "jadwalKunjungan",
+            name: "jadwal",
             value: dateJadwalKunjunganValue,
         },
         {
-            name: "noHp",
+            name: "no_telepon",
             value: noHpValue,
         },
         {
@@ -74,7 +74,7 @@ const PasienBaru = () => {
             value: emailValue,
         },
         {
-            name: "dokter",
+            name: "id_dokter",
             value: dokterValue,
         },
     ];
@@ -102,6 +102,7 @@ const PasienBaru = () => {
                     setEmailValue={setEmailValue}
                     setDokterValue={setDokterValue}
                     dataPendaftar={dataPendaftar}
+                    dataDokter={dataDokter}
                 />
             </div>
         </div>

@@ -22,6 +22,7 @@ const Steppers = ({
     setNoHpValue,
     setEmailValue,
     dataPendaftar,
+    dataDokter,
 }) => {
     // Stepper
     const [active, setActive] = useState(0);
@@ -58,7 +59,7 @@ const Steppers = ({
                 dataPendaftar: dataPendaftar,
             });
 
-            console.log(response.data); // Handle respons dari backend
+            console.log(response); // Handle respons dari backend
         } catch (error) {
             console.error("Gagal mengirim data ke server:", error);
         }
@@ -112,6 +113,7 @@ const Steppers = ({
                                 setEmailValue={setEmailValue}
                                 setDokterValue={setDokterValue}
                                 dataPendaftar={dataPendaftar}
+                                dataDokter={dataDokter}
                             />
                         </Stepper.Step>
 
@@ -120,7 +122,10 @@ const Steppers = ({
                             label="Review"
                             description="Cek Data Form"
                         >
-                            <ReviewStep dataPendaftar={dataPendaftar} />
+                            <ReviewStep
+                                dataPendaftar={dataPendaftar}
+                                dataDokter={dataDokter}
+                            />
                         </Stepper.Step>
 
                         <Stepper.Completed>

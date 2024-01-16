@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { MantineProvider, Select, TextInput, NumberInput } from "@mantine/core";
+import { layanan } from "../../../lib/ArrayData";
 
 const ClinicRegisSec = ({
     setPoliValue,
@@ -9,6 +9,7 @@ const ClinicRegisSec = ({
     setEmailValue,
     setDokterValue,
     dataPendaftar,
+    dataDokter,
 }) => {
     // Data Pendafter
     const getData = (name) => {
@@ -17,24 +18,10 @@ const ClinicRegisSec = ({
             : null;
     };
 
-    const poli = [
-        { value: "poliumum", label: "Poli Umum" },
-        { value: "polianak", label: "Poli Anak" },
-        { value: "poligigi", label: "Poli Gigi" },
-        { value: "apotek", label: "Apotek" },
-        { value: "lab", label: "Laboratorium" },
-        { value: "kia", label: "Kesehatan Ibu Anak" },
-    ];
-    const dokter = [
-        { value: "galih", label: "Dr. Galih Rizky" },
-        { value: "nur", label: "Dr. Nur Alfatiha" },
-        { value: "mery", label: "Dr. Mery Suryani" },
-        { value: "renal", label: "Dr. Renal Yusuf" },
-        { value: "endah", label: "Dr. Endah Novareta" },
-        { value: "deon", label: "Dr. Riana Dewi" },
-        { value: "bila", label: "Dr. Senja Nabila" },
-        { value: "mayang", label: "Dr. Mayang Sari" },
-    ];
+    const dokter = dataDokter.map((data) => ({
+        value: data.id_dokter,
+        label: data.nama_dokter,
+    }));
 
     return (
         <MantineProvider>
@@ -47,14 +34,14 @@ const ClinicRegisSec = ({
                         {/* Pilih poli */}
                         <div className="item h-10 flex flex-row ">
                             <div className="title w-[50%] flex items-center">
-                                Poli
+                                Layanan
                             </div>
                             <div className=" w-full">
                                 <Select
-                                    placeholder="--- Pilih Poli ---"
-                                    value={getData("poli")}
+                                    placeholder="--- Pilih Layanan ---"
+                                    value={getData("id_layanan")}
                                     onChange={setPoliValue}
-                                    data={poli}
+                                    data={layanan}
                                     radius="md"
                                     searchable
                                     className="border border-b-violet-50"
@@ -70,7 +57,7 @@ const ClinicRegisSec = ({
                             <div className=" w-full">
                                 <Select
                                     placeholder="--- Pilih Dokter ---"
-                                    value={getData("dokter")}
+                                    value={getData("id_dokter")}
                                     onChange={setDokterValue}
                                     data={dokter}
                                     radius="md"
@@ -107,7 +94,7 @@ const ClinicRegisSec = ({
                                 <NumberInput
                                     radius="md"
                                     placeholder="Nomor Handphone"
-                                    value={getData("noHp")}
+                                    value={getData("no_telepon")}
                                     onChange={setNoHpValue}
                                 />
                             </div>

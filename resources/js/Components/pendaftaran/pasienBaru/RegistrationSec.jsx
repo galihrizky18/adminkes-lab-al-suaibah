@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     MantineProvider,
     Select,
@@ -7,6 +6,7 @@ import {
     Radio,
     Textarea,
 } from "@mantine/core";
+import { region } from "../../../lib/RegionsIndonesia";
 
 const RegistrationSec = ({
     setRadioKelaminValue,
@@ -18,6 +18,8 @@ const RegistrationSec = ({
     setAlamatValue,
     dataPendaftar,
 }) => {
+    const [kotas, setKotas] = useState();
+
     // Data Pendafter
     const getData = (name) => {
         return dataPendaftar
@@ -25,16 +27,31 @@ const RegistrationSec = ({
             : null;
     };
 
-    const prov = [
-        { value: "sumsel", label: "Sumatera Selatan" },
-        { value: "sumut", label: "Sumatera Utara" },
-        { value: "sumbar", label: "Sumatera Barat" },
-    ];
-    const city = [
-        { value: "palembang", label: "Palembang" },
-        { value: "jakarta", label: "Jakarta" },
-        { value: "aceh", label: "Aceh" },
-    ];
+    // data Province
+    const provinces = region.map((prov) => ({
+        value: prov.provinsi,
+        label: prov.provinsi,
+    }));
+
+    // data Kota sesuai Provinsi
+    const getKotas = (province) => {
+        const kota = region
+            .filter(({ provinsi }) => provinsi === province)
+            .flatMap(({ kota }) => kota);
+
+        const newKota = kota.map((kotaItem) => ({
+            value: kotaItem,
+            label: kotaItem,
+        }));
+
+        setKotas(newKota);
+    };
+
+    useEffect(() => {
+        getKotas(getData("province"));
+        console.log(kotas);
+    }, [getData("province")]);
+
     return (
         <MantineProvider>
             <div className="mt-3 px-3">
@@ -71,7 +88,7 @@ const RegistrationSec = ({
                                 <TextInput
                                     radius="md"
                                     placeholder="Nama Pasien"
-                                    value={getData("namaPasien")}
+                                    value={getData("name")}
                                     onChange={(event) =>
                                         setTextNamaValue(
                                             event.currentTarget.value
@@ -91,7 +108,7 @@ const RegistrationSec = ({
                                     onChange={setRadioKelaminValue}
                                     name="gender"
                                     className="w-full h-full "
-                                    value={getData("jenisKelamin")}
+                                    value={getData("gender")}
                                 >
                                     <div className="w-full h-full flex flex-row items-center gap-3 sm:gap-7 ">
                                         <Radio
@@ -135,9 +152,9 @@ const RegistrationSec = ({
                             <div className=" w-full">
                                 <Select
                                     placeholder="Provinsi"
-                                    value={getData("provinsi")}
+                                    value={getData("province")}
                                     onChange={setSearchValueProv}
-                                    data={prov}
+                                    data={provinces}
                                     radius="md"
                                     searchable
                                     className="border border-b-violet-50"
@@ -153,9 +170,9 @@ const RegistrationSec = ({
                             <div className=" w-full">
                                 <Select
                                     placeholder="Kota"
-                                    value={getData("kota")}
+                                    value={getData("city")}
                                     onChange={setSearchValueCity}
-                                    data={city}
+                                    data={kotas}
                                     radius="md"
                                     searchable
                                     className="border border-b-violet-50"
@@ -170,7 +187,7 @@ const RegistrationSec = ({
                             </div>
                             <div className=" w-full">
                                 <Textarea
-                                    value={getData("alamat")}
+                                    value={getData("address")}
                                     onChange={(event) =>
                                         setAlamatValue(
                                             event.currentTarget.value
