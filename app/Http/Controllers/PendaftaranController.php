@@ -29,25 +29,28 @@ class PendaftaranController extends Controller
         try {
             // Ambil data pendaftar dari request
             $dataPendaftar = $request->input('dataPendaftar');
-            $dataReg = array_slice($dataPendaftar, 0,7);
+            $dataReg = array_slice($dataPendaftar, 0, 7);
             $dataClinic = array_slice($dataPendaftar, 7);
-
+    
             // format waktu
             $currentTime = time();
             $time = date('YmdHis', $currentTime);
-
+    
             $idPatient = "PTNT-".$time;
             $idReg = "REG-".$time;
-
+    
             // Upload to Patient DB
             $pt = new Patient();
             $pt->id_patient = $idPatient;
+            $nikPatient = "";
+    
             foreach ($dataReg as $data) {
+                if ($data["name"] === "nik") {
+                    $nikPatient = $data["value"];
+                }
                 $pt->{$data["name"]} = $data["value"];
-
             }
-            $pt->save();
-
+    
             // Upload to Registration DB
             $reg = new Registration();
             $reg->id_registration = $idReg;
@@ -55,16 +58,20 @@ class PendaftaranController extends Controller
             foreach ($dataClinic as $data) {
                 $reg->{$data["name"]} = $data["value"];
             }
+    
+            // Check if nikPatient already exists
+            $existingPatient = Patient::where('nik', $nikPatient)->first();
+            if ($existingPatient) {
+                return response()->json(['message' => 'Found']);
+            }
+    
+            // Save the data if nikPatient not found
+            $pt->save();
             $reg->save();
-
-
-
-            return response()->json(['message' => 'Data berhasil disimpan'], 200);
-
+    
+            return response()->json(['message' => 'Success'], 200);
         } catch (\Exception $e) {
-            // Tangani kesalahan jika terjadi
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Failed']);
         }
-
     }
 }

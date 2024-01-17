@@ -3,6 +3,7 @@ import {
     MantineProvider,
     Select,
     TextInput,
+    NumberInput,
     Radio,
     Textarea,
 } from "@mantine/core";
@@ -49,7 +50,6 @@ const RegistrationSec = ({
 
     useEffect(() => {
         getKotas(getData("province"));
-        console.log(kotas);
     }, [getData("province")]);
 
     return (
@@ -66,15 +66,11 @@ const RegistrationSec = ({
                                 Nomor Induk Penduduk (NIK)
                             </div>
                             <div className=" w-full">
-                                <TextInput
+                                <NumberInput
                                     radius="md"
                                     placeholder="Nomor Induk Penduduk (NIK)"
-                                    value={getData("nik")}
-                                    onChange={(event) =>
-                                        setTextNikValue(
-                                            event.currentTarget.value
-                                        )
-                                    }
+                                    value={getData("no_telepon")}
+                                    onChange={setTextNikValue}
                                 />
                             </div>
                         </div>

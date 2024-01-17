@@ -31,6 +31,16 @@ const ReviewStep = ({ dataPendaftar, dataDokter }) => {
                 </div>
                 <div className="form mt-3">
                     <div className="flex flex-col gap-2">
+                        {/* NIK*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                NIK
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("nik")}
+                            </div>
+                        </div>
+
                         {/* Nama Pasien*/}
                         <div className="item h-8 flex flex-row">
                             <div className="title w-[50%] flex items-center">

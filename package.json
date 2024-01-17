@@ -30,6 +30,7 @@
         "@mantine/modals": "^7.3.2",
         "dayjs": "^1.11.10",
         "embla-carousel-autoplay": "^8.0.0-rc15",
-        "embla-carousel-react": "^7.1.0"
+        "embla-carousel-react": "^7.1.0",
+        "sweetalert2": "^11.10.3"
     }
 }

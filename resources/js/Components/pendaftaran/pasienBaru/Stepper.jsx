@@ -6,6 +6,7 @@ import ClinicRegisSec from "./ClinicRegisSec";
 import ReviewStep from "./ReviewStep";
 import ComplateTask from "./ComplateTask";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Steppers = ({
     setRadioKelaminValue,
@@ -15,7 +16,6 @@ const Steppers = ({
     setSearchValueCity,
     setTanggalLahirValue,
     setAlamatValue,
-
     setPoliValue,
     setDokterValue,
     setdateJadwalKunjunganValue,
@@ -44,10 +44,10 @@ const Steppers = ({
             return true;
         }
         return (
-            getData("poli") !== "" &&
-            getData("dokter") !== "" &&
-            getData("jadwalKunjungan") !== "" &&
-            getData("noHp") !== "" &&
+            getData("id_layanan") !== "" &&
+            getData("id_dokter") !== "" &&
+            getData("jadwal") !== "" &&
+            getData("no_telepon") !== "" &&
             getData("email") !== ""
         );
     };
@@ -59,7 +59,27 @@ const Steppers = ({
                 dataPendaftar: dataPendaftar,
             });
 
-            console.log(response); // Handle respons dari backend
+            if (response.data && response.data.message === "Success") {
+                Swal.fire({
+                    title: "Save Data!",
+                    text: "Data Berhasil Disimpan!",
+                    icon: "success",
+                });
+            } else if (response.data && response.data.message === "Failed") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed",
+                    text: "Gagal Menyimpan Data!",
+                });
+            } else if (response.data && response.data.message === "Found") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed",
+                    text: "Data Telah Ada!",
+                });
+            }
+
+            console.log(response.data.message); // Handle respons dari backend
         } catch (error) {
             console.error("Gagal mengirim data ke server:", error);
         }
@@ -139,7 +159,7 @@ const Steppers = ({
                         </Button>
                         <Button
                             onClick={nextStep}
-                            // disabled={!isStep2Complete()}
+                            disabled={!isStep2Complete()}
                         >
                             Next step
                         </Button>
