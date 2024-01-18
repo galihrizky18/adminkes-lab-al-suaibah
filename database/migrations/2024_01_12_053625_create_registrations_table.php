@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->string('id_registration')->primary();
+            $table->string('no_rekam_medik')->uniqid();
             $table->string('id_patient');
             $table->string('id_layanan');
             $table->string('id_dokter');

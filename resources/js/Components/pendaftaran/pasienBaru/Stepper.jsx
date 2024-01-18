@@ -23,6 +23,7 @@ const Steppers = ({
     setEmailValue,
     dataPendaftar,
     dataDokter,
+    dataLayanan,
 }) => {
     // Stepper
     const [active, setActive] = useState(0);
@@ -134,6 +135,7 @@ const Steppers = ({
                                 setDokterValue={setDokterValue}
                                 dataPendaftar={dataPendaftar}
                                 dataDokter={dataDokter}
+                                dataLayanan={dataLayanan}
                             />
                         </Stepper.Step>
 

@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Stepper from "@/Components/pendaftaran/pasienBaru/Stepper";
 
-const PasienBaru = ({ dataDokter }) => {
+const PasienBaru = ({ dataDokter, dataLayanan }) => {
     // Radio
     const [radioKelaminValue, setRadioKelaminValue] = useState("");
 
@@ -103,6 +103,7 @@ const PasienBaru = ({ dataDokter }) => {
                     setDokterValue={setDokterValue}
                     dataPendaftar={dataPendaftar}
                     dataDokter={dataDokter}
+                    dataLayanan={dataLayanan}
                 />
             </div>
         </div>

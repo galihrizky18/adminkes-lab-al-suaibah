@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\Layanan;
 use App\Models\Patient;
 use App\Models\Registration;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Inertia\Inertia;
 
 class PendaftaranController extends Controller
 {
+
     public function pagePendaftaran(){
         return Inertia::render('pendaftaran/Pendaftaran');
     }
@@ -17,8 +19,12 @@ class PendaftaranController extends Controller
     public function pagePasienBaru(){
 
         $dataDokter = Dokter::all();
+        $dataLayanan = Layanan::all();
 
-        return Inertia::render('pendaftaran/PasienBaru',['dataDokter' => $dataDokter]);
+        return Inertia::render('pendaftaran/PasienBaru',[
+            'dataDokter' => $dataDokter,
+            'dataLayanan' => $dataLayanan,
+        ]);
     }
     
     public function pagePasienLama(){
@@ -36,8 +42,10 @@ class PendaftaranController extends Controller
             $currentTime = time();
             $time = date('YmdHis', $currentTime);
     
+            // id Field
             $idPatient = "PTNT-".$time;
             $idReg = "REG-".$time;
+            $noRM = "RM-".$time;
     
             // Upload to Patient DB
             $pt = new Patient();
@@ -55,6 +63,7 @@ class PendaftaranController extends Controller
             $reg = new Registration();
             $reg->id_registration = $idReg;
             $reg->id_patient = $idPatient;
+            $reg->no_rekam_medik = $noRM;
             foreach ($dataClinic as $data) {
                 $reg->{$data["name"]} = $data["value"];
             }
@@ -74,4 +83,10 @@ class PendaftaranController extends Controller
             return response()->json(['message' => 'Failed']);
         }
     }
+
+    public function searchPatientData(){
+
+
+    }
+    
 }

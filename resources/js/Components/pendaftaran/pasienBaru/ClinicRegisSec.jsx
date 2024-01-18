@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MantineProvider, Select, TextInput, NumberInput } from "@mantine/core";
 import { layanan } from "../../../lib/ArrayData";
 
@@ -10,7 +10,9 @@ const ClinicRegisSec = ({
     setDokterValue,
     dataPendaftar,
     dataDokter,
+    dataLayanan,
 }) => {
+    const [dokter, setDokters] = useState();
     // Data Pendafter
     const getData = (name) => {
         return dataPendaftar
@@ -18,10 +20,20 @@ const ClinicRegisSec = ({
             : null;
     };
 
-    const dokter = dataDokter.map((data) => ({
-        value: data.id_dokter,
-        label: data.nama_dokter,
-    }));
+    const dokterss = (layanan) => {
+        const dokter = dataDokter.filter((data) => data.id_layanan === layanan);
+        const result = dokter.map((data) => ({
+            value: data.id_dokter,
+            label: data.nama_dokter,
+        }));
+
+        setDokters(result);
+    };
+
+    useEffect(() => {
+        dokterss(getData("id_layanan"));
+        console.log(dokter);
+    }, [getData("id_layanan")]);
 
     return (
         <MantineProvider>

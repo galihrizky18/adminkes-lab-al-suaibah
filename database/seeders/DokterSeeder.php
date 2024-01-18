@@ -21,6 +21,7 @@ class DokterSeeder extends Seeder
                 'email' => 'andy@example.com',
                 'noHp' => '081234567890',
                 'alamat' => 'Jl. Contoh No. 123',
+                'id_layanan' => 'layanan1'
             ],
             [
                 'nama_dokter' => 'Dra. Budi Santoso',
@@ -28,6 +29,7 @@ class DokterSeeder extends Seeder
                 'email' => 'budi@example.com',
                 'noHp' => '081234567891',
                 'alamat' => 'Jl. Contoh No. 456',
+                'id_layanan' => 'layanan1'
             ],
             [
                 'nama_dokter' => 'Dr. Cici Rahayu',
@@ -35,6 +37,7 @@ class DokterSeeder extends Seeder
                 'email' => 'cici@example.com',
                 'noHp' => '081234567892',
                 'alamat' => 'Jl. Contoh No. 789',
+                'id_layanan' => 'layanan2'
             ],
             [
                 'nama_dokter' => 'Drs. Dodi Sutanto',
@@ -42,6 +45,7 @@ class DokterSeeder extends Seeder
                 'email' => 'dodi@example.com',
                 'noHp' => '081234567893',
                 'alamat' => 'Jl. Contoh No. 1011',
+                'id_layanan' => 'layanan3'
             ],
             [
                 'nama_dokter' => 'Dr. Eva Wijaya',
@@ -49,6 +53,7 @@ class DokterSeeder extends Seeder
                 'email' => 'eva@example.com',
                 'noHp' => '081234567894',
                 'alamat' => 'Jl. Contoh No. 1213',
+                'id_layanan' => 'layanan4'
             ],
             [
                 'nama_dokter' => 'Dra. Fandi Surya',
@@ -56,6 +61,7 @@ class DokterSeeder extends Seeder
                 'email' => 'fandi@example.com',
                 'noHp' => '081234567895',
                 'alamat' => 'Jl. Contoh No. 1415',
+                'id_layanan' => 'layanan4'
             ],
             [
                 'nama_dokter' => 'Dr. Gita Permata',
@@ -63,6 +69,7 @@ class DokterSeeder extends Seeder
                 'email' => 'gita@example.com',
                 'noHp' => '081234567896',
                 'alamat' => 'Jl. Contoh No. 1617',
+                'id_layanan' => 'layanan5'
             ],
             [
                 'nama_dokter' => 'Drs. Hadi Nugroho',
@@ -70,6 +77,7 @@ class DokterSeeder extends Seeder
                 'email' => 'hadi@example.com',
                 'noHp' => '081234567897',
                 'alamat' => 'Jl. Contoh No. 1819',
+                'id_layanan' => 'layanan5'
             ],
             [
                 'nama_dokter' => 'Dra. Ina Susanti',
@@ -77,6 +85,7 @@ class DokterSeeder extends Seeder
                 'email' => 'ina@example.com',
                 'noHp' => '081234567898',
                 'alamat' => 'Jl. Contoh No. 2021',
+                'id_layanan' => 'layanan6'
             ],
             [
                 'nama_dokter' => 'Dr. Joni Wibowo',
@@ -84,6 +93,7 @@ class DokterSeeder extends Seeder
                 'email' => 'joni@example.com',
                 'noHp' => '081234567899',
                 'alamat' => 'Jl. Contoh No. 2223',
+                'id_layanan' => 'layanan6'
             ],
             
         ];
@@ -99,6 +109,7 @@ class DokterSeeder extends Seeder
                 "email" => $nm['email'],
                 "noHp" => $nm['noHp'],
                 "alamat" => $nm['alamat'],
+                "id_layanan" => $nm['id_layanan'],
             ]);
         }
     }
