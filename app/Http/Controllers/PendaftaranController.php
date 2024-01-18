@@ -20,10 +20,12 @@ class PendaftaranController extends Controller
 
         $dataDokter = Dokter::all();
         $dataLayanan = Layanan::all();
+        $pasien = Patient::with('registration')->get();
 
         return Inertia::render('pendaftaran/PasienBaru',[
             'dataDokter' => $dataDokter,
             'dataLayanan' => $dataLayanan,
+            'pasien'=> $pasien
         ]);
     }
     
@@ -46,11 +48,14 @@ class PendaftaranController extends Controller
             $idPatient = "PTNT-".$time;
             $idReg = "REG-".$time;
             $noRM = "RM-".$time;
+
+            // Detail Patient
+            $nikPatient = "";
+            $inProcessPatient = false;
     
             // Upload to Patient DB
             $pt = new Patient();
             $pt->id_patient = $idPatient;
-            $nikPatient = "";
     
             foreach ($dataReg as $data) {
                 if ($data["name"] === "nik") {
@@ -64,16 +69,26 @@ class PendaftaranController extends Controller
             $reg->id_registration = $idReg;
             $reg->id_patient = $idPatient;
             $reg->no_rekam_medik = $noRM;
+            $reg->status = "process";
             foreach ($dataClinic as $data) {
                 $reg->{$data["name"]} = $data["value"];
             }
     
-            // Check if nikPatient already exists
-            $existingPatient = Patient::where('nik', $nikPatient)->first();
-            if ($existingPatient) {
-                return response()->json(['message' => 'Found']);
+            // Check if nikPatient already exists and Status
+            $existingPatient = Patient::where('nik', $nikPatient)->with('registration')->get();
+
+            if($existingPatient->isNotEmpty()){
+                foreach ($existingPatient as $patient) {
+                    if ($patient->registration && $patient->registration->status === "process") {
+                        $inProcessPatient = true;
+                        break;
+                    }
+                }
+                if ($inProcessPatient) {
+                    return response()->json(['message' => 'Found']);
+                }
             }
-    
+            
             // Save the data if nikPatient not found
             $pt->save();
             $reg->save();

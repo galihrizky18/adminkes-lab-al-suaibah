@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('jadwal');
             $table->string('no_telepon');
             $table->string('email');
+            $table->enum('status', ["completed", "process", "cancel"]);
 
             $table->timestamps();
         });

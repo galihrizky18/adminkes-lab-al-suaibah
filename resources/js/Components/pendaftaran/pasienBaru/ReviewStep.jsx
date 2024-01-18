@@ -117,7 +117,7 @@ const ReviewStep = ({ dataPendaftar, dataDokter }) => {
                                 Nomor Telepon
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                                {getData("no_telepon")}
+                                0{getData("no_telepon")}
                             </div>
                         </div>
 

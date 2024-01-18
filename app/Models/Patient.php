@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     use HasFactory;
+
+    public function registration(){
+        return $this->hasOne(Registration::class, "id_patient" , "id_patient");
+    }
 }

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { router } from "@inertiajs/react";
 import { MantineProvider, Stepper, Button, Group } from "@mantine/core";
 import RegistrationSec from "./RegistrationSec";
 import ClinicRegisSec from "./ClinicRegisSec";
@@ -27,8 +27,13 @@ const Steppers = ({
 }) => {
     // Stepper
     const [active, setActive] = useState(0);
-    const nextStep = () =>
-        setActive((current) => (current < 3 ? current + 1 : current));
+    const nextStep = () => {
+        if (active === 3) {
+            router.get("/pendaftaran");
+        } else {
+            setActive((current) => (current < 3 ? current + 1 : current));
+        }
+    };
     const prevStep = () =>
         setActive((current) => (current > 0 ? current - 1 : current));
 
@@ -75,9 +80,10 @@ const Steppers = ({
             } else if (response.data && response.data.message === "Found") {
                 Swal.fire({
                     icon: "error",
-                    title: "Failed",
-                    text: "Data Telah Ada!",
+                    title: "Pasien Sudah Terdaftar",
+                    text: "Pasien Sudah Terdaftar dan Antrian Berlangsung!",
                 });
+                setActive(0);
             }
 
             console.log(response.data.message); // Handle respons dari backend
