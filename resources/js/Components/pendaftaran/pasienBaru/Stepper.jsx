@@ -34,8 +34,13 @@ const Steppers = ({
             setActive((current) => (current < 3 ? current + 1 : current));
         }
     };
-    const prevStep = () =>
-        setActive((current) => (current > 0 ? current - 1 : current));
+    const prevStep = () => {
+        if (active === 0) {
+            router.get("/pendaftaran");
+        } else {
+            setActive((current) => (current > 0 ? current - 1 : current));
+        }
+    };
 
     // Get Data Patient
     const getData = (name) => {
@@ -85,8 +90,6 @@ const Steppers = ({
                 });
                 setActive(0);
             }
-
-            console.log(response.data.message); // Handle respons dari backend
         } catch (error) {
             console.error("Gagal mengirim data ke server:", error);
         }

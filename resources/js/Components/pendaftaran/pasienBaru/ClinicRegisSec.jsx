@@ -32,7 +32,6 @@ const ClinicRegisSec = ({
 
     useEffect(() => {
         dokterss(getData("id_layanan"));
-        console.log(dokter);
     }, [getData("id_layanan")]);
 
     return (

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const DetailPatient = () => {
+const DetailPatient = ({ patientFromDB }) => {
     return (
         <div className="mt-3 px-3 ">
             <div className="title text-center pb-3 text-xl border-b border-gray-300">
@@ -14,7 +14,7 @@ const DetailPatient = () => {
                             Nama Pasien
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdasdas
+                            {patientFromDB[0]?.patient?.name}
                         </div>
                     </div>
 
@@ -24,7 +24,7 @@ const DetailPatient = () => {
                             Tanggal Lahir
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdasd
+                            {patientFromDB[0]?.patient?.birth}
                         </div>
                     </div>
 
@@ -34,7 +34,7 @@ const DetailPatient = () => {
                             Provinsi
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdasda
+                            {patientFromDB[0]?.patient?.province}
                         </div>
                     </div>
 
@@ -44,17 +44,17 @@ const DetailPatient = () => {
                             Kota
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdasd
+                            {patientFromDB[0]?.patient?.city}
                         </div>
                     </div>
 
                     {/* Poli*/}
                     <div className="item h-8 flex flex-row">
                         <div className="title w-[50%] flex items-center">
-                            Poli
+                            Layanan
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdadas
+                            {patientFromDB[0]?.layanan?.layanan}
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@ const DetailPatient = () => {
                             Dokter
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdasdas
+                            {patientFromDB[0]?.dokters?.nama_dokter}
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@ const DetailPatient = () => {
                             Jadwal Kunjungan
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdsadsa
+                            {patientFromDB[0]?.jadwal}
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@ const DetailPatient = () => {
                             Nomor Telepon
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
-                            asdasd
+                            0{patientFromDB[0]?.no_telepon}
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@ const DetailPatient = () => {
                             Email
                         </div>
                         <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold">
-                            asdasd
+                            {patientFromDB[0]?.email}
                         </div>
                     </div>
                 </div>

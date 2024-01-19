@@ -13,6 +13,7 @@ const SearchPatient = ({
             ? dataPatient.find((e) => e.name === name).value
             : null;
     };
+
     return (
         <div className="mt-3 px-3 ">
             <div className="title text-center pb-3 text-xl border-b border-gray-300">
@@ -28,7 +29,7 @@ const SearchPatient = ({
                     </div>
                     <div className=" w-full">
                         <NumberInput
-                            value={getData("norm")}
+                            value={getData("no_rekam_medik")}
                             onChange={setNoRM}
                         />
                     </div>
@@ -41,8 +42,10 @@ const SearchPatient = ({
                     </div>
                     <div className=" w-full">
                         <TextInput
-                            value={getData("namaPasien")}
-                            onChange={setNamaPasien}
+                            value={getData("name")}
+                            onChange={(e) =>
+                                setNamaPasien(e.currentTarget.value)
+                            }
                         />
                     </div>
                 </div>
@@ -53,9 +56,12 @@ const SearchPatient = ({
                         Tanggal Lahir
                     </div>
                     <div className=" w-full">
-                        <TextInput
-                            value={getData("tanggalLahir")}
-                            onChange={setTanggalLahir}
+                        <input
+                            type="date"
+                            className="w-full border border-gray-300 text-gray-400 rounded-lg"
+                            onChange={(e) =>
+                                setTanggalLahir(e.currentTarget.value)
+                            }
                         />
                     </div>
                 </div>

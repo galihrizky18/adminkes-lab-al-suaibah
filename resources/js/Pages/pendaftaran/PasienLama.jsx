@@ -16,22 +16,19 @@ const PasienLama = () => {
     // Data Pasien
     const dataPatient = [
         {
-            name: "norm",
+            name: "no_rekam_medik",
             value: noRM,
         },
         {
-            name: "namaPasien",
+            name: "name",
             value: namaPasien,
         },
         {
-            name: "tanggalLahir",
+            name: "birth",
             value: tanggalLahir,
         },
     ];
 
-    useState(() => {
-        console.log(noRM);
-    }, [noRM]);
     return (
         <div>
             <Head title="Pasien Lama" />
@@ -43,9 +40,9 @@ const PasienLama = () => {
             <div className=" flex justify-center p-5 sm:p-10 ">
                 <Stepper
                     setNoRM={setNoRM}
-                    dataPatient={dataPatient}
                     setNamaPasien={setNamaPasien}
                     setTanggalLahir={setTanggalLahir}
+                    dataPatient={dataPatient}
                 />
             </div>
         </div>

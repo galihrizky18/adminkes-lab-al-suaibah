@@ -38,12 +38,9 @@ Route::get('/laboratorium', [LabController::class, 'dashboard']);
 Route::get('/kia', [KIAController::class, 'dashboard']);
 
 
-
-
-
 // Upload Data
 Route::post('/pendaftaran/pasien-baru', [PendaftaranController::class, 'saveToDatabase']);
-Route::post('/pendaftaran/pasien-lama', [PendaftaranController::class, 'saveToDatabase']);
+Route::post('/pendaftaran/pasien-lama/search', [PendaftaranController::class, 'searchPatientData']);
 
 
 

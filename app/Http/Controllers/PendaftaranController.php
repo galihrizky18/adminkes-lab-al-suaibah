@@ -20,12 +20,10 @@ class PendaftaranController extends Controller
 
         $dataDokter = Dokter::all();
         $dataLayanan = Layanan::all();
-        $pasien = Patient::with('registration')->get();
 
         return Inertia::render('pendaftaran/PasienBaru',[
             'dataDokter' => $dataDokter,
-            'dataLayanan' => $dataLayanan,
-            'pasien'=> $pasien
+            'dataLayanan' => $dataLayanan
         ]);
     }
     
@@ -99,9 +97,46 @@ class PendaftaranController extends Controller
         }
     }
 
-    public function searchPatientData(){
-
-
-    }
+    public function searchPatientData(Request $request){
+        try {
+            // Ambil data pendaftar dari request
+            $dataPendaftar = $request->input('dataPatient');
     
+            $no_rekam_medik = "";
+            $name = "";
+            $birth  = "";
+    
+            // Periksa setiap elemen dataPendaftar
+            foreach ($dataPendaftar as $data) {
+                if ($data["name"] === 'no_rekam_medik') {
+                    $no_rekam_medik ="RM-".$data["value"];
+                } else if ($data["name"] === 'name') {
+                    $name = $data["value"];
+                } else if ($data["name"] === 'birth') {
+                    $birth = $data["value"];
+                }  
+            }
+    
+            // Cari data pasien berdasarkan NIK dan Status
+            $dataPatientFromDB = Registration::where('no_rekam_medik', $no_rekam_medik)
+                                                ->where('status', 'process')
+                                                ->with('layanan') //menghubungkan dengan relasi modal layanan dan dokter secara langsung
+                                                ->with('patient')
+                                                ->with('dokters')
+                                                ->get();
+            if($dataPatientFromDB->isNotEmpty()){
+                $patient = $dataPatientFromDB->first()->patient;
+                if ($patient->name === $name && $patient->birth === $birth) {
+                    return response()->json(['message' => $dataPatientFromDB]);
+                }else{
+                    return response()->json(['message' => "Not Found"]);
+                }
+            }else{
+                return response()->json(['message' => "Not Found"]);
+            }
+                
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed', 'error' => $e->getMessage()]);
+        }
+    }
 }

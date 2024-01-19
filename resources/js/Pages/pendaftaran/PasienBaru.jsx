@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Stepper from "@/Components/pendaftaran/pasienBaru/Stepper";
 
-const PasienBaru = ({ dataDokter, dataLayanan, pasien }) => {
+const PasienBaru = ({ dataDokter, dataLayanan }) => {
     // Radio
     const [radioKelaminValue, setRadioKelaminValue] = useState("");
 
@@ -78,10 +78,6 @@ const PasienBaru = ({ dataDokter, dataLayanan, pasien }) => {
             value: dokterValue,
         },
     ];
-
-    useEffect(() => {
-        console.log(pasien);
-    }, []);
 
     return (
         <div className="">
