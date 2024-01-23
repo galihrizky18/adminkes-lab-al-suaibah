@@ -1,11 +1,16 @@
-import Logout from "@/Components/admin/Logout";
 import React from "react";
+import { Head } from "@inertiajs/react";
+import SideBarAdmin from "@/Components/admin/SideBarAdmin";
 
 const Dashboard = () => {
     return (
-        <div>
-            <h1>Dashboard ADmin</h1>
-            <Logout />
+        <div className="w-full h-full font-montserrat">
+            <Head title="Dashboard | Admin" />
+
+            <div className="h-full w-full flex flex-row ">
+                <SideBarAdmin />
+                <div className="w-full border border-black">Sisi Kanan</div>
+            </div>
         </div>
     );
 };

@@ -31,7 +31,6 @@ class LoginController extends Controller
                 $request->session()->regenerate();
                 return response()->json(['isLoggedIn' => true]);
 
-
             } else {
                 // $request->session()->regenerate();
                 return response()->json(['isLoggedIn' => false]);

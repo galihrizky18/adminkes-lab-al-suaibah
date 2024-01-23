@@ -7,6 +7,7 @@ import {
 } from "@mantine/core";
 import axios from "axios";
 import { router } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 const FormLogin = ({ setUsername, setPassword, dataLogin }) => {
     const [isLogin, setIsLogin] = useState();
@@ -16,18 +17,33 @@ const FormLogin = ({ setUsername, setPassword, dataLogin }) => {
     };
 
     // upload
-    const upload = async (e) => {
-        e.preventDefault();
+    const upload = async () => {
         try {
             const response = await axios.post("/login", dataLogin);
 
             if (response.data.isLoggedIn) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Success",
+                    text: "Login Berhasil",
+                });
                 setIsLogin(response.data.isLoggedIn);
             } else {
                 setIsLogin(false);
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Failed",
+                    text: "Username atau Password Salah!",
+                });
             }
         } catch (error) {
             console.log("error" + error.message);
+        }
+    };
+
+    const handleKeyEnter = (e) => {
+        if (e.key === "Enter") {
+            upload();
         }
     };
 
@@ -56,6 +72,7 @@ const FormLogin = ({ setUsername, setPassword, dataLogin }) => {
                     size="md"
                     value={getData("password")}
                     onChange={(event) => setPassword(event.currentTarget.value)}
+                    onKeyDown={handleKeyEnter}
                 />
 
                 {/* Button */}

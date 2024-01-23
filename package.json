@@ -23,7 +23,6 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@inertiajs/inertia-react": "^0.8.1",
         "@mantine/carousel": "^7.3.2",
         "@mantine/core": "^7.3.2",
         "@mantine/dates": "^7.3.2",
