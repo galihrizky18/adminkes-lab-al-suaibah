@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(LayananSeeder::class);
         $this->call(DokterSeeder::class);
+        $this->call(UserSeeder::class);
 
 
     }

@@ -59,7 +59,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="user">
-                    <Link href="/tes">
+                    <Link href="/login">
                         <div className="login px-3 py-2 rounded-xl bg-green-500 hover:bg-green-600 hover:scale-110 transition-all text-white">
                             Login
                         </div>
