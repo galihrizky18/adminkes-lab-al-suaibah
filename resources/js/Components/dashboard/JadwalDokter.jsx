@@ -6,7 +6,7 @@ const JadwalDokter = () => {
             <div className="title w-full text-center pb-3 font-montserrat text-3xl sm:text-3xl font-bold text-[#27863f] border-b border-gray-300">
                 Jadwal Dokter
             </div>
-            <div>asdasdasda</div>
+            <div>Jadwal Dokter Praktek</div>
         </div>
     );
 };

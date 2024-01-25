@@ -21,7 +21,7 @@ const Dashboard = () => {
                     <div className="icon">
                         <img src={iconPhone} alt="" width={30} />
                     </div>
-                    <div className="number mr-5">0812-1234-5678</div>
+                    <div className="number mr-5">0817-7999-2808</div>
                     <span>|</span>
                     <div className="email">abcdefgh@gmail.com</div>
                 </div>

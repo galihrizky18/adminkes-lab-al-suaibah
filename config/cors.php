@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => ['https://rjdk35db-8000.asse.devtunnels.ms/'],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 

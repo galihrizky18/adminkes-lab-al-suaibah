@@ -45,6 +45,8 @@ Route::get('/kia', [KIAController::class, 'dashboard']);
 // Admin Page
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/patient', [AdminController::class, 'patientDashboardAdmin'])->name('admin');
+    Route::get('/admin', [AdminController::class, 'dataAdmin'])->name('dataAdmin');
 
 
 

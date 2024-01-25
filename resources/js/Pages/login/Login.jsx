@@ -35,7 +35,7 @@ const Login = () => {
                 </div>
 
                 {/* Card Login */}
-                <div className="loginCard absolute flex flex-col sm:p-10 justify-center items-center w-full lg:w-[50%] h-full right-0 bg-gradient-to-r  text-white">
+                <div className="loginCard absolute flex flex-col sm:p-10 justify-center items-center w-full lg:w-[50%] h-full right-0 bg-gradient-to-r from-[#356F8E] to-[#1E4356] text-white">
                     <div className="flex flex-col w-[80%] sm:w-[70%] gap-3 ">
                         {/* logo */}
                         <div className="pict flex flex-row w-full justify-center gap-5">

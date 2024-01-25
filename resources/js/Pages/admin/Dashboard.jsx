@@ -1,17 +1,13 @@
 import React from "react";
-import { Head } from "@inertiajs/react";
-import SideBarAdmin from "@/Components/admin/SideBarAdmin";
+import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 
-const Dashboard = () => {
+const Dashboard = ({ currentUser }) => {
     return (
-        <div className="w-full h-full font-montserrat">
-            <Head title="Dashboard | Admin" />
-
-            <div className="h-full w-full flex flex-row ">
-                <SideBarAdmin />
-                <div className="w-full border border-black">Sisi Kanan</div>
+        <LayoutAdmin title="Dashboard" titlePage="Dashboard" user={currentUser}>
+            <div className="w-full px-5 py-3 h-[1000px] bg-white rounded-xl shadow-xl border border-gray-300">
+                Ini Halaman Dashboard Admin
             </div>
-        </div>
+        </LayoutAdmin>
     );
 };
 

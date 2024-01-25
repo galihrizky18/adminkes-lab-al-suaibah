@@ -13,6 +13,8 @@ const ClinicRegisSec = ({
     dataLayanan,
 }) => {
     const [dokter, setDokters] = useState();
+    const [valueEmail, setValueEmail] = useState("");
+    const [isValidEmail, setIsValidEmail] = useState(true);
     // Data Pendafter
     const getData = (name) => {
         return dataPendaftar
@@ -29,6 +31,27 @@ const ClinicRegisSec = ({
 
         setDokters(result);
     };
+
+    const validateEmail = (email) => {
+        // Ekspresi reguler untuk memeriksa alamat email yang valid
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const handleInputEmail = (inputValue) => {
+        setValueEmail(inputValue);
+        setIsValidEmail(validateEmail(inputValue));
+    };
+
+    const cekEmailValidation = () => {
+        if (isValidEmail) {
+            setEmailValue(valueEmail);
+        }
+    };
+
+    useEffect(() => {
+        cekEmailValidation();
+    }, [isValidEmail]);
 
     useEffect(() => {
         dokterss(getData("id_layanan"));
@@ -120,10 +143,14 @@ const ClinicRegisSec = ({
                                 <TextInput
                                     radius="md"
                                     placeholder="Email"
-                                    value={getData("email")}
+                                    // value={getData("email")}
+                                    value={valueEmail}
                                     onChange={(event) =>
-                                        setEmailValue(event.currentTarget.value)
+                                        handleInputEmail(
+                                            event.currentTarget.value
+                                        )
                                     }
+                                    type="email"
                                 />
                             </div>
                         </div>
