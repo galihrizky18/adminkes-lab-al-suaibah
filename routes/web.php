@@ -49,6 +49,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::prefix('master-menu')->group(function(){
         Route::get('/admin', [AdminController::class, 'dataAdmin'])->name('dataAdmin');
+        Route::get('/dokter', [AdminController::class, 'dataDokter'])->name('dataDokter');
         Route::get('/poli-umum-lansia', [AdminController::class, 'dataPoliUmumLansia'])->name('dataPoliUmumLansia');
         Route::get('/poli-gigi', [AdminController::class, 'dataPoliGigi'])->name('dataPoliGigi');
         Route::get('/laboratorium', [AdminController::class, 'dataLaboratorium'])->name('dataLaboratorium');
@@ -58,16 +59,19 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     // Add Data
     Route::prefix('add-data')->group(function (){
         Route::post('/admin', [AdminController::class, 'addAdmin'])->name("addAdmin");
+        Route::post('/dokters', [AdminController::class, 'addDokters'])->name("addDokters");
     });
 
     // Edit Data
     Route::prefix('edit-data')->group(function (){
-        Route::post('/admin', [AdminController::class, 'editAdmin'])->name("addAdmin");
+        Route::post('/admin', [AdminController::class, 'editAdmin'])->name("editAdmin");
+        Route::post('/dokter', [AdminController::class, 'editDokter'])->name("editDokter");
     });
 
     // Delete Data
     Route::prefix('delete-data')->group(function (){
         Route::post('/admin', [AdminController::class, 'deleteAdmin'])->name("deleteAdmin");
+        Route::post('/dokter', [AdminController::class, 'deleteDokter'])->name("deleteDokter");
     });
 
 

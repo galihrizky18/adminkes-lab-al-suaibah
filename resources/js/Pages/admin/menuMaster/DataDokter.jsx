@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import AddAdminModal from "@/Components/admin/modal/AddAdminModal";
-import TableAdmins from "@/Components/admin/table/TableAdmins";
 import { router } from "@inertiajs/react";
+import AddDokterModal from "@/Components/admin/modal/AddDokterModal";
+import TableDokters from "@/Components/admin/table/TableDokters";
 
-const DataAdmin = ({ currentUser, dataAdmins }) => {
+const DataDokter = ({ currentUser, dataLayanan, dataDokters }) => {
     const [opened, { open, close }] = useDisclosure(false);
     const [isSuccessSave, setIsSuccessSave] = useState(false);
 
@@ -18,7 +18,7 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
     }, [isSuccessSave]);
     return (
         <LayoutAdmin
-            title="Admin Data"
+            title="Dokter Data"
             titlePage="Data Admin"
             user={currentUser}
         >
@@ -29,10 +29,10 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
                     <Modal
                         opened={opened}
                         onClose={close}
-                        title="Tambah Admin"
+                        title="Tambah Dokter"
                         size="md"
                     >
-                        <AddAdminModal setIsSuccessSave={setIsSuccessSave} />
+                        <AddDokterModal dataLayanan={dataLayanan} />
                     </Modal>
                     {/* BUtton */}
                     <div>
@@ -40,18 +40,21 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
                             className="text-sm bg-[#50A1C7] text-white font-bold px-3 py-2 rounded-lg hover:bg-[#3f85a5]"
                             onClick={open}
                         >
-                            Tambah Admin
+                            Tambah Dokter
                         </button>
                     </div>
                 </div>
 
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
-                    <TableAdmins dataAdmins={dataAdmins} />
+                    <TableDokters
+                        dataDokters={dataDokters}
+                        dataLayanan={dataLayanan}
+                    />
                 </div>
             </div>
         </LayoutAdmin>
     );
 };
 
-export default DataAdmin;
+export default DataDokter;

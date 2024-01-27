@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Dokter extends Model
 {
     use HasFactory;
+
+    protected $primary_key = 'id_dokter';
+
     public function layanan(){
         return $this->belongsTo(Layanan::class, "id_layanan", "id_layanan");
     }

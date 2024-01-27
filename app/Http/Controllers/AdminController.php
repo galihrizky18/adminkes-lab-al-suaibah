@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\Layanan;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,6 +30,18 @@ class AdminController extends Controller
             'dataAdmins'=>$dataAdmins,
             'admin'=>$admin,
             
+        ]);
+    }
+    public function dataDokter(){
+        $currentUser = Auth::user();
+        $dataLayanan = Layanan::all();
+        $dataDokters= Dokter::all();
+
+        return Inertia::render('admin/menuMaster/DataDokter',[
+            'currentUser'=>$currentUser,
+            'dataLayanan'=>$dataLayanan,
+            'dataDokters'=>$dataDokters,
+
         ]);
     }
     public function dataPoliUmumLansia(){
@@ -87,6 +100,37 @@ class AdminController extends Controller
 
 
     }
+    public function addDokters(Request $request){
+        $newDokter = $request->input('dataNewDokter');
+
+
+        //  format waktu
+         $currentTime = time();
+         $time = date('YmdHis', $currentTime);
+         $idNewDokter = "DKTR-".$time;
+
+        if($newDokter){
+
+          
+            $dokter = new Dokter();
+            $dokter->id_dokter  = $idNewDokter;
+            $dokter->id_layanan = $newDokter['layanan'];
+            $dokter->nama_dokter = $newDokter['nameDokter'];
+            $dokter->spesialis = $newDokter['spesialis'];
+            $dokter->email = $newDokter['email'];
+            $dokter->noHp  = $newDokter['noHp'];
+            $dokter->alamat  = $newDokter['alamat'];
+
+            if($dokter->save()){
+                return response()->json(['message'=>'Success Save Data']);
+            }
+            return response()->json(['message'=>'Failed Save Data']);
+            
+
+        }
+        return response()->json(['message'=>'Fail Request']);
+
+    }
 
 
 
@@ -122,6 +166,33 @@ class AdminController extends Controller
             return response()->json(['message'=>'Failed Requst Database']);
         }
     }
+    public function editDokter(Request $request)
+    {
+        try {
+            $dataEditDokter = $request->input('dataEditDokter');
+    
+            $result = Dokter::where('id_dokter', $dataEditDokter['idDokter'])
+            ->update([
+                'nama_dokter' => $dataEditDokter['nameDokter'],
+                'id_layanan' => $dataEditDokter['layanan'],
+                'spesialis' => $dataEditDokter['spesialis'],
+                'email' => $dataEditDokter['email'],
+                'noHp' => $dataEditDokter['noHp'],
+                'alamat' => $dataEditDokter['alamat'],
+            ]);
+
+        if ($result) {
+            return response()->json(['message' => "Success Edit Dokter"]);
+        }
+    
+            return response()->json(['message' => "Failed Edit Dokter"]);
+    
+        } catch (\Throwable $th) {
+
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
+    
 
 
 
@@ -142,13 +213,34 @@ class AdminController extends Controller
                 return response()->json(['message'=>"Success Delete Admin"]);
             }
             return response()->json(['message'=>"Failed Delete Admin"]);
-            
-            
 
         } catch (\Throwable $th) {
             return response()->json(['message'=>'Failed Requst Database']);
         }
     }
+
+    public function deleteDokter(Request $request)
+    {
+        try {
+            $idDokter = $request->input('id');
+
+            $checkDokter = Dokter::where('id_dokter', $idDokter)->delete();
+
+            if (!$checkDokter) {
+                return response()->json(['message' => "Dokter not found"], 404);
+            }
+
+            if ($checkDokter) {
+                return response()->json(['message' => "Success Delete Dokter"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Dokter"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
+
 
 
 

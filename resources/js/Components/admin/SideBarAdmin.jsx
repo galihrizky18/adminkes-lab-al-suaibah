@@ -15,6 +15,8 @@ import IconPeople from "../../../../public/asset/icon/admin/icon-people.png";
 import IconPeoples from "../../../../public/asset/icon/admin/icon-group-people.png";
 import IconMenuMaster from "../../../../public/asset/icon/admin/icon-menu-master.svg";
 import IconMenuMasterSolid from "../../../../public/asset/icon/admin/icon-menu-master-solid.svg";
+import IconBooks from "../../../../public/asset/icon/admin/icon-books.svg";
+import IconBooksSolid from "../../../../public/asset/icon/admin/icon-books-solid.svg";
 
 const SideBarAdmin = () => {
     const [sideOpen, setSideOpen] = useState(false);
@@ -50,32 +52,38 @@ const SideBarAdmin = () => {
                             title={"Menu Master"}
                         >
                             <CardSideBarAdmin
-                                img={IconPeople}
-                                imgHover={IconPeoples}
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
                                 title={"Data Admin"}
                                 href={"/admin/master-menu/admin"}
                             />
                             <CardSideBarAdmin
-                                img={IconPeople}
-                                imgHover={IconPeoples}
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
+                                title={"Data Dokter"}
+                                href={"/admin/master-menu/dokter"}
+                            />
+                            <CardSideBarAdmin
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
                                 title={"Data Umum & Lansia"}
                                 href={"/admin/master-menu/poli-umum-lansia"}
                             />
                             <CardSideBarAdmin
-                                img={IconPeople}
-                                imgHover={IconPeoples}
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
                                 title={"Data Gigi"}
                                 href={"/admin/master-menu/poli-gigi"}
                             />
                             <CardSideBarAdmin
-                                img={IconPeople}
-                                imgHover={IconPeoples}
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
                                 title={"Data Laboratorium"}
                                 href={"/admin/master-menu/laboratorium"}
                             />
                             <CardSideBarAdmin
-                                img={IconPeople}
-                                imgHover={IconPeoples}
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
                                 title={"Data Farmasi"}
                                 href={"/admin/master-menu/farmasi"}
                             />

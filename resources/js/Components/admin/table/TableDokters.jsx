@@ -9,22 +9,25 @@ import { router } from "@inertiajs/react";
 // icon
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import EditAdminModal from "../modal/EditAdminModal";
+import EditDokterModal from "../modal/EditDokterModal";
 
-const TableAdmins = ({ dataAdmins }) => {
-    const [originalData, setOriginalData] = useState(dataAdmins);
+const TableDokters = ({ dataDokters, dataLayanan }) => {
+    const [originalData, setOriginalData] = useState(dataDokters);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
-    // Fungsi untuk mengonversi dataAdmins
+    // Fungsi untuk mengonversi dataDokters
     const convertData = (data) => {
         return data.map((e) => ({
-            // username: e.username,
-            id_user: e.second_identifyer,
-            username: e.username,
-            name: e.name,
+            id_dokter: e.id_dokter,
+            layanan: e.id_layanan,
+            nama: e.nama_dokter,
+            spesialis: e.spesialis,
             email: e.email,
+            noHp: e.noHp,
+            alamat: e.alamat,
             action: (
                 <div
                     className="grid gap-1 py-2"
@@ -37,7 +40,7 @@ const TableAdmins = ({ dataAdmins }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.second_identifyer)}
+                        onClick={() => confirmDelete(e.id_dokter)}
                     >
                         Delete
                     </Button>
@@ -51,10 +54,13 @@ const TableAdmins = ({ dataAdmins }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_user: e.second_identifyer,
-                                username: e.username,
-                                name: e.name,
+                                id_dokter: e.id_dokter,
+                                layanan: e.id_layanan,
+                                nama: e.nama_dokter,
+                                spesialis: e.spesialis,
                                 email: e.email,
+                                noHp: e.noHp,
+                                alamat: e.alamat,
                             };
                             setSendDataEdit(data);
                             open();
@@ -70,21 +76,26 @@ const TableAdmins = ({ dataAdmins }) => {
     // mengatur kolom table
     const columns = [
         {
-            name: "Id User",
-            selector: (row) => row.id_user,
+            name: "Id Dokter",
+            selector: (row) => row.id_dokter,
             sortable: true,
         },
         {
-            name: "Username",
-            selector: (row) => row.username,
+            name: "Layanan",
+            selector: (row) => row.layanan,
             sortable: true,
             width: "150px",
         },
         {
-            name: "Name",
-            selector: (row) => row.name,
+            name: "Nama",
+            selector: (row) => row.nama,
             sortable: true,
             width: "150px",
+        },
+        {
+            name: "Spesialis",
+            selector: (row) => row.spesialis,
+            sortable: true,
         },
         {
             name: "Email",
@@ -92,9 +103,18 @@ const TableAdmins = ({ dataAdmins }) => {
             sortable: true,
         },
         {
+            name: "No HP",
+            selector: (row) => row.noHp,
+            sortable: true,
+        },
+        {
+            name: "Alamat",
+            selector: (row) => row.alamat,
+            sortable: true,
+        },
+        {
             name: "Action",
             selector: (row) => row.action,
-            sortable: true,
         },
     ];
 
@@ -108,7 +128,7 @@ const TableAdmins = ({ dataAdmins }) => {
         },
         rows: {
             style: {
-                fontSize: "1rem",
+                fontSize: ".9rem",
             },
         },
         cells: {
@@ -122,18 +142,21 @@ const TableAdmins = ({ dataAdmins }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const cekIdUser = d.second_identifyer
+            const cekIdUser = d.id_dokter
                 .toLowerCase()
                 .includes(event.toLowerCase());
-            const cekName = d.name.toLowerCase().includes(event.toLowerCase());
+            const cekName = d.nama_dokter
+                .toLowerCase()
+                .includes(event.toLowerCase());
             const cekEmail = d.email
                 .toLowerCase()
                 .includes(event.toLowerCase());
-            const cekUsername = d.username
+            const cekSpesialis = d.spesialis
                 .toLowerCase()
                 .includes(event.toLowerCase());
+            const cekNoHp = d.noHp.toLowerCase().includes(event.toLowerCase());
 
-            return cekName || cekUsername || cekIdUser || cekEmail;
+            return cekName || cekSpesialis || cekIdUser || cekEmail || cekNoHp;
         });
 
         setDataFilter(convertData(filterData));
@@ -158,51 +181,54 @@ const TableAdmins = ({ dataAdmins }) => {
     };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post("/admin/delete-data/admin", {
+            const response = await axios.post("/admin/delete-data/dokter", {
                 id: id,
             });
 
-            if (response.data.message === "Success Delete Admin") {
+            if (response.data.message === "Success Delete Dokter") {
                 Swal.fire({
                     title: "Success Delete!",
-                    text: "Data Berhasil Di Hapus!",
+                    text: "Dokter Berhasil Di Hapus!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/admin");
-            } else if (response.data.message === "Failed Delete Admin") {
+                router.get("/admin/master-menu/dokter");
+            } else if (response.data.message === "Failed Delete Dokter") {
                 Swal.fire({
                     title: "Failed Delete!",
                     text: "Data Gagal Di Hapus!",
                     icon: "error",
                 });
-            } else if (response.data.message === "Failed Requst Database") {
+            } else if (response.data.message === "FFailed Request Database") {
                 Swal.fire({
                     title: "Failed to Connect Database!",
                     text: "Gagal Terhubung ke Database!",
                     icon: "error",
                 });
-            } else if (response.data.message === "Super Admin") {
-                Swal.fire({
-                    title: "This Account is Super Admin!",
-                    text: "Tidak Bisa Hapus Akun Super Admin!",
-                    icon: "error",
-                });
             }
+            console.log(response.data.message);
         } catch (error) {
             console.log(error);
         }
     };
 
     useEffect(() => {
-        setOriginalData(dataAdmins);
-        setDataFilter(convertData(dataAdmins));
-    }, [dataAdmins]);
+        setOriginalData(dataDokters);
+        setDataFilter(convertData(dataDokters));
+    }, [dataDokters]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
             {/* modal */}
-            <Modal opened={opened} onClose={close} title="Edit Admin" size="md">
-                <EditAdminModal data={sendDataEdit} />
+            <Modal
+                opened={opened}
+                onClose={close}
+                title="Edit Dokter"
+                size="md"
+            >
+                <EditDokterModal
+                    data={sendDataEdit}
+                    dataLayanan={dataLayanan}
+                />
             </Modal>
             {/* BUtton */}
 
@@ -225,11 +251,11 @@ const TableAdmins = ({ dataAdmins }) => {
                 data={dataFilter}
                 pagination
                 fixedHeader
-                fixedHeaderScrollHeight="300px"
+                fixedHeaderScrollHeight="500px"
                 customStyles={customStyles}
             />
         </div>
     );
 };
 
-export default TableAdmins;
+export default TableDokters;
