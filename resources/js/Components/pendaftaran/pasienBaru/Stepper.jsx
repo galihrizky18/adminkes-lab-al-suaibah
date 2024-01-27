@@ -21,6 +21,16 @@ const Steppers = ({
     setdateJadwalKunjunganValue,
     setNoHpValue,
     setEmailValue,
+    //
+    setBirthPlace,
+    setReligion,
+    setEthnic,
+    setLanguage,
+    setEducation,
+    setJob,
+    setBlood,
+    setMarriage,
+    //
     dataPendaftar,
     dataDokter,
     dataLayanan,
@@ -125,6 +135,16 @@ const Steppers = ({
                                 setSearchValueCity={setSearchValueCity}
                                 setTanggalLahirValue={setTanggalLahirValue}
                                 setAlamatValue={setAlamatValue}
+                                //
+                                setBirthPlace={setBirthPlace}
+                                setReligion={setReligion}
+                                setEthnic={setEthnic}
+                                setLanguage={setLanguage}
+                                setEducation={setEducation}
+                                setJob={setJob}
+                                setBlood={setBlood}
+                                setMarriage={setMarriage}
+                                //
                                 dataPendaftar={dataPendaftar}
                             />
                         </Stepper.Step>

@@ -10,7 +10,15 @@ const PasienBaru = ({ dataDokter, dataLayanan }) => {
     // Text Input
     const [textNikValue, setTextNikValue] = useState("");
     const [textNamaValue, setTextNamaValue] = useState("");
-    const [emailValue, setEmailValue] = useState("");
+    const [emailValue, setEmailValue] = useState("-");
+    const [birthPlace, setBirthPlace] = useState("");
+    const [religion, setReligion] = useState("");
+    const [ethnic, setEthnic] = useState("");
+    const [language, setLanguage] = useState("");
+    const [education, setEducation] = useState("");
+    const [job, setJob] = useState("");
+    const [blood, setBlood] = useState("");
+    const [marriage, setMarriage] = useState("");
 
     // Number Input
     const [noHpValue, setNoHpValue] = useState("");
@@ -42,8 +50,40 @@ const PasienBaru = ({ dataDokter, dataLayanan }) => {
             value: radioKelaminValue,
         },
         {
+            name: "birth_place",
+            value: birthPlace,
+        },
+        {
             name: "birth",
             value: tanggalLahirValue,
+        },
+        {
+            name: "religion",
+            value: religion,
+        },
+        {
+            name: "ethnic",
+            value: ethnic,
+        },
+        {
+            name: "language",
+            value: language,
+        },
+        {
+            name: "education",
+            value: education,
+        },
+        {
+            name: "job",
+            value: job,
+        },
+        {
+            name: "blood",
+            value: blood,
+        },
+        {
+            name: "marriage",
+            value: marriage,
         },
         {
             name: "province",
@@ -95,6 +135,15 @@ const PasienBaru = ({ dataDokter, dataLayanan }) => {
                     setSearchValueCity={setSearchValueCity}
                     setTanggalLahirValue={setTanggalLahirValue}
                     setAlamatValue={setAlamatValue}
+                    //
+                    setBirthPlace={setBirthPlace}
+                    setReligion={setReligion}
+                    setEthnic={setEthnic}
+                    setLanguage={setLanguage}
+                    setEducation={setEducation}
+                    setJob={setJob}
+                    setBlood={setBlood}
+                    setMarriage={setMarriage}
                     // Clinic Section
                     setPoliValue={setPoliValue}
                     setdateJadwalKunjunganValue={setdateJadwalKunjunganValue}

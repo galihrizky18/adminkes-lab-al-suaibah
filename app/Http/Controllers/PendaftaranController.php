@@ -35,12 +35,13 @@ class PendaftaranController extends Controller
         try {
             // Ambil data pendaftar dari request
             $dataPendaftar = $request->input('dataPendaftar');
-            $dataReg = array_slice($dataPendaftar, 0, 7);
-            $dataClinic = array_slice($dataPendaftar, 7);
+            $dataReg = array_slice($dataPendaftar, 0, 15);
+            $dataClinic = array_slice($dataPendaftar, 15);
     
             // format waktu
             $currentTime = time();
             $time = date('YmdHis', $currentTime);
+            $currentData = date('Ymd', $currentTime);
     
             // id Field
             $idPatient = "PTNT-".$time;
@@ -68,6 +69,7 @@ class PendaftaranController extends Controller
             $reg->id_patient = $idPatient;
             $reg->no_rekam_medik = $noRM;
             $reg->status = "process";
+            $reg->registration_date = $currentData;
             foreach ($dataClinic as $data) {
                 $reg->{$data["name"]} = $data["value"];
             }

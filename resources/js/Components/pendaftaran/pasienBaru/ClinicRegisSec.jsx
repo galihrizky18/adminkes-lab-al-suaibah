@@ -10,7 +10,6 @@ const ClinicRegisSec = ({
     setDokterValue,
     dataPendaftar,
     dataDokter,
-    dataLayanan,
 }) => {
     const [dokter, setDokters] = useState();
     const [valueEmail, setValueEmail] = useState("");
@@ -137,21 +136,22 @@ const ClinicRegisSec = ({
                         {/* Email*/}
                         <div className="item h-10 flex flex-row">
                             <div className="title w-[50%] flex items-center">
-                                Email
+                                Email{" "}
                             </div>
                             <div className=" w-full">
                                 <TextInput
                                     radius="md"
                                     placeholder="Email"
                                     // value={getData("email")}
-                                    value={valueEmail}
+                                    value={getData("email")}
                                     onChange={(event) =>
-                                        handleInputEmail(
-                                            event.currentTarget.value
-                                        )
+                                        setEmailValue(event.currentTarget.value)
                                     }
                                     type="email"
                                 />
+                                <span className="text-blue-800 mx-3 text-sm">
+                                    (*isi " - " jika tidak ada email)
+                                </span>
                             </div>
                         </div>
                     </div>

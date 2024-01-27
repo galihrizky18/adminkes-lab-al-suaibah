@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('email');
             $table->enum('status', ["completed", "process", "cancel"]);
 
+
+            $table->date('registration_date');
+            
+
             $table->timestamps();
         });
     }

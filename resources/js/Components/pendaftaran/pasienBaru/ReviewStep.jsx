@@ -51,6 +51,26 @@ const ReviewStep = ({ dataPendaftar, dataDokter }) => {
                             </div>
                         </div>
 
+                        {/* Jenis Kelamin*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Jenis Kelamin
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("gender")}
+                            </div>
+                        </div>
+
+                        {/* Tempat Lahir*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Tempat Lahir
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("birth_place")}
+                            </div>
+                        </div>
+
                         {/* Tanggal Lahir*/}
                         <div className="item h-8 flex flex-row">
                             <div className="title w-[50%] flex items-center">
@@ -58,6 +78,76 @@ const ReviewStep = ({ dataPendaftar, dataDokter }) => {
                             </div>
                             <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
                                 {getData("birth")}
+                            </div>
+                        </div>
+
+                        {/* Agama*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Agama
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("religion")}
+                            </div>
+                        </div>
+
+                        {/* Suku*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Suku
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("ethnic")}
+                            </div>
+                        </div>
+
+                        {/* Bahasa*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Bahasa
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("language")}
+                            </div>
+                        </div>
+
+                        {/* Pendidikan*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Pendidikan
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("education")}
+                            </div>
+                        </div>
+
+                        {/* Pekerjaan*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Pekerjaan
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("job")}
+                            </div>
+                        </div>
+
+                        {/* Golongan Darah*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Golongan Darah
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("blood")}
+                            </div>
+                        </div>
+
+                        {/* Status Kawinr*/}
+                        <div className="item h-8 flex flex-row">
+                            <div className="title w-[50%] flex items-center">
+                                Status Perkawinan
+                            </div>
+                            <div className="w-full rounded-lg h-8 flex items-center flex-wrap line-clamp-2 px-3 font-bold ">
+                                {getData("marriage")}
                             </div>
                         </div>
 

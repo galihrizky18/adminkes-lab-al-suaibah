@@ -20,19 +20,19 @@ const LayananSection = () => {
         },
         {
             key: "poli-umum",
-            label: "POLI UMUM",
+            label: "RU. UMUM & Lansia",
             img: IconPoliUmum,
             url: "poli-umum",
         },
         {
             key: "poli-anak",
-            label: "POLI ANAK",
+            label: "RU. ANAK",
             img: IconPoliAnak,
             url: "poli-anak",
         },
         {
             key: "poli-gigi",
-            label: "POLI GIGI",
+            label: "RU. GIGI",
             img: IconPoliGigi,
             url: "poli-gigi",
         },
@@ -43,7 +43,7 @@ const LayananSection = () => {
             img: IconLabor,
             url: "laboratorium",
         },
-        { key: "kia", label: "KIA", img: IconKia, url: "kia" },
+        { key: "kia", label: "RU. KIA", img: IconKia, url: "kia" },
     ];
 
     return (

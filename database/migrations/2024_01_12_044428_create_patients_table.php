@@ -16,7 +16,15 @@ return new class extends Migration
             $table->string('nik');
             $table->string('name');
             $table->enum('gender',['male','female']);
+            $table->string('birth_place');
             $table->date('birth');
+            $table->string('religion');
+            $table->string('ethnic');
+            $table->string('language');
+            $table->string('education');
+            $table->string('job');
+            $table->string('blood');
+            $table->string('marriage');
             $table->string('province');
             $table->string('city');
             $table->text('address');
