@@ -52,8 +52,32 @@ const SideBarAdmin = () => {
                             <CardSideBarAdmin
                                 img={IconPeople}
                                 imgHover={IconPeoples}
-                                title={"Data Patient"}
-                                href={"/admin/patient"}
+                                title={"Data Admin"}
+                                href={"/admin/master-menu/admin"}
+                            />
+                            <CardSideBarAdmin
+                                img={IconPeople}
+                                imgHover={IconPeoples}
+                                title={"Data Umum & Lansia"}
+                                href={"/admin/master-menu/poli-umum-lansia"}
+                            />
+                            <CardSideBarAdmin
+                                img={IconPeople}
+                                imgHover={IconPeoples}
+                                title={"Data Gigi"}
+                                href={"/admin/master-menu/poli-gigi"}
+                            />
+                            <CardSideBarAdmin
+                                img={IconPeople}
+                                imgHover={IconPeoples}
+                                title={"Data Laboratorium"}
+                                href={"/admin/master-menu/laboratorium"}
+                            />
+                            <CardSideBarAdmin
+                                img={IconPeople}
+                                imgHover={IconPeoples}
+                                title={"Data Farmasi"}
+                                href={"/admin/master-menu/farmasi"}
                             />
                         </CollapseSideBarAdmin>
 

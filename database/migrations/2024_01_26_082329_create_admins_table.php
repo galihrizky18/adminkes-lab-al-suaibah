@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->string('id_user')->primary();
-            $table->string('second_identifyer')->unique();
             $table->string('name');
             $table->string('username');
             $table->string('password');
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('admins');
     }
 };

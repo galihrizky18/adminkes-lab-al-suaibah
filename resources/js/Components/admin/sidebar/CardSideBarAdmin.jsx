@@ -20,7 +20,7 @@ const CardSideBarAdmin = ({ img, imgHover, title, href }) => {
     return (
         <Link
             href={href}
-            className={`rounded-lg w-full h-full px-3 py-2 flex flex-row gap-3 text-sm items-center cursor-pointer text-white hover:font-bold ${
+            className={` rounded-lg w-full h-full px-3 py-2 flex flex-row gap-3 text-sm items-center cursor-pointer text-white hover:font-bold ${
                 sameUrl ? `font-bold` : ``
             }`}
             onMouseOver={() => setIsHovered(true)}

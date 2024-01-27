@@ -60,7 +60,7 @@ const CollapseSideBarAdmin = (props) => {
 
             {/* Isi Collapse */}
             <Collapse in={opened}>
-                <div className="ml-7 my-3 ">{children}</div>
+                <div className="ml-7 my-3 flex flex-col gap-3">{children}</div>
             </Collapse>
         </Box>
     );

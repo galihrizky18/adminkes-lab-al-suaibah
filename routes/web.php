@@ -46,8 +46,29 @@ Route::get('/kia', [KIAController::class, 'dashboard']);
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/patient', [AdminController::class, 'patientDashboardAdmin'])->name('admin');
-    Route::get('/admin', [AdminController::class, 'dataAdmin'])->name('dataAdmin');
 
+    Route::prefix('master-menu')->group(function(){
+        Route::get('/admin', [AdminController::class, 'dataAdmin'])->name('dataAdmin');
+        Route::get('/poli-umum-lansia', [AdminController::class, 'dataPoliUmumLansia'])->name('dataPoliUmumLansia');
+        Route::get('/poli-gigi', [AdminController::class, 'dataPoliGigi'])->name('dataPoliGigi');
+        Route::get('/laboratorium', [AdminController::class, 'dataLaboratorium'])->name('dataLaboratorium');
+        Route::get('/farmasi', [AdminController::class, 'dataFarmasi'])->name('dataFarmasi');
+    });
+
+    // Add Data
+    Route::prefix('add-data')->group(function (){
+        Route::post('/admin', [AdminController::class, 'addAdmin'])->name("addAdmin");
+    });
+
+    // Edit Data
+    Route::prefix('edit-data')->group(function (){
+        Route::post('/admin', [AdminController::class, 'editAdmin'])->name("addAdmin");
+    });
+
+    // Delete Data
+    Route::prefix('delete-data')->group(function (){
+        Route::post('/admin', [AdminController::class, 'deleteAdmin'])->name("deleteAdmin");
+    });
 
 
    

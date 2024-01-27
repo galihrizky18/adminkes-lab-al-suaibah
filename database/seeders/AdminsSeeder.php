@@ -2,23 +2,21 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admins;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class AdminsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
-
         $dataUser = [
             [
                 "id_user" => "USR-",
-                "second_identifyer" => "USR-",
                 "name" => "admin",
                 "username" => "admin",
                 "password" => bcrypt('123'),
@@ -31,9 +29,8 @@ class UserSeeder extends Seeder
         $time = date('YmdHis', $currentTime);
 
         foreach($dataUser as $i=>$data){
-            User::create([
+            Admins::create([
                 'id_user'=> $data['id_user'].$time,
-                'second_identifyer'=> $data['second_identifyer'].$time,
                 'name'=> $data['name'],
                 'username'=> $data['username'],
                 'password'=> $data['password'],
@@ -42,6 +39,5 @@ class UserSeeder extends Seeder
             );
 
         }
-
     }
 }
