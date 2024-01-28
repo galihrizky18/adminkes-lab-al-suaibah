@@ -8,25 +8,35 @@ import { router } from "@inertiajs/react";
 
 // icon
 import { IconTrash, IconEdit } from "@tabler/icons-react";
-import EditDokterModal from "../modal/EditDokterModal";
+import EditAdminModal from "../modal/EditAdminModal";
 
-const TableDokters = ({ dataDokters, dataLayanan }) => {
-    const [originalData, setOriginalData] = useState(dataDokters);
+const TableUmumLansia = ({ dataUmumLansia }) => {
+    const [originalData, setOriginalData] = useState(dataUmumLansia);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
-    // Fungsi untuk mengonversi dataDokters
+    // Fungsi untuk mengonversi dataUmumLansia
     const convertData = (data) => {
         return data.map((e) => ({
-            nip_dokter: e.nip,
-            layanan: e.layanan.layanan,
-            nama: e.nama_dokter,
-            spesialis: e.spesialis,
-            email: e.email,
-            noHp: e.noHp,
-            alamat: e.alamat,
+            id_krjUmumLansia: e.id_krj_poli_umum_lansia,
+            id_dokter: e.dokter.nama_dokter,
+            name: e.name,
+            birth: e.birth,
+            bb: e.bb,
+            tb: e.tb,
+            td: e.td,
+            rr: e.rr,
+            n: e.n,
+            anamnesis: e.anamnesis,
+            pemeriksaan_fisik: e.pemeriksaan_fisik,
+            pemeriksaan_penunjang: e.pemeriksaan_penunjang,
+            diagnosis: e.diagnosis,
+            terapi: e.terapi,
+            rujukan: e.rujukan,
+            createDate: dateCreate(e.created_at),
+
             action: (
                 <div
                     className="grid gap-1 py-2"
@@ -39,7 +49,7 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_dokter)}
+                        onClick={() => confirmDelete(e.id_krj_poli_umum_lansia)}
                     >
                         Delete
                     </Button>
@@ -53,13 +63,22 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_dokter: e.id_dokter,
-                                layanan: e.id_layanan,
-                                nama: e.nama_dokter,
-                                spesialis: e.spesialis,
-                                email: e.email,
-                                noHp: e.noHp,
-                                alamat: e.alamat,
+                                id_krjUmumLansia: e.id_krj_poli_umum_lansia,
+                                id_dokter: e.dokter.nama_dokter,
+                                name: e.name,
+                                birth: e.birth,
+                                bb: e.bb,
+                                tb: e.tb,
+                                td: e.td,
+                                rr: e.rr,
+                                n: e.n,
+                                anamnesis: e.anamnesis,
+                                pemeriksaan_fisik: e.pemeriksaan_fisik,
+                                pemeriksaan_penunjang: e.pemeriksaan_penunjang,
+                                diagnosis: e.diagnosis,
+                                terapi: e.terapi,
+                                rujukan: e.rujukan,
+                                createDate: dateCreate(e.created_at),
                             };
                             setSendDataEdit(data);
                             open();
@@ -72,51 +91,58 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
         }));
     };
 
-    // handle Name Layann
-    const convertNameLayanan = () => {};
+    // Take Created Date
+    const dateCreate = (data) => {
+        // String tanggal
+        const dateString = data;
+
+        // Membuat objek Date dari string
+        const dateObject = new Date(dateString);
+
+        // Mendapatkan tahun, bulan, dan tanggal
+        const year = dateObject.getFullYear();
+        const month = dateObject.getMonth() + 1; // Ingat, bulan dimulai dari 0 (0 - Januari, 11 - Desember)
+        const day = dateObject.getDate();
+
+        return `${year}-${month}-${day}`;
+    };
 
     // mengatur kolom table
     const columns = [
         {
-            name: "NIP Dokter",
-            selector: (row) => row.nip_dokter,
-            sortable: true,
-        },
-        {
-            name: "Layanan",
-            selector: (row) => row.layanan,
+            name: "Id",
+            selector: (row) => row.id_krjUmumLansia,
             sortable: true,
             width: "150px",
         },
         {
-            name: "Nama",
-            selector: (row) => row.nama,
+            name: "Dokter",
+            selector: (row) => row.id_dokter,
+            sortable: true,
+            width: "200px",
+        },
+        {
+            name: "Nama Pasien",
+            selector: (row) => row.name,
+            sortable: true,
+            width: "200px",
+        },
+        {
+            name: "Tanggal Lahir",
+            selector: (row) => row.birth,
             sortable: true,
             width: "150px",
         },
         {
-            name: "Spesialis",
-            selector: (row) => row.spesialis,
+            name: "Tanggal Dibuat",
+            selector: (row) => row.createDate,
             sortable: true,
-        },
-        {
-            name: "Email",
-            selector: (row) => row.email,
-            sortable: true,
-        },
-        {
-            name: "No HP",
-            selector: (row) => row.noHp,
-            sortable: true,
-        },
-        {
-            name: "Alamat",
-            selector: (row) => row.alamat,
-            sortable: true,
+            // width: "150px",
         },
         {
             name: "Action",
             selector: (row) => row.action,
+            sortable: true,
         },
     ];
 
@@ -130,7 +156,7 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
         },
         rows: {
             style: {
-                fontSize: ".9rem",
+                fontSize: "1rem",
             },
         },
         cells: {
@@ -144,21 +170,12 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const cekIdUser = d.id_dokter
+            const cekId = d.id_krj_poli_umum_lansia
                 .toLowerCase()
                 .includes(event.toLowerCase());
-            const cekName = d.nama_dokter
-                .toLowerCase()
-                .includes(event.toLowerCase());
-            const cekEmail = d.email
-                .toLowerCase()
-                .includes(event.toLowerCase());
-            const cekSpesialis = d.spesialis
-                .toLowerCase()
-                .includes(event.toLowerCase());
-            const cekNoHp = d.noHp.toLowerCase().includes(event.toLowerCase());
+            const cekName = d.name.toLowerCase().includes(event.toLowerCase());
 
-            return cekName || cekSpesialis || cekIdUser || cekEmail || cekNoHp;
+            return cekName || cekId;
         });
 
         setDataFilter(convertData(filterData));
@@ -176,62 +193,56 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                // Handle Delete
                 handleDelete(id);
             }
         });
     };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post("/admin/delete-data/dokter", {
-                id: id,
-            });
+            const response = await axios.post(
+                "/admin/delete-data/umum-lansia",
+                {
+                    id: id,
+                }
+            );
 
-            if (response.data.message === "Success Delete Dokter") {
+            console.log(response.data.message);
+            if (response.data.message === "Success Delete Data") {
                 Swal.fire({
                     title: "Success Delete!",
-                    text: "Dokter Berhasil Di Hapus!",
+                    text: "Data Berhasil Di Hapus!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/dokter");
-            } else if (response.data.message === "Failed Delete Dokter") {
+                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+            } else if (response.data.message === "Failed Delete Data") {
                 Swal.fire({
                     title: "Failed Delete!",
                     text: "Data Gagal Di Hapus!",
                     icon: "error",
                 });
-            } else if (response.data.message === "FFailed Request Database") {
+            } else if (response.data.message === "Failed Requst Database") {
                 Swal.fire({
                     title: "Failed to Connect Database!",
                     text: "Gagal Terhubung ke Database!",
                     icon: "error",
                 });
             }
-            console.log(response.data.message);
         } catch (error) {
             console.log(error);
         }
     };
 
     useEffect(() => {
-        setOriginalData(dataDokters);
-        setDataFilter(convertData(dataDokters));
-    }, [dataDokters]);
+        setOriginalData(dataUmumLansia);
+        setDataFilter(convertData(dataUmumLansia));
+    }, [dataUmumLansia]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
             {/* modal */}
-            <Modal
-                opened={opened}
-                onClose={close}
-                title="Edit Dokter"
-                size="md"
-            >
-                <EditDokterModal
-                    data={sendDataEdit}
-                    dataLayanan={dataLayanan}
-                />
-            </Modal>
+            {/* <Modal opened={opened} onClose={close} title="Edit Admin" size="md">
+                <EditAdminModal data={sendDataEdit} />
+            </Modal> */}
             {/* BUtton */}
 
             {/* Filter */}
@@ -253,11 +264,11 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                 data={dataFilter}
                 pagination
                 fixedHeader
-                fixedHeaderScrollHeight="500px"
+                fixedHeaderScrollHeight="300px"
                 customStyles={customStyles}
             />
         </div>
     );
 };
 
-export default TableDokters;
+export default TableUmumLansia;

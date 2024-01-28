@@ -17,4 +17,8 @@ class Dokter extends Model
     public function registration(){
         return $this->hasOne(Registration::class, 'id_dokter', 'id_dokter');
     }
+
+    public function krjPoliUmumLansia(){
+        return $this->hasOne(krjPoliUmumLansia::class, 'id_dokter', 'id_dokter');
+    }
 }

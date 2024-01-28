@@ -27,6 +27,7 @@ const AddDokterModal = ({ dataLayanan }) => {
     // Validator Form
     const form = useForm({
         initialValues: {
+            nip: "",
             nameDokter: "",
             layanan: "",
             spesialis: "",
@@ -36,6 +37,7 @@ const AddDokterModal = ({ dataLayanan }) => {
         },
 
         validate: {
+            nip: isNotEmpty("NIP tidak boleh kosong"),
             nameDokter: hasLength(
                 { min: 1, max: 32 },
                 "Panjang nama harus 1-32 kata"
@@ -68,6 +70,12 @@ const AddDokterModal = ({ dataLayanan }) => {
                     text: "Gagal Menyimpan Data!",
                     icon: "error",
                 });
+            } else if (response.data.message == "Found Dokter") {
+                Swal.fire({
+                    title: "Found Dokter",
+                    text: "Dokter Sudah Terdaftar!",
+                    icon: "error",
+                });
             } else if (response.data.message == "Fail Request") {
                 Swal.fire({
                     title: "Failed Request",
@@ -92,6 +100,13 @@ const AddDokterModal = ({ dataLayanan }) => {
         >
             <Grid gutter="xl">
                 <Grid.Col className="mt-4">
+                    <NumberInput
+                        label="NIP"
+                        placeholder="NIP"
+                        withAsterisk
+                        mt="md"
+                        {...form.getInputProps("nip")}
+                    />
                     <TextInput
                         label="Nama Dokter"
                         placeholder="Nama Dokter"

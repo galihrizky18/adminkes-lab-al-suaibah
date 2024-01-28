@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\krjPoliUmumLansia;
 use App\Models\Layanan;
-use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +35,7 @@ class AdminController extends Controller
     public function dataDokter(){
         $currentUser = Auth::user();
         $dataLayanan = Layanan::all();
-        $dataDokters= Dokter::all();
+        $dataDokters= Dokter::with('layanan')->get();
 
         return Inertia::render('admin/menuMaster/DataDokter',[
             'currentUser'=>$currentUser,
@@ -44,9 +44,15 @@ class AdminController extends Controller
 
         ]);
     }
-    public function dataPoliUmumLansia(){
+    public function KRJPoliUmumLansia(){
         $currentUser = Auth::user();
-        return Inertia::render('admin/menuMaster/DataUmumLansia',['currentUser'=>$currentUser]);
+        $dataDoker = Dokter::all();
+        $dataUmumLansia = krjPoliUmumLansia::with('dokter')->get();
+        return Inertia::render('admin/menuMaster/KRJUmumLansia',[
+            'currentUser'=>$currentUser,
+            'dataUmumLansia'=>$dataUmumLansia,
+            'dataDoker'=>$dataDoker
+        ]);
     }
     public function dataPoliGigi(){
         $currentUser = Auth::user();
@@ -109,11 +115,18 @@ class AdminController extends Controller
          $time = date('YmdHis', $currentTime);
          $idNewDokter = "DKTR-".$time;
 
-        if($newDokter){
+        //  check dokter
+        $isExistDokter = Dokter::where('nip', $newDokter['nip']);
 
-          
+        if($isExistDokter){
+            return response()->json(['message'=>'Found Dokter']);
+        }
+
+
+        if($newDokter){
             $dokter = new Dokter();
             $dokter->id_dokter  = $idNewDokter;
+            $dokter->nip  = $newDokter['nip'];
             $dokter->id_layanan = $newDokter['layanan'];
             $dokter->nama_dokter = $newDokter['nameDokter'];
             $dokter->spesialis = $newDokter['spesialis'];
@@ -129,6 +142,56 @@ class AdminController extends Controller
 
         }
         return response()->json(['message'=>'Fail Request']);
+
+    }
+    public function addKRJPoliUmumLansia(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idKRJUmumLansia = "KRJUL-".$time;
+    
+            //  check Data
+            $cekData = krjPoliUmumLansia::where('id_dokter', $dataInput['id_dokter'])->where('name', $dataInput['name'])->where('birth',$dataInput['birth'])->exists();
+    
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+    
+            // Format Tekanan Dara
+            $tdarah = $dataInput['tdSistolik'] . '/' . $dataInput['tdDiastolik'];
+    
+    
+            if($dataInput){
+                $KRJUmumLansia = new krjPoliUmumLansia();
+                $KRJUmumLansia->id_krj_poli_umum_lansia = $idKRJUmumLansia;
+                $KRJUmumLansia->id_dokter = $dataInput['id_dokter'];
+                $KRJUmumLansia->name = $dataInput['name'];
+                $KRJUmumLansia->birth = $dataInput['birth'];
+                $KRJUmumLansia->bb = $dataInput['bb'];
+                $KRJUmumLansia->tb = $dataInput['tb'];
+                $KRJUmumLansia->td = $tdarah;
+                $KRJUmumLansia->rr = $dataInput['rr'];
+                $KRJUmumLansia->n = $dataInput['n'];
+                $KRJUmumLansia->anamnesis = $dataInput['anamnesis'];
+                $KRJUmumLansia->pemeriksaan_fisik = $dataInput['pemeriksaan_fisik'];
+                $KRJUmumLansia->pemeriksaan_penunjang = $dataInput['pemeriksaan_penunjang'];
+                $KRJUmumLansia->diagnosis = $dataInput['diagnosis'];
+                $KRJUmumLansia->terapi = $dataInput['terapi'];
+                $KRJUmumLansia->rujukan = $dataInput['rujukan'];
+    
+                if($KRJUmumLansia->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message'=>'Fail Request']);
+        }
+       
 
     }
 
@@ -219,6 +282,29 @@ class AdminController extends Controller
         }
     }
 
+    public function deleteKRJPoliUmumLansia(Request $request)
+    {
+        try {
+            $idKRJPoliUmumLansia = $request->input('id');
+
+            // return response()->json(['message' => $idKRJPoliUmumLansia]);
+
+            $checkData = krjPoliUmumLansia::where('id_krj_poli_umum_lansia', $idKRJPoliUmumLansia)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
     public function deleteDokter(Request $request)
     {
         try {

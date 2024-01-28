@@ -2,24 +2,19 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import AddAdminModal from "@/Components/admin/modal/AddAdminModal";
-import TableAdmins from "@/Components/admin/table/TableAdmins";
-import { router } from "@inertiajs/react";
+import AddPoliUmumLansiaModal from "@/Components/admin/modal/AddPoliUmumLansiaModal";
+import TableUmumLansia from "@/Components/admin/table/TableUmumLansia";
 
-const DataAdmin = ({ currentUser, dataAdmins }) => {
+const KRJUmumLansia = ({ currentUser, dataUmumLansia, dataDoker }) => {
     const [opened, { open, close }] = useDisclosure(false);
-    const [isSuccessSave, setIsSuccessSave] = useState(false);
 
-    useEffect(() => {
-        if (isSuccessSave) {
-            close();
-            router.get("/admin/master-menu/admin");
-        }
-    }, [isSuccessSave]);
+    // useEffect(() => {
+    //     console.log(dataUmumLansia);
+    // }, []);
     return (
         <LayoutAdmin
-            title="Admin Data"
-            titlePage="DATA ADMIN"
+            title="Poli Umum dan Lansia"
+            titlePage="DATA POLI UMUM DAN LANSIA"
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">
@@ -30,9 +25,9 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
                         opened={opened}
                         onClose={close}
                         title="Tambah Admin"
-                        size="md"
+                        size="80%"
                     >
-                        <AddAdminModal setIsSuccessSave={setIsSuccessSave} />
+                        <AddPoliUmumLansiaModal dataDoker={dataDoker} />
                     </Modal>
                     {/* BUtton */}
                     <div>
@@ -40,18 +35,18 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
                             className="text-sm bg-[#50A1C7] text-white font-bold px-3 py-2 rounded-lg hover:bg-[#3f85a5]"
                             onClick={open}
                         >
-                            Tambah Admin
+                            Tambah Kartu Rawat Jalan
                         </button>
                     </div>
                 </div>
 
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
-                    <TableAdmins dataAdmins={dataAdmins} />
+                    <TableUmumLansia dataUmumLansia={dataUmumLansia} />
                 </div>
             </div>
         </LayoutAdmin>
     );
 };
 
-export default DataAdmin;
+export default KRJUmumLansia;

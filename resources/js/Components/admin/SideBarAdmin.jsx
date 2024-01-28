@@ -66,8 +66,10 @@ const SideBarAdmin = () => {
                             <CardSideBarAdmin
                                 img={IconBooks}
                                 imgHover={IconBooksSolid}
-                                title={"Data Umum & Lansia"}
-                                href={"/admin/master-menu/poli-umum-lansia"}
+                                title={"Kartu Rawat Jalan Umum & Lansia"}
+                                href={
+                                    "/admin/master-menu/rawat-jalan-umum-lansia"
+                                }
                             />
                             <CardSideBarAdmin
                                 img={IconBooks}

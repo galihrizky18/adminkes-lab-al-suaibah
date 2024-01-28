@@ -50,7 +50,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('master-menu')->group(function(){
         Route::get('/admin', [AdminController::class, 'dataAdmin'])->name('dataAdmin');
         Route::get('/dokter', [AdminController::class, 'dataDokter'])->name('dataDokter');
-        Route::get('/poli-umum-lansia', [AdminController::class, 'dataPoliUmumLansia'])->name('dataPoliUmumLansia');
+        Route::get('/rawat-jalan-umum-lansia', [AdminController::class, 'KRJPoliUmumLansia'])->name('KRJPoliUmumLansia');
         Route::get('/poli-gigi', [AdminController::class, 'dataPoliGigi'])->name('dataPoliGigi');
         Route::get('/laboratorium', [AdminController::class, 'dataLaboratorium'])->name('dataLaboratorium');
         Route::get('/farmasi', [AdminController::class, 'dataFarmasi'])->name('dataFarmasi');
@@ -60,6 +60,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('add-data')->group(function (){
         Route::post('/admin', [AdminController::class, 'addAdmin'])->name("addAdmin");
         Route::post('/dokters', [AdminController::class, 'addDokters'])->name("addDokters");
+        Route::post('/umum-lansia', [AdminController::class, 'addKRJPoliUmumLansia'])->name("addKRJPoliUmumLansia");
     });
 
     // Edit Data
@@ -72,6 +73,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('delete-data')->group(function (){
         Route::post('/admin', [AdminController::class, 'deleteAdmin'])->name("deleteAdmin");
         Route::post('/dokter', [AdminController::class, 'deleteDokter'])->name("deleteDokter");
+        Route::post('/umum-lansia', [AdminController::class, 'deleteKRJPoliUmumLansia'])->name("deleteKRJPoliUmumLansia");
     });
 
 

@@ -19,7 +19,7 @@ const DataDokter = ({ currentUser, dataLayanan, dataDokters }) => {
     return (
         <LayoutAdmin
             title="Dokter Data"
-            titlePage="Data Admin"
+            titlePage="DATA DOKTER"
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">
