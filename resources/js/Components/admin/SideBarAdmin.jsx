@@ -3,7 +3,7 @@ import Logo1 from "../../../../public/asset/logo/adminkes.png";
 import CardSideBarAdmin from "./sidebar/CardSideBarAdmin";
 import Logout from "./Logout";
 import CollapseSideBarAdmin from "./sidebar/CollapseSideBarAdmin";
-import { Burger } from "@mantine/core";
+import { Burger, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 // Icon
@@ -27,10 +27,10 @@ const SideBarAdmin = () => {
             <div
                 className={`${
                     sideOpen ? "" : "hidden"
-                }  lg:flex flex-col w-full h-full bg-gradient-to-r from-[#346681] to-[#1E4356] text-white transition duration-500`}
+                }  lg:flex flex-col w-full h-full justify-between bg-gradient-to-r from-[#346681] to-[#1E4356] text-white transition duration-500`}
             >
                 {/* body */}
-                <div className=" p-5 ">
+                <div className=" p-5 h-full flex flex-col">
                     {/* logo */}
                     <div className="logo flex flex-col items-center justify-center gap-2 font-bold text-2xl pb-3 border-b-2 border-white">
                         <img src={Logo1} alt="" width={50} />
@@ -38,86 +38,88 @@ const SideBarAdmin = () => {
                     </div>
 
                     {/* body */}
-                    <div className="mt-3 flex flex-col gap-3">
-                        <CardSideBarAdmin
-                            img={IconDashboard}
-                            imgHover={IconDashboardSolid}
-                            title={"Dashboard"}
-                            href={"/admin"}
-                        />
+                    <ScrollArea h={420} type="never" scrollbarSize={8}>
+                        <div className="mt-3 flex flex-col gap-3">
+                            <CardSideBarAdmin
+                                img={IconDashboard}
+                                imgHover={IconDashboardSolid}
+                                title={"Dashboard"}
+                                href={"/admin"}
+                            />
 
-                        <CollapseSideBarAdmin
-                            img={IconMenuMaster}
-                            imgHover={IconMenuMasterSolid}
-                            title={"Menu Master"}
-                        >
-                            <CardSideBarAdmin
-                                img={IconBooks}
-                                imgHover={IconBooksSolid}
-                                title={"Data Admin"}
-                                href={"/admin/master-menu/admin"}
-                            />
-                            <CardSideBarAdmin
-                                img={IconBooks}
-                                imgHover={IconBooksSolid}
-                                title={"Data Dokter"}
-                                href={"/admin/master-menu/dokter"}
-                            />
-                            <CardSideBarAdmin
-                                img={IconBooks}
-                                imgHover={IconBooksSolid}
-                                title={"Kartu Rawat Jalan Umum & Lansia"}
-                                href={
-                                    "/admin/master-menu/rawat-jalan-umum-lansia"
-                                }
-                            />
-                            <CardSideBarAdmin
-                                img={IconBooks}
-                                imgHover={IconBooksSolid}
-                                title={"Data Gigi"}
-                                href={"/admin/master-menu/poli-gigi"}
-                            />
-                            <CardSideBarAdmin
-                                img={IconBooks}
-                                imgHover={IconBooksSolid}
-                                title={"Data Laboratorium"}
-                                href={"/admin/master-menu/laboratorium"}
-                            />
-                            <CardSideBarAdmin
-                                img={IconBooks}
-                                imgHover={IconBooksSolid}
-                                title={"Data Farmasi"}
-                                href={"/admin/master-menu/farmasi"}
-                            />
-                        </CollapseSideBarAdmin>
+                            <CollapseSideBarAdmin
+                                img={IconMenuMaster}
+                                imgHover={IconMenuMasterSolid}
+                                title={"Menu Master"}
+                            >
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Data Admin"}
+                                    href={"/admin/master-menu/admin"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Data Dokter"}
+                                    href={"/admin/master-menu/dokter"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Kartu Rawat Jalan Umum & Lansia"}
+                                    href={
+                                        "/admin/master-menu/rawat-jalan-umum-lansia"
+                                    }
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Data Gigi"}
+                                    href={"/admin/master-menu/poli-gigi"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Data Laboratorium"}
+                                    href={"/admin/master-menu/laboratorium"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Data Farmasi"}
+                                    href={"/admin/master-menu/farmasi"}
+                                />
+                            </CollapseSideBarAdmin>
 
-                        <CollapseSideBarAdmin
-                            img={IconUser}
-                            imgHover={IconUserSolid}
-                            title={"Patient"}
-                        >
-                            <CardSideBarAdmin
-                                img={IconPeople}
-                                imgHover={IconPeoples}
-                                title={"Data Patient"}
-                                href={"/admin/patient"}
+                            <CollapseSideBarAdmin
+                                img={IconUser}
+                                imgHover={IconUserSolid}
+                                title={"Patient"}
+                            >
+                                <CardSideBarAdmin
+                                    img={IconPeople}
+                                    imgHover={IconPeoples}
+                                    title={"Data Patient"}
+                                    href={"/admin/patient"}
+                                />
+                            </CollapseSideBarAdmin>
+                            <CollapseSideBarAdmin
+                                img={IconUser}
+                                imgHover={IconUserSolid}
+                                title={"Report"}
                             />
-                        </CollapseSideBarAdmin>
-                        <CollapseSideBarAdmin
-                            img={IconUser}
-                            imgHover={IconUserSolid}
-                            title={"Report"}
-                        />
-                        <CollapseSideBarAdmin
-                            img={IconUser}
-                            imgHover={IconUserSolid}
-                            title={"Pembayaran"}
-                        />
-                    </div>
+                            <CollapseSideBarAdmin
+                                img={IconUser}
+                                imgHover={IconUserSolid}
+                                title={"Pembayaran"}
+                            />
+                        </div>
+                    </ScrollArea>
                 </div>
 
                 {/* logout */}
-                <div className=" mt-7 ">
+                <div className=" mt-7 mb-5">
                     <Logout />
                 </div>
             </div>

@@ -255,6 +255,45 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database']);
         }
     }
+    public function editKRJPoliUmumLansia(Request $request)
+    {
+        try {
+            $dataEditKRJUmumLansia = $request->input('newData');
+    
+            $data = krjPoliUmumLansia::where('id_krj_poli_umum_lansia', $dataEditKRJUmumLansia['id_krjUmumLansia'])->first();
+
+            $tekananDarah = $dataEditKRJUmumLansia['tdSistolik'].'/'.$dataEditKRJUmumLansia['tdDiastolik'];
+
+            if ($data) {
+                $data->id_dokter = $dataEditKRJUmumLansia['id_dokter'];
+                $data->name = $dataEditKRJUmumLansia['name'];
+                $data->birth = $dataEditKRJUmumLansia['birth'];
+                $data->bb = $dataEditKRJUmumLansia['bb'];
+                $data->tb = $dataEditKRJUmumLansia['tb'];
+                $data->td = $tekananDarah;
+                $data->rr = $dataEditKRJUmumLansia['rr'];
+                $data->n = $dataEditKRJUmumLansia['n'];
+                $data->anamnesis = $dataEditKRJUmumLansia['anamnesis'];
+                $data->pemeriksaan_fisik = $dataEditKRJUmumLansia['pemeriksaan_fisik'];
+                $data->pemeriksaan_penunjang = $dataEditKRJUmumLansia['pemeriksaan_penunjang'];
+                $data->diagnosis = $dataEditKRJUmumLansia['diagnosis'];
+                $data->terapi = $dataEditKRJUmumLansia['terapi'];
+                $data->rujukan = $dataEditKRJUmumLansia['rujukan'];
+
+                if($data->save()){
+                    return response()->json(['message' => "Success Edit Data"]);
+                }
+
+                return response()->json(['message' => "Failed Edit Data"]);
+            }
+            return response()->json(['message' => "Not Found Data"]);
+    
+    
+        } catch (\Throwable $th) {
+
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
     
 
 

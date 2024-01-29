@@ -9,8 +9,9 @@ import { router } from "@inertiajs/react";
 // icon
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import EditAdminModal from "../modal/EditAdminModal";
+import EditPoliUmumLansiaModal from "../modal/EditPoliUmumLansiaModal";
 
-const TableUmumLansia = ({ dataUmumLansia }) => {
+const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     const [originalData, setOriginalData] = useState(dataUmumLansia);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
@@ -42,6 +43,7 @@ const TableUmumLansia = ({ dataUmumLansia }) => {
                     className="grid gap-1 py-2"
                     style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
                 >
+                    {/* Delete Button */}
                     <Button
                         leftSection={<IconTrash width={20} />}
                         variant="filled"
@@ -54,6 +56,7 @@ const TableUmumLansia = ({ dataUmumLansia }) => {
                         Delete
                     </Button>
 
+                    {/* Edit Button */}
                     <Button
                         leftSection={<IconEdit width={20} />}
                         variant="filled"
@@ -69,7 +72,7 @@ const TableUmumLansia = ({ dataUmumLansia }) => {
                                 birth: e.birth,
                                 bb: e.bb,
                                 tb: e.tb,
-                                td: e.td,
+                                td: splitTdSistolik(e.td),
                                 rr: e.rr,
                                 n: e.n,
                                 anamnesis: e.anamnesis,
@@ -89,6 +92,15 @@ const TableUmumLansia = ({ dataUmumLansia }) => {
                 </div>
             ),
         }));
+    };
+    // split Tekanan Darah
+    const splitTdSistolik = (originalTD) => {
+        const splitTD = originalTD.split("/");
+
+        return {
+            tdSistolik: splitTD[0] || "",
+            tdDiastolik: splitTD[1] || "",
+        };
     };
 
     // Take Created Date
@@ -240,10 +252,17 @@ const TableUmumLansia = ({ dataUmumLansia }) => {
     return (
         <div className="w-full flex flex-col gap-3 p-3">
             {/* modal */}
-            {/* <Modal opened={opened} onClose={close} title="Edit Admin" size="md">
-                <EditAdminModal data={sendDataEdit} />
-            </Modal> */}
-            {/* BUtton */}
+            <Modal
+                opened={opened}
+                onClose={close}
+                title="EDIT KARTU RAWAT JAAN POLI UMUM DAN LANSIA"
+                size="80%"
+            >
+                <EditPoliUmumLansiaModal
+                    baseData={sendDataEdit}
+                    dataDoker={dataDoker}
+                />
+            </Modal>
 
             {/* Filter */}
             <div className="flex justify-end">

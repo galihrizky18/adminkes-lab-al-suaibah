@@ -67,6 +67,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('edit-data')->group(function (){
         Route::post('/admin', [AdminController::class, 'editAdmin'])->name("editAdmin");
         Route::post('/dokter', [AdminController::class, 'editDokter'])->name("editDokter");
+        Route::post('/umum-lansia', [AdminController::class, 'editKRJPoliUmumLansia'])->name("editKRJPoliUmumLansia");
     });
 
     // Delete Data

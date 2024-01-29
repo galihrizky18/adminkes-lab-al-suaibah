@@ -42,7 +42,7 @@ const KRJUmumLansia = ({ currentUser, dataUmumLansia, dataDoker }) => {
 
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
-                    <TableUmumLansia dataUmumLansia={dataUmumLansia} />
+                    <TableUmumLansia dataUmumLansia={dataUmumLansia} dataDoker={dataDoker}/>
                 </div>
             </div>
         </LayoutAdmin>

@@ -14,28 +14,29 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 
-const AddPoliUmumLansiaModal = ({ dataDoker }) => {
+const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
     // State
     const [dokterConvert, setDokerConvert] = useState();
 
     // Validator Form
     const form = useForm({
         initialValues: {
-            id_dokter: "",
-            name: "",
-            birth: "",
-            bb: "",
-            tb: "",
-            tdSistolik: "",
-            tdDiastolik: "",
-            rr: "",
-            n: "",
-            anamnesis: "",
-            pemeriksaan_fisik: "",
-            pemeriksaan_penunjang: "",
-            diagnosis: "",
-            terapi: "",
-            rujukan: "",
+            id_krjUmumLansia: baseData.id_krjUmumLansia,
+            id_dokter: baseData.id_dokter,
+            name: baseData.name,
+            birth: baseData.birth,
+            bb: baseData.bb,
+            tb: baseData.tb,
+            tdSistolik: baseData.td.tdSistolik,
+            tdDiastolik: baseData.td.tdDiastolik,
+            rr: baseData.rr,
+            n: baseData.n,
+            anamnesis: baseData.anamnesis,
+            pemeriksaan_fisik: baseData.pemeriksaan_fisik,
+            pemeriksaan_penunjang: baseData.pemeriksaan_penunjang,
+            diagnosis: baseData.diagnosis,
+            terapi: baseData.terapi,
+            rujukan: baseData.rujukan,
         },
 
         validate: {
@@ -77,30 +78,32 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/add-data/umum-lansia", {
-                data: data,
+            const response = await axios.post("/admin/edit-data/umum-lansia", {
+                newData: data,
             });
 
-            if (response.data.message === "Success Save Data") {
+            console.log(response.data.message);
+
+            if (response.data.message === "Success Edit Data") {
                 Swal.fire({
                     title: "Save Data!",
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
-            } else if (response.data.message === "Failed Save Data") {
+                // router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+            } else if (response.data.message === "Failed Edit Data") {
                 Swal.fire({
                     title: "Failed",
                     text: "Gagal Menyimpan Data!",
                     icon: "error",
                 });
-            } else if (response.data.message === "Found Data") {
+            } else if (response.data.message === "Not Found Data") {
                 Swal.fire({
-                    title: "Duplicate Data",
-                    text: "Data Telah Ada",
+                    title: "Not Found Data!",
+                    text: "Data Tidak Ditemukan!",
                     icon: "error",
                 });
-            } else if (response.data.message === "Fail Request") {
+            } else if (response.data.message === "Failed Request Database") {
                 Swal.fire({
                     title: "Failed Request",
                     text: "Failed Request To Database",
@@ -127,7 +130,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
         >
             <Grid gutter="xl">
                 {/* kolom 1 */}
-                <Grid.Col className="mt-4" span={{ base: 12, md: 6 }}>
+                <Grid.Col className="mt-4" span={6}>
                     <Select
                         data={dokterConvert}
                         label="Dokter Penanggung Jawab"
@@ -205,7 +208,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                 </Grid.Col>
 
                 {/* Kolom 2 */}
-                <Grid.Col className="mt-4" span={{ base: 12, md: 6 }}>
+                <Grid.Col className="mt-4" span={6}>
                     <div>
                         <Textarea
                             label="Anamnesis"
@@ -306,4 +309,4 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
     );
 };
 
-export default AddPoliUmumLansiaModal;
+export default EditPoliUmumLansiaModal;
