@@ -18,6 +18,9 @@ export default {
                 open: ["Open Sans", "sans-serif"],
                 montserrat: ["Montserrat", "sans-serif"],
             },
+            colors: {
+                baseGreen: "#278645",
+            },
         },
     },
 

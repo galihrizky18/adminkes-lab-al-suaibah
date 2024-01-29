@@ -56,8 +56,8 @@ const Footer = () => {
                 </div>
             </div>
             <div className="flex justify-center items-center bg-[#21753c] text-white w-full h-[75px] ">
-                Copyright © 2024 STIKES Al-Su'aibah Palembang | Made with 🌟
-                Garix Dev
+                Copyright © 2024 STIKES Al-Su'aibah Palembang | Made with 🌟 5
+                Codes
             </div>
         </div>
     );

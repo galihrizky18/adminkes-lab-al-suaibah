@@ -247,6 +247,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     useEffect(() => {
         setOriginalData(dataUmumLansia);
         setDataFilter(convertData(dataUmumLansia));
+        // console.log(dataUmumLansia);
     }, [dataUmumLansia]);
 
     return (
@@ -265,7 +266,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
             </Modal>
 
             {/* Filter */}
-            <div className="flex justify-end">
+            <div className="flex justify-end ">
                 <div className=" w-[30%] ">
                     <TextInput
                         placeholder="Input placeholder"

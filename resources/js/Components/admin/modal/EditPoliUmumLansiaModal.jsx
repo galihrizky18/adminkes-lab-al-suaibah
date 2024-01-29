@@ -97,12 +97,6 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     text: "Gagal Menyimpan Data!",
                     icon: "error",
                 });
-            } else if (response.data.message === "Not Found Data") {
-                Swal.fire({
-                    title: "Not Found Data!",
-                    text: "Data Tidak Ditemukan!",
-                    icon: "error",
-                });
             } else if (response.data.message === "Failed Request Database") {
                 Swal.fire({
                     title: "Failed Request",
