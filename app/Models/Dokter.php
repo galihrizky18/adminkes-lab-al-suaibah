@@ -21,4 +21,8 @@ class Dokter extends Model
     public function krjPoliUmumLansia(){
         return $this->hasOne(krjPoliUmumLansia::class, 'id_dokter', 'id_dokter');
     }
+    
+    public function krjPoliGigi(){
+        return $this->hasOne(krjPoliGigi::class, 'id_dokter', 'id_dokter');
+    }
 }

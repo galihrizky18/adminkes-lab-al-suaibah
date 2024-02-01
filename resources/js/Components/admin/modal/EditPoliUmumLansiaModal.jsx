@@ -90,7 +90,7 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
-                // router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
             } else if (response.data.message === "Failed Edit Data") {
                 Swal.fire({
                     title: "Failed",

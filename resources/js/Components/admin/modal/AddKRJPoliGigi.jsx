@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 
-const AddPoliUmumLansiaModal = ({ dataDoker }) => {
+const AddKRJPoliGigi = ({ dataDoker }) => {
     // State
     const [dokterConvert, setDokerConvert] = useState();
 
@@ -31,16 +31,15 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
             tdDiastolik: "",
             rr: "",
             n: "",
+            skala_nyeri: "",
+            intra_oral: "",
             anamnesis: "",
-            pemeriksaan_fisik: "",
-            pemeriksaan_penunjang: "",
             diagnosis: "",
             terapi: "",
-            rujukan: "",
         },
 
         validate: {
-            id_dokter: isNotEmpty("Id Dokter tidak boleh kosong"),
+            id_dokter: isNotEmpty("Dokter tidak boleh kosong"),
             name: hasLength(
                 { min: 1, max: 32 },
                 "Panjang nama harus 1-32 kata"
@@ -58,16 +57,11 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
             ),
             rr: isNotEmpty("Laju Pernapasan tidak boleh kosong"),
             n: isNotEmpty("Nadi tidak boleh kosong"),
+            skala_nyeri: isNotEmpty("Skala Nyeri tidak boleh kosong"),
+            intra_oral: isNotEmpty("Intra Oral tidak boleh kosong"),
             anamnesis: isNotEmpty("Anamnesis tidak boleh kosong"),
-            pemeriksaan_fisik: isNotEmpty(
-                "Pemeriksaan Fisik tidak boleh kosong"
-            ),
-            pemeriksaan_penunjang: isNotEmpty(
-                "Pemeriksaan Penunjang tidak boleh kosong"
-            ),
             diagnosis: isNotEmpty("Diagnosis"),
             terapi: isNotEmpty("Terapi tidak boleh kosong"),
-            rujukan: isNotEmpty("Rujukn tidak boleh kosong"),
         },
     });
 
@@ -82,7 +76,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/add-data/umum-lansia", {
+            const response = await axios.post("/admin/add-data/gigi", {
                 data: data,
             });
 
@@ -92,7 +86,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+                router.get("/admin/master-menu/poli-gigi");
             } else if (response.data.message === "Failed Save Data") {
                 Swal.fire({
                     title: "Failed",
@@ -144,6 +138,8 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                         mt="md"
                         {...form.getInputProps("id_dokter")}
                     />
+
+                    {/* Penanggung Jawab */}
                     <TextInput
                         label="Penanggung Jawab"
                         placeholder="Penanggung Jawab"
@@ -169,58 +165,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                         />
                     </div>
 
-                    <NumberInput
-                        label="Berat Badan"
-                        placeholder="Beraat Badan"
-                        mt="md"
-                        {...form.getInputProps("bb")}
-                    />
-                    <NumberInput
-                        label="Tinggi Badan"
-                        placeholder="Tinggi Badan"
-                        withAsterisk
-                        mt="md"
-                        {...form.getInputProps("tb")}
-                    />
-
-                    {/* Tekanan Darta */}
-                    <div className=" border border-gray-300 p-2">
-                        <div className="bg-gray-400 text-white py-1  text-center font-bold text-lg">
-                            Tekanan Darah
-                        </div>
-                        <NumberInput
-                            label="Sistolik"
-                            placeholder="Sistolik"
-                            withAsterisk
-                            mt="md"
-                            {...form.getInputProps("tdSistolik")}
-                        />
-                        <NumberInput
-                            label="Diastolik"
-                            placeholder="Diastolik"
-                            withAsterisk
-                            mt="md"
-                            {...form.getInputProps("tdDiastolik")}
-                        />
-                    </div>
-                    <NumberInput
-                        label="Laju Pernapasan"
-                        placeholder="Laju Pernapasan"
-                        withAsterisk
-                        mt="md"
-                        {...form.getInputProps("rr")}
-                    />
-                    <NumberInput
-                        label="Nadi"
-                        placeholder="Nadi"
-                        withAsterisk
-                        mt="md"
-                        {...form.getInputProps("n")}
-                    />
-                </Grid.Col>
-
-                {/* Kolom 2 */}
-                <Grid.Col className="mt-4" span={{ base: 12, md: 6 }}>
+                    {/* Anamnesis */}
                     <div>
                         <Textarea
                             label="Anamnesis (S)"
@@ -236,36 +181,8 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                             isi " - " jika tidak ada
                         </span>
                     </div>
-                    <div>
-                        <Textarea
-                            label="Pemeriksaan Fisik (O)"
-                            placeholder="Pemeriksaan Fisik (O)"
-                            withAsterisk
-                            mt="md"
-                            autosize
-                            minRows={2}
-                            maxRows={4}
-                            {...form.getInputProps("pemeriksaan_fisik")}
-                        />
-                        <span className="text-sxs ml-3 text-blue-700">
-                            isi " - " jika tidak ada
-                        </span>
-                    </div>
-                    <div>
-                        <Textarea
-                            label="Pemeriksaan Penunjang"
-                            placeholder="Pemeriksaaan Penunjang"
-                            withAsterisk
-                            mt="md"
-                            autosize
-                            minRows={2}
-                            maxRows={4}
-                            {...form.getInputProps("pemeriksaan_penunjang")}
-                        />
-                        <span className="text-sxs ml-3 text-blue-700">
-                            isi " - " jika tidak ada
-                        </span>
-                    </div>
+
+                    {/* Diagnosis */}
                     <div>
                         <Textarea
                             label="Diagnosis (A)"
@@ -281,6 +198,8 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                             isi " - " jika tidak ada
                         </span>
                     </div>
+
+                    {/* Terapi */}
                     <div>
                         <Textarea
                             label="Terapi (P)"
@@ -296,20 +215,90 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                             isi " - " jika tidak ada
                         </span>
                     </div>
-                    <div>
-                        <Textarea
-                            label="Rencana Pengobatan Lanjutan / Rujukan"
-                            placeholder="Rujukan"
+                </Grid.Col>
+
+                {/* Kolom 2 */}
+                <Grid.Col className="mt-8" span={{ base: 12, md: 6 }}>
+                    <div className="flex flex-col">
+                        <span className="font-bold ">Pemeriksaan (O)</span>
+                        <NumberInput
+                            label="Berat Badan"
+                            placeholder="Beraat Badan"
+                            mt="md"
+                            {...form.getInputProps("bb")}
+                        />
+                        <NumberInput
+                            label="Tinggi Badan"
+                            placeholder="Tinggi Badan"
                             withAsterisk
                             mt="md"
-                            autosize
-                            minRows={2}
-                            maxRows={4}
-                            {...form.getInputProps("rujukan")}
+                            {...form.getInputProps("tb")}
                         />
-                        <span className="text-sxs ml-3 text-blue-700">
-                            isi " - " jika tidak ada
-                        </span>
+
+                        {/* Tekanan Darah */}
+                        <div className="my-3 border border-gray-300 p-2">
+                            <div className="bg-gray-400 text-white py-1  text-center font-bold text-lg">
+                                Tekanan Darah
+                            </div>
+                            <NumberInput
+                                label="Sistolik"
+                                placeholder="Sistolik"
+                                withAsterisk
+                                mt="md"
+                                {...form.getInputProps("tdSistolik")}
+                            />
+                            <NumberInput
+                                label="Diastolik"
+                                placeholder="Diastolik"
+                                withAsterisk
+                                mt="md"
+                                {...form.getInputProps("tdDiastolik")}
+                            />
+                        </div>
+
+                        {/* Laju Pernapasan */}
+                        <NumberInput
+                            label="Laju Pernapasan"
+                            placeholder="Laju Pernapasan"
+                            withAsterisk
+                            mt="md"
+                            {...form.getInputProps("rr")}
+                        />
+
+                        {/* Nadi */}
+                        <NumberInput
+                            label="Nadi"
+                            placeholder="Nadi"
+                            withAsterisk
+                            mt="md"
+                            {...form.getInputProps("n")}
+                        />
+
+                        {/* Skala Nyeri */}
+                        <NumberInput
+                            label="Skala Nyeri"
+                            placeholder="Skala Nyeri"
+                            withAsterisk
+                            mt="md"
+                            {...form.getInputProps("skala_nyeri")}
+                        />
+
+                        {/* Intra Oral */}
+                        <div>
+                            <Textarea
+                                label="Intra Oral"
+                                placeholder="Intra Oral"
+                                withAsterisk
+                                mt="md"
+                                autosize
+                                minRows={2}
+                                maxRows={4}
+                                {...form.getInputProps("intra_oral")}
+                            />
+                            <span className="text-sm ml-3 text-blue-700">
+                                isi " - " jika tidak ada
+                            </span>
+                        </div>
                     </div>
                 </Grid.Col>
             </Grid>
@@ -321,4 +310,4 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
     );
 };
 
-export default AddPoliUmumLansiaModal;
+export default AddKRJPoliGigi;

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('krj_poli_umum_lansias', function (Blueprint $table) {
-            $table->string('id_krj_poli_umum_lansia')->primary();
-            $table->string('id_dokter');
+        Schema::create('krj_poli_gigis', function (Blueprint $table) {
+            $table->string('id_krj_poli_gigi')->primary();
             $table->string('penanggung_jawab');
+            $table->string('id_dokter');
             $table->string('name');
             $table->date('birth');
             $table->string('bb');
@@ -22,14 +22,11 @@ return new class extends Migration
             $table->string('td');
             $table->string('rr');
             $table->string('n');
+            $table->string('skala_nyeri');
+            $table->text('intra_oral');
             $table->text('anamnesis');
-            $table->text('pemeriksaan_fisik');
-            $table->text('pemeriksaan_penunjang');
             $table->text('diagnosis');
             $table->text('terapi');
-            $table->text('rujukan');
-            
-       
 
 
 
@@ -42,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('krj_poli_umum_lansias');
+        Schema::dropIfExists('krj_poli_gigis');
     }
 };

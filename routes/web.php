@@ -61,6 +61,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/admin', [AdminController::class, 'addAdmin'])->name("addAdmin");
         Route::post('/dokters', [AdminController::class, 'addDokters'])->name("addDokters");
         Route::post('/umum-lansia', [AdminController::class, 'addKRJPoliUmumLansia'])->name("addKRJPoliUmumLansia");
+        Route::post('/gigi', [AdminController::class, 'addKRJPoliGigi'])->name("addKRJPoliGigi");
     });
 
     // Edit Data
@@ -68,6 +69,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/admin', [AdminController::class, 'editAdmin'])->name("editAdmin");
         Route::post('/dokter', [AdminController::class, 'editDokter'])->name("editDokter");
         Route::post('/umum-lansia', [AdminController::class, 'editKRJPoliUmumLansia'])->name("editKRJPoliUmumLansia");
+        Route::post('/gigi', [AdminController::class, 'editKRJPoliGigi'])->name("editKRJPoliGigi");
     });
 
     // Delete Data
@@ -75,6 +77,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/admin', [AdminController::class, 'deleteAdmin'])->name("deleteAdmin");
         Route::post('/dokter', [AdminController::class, 'deleteDokter'])->name("deleteDokter");
         Route::post('/umum-lansia', [AdminController::class, 'deleteKRJPoliUmumLansia'])->name("deleteKRJPoliUmumLansia");
+        Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
     });
 
 

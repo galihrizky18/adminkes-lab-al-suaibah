@@ -10,18 +10,19 @@ import { router } from "@inertiajs/react";
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import EditAdminModal from "../modal/EditAdminModal";
 import EditPoliUmumLansiaModal from "../modal/EditPoliUmumLansiaModal";
+import EditPoliGigi from "../modal/EditPoliGigi";
 
-const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
-    const [originalData, setOriginalData] = useState(dataUmumLansia);
+const TablePoliGigi = ({ dataGigi, dataDoker }) => {
+    const [originalData, setOriginalData] = useState(dataGigi);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
-    // Fungsi untuk mengonversi dataUmumLansia
+    // Fungsi untuk mengonversi dataGigi
     const convertData = (data) => {
         return data.map((e) => ({
-            id_krjUmumLansia: e.id_krj_poli_umum_lansia,
+            id_krj_poli_gigi: e.id_krj_poli_gigi,
             id_dokter: e.dokter.nama_dokter,
             penanggung_jawab: e.penanggung_jawab,
             name: e.name,
@@ -32,11 +33,11 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
             rr: e.rr,
             n: e.n,
             anamnesis: e.anamnesis,
-            pemeriksaan_fisik: e.pemeriksaan_fisik,
-            pemeriksaan_penunjang: e.pemeriksaan_penunjang,
+            skala_nyeri: e.skala_nyeri,
+            intra_oral: e.intra_oral,
             diagnosis: e.diagnosis,
             terapi: e.terapi,
-            rujukan: e.rujukan,
+
             createDate: dateCreate(e.created_at),
 
             action: (
@@ -52,7 +53,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_krj_poli_umum_lansia)}
+                        onClick={() => confirmDelete(e.id_krj_poli_gigi)}
                     >
                         Delete
                     </Button>
@@ -67,8 +68,9 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_krjUmumLansia: e.id_krj_poli_umum_lansia,
+                                id_krj_poli_gigi: e.id_krj_poli_gigi,
                                 id_dokter: e.dokter.id_dokter,
+                                penanggung_jawab: e.penanggung_jawab,
                                 name: e.name,
                                 birth: e.birth,
                                 bb: e.bb,
@@ -77,11 +79,10 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                                 rr: e.rr,
                                 n: e.n,
                                 anamnesis: e.anamnesis,
-                                pemeriksaan_fisik: e.pemeriksaan_fisik,
-                                pemeriksaan_penunjang: e.pemeriksaan_penunjang,
+                                skala_nyeri: e.skala_nyeri,
+                                intra_oral: e.intra_oral,
                                 diagnosis: e.diagnosis,
                                 terapi: e.terapi,
-                                rujukan: e.rujukan,
                                 createDate: dateCreate(e.created_at),
                             };
                             setSendDataEdit(data);
@@ -126,38 +127,38 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
             name: "Penanggung Jawab",
             selector: (row) => row.penanggung_jawab,
             sortable: true,
-            minWidth: "220px",
+            Width: "220px",
             wrap: true,
         },
         {
             name: "Dokter",
             selector: (row) => row.id_dokter,
             sortable: true,
-            minWidth: "200px",
+            Width: "200px",
         },
         {
             name: "Nama Pasien",
             selector: (row) => row.name,
             sortable: true,
-            minWidth: "200px",
+            Width: "200px",
         },
         {
             name: "Tanggal Lahir",
             selector: (row) => row.birth,
             sortable: true,
-            minWidth: "200px",
+            Width: "200px",
         },
         {
             name: "Tanggal Dibuat",
             selector: (row) => row.createDate,
             sortable: true,
-            minWidth: "200px",
+            Width: "200px",
         },
         {
             name: "Action",
             selector: (row) => row.action,
             sortable: true,
-            minWidth: "150px",
+            Width: "150px",
         },
     ];
 
@@ -187,7 +188,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const cekId = d.id_krj_poli_umum_lansia
+            const cekId = d.id_krj_poli_gigi
                 .toLowerCase()
                 .includes(event.toLowerCase());
             const cekName = d.name.toLowerCase().includes(event.toLowerCase());
@@ -219,12 +220,9 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post(
-                "/admin/delete-data/umum-lansia",
-                {
-                    id: id,
-                }
-            );
+            const response = await axios.post("/admin/delete-data/gigi", {
+                id: id,
+            });
 
             console.log(response.data.message);
             if (response.data.message === "Success Delete Data") {
@@ -233,7 +231,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                     text: "Data Berhasil Di Hapus!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+                router.get("/admin/master-menu/poli-gigi");
             } else if (response.data.message === "Failed Delete Data") {
                 Swal.fire({
                     title: "Failed Delete!",
@@ -253,10 +251,10 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     };
 
     useEffect(() => {
-        setOriginalData(dataUmumLansia);
-        setDataFilter(convertData(dataUmumLansia));
-        // console.log(dataUmumLansia);
-    }, [dataUmumLansia]);
+        setOriginalData(dataGigi);
+        setDataFilter(convertData(dataGigi));
+        // console.log(dataGigi);
+    }, [dataGigi]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
@@ -267,10 +265,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                 title="EDIT KARTU RAWAT JAAN POLI UMUM DAN LANSIA"
                 size="80%"
             >
-                <EditPoliUmumLansiaModal
-                    baseData={sendDataEdit}
-                    dataDoker={dataDoker}
-                />
+                <EditPoliGigi baseData={sendDataEdit} dataDoker={dataDoker} />
             </Modal>
 
             {/* Filter */}
@@ -299,4 +294,4 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     );
 };
 
-export default TableUmumLansia;
+export default TablePoliGigi;

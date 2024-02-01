@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -8,9 +8,6 @@ import TableUmumLansia from "@/Components/admin/table/TableUmumLansia";
 const KRJUmumLansia = ({ currentUser, dataUmumLansia, dataDoker }) => {
     const [opened, { open, close }] = useDisclosure(false);
 
-    // useEffect(() => {
-    //     console.log(dataUmumLansia);
-    // }, []);
     return (
         <LayoutAdmin
             title="Poli Umum dan Lansia"
@@ -24,7 +21,7 @@ const KRJUmumLansia = ({ currentUser, dataUmumLansia, dataDoker }) => {
                     <Modal
                         opened={opened}
                         onClose={close}
-                        title="Tambah Admin"
+                        title="Tambah Kartu Rawat Jalan Poli Umum dan Lansia"
                         size="80%"
                     >
                         <AddPoliUmumLansiaModal dataDoker={dataDoker} />
