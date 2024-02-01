@@ -80,6 +80,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
     });
 
+    // tes
 
    
 
