@@ -22,8 +22,7 @@ const AddLabModal = () => {
             officer: "",
             name: "",
             jk: "",
-            placebirth: "",
-            birth: "",
+            ttl: "",
             age: "",
             address: "",
             phone: "",
@@ -142,6 +141,7 @@ const AddLabModal = () => {
                             className="mt-4 flex flex-col gap-3"
                             span={{ base: 12, md: 6 }}
                         >
+                            {/* Nama Pasien */}
                             <TextInput
                                 label="Nama Pasien"
                                 placeholder="Nama Pasien"
@@ -151,9 +151,9 @@ const AddLabModal = () => {
 
                             {/* Jenis Kelamin */}
                             <div className="flex flex-col gap-2 ">
-                                <div className="text-[.95rem] font-bold">
+                                <label className="text-[.95rem] font-bold">
                                     Jenis Kelamin
-                                </div>
+                                </label>
                                 <Radio.Group
                                     name="gender"
                                     className="w-full h-full px-3"
@@ -174,28 +174,41 @@ const AddLabModal = () => {
                                 </Radio.Group>
                             </div>
 
-                            {/* Input Tanggal Lahir */}
-                            <div className="flex flex-col mt-3">
-                                <label htmlFor="">Tanggal Lahir</label>
-                                <input
-                                    className="w-full border border-gray-300 text-gray-400 rounded-lg"
-                                    label="Tanggal Lahir"
-                                    type="date"
-                                    {...form.getInputProps("birth")}
-                                />
+                            {/* Input TTL */}
+                            <TextInput
+                                label="Tempat Tanggal Lahir"
+                                placeholder="Kota, Tanggal"
+                                withAsterisk
+                                {...form.getInputProps("ttl")}
+                            />
+
+                            {/* Umur */}
+                            <div className="flex flex-row gap-3 items-center ">
+                                <div className="w-36">
+                                    <NumberInput
+                                        label="Umur"
+                                        placeholder="Umur"
+                                        width="sm"
+                                        withAsterisk
+                                        {...form.getInputProps("age")}
+                                    />
+                                </div>
+                                <div className="h-full flex items-end ">
+                                    <div className="">Tahun</div>
+                                </div>
                             </div>
 
-                            {/* Anamnesis */}
+                            {/* Alamat */}
                             <div>
                                 <Textarea
-                                    label="Anamnesis (S)"
-                                    placeholder="Anamnesis (S)"
+                                    label="Alamat"
+                                    placeholder="Alamat"
                                     withAsterisk
                                     mt="md"
                                     autosize
                                     minRows={2}
                                     maxRows={4}
-                                    {...form.getInputProps("anamnesis")}
+                                    {...form.getInputProps("address")}
                                 />
                                 <span className="text-sm ml-3 text-blue-700">
                                     isi " - " jika tidak ada

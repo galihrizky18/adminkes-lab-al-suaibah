@@ -115,7 +115,7 @@ const RegistrationSec = ({
                                     className="w-full h-full "
                                     value={getData("gender")}
                                 >
-                                    <div className="w-full h-full flex flex-row items-center gap-3 sm:gap-7 ">
+                                    <div className="w-full h-full flex flex-row items-center gap-3 sm:gap-7">
                                         <Radio
                                             value="male"
                                             label="Laki-Laki"
