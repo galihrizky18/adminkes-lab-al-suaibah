@@ -9,6 +9,7 @@ import { router } from "@inertiajs/react";
 // icon
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import EditPoliGigi from "../modal/EditPoliGigi";
+import EditLabModal from "../modal/EditLabModal";
 
 const TableLaboratorium = ({ dataLab, dataPoli }) => {
     const [originalData, setOriginalData] = useState(dataLab);
@@ -302,10 +303,10 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
             <Modal
                 opened={opened}
                 onClose={close}
-                title="EDIT KARTU RAWAT JAAN POLI UMUM DAN LANSIA"
+                title="EDIT DATA LABORATORIUM"
                 size="80%"
             >
-                {/* <EditPoliGigi baseData={sendDataEdit} dataDoker={dataDoker} /> */}
+                <EditLabModal baseData={sendDataEdit} />
             </Modal>
 
             {/* Filter */}

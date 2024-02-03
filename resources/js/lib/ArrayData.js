@@ -20,6 +20,7 @@ export const dataHematologi = [
     { value: "mch", label: "MCH" },
     { value: "mchc", label: "MCHC" },
     { value: "golongan-darah-rhesus", label: "Golongan Darah + Rhesus" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Serologis
@@ -29,6 +30,7 @@ export const dataSerologis = [
     { value: "hbs-ag", label: "Hbs Ag" },
     { value: "dhf", label: "DHF" },
     { value: "syphilis", label: "Syphilis" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Urinalisa
@@ -37,16 +39,19 @@ export const dataUrinalisa = [
     { value: "protein", label: "Protein" },
     { value: "reduksi", label: "Reduksi" },
     { value: "tes-kehamilan-pt", label: "Tes Kehamilan / PT" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Mikrobiologi
 export const dataMikrobiologi = [
     { value: "bta", label: "BTA (Bakteri Tahan Asam)" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Faeces
 export const dataFaeces = [
     { value: "faeces-lengkap", label: "Faeces Lengkap" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Faal Hati
@@ -61,6 +66,7 @@ export const dataFaalHati = [
     { value: "albumin", label: "Albumin" },
     { value: "globulin", label: "Globulin" },
     { value: "total-protein", label: "Total Protein" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Faal Ginjal
@@ -69,6 +75,7 @@ export const dataFaalGinjal = [
     { value: "crearinin", label: "Crearinin" },
     { value: "asam-urat", label: "Asam Urat" },
     { value: "creatinine-clearance", label: "Creatinine Clearance" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Faal Jantung
@@ -76,6 +83,7 @@ export const dataFaalJantung = [
     { value: "cpk", label: "CPK" },
     { value: "ckmb", label: "CKMB" },
     { value: "ldh-alpha-hbdh", label: "LDH / Alpha HBDH" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Fungsi Metabolisme Karbo
@@ -83,6 +91,7 @@ export const dataMetabolismeKarbo = [
     { value: "bss", label: "BSS" },
     { value: "bsn", label: "BSN" },
     { value: "bspp", label: "BSPP" },
+    { value: "lainnya", label: "LAINNYA" },
 ];
 
 // data Profil Lipid
@@ -91,4 +100,5 @@ export const dataProfilLipid = [
     { value: "hdl-cholesterol", label: "HDL Cholesterol" },
     { value: "ldl-cholesterol", label: "LDL Cholesterol" },
     { value: "triglyserid", label: "Triglyserid" },
+    { value: "lainnya", label: "LAINNYA" },
 ];

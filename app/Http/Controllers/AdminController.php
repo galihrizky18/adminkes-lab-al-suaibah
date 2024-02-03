@@ -324,7 +324,6 @@ class AdminController extends Controller
     }
 
 
-
     // Edit Data
     public function editAdmin(Request $request){
         try {
@@ -443,6 +442,26 @@ class AdminController extends Controller
                 'diagnosis'=>$dataEditKRJPoliGigi['diagnosis'],
                 'terapi'=>$dataEditKRJPoliGigi['terapi'],
             ]);
+
+            if ($dataUpdate) {
+                return response()->json(['message' => "Success Edit Data"]);
+            }
+            
+            return response()->json(['message' => "Failed Edit Data"]);
+
+    
+    
+        } catch (\Throwable $th) {
+
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
+    public function editLab(Request $request)
+    {
+        try {
+            $dataLab = $request->input('newData');
+
+            $dataUpdate = Laboratorium::where('id_laboratorium', $dataLab['id_laboratorium'])->update($dataLab);
 
             if ($dataUpdate) {
                 return response()->json(['message' => "Success Edit Data"]);
