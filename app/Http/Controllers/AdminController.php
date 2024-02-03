@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
+use App\Models\Laboratorium;
 use App\Models\Layanan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -119,7 +120,6 @@ class AdminController extends Controller
     public function addDokters(Request $request){
         $newDokter = $request->input('dataNewDokter');
 
-
         //  format waktu
          $currentTime = time();
          $time = date('YmdHis', $currentTime);
@@ -131,7 +131,6 @@ class AdminController extends Controller
         if($isExistDokter){
             return response()->json(['message'=>'Found Dokter']);
         }
-
 
         if($newDokter){
             $dokter = new Dokter();
@@ -251,6 +250,72 @@ class AdminController extends Controller
 
         } catch (\Throwable $th) {
             return response()->json(['message'=>'Fail Request']);
+        }
+       
+
+    }
+    public function addLab(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idLab = "LAB-".$time;
+    
+            //  check Data
+            $cekData = Laboratorium::where('name', $dataInput['name'])
+                ->where('jk', $dataInput['jk'])
+                ->where('age', $dataInput['age'])
+                ->where('phone', $dataInput['phone'])
+                ->where('card_number', $dataInput['card_number'])
+                ->exists();
+
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+
+            
+
+            
+
+
+            if($dataInput){
+                $dataLab = new Laboratorium();
+                $dataLab->id_laboratorium   = $idLab;
+                $dataLab->name = $dataInput['name'];
+                $dataLab->jk = $dataInput['jk'];
+                $dataLab->ttl = $dataInput['ttl'];
+                $dataLab->age = $dataInput['age'];
+                $dataLab->address = $dataInput['address'];
+                $dataLab->phone = $dataInput['phone'];
+                $dataLab->card_number = $dataInput['card_number'];
+                $dataLab->request_date = $dataInput['request_date'];
+                $dataLab->officer = $dataInput['officer'];
+                $dataLab->poli = $dataInput['poli'];
+                $dataLab->clinical_desc = $dataInput['clinical_desc'];
+                $dataLab->responsible = $dataInput['responsible'];
+                $dataLab->hematologi = $dataInput['hematologi'];
+                $dataLab->serologis = $dataInput['serologis'];
+                $dataLab->urinalisa = $dataInput['urinalisa'];
+                $dataLab->mikrobiologi = $dataInput['mikrobiologi'];
+                $dataLab->faeces = $dataInput['faeces'];
+                $dataLab->faal_hati = $dataInput['faal_hati'];
+                $dataLab->faal_ginjal = $dataInput['faal_ginjal'];
+                $dataLab->faal_jantung = $dataInput['faal_jantung'];
+                $dataLab->metabolisme_karbo = $dataInput['metabolisme_karbo'];
+                $dataLab->profil_lipid = $dataInput['profil_lipid'];
+                $dataLab->pemeriksaan_lainnya = $dataInput['pemeriksaan_lainnya'];
+    
+                if($dataLab->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            // return response()->json(['message'=>'Fail Request']);
+            return response()->json(['message'=>$th->getMessage()]);
         }
        
 

@@ -2,8 +2,6 @@ import React from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import AddKRJPoliGigi from "@/Components/admin/modal/AddKRJPoliGigi";
-import TablePoliGigi from "@/Components/admin/table/TablePoliGigi";
 import AddLabModal from "@/Components/admin/modal/AddLabModal";
 
 const DataLab = ({ currentUser, dataGigi, dataDoker }) => {

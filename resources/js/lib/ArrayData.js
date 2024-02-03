@@ -6,3 +6,89 @@ export const layanan = [
     { value: "layanan5", label: "Laboratorium" },
     { value: "layanan6", label: "Kesehatan Ibu Anak" },
 ];
+
+// data Hematologi
+export const dataHematologi = [
+    { value: "hemoglobin", label: "Hemoglobin" },
+    { value: "leukosit", label: "Leukosit" },
+    { value: "laju-endapan-darah", label: "Laju Endapan Darah" },
+    { value: "diff-count", label: "Diff Count" },
+    { value: "eritrosit", label: "Eritrosit" },
+    { value: "hematokrit", label: "Hematokrit" },
+    { value: "trombosit", label: "Trombosit" },
+    { value: "mcv", label: "MCV" },
+    { value: "mch", label: "MCH" },
+    { value: "mchc", label: "MCHC" },
+    { value: "golongan-darah-rhesus", label: "Golongan Darah + Rhesus" },
+];
+
+// data Serologis
+export const dataSerologis = [
+    { value: "hiv", label: "HIV" },
+    { value: "widal", label: "Widal" },
+    { value: "hbs-ag", label: "Hbs Ag" },
+    { value: "dhf", label: "DHF" },
+    { value: "syphilis", label: "Syphilis" },
+];
+
+// data Urinalisa
+export const dataUrinalisa = [
+    { value: "urine-rutin", label: "Urine Rutin" },
+    { value: "protein", label: "Protein" },
+    { value: "reduksi", label: "Reduksi" },
+    { value: "tes-kehamilan-pt", label: "Tes Kehamilan / PT" },
+];
+
+// data Mikrobiologi
+export const dataMikrobiologi = [
+    { value: "bta", label: "BTA (Bakteri Tahan Asam)" },
+];
+
+// data Faeces
+export const dataFaeces = [
+    { value: "faeces-lengkap", label: "Faeces Lengkap" },
+];
+
+// data Faal Hati
+export const dataFaalHati = [
+    {
+        value: "bilirubin-direct-indirect",
+        label: "Bilirubin Direct / Indirect",
+    },
+    { value: "sgot", label: "SGOT" },
+    { value: "sgpt", label: "SGPT" },
+    { value: "alkaline-phospatase", label: "Alkaline Phospatase" },
+    { value: "albumin", label: "Albumin" },
+    { value: "globulin", label: "Globulin" },
+    { value: "total-protein", label: "Total Protein" },
+];
+
+// data Faal Ginjal
+export const dataFaalGinjal = [
+    { value: "ureum", label: "Ureum" },
+    { value: "crearinin", label: "Crearinin" },
+    { value: "asam-urat", label: "Asam Urat" },
+    { value: "creatinine-clearance", label: "Creatinine Clearance" },
+];
+
+// data Faal Jantung
+export const dataFaalJantung = [
+    { value: "cpk", label: "CPK" },
+    { value: "ckmb", label: "CKMB" },
+    { value: "ldh-alpha-hbdh", label: "LDH / Alpha HBDH" },
+];
+
+// data Fungsi Metabolisme Karbo
+export const dataMetabolismeKarbo = [
+    { value: "bss", label: "BSS" },
+    { value: "bsn", label: "BSN" },
+    { value: "bspp", label: "BSPP" },
+];
+
+// data Profil Lipid
+export const dataProfilLipid = [
+    { value: "cholesterol-total", label: "Cholesterol Total" },
+    { value: "hdl-cholesterol", label: "HDL Cholesterol" },
+    { value: "ldl-cholesterol", label: "LDL Cholesterol" },
+    { value: "triglyserid", label: "Triglyserid" },
+];
