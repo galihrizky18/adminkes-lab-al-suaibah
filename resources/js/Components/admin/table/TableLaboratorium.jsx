@@ -272,7 +272,7 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
                     text: "Data Berhasil Di Hapus!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/poli-gigi");
+                router.get("/admin/master-menu/laboratorium");
             } else if (response.data.message === "Failed Delete Data") {
                 Swal.fire({
                     title: "Failed Delete!",

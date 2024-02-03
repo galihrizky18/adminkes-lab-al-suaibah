@@ -62,6 +62,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/dokters', [AdminController::class, 'addDokters'])->name("addDokters");
         Route::post('/umum-lansia', [AdminController::class, 'addKRJPoliUmumLansia'])->name("addKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'addKRJPoliGigi'])->name("addKRJPoliGigi");
+        Route::post('/lab', [AdminController::class, 'addLab'])->name("addLab");
     });
 
     // Edit Data
