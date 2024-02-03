@@ -275,11 +275,6 @@ class AdminController extends Controller
                 return response()->json(['message'=>'Found Data']);
             }
 
-            
-
-            
-
-
             if($dataInput){
                 $dataLab = new Laboratorium();
                 $dataLab->id_laboratorium   = $idLab;
