@@ -238,7 +238,7 @@ const AddLabModal = () => {
 
                             {/* No Telepon */}
                             <TextInput
-                                label="No. Teleppon"
+                                label="No. Telepon"
                                 placeholder="No. Telepon"
                                 type="number"
                                 width="sm"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
+import DataTable, { Alignment } from "react-data-table-component";
 import { TextInput, Button, Modal, InputWrapper } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import axios from "axios";
@@ -10,8 +10,8 @@ import { router } from "@inertiajs/react";
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import EditPoliGigi from "../modal/EditPoliGigi";
 
-const TablePoliGigi = ({ dataGigi, dataDoker }) => {
-    const [originalData, setOriginalData] = useState(dataGigi);
+const TableLaboratorium = ({ dataLab, dataPoli }) => {
+    const [originalData, setOriginalData] = useState(dataLab);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
@@ -20,22 +20,30 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
     // Fungsi untuk mengonversi dataGigi
     const convertData = (data) => {
         return data.map((e) => ({
-            id_krj_poli_gigi: e.id_krj_poli_gigi,
-            id_dokter: e.dokter.nama_dokter,
-            penanggung_jawab: e.penanggung_jawab,
+            id_laboratorium: e.id_laboratorium,
             name: e.name,
-            birth: e.birth,
-            bb: e.bb,
-            tb: e.tb,
-            td: e.td,
-            rr: e.rr,
-            n: e.n,
-            anamnesis: e.anamnesis,
-            skala_nyeri: e.skala_nyeri,
-            intra_oral: e.intra_oral,
-            diagnosis: e.diagnosis,
-            terapi: e.terapi,
-
+            jk: e.jk,
+            ttl: e.ttl,
+            age: e.age,
+            address: e.address,
+            phone: e.phone,
+            card_number: e.card_number,
+            request_date: e.request_date,
+            officer: e.officer,
+            poli: handleLayanan(e.poli),
+            clinical_desc: e.clinical_desc,
+            responsible: e.responsible,
+            hematologi: e.hematologi,
+            serologis: e.serologis,
+            urinalisa: e.urinalisa,
+            mikrobiologi: e.mikrobiologi,
+            faeces: e.faeces,
+            faal_hati: e.faal_hati,
+            faal_ginjal: e.faal_ginjal,
+            faal_jantung: e.faal_jantung,
+            metabolisme_karbo: e.metabolisme_karbo,
+            profil_lipid: e.profil_lipid,
+            pemeriksaan_lainnya: e.pemeriksaan_lainnya,
             createDate: dateCreate(e.created_at),
 
             action: (
@@ -51,7 +59,7 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_krj_poli_gigi)}
+                        onClick={() => confirmDelete(e.id_laboratorium)}
                     >
                         Delete
                     </Button>
@@ -66,21 +74,30 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_krj_poli_gigi: e.id_krj_poli_gigi,
-                                id_dokter: e.dokter.id_dokter,
-                                penanggung_jawab: e.penanggung_jawab,
+                                id_laboratorium: e.id_laboratorium,
                                 name: e.name,
-                                birth: e.birth,
-                                bb: e.bb,
-                                tb: e.tb,
-                                td: splitTdSistolik(e.td),
-                                rr: e.rr,
-                                n: e.n,
-                                anamnesis: e.anamnesis,
-                                skala_nyeri: e.skala_nyeri,
-                                intra_oral: e.intra_oral,
-                                diagnosis: e.diagnosis,
-                                terapi: e.terapi,
+                                jk: e.jk,
+                                ttl: e.ttl,
+                                age: e.age,
+                                address: e.address,
+                                phone: e.phone,
+                                card_number: e.card_number,
+                                request_date: e.request_date,
+                                officer: e.officer,
+                                poli: handleLayanan(e.poli),
+                                clinical_desc: e.clinical_desc,
+                                responsible: e.responsible,
+                                hematologi: e.hematologi,
+                                serologis: e.serologis,
+                                urinalisa: e.urinalisa,
+                                mikrobiologi: e.mikrobiologi,
+                                faeces: e.faeces,
+                                faal_hati: e.faal_hati,
+                                faal_ginjal: e.faal_ginjal,
+                                faal_jantung: e.faal_jantung,
+                                metabolisme_karbo: e.metabolisme_karbo,
+                                profil_lipid: e.profil_lipid,
+                                pemeriksaan_lainnya: e.pemeriksaan_lainnya,
                                 createDate: dateCreate(e.created_at),
                             };
                             setSendDataEdit(data);
@@ -92,15 +109,6 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                 </div>
             ),
         }));
-    };
-    // split Tekanan Darah
-    const splitTdSistolik = (originalTD) => {
-        const splitTD = originalTD.split("/");
-
-        return {
-            tdSistolik: splitTD[0] || "",
-            tdDiastolik: splitTD[1] || "",
-        };
     };
 
     // Take Created Date
@@ -119,44 +127,59 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
         return `${year}-${month}-${day}`;
     };
 
+    const handleLayanan = (id) => {
+        return dataPoli.filter((item) => item.id_layanan === id);
+    };
+
     // mengatur kolom table
     const columns = [
         {
-            name: "Penanggung Jawab",
-            selector: (row) => row.penanggung_jawab,
+            name: <div className="text-center">Penanggung Jawab</div>,
+            selector: (row) => row.responsible,
             sortable: true,
-            Width: "220px",
+            grow: "1.5",
             wrap: true,
         },
         {
-            name: "Dokter",
-            selector: (row) => row.id_dokter,
-            sortable: true,
-            Width: "200px",
-        },
-        {
-            name: "Nama Pasien",
+            name: <div className="text-center">Nama Pasien</div>,
             selector: (row) => row.name,
             sortable: true,
-            Width: "200px",
+            wrap: true,
+            grow: "1.5",
         },
         {
-            name: "Tanggal Lahir",
-            selector: (row) => row.birth,
+            name: <div className="text-center">Jenis Kelamin</div>,
+            selector: (row) => row.jk,
             sortable: true,
-            Width: "200px",
+            wrap: true,
+
+            grow: "1",
         },
         {
-            name: "Tanggal Dibuat",
+            name: <div className="text-center">Umur</div>,
+            selector: (row) => row.age,
+            sortable: true,
+            wrap: true,
+            grow: ".1",
+        },
+        {
+            name: <div className="text-center">Tanggal Permintaan</div>,
+            selector: (row) => row.request_date,
+            sortable: true,
+            wrap: true,
+            grow: "1.5",
+        },
+        {
+            name: <div className="text-center">Tanggal Dibuat</div>,
             selector: (row) => row.createDate,
             sortable: true,
-            Width: "200px",
+            grow: "1",
         },
         {
-            name: "Action",
+            name: <div className="text-center">Action</div>,
             selector: (row) => row.action,
             sortable: true,
-            Width: "150px",
+            grow: "1.5",
         },
     ];
 
@@ -170,9 +193,13 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                 maxHeight: "4rem",
             },
         },
+
         rows: {
             style: {
                 fontSize: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                Alignment: "center",
             },
         },
         cells: {
@@ -186,15 +213,31 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const cekId = d.id_krj_poli_gigi
+            const cekId = d.id_laboratorium
                 .toLowerCase()
                 .includes(event.toLowerCase());
             const cekName = d.name.toLowerCase().includes(event.toLowerCase());
-            const cekPenanggungJawab = d.penanggung_jawab
+            const cekPhone = d.phone
+                .toLowerCase()
+                .includes(event.toLowerCase());
+            const cekCardNumber = d.card_number
+                .toLowerCase()
+                .includes(event.toLowerCase());
+            const cekOfficer = d.officer
+                .toLowerCase()
+                .includes(event.toLowerCase());
+            const cekResponsible = d.responsible
                 .toLowerCase()
                 .includes(event.toLowerCase());
 
-            return cekName || cekId || cekPenanggungJawab;
+            return (
+                cekName ||
+                cekId ||
+                cekPhone ||
+                cekCardNumber ||
+                cekOfficer ||
+                cekResponsible
+            );
         });
 
         setDataFilter(convertData(filterData));
@@ -218,7 +261,7 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
     };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post("/admin/delete-data/gigi", {
+            const response = await axios.post("/admin/delete-data/lab", {
                 id: id,
             });
 
@@ -249,10 +292,9 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
     };
 
     useEffect(() => {
-        setOriginalData(dataGigi);
-        setDataFilter(convertData(dataGigi));
-        // console.log(dataGigi);
-    }, [dataGigi]);
+        setOriginalData(dataLab);
+        setDataFilter(convertData(dataLab));
+    }, [dataLab]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
@@ -263,7 +305,7 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                 title="EDIT KARTU RAWAT JAAN POLI UMUM DAN LANSIA"
                 size="80%"
             >
-                <EditPoliGigi baseData={sendDataEdit} dataDoker={dataDoker} />
+                {/* <EditPoliGigi baseData={sendDataEdit} dataDoker={dataDoker} /> */}
             </Modal>
 
             {/* Filter */}
@@ -292,4 +334,4 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
     );
 };
 
-export default TablePoliGigi;
+export default TableLaboratorium;

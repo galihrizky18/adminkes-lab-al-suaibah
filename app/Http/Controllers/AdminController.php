@@ -70,8 +70,15 @@ class AdminController extends Controller
     public function dataLaboratorium(){
         $currentUser = Auth::user();
         $dataDoker = Dokter::all();
+        $dataLab = Laboratorium::all();
+        $dataPoli = Layanan::all();
         
-        return Inertia::render('admin/menuMaster/DataLab',['currentUser'=>$currentUser,'dataDoker'=>$dataDoker]);
+        return Inertia::render('admin/menuMaster/DataLab',[
+            'currentUser'=>$currentUser,
+            'dataDoker'=>$dataDoker,
+            'dataLab'=>$dataLab,
+            'dataPoli'=>$dataPoli,
+        ]);
     }
     public function dataFarmasi(){
         $currentUser = Auth::user();
@@ -527,6 +534,28 @@ class AdminController extends Controller
             $idKRJPoliGigi = $request->input('id');
 
             $checkData = krjPoliGigi::where('id_krj_poli_gigi', $idKRJPoliGigi)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
+    public function deleteLab(Request $request)
+    {
+        try {
+            $idLab = $request->input('id');
+
+
+            $checkData = Laboratorium::where('id_laboratorium', $idLab)->delete();
 
             if (!$checkData) {
                 return response()->json(['message' => "Data not found"], 404);

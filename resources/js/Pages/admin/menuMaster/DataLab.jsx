@@ -3,8 +3,9 @@ import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AddLabModal from "@/Components/admin/modal/AddLabModal";
+import TableLaboratorium from "@/Components/admin/table/TableLaboratorium";
 
-const DataLab = ({ currentUser, dataGigi, dataDoker }) => {
+const DataLab = ({ currentUser, dataDoker, dataLab, dataPoli }) => {
     const [opened, { open, close }] = useDisclosure(false);
 
     return (
@@ -38,7 +39,7 @@ const DataLab = ({ currentUser, dataGigi, dataDoker }) => {
 
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
-                    {/* <TablePoliGigi dataGigi={dataGigi} dataDoker={dataDoker} /> */}
+                    <TableLaboratorium dataLab={dataLab} dataPoli={dataPoli} />
                 </div>
             </div>
         </LayoutAdmin>

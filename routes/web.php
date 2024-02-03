@@ -62,7 +62,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/dokters', [AdminController::class, 'addDokters'])->name("addDokters");
         Route::post('/umum-lansia', [AdminController::class, 'addKRJPoliUmumLansia'])->name("addKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'addKRJPoliGigi'])->name("addKRJPoliGigi");
-        Route::post('/lab', [AdminController::class, 'addLab'])->name("addLab");
     });
 
     // Edit Data
@@ -79,10 +78,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/dokter', [AdminController::class, 'deleteDokter'])->name("deleteDokter");
         Route::post('/umum-lansia', [AdminController::class, 'deleteKRJPoliUmumLansia'])->name("deleteKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
+        Route::post('/lab', [AdminController::class, 'deleteLab'])->name("deleteLab");
     });
 
 
-//    
+   
 
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -95,12 +95,6 @@ Route::post('/pendaftaran/pasien-lama/search', [PendaftaranController::class, 's
 
 // Login Validation
 Route::post('/login', [LoginController::class, 'loginValidation']);
-
-
-
-
-
-
 
 
 
