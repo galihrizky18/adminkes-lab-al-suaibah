@@ -1,25 +1,43 @@
 import React, { useEffect, useState } from "react";
-import {
-    MantineProvider,
-    TextInput,
-    Button,
-    PasswordInput,
-} from "@mantine/core";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 import Swal from "sweetalert2";
+import {
+    useForm,
+    isNotEmpty,
+    isEmail,
+    isInRange,
+    hasLength,
+    matches,
+} from "@mantine/form";
+import {
+    MantineProvider,
+    Button,
+    Group,
+    TextInput,
+    PasswordInput,
+    Box,
+} from "@mantine/core";
 
-const FormLogin = ({ setUsername, setPassword, dataLogin }) => {
-    const [isLogin, setIsLogin] = useState();
-    // Get Data Login
-    const getData = (name) => {
-        return dataLogin ? dataLogin.find((e) => e.name === name).value : null;
-    };
+const FormLogin = () => {
+    const form = useForm({
+        initialValues: {
+            username: "",
+            password: "",
+        },
+
+        validate: {
+            username: isNotEmpty("Username Must be Input"),
+            password: isNotEmpty("Password Must be Input"),
+        },
+    });
 
     // upload
-    const upload = async () => {
+    const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/login", dataLogin);
+            const response = await axios.post("/login", { data: data });
+
+            console.log(response.data.message);
 
             if (response.data.isLoggedIn) {
                 Swal.fire({
@@ -27,9 +45,8 @@ const FormLogin = ({ setUsername, setPassword, dataLogin }) => {
                     title: "Login Success",
                     text: "Login Berhasil",
                 });
-                setIsLogin(response.data.isLoggedIn);
+                router.get("/admin");
             } else {
-                setIsLogin(false);
                 Swal.fire({
                     icon: "error",
                     title: "Login Failed",
@@ -37,59 +54,40 @@ const FormLogin = ({ setUsername, setPassword, dataLogin }) => {
                 });
             }
         } catch (error) {
-            console.log("error" + error.message);
+            console.log("error : " + error.message);
         }
     };
-
-    const handleKeyEnter = (e) => {
-        if (e.key === "Enter") {
-            upload();
-        }
-    };
-
-    useEffect(() => {
-        if (isLogin) {
-            router.get("/admin");
-        }
-    }, [isLogin]);
 
     return (
         <MantineProvider>
-            <div className="flex flex-col gap-3">
-                {/* Username */}
+            <Box
+                component="form"
+                maw={400}
+                mx="auto"
+                onSubmit={form.onSubmit((data) => {
+                    handleSubmit(data);
+                })}
+            >
                 <TextInput
-                    radius="lg"
-                    placeholder="username"
-                    size="md"
-                    value={getData("username")}
-                    onChange={(event) => setUsername(event.currentTarget.value)}
+                    label="Username"
+                    placeholder="Username"
+                    radius="md"
+                    withAsterisk
+                    {...form.getInputProps("username")}
                 />
-
-                {/* Password */}
                 <PasswordInput
-                    radius="lg"
+                    label="Password"
                     placeholder="Password"
-                    size="md"
-                    value={getData("password")}
-                    onChange={(event) => setPassword(event.currentTarget.value)}
-                    onKeyDown={handleKeyEnter}
+                    radius="md"
+                    withAsterisk
+                    mt="md"
+                    {...form.getInputProps("password")}
                 />
 
-                {/* Button */}
-                <Button
-                    className="mt-3 hover:scale-"
-                    radius="lg"
-                    variant="gradient"
-                    gradient={{
-                        from: "rgba(17, 180, 0, 1)",
-                        to: "rgba(91, 219, 26, 1)",
-                        deg: 90,
-                    }}
-                    onClick={upload}
-                >
-                    Login
-                </Button>
-            </div>
+                <Group justify="flex-end" mt="md">
+                    <Button type="submit">Submit</Button>
+                </Group>
+            </Box>
         </MantineProvider>
     );
 };

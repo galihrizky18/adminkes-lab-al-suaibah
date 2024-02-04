@@ -23,7 +23,15 @@ class UserSeeder extends Seeder
                 "username" => "admin",
                 "password" => bcrypt('123'),
                 "email" => "admin@gmail.com",
-            ]
+            ],
+            [
+                "id_user" => "USR-",
+                "second_identifyer" => "USR-",
+                "name" => "Galih Rizky",
+                "username" => "garix",
+                "password" => bcrypt('123'),
+                "email" => "GalihRizky@gmail.com",
+            ],
         ];
 
         // format waktu
@@ -32,8 +40,8 @@ class UserSeeder extends Seeder
 
         foreach($dataUser as $i=>$data){
             User::create([
-                'id_user'=> $data['id_user'].$time,
-                'second_identifyer'=> $data['second_identifyer'].$time,
+                'id_user'=> $data['id_user'].$i+1,
+                'second_identifyer'=> $data['second_identifyer'].$i+1,
                 'name'=> $data['name'],
                 'username'=> $data['username'],
                 'password'=> $data['password'],

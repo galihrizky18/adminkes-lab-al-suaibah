@@ -30,6 +30,8 @@ Route::get('/', [DashboardController::class, 'dashbaord']);
 
 // Login Page
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+// Login Validation
+Route::post('/login', [LoginController::class, 'loginValidation']);
 
 Route::get('/pendaftaran', [PendaftaranController::class, 'pagePendaftaran']);
 Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasienBaru']);
@@ -50,6 +52,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('master-menu')->group(function(){
         Route::get('/admin', [AdminController::class, 'dataAdmin'])->name('dataAdmin');
         Route::get('/dokter', [AdminController::class, 'dataDokter'])->name('dataDokter');
+        Route::get('/jadwal-dokter', [AdminController::class, 'dataJadwalDokter'])->name('dataJadwalDokter');
         Route::get('/rawat-jalan-umum-lansia', [AdminController::class, 'KRJPoliUmumLansia'])->name('KRJPoliUmumLansia');
         Route::get('/poli-gigi', [AdminController::class, 'dataPoliGigi'])->name('dataPoliGigi');
         Route::get('/laboratorium', [AdminController::class, 'dataLaboratorium'])->name('dataLaboratorium');
@@ -95,8 +98,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::post('/pendaftaran/pasien-baru', [PendaftaranController::class, 'saveToDatabase']);
 Route::post('/pendaftaran/pasien-lama/search', [PendaftaranController::class, 'searchPatientData']);
 
-// Login Validation
-Route::post('/login', [LoginController::class, 'loginValidation']);
+
 
 
 

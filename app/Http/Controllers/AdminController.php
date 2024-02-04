@@ -7,6 +7,7 @@ use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
 use App\Models\Laboratorium;
 use App\Models\Layanan;
+use App\Models\TableSpesialis;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,18 @@ class AdminController extends Controller
         return Inertia::render('admin/menuMaster/DataDokter',[
             'currentUser'=>$currentUser,
             'dataLayanan'=>$dataLayanan,
+            'dataDokters'=>$dataDokters,
+
+        ]);
+    }
+    public function dataJadwalDokter(){
+        $currentUser = Auth::user();
+        $dataSpesialis = TableSpesialis::all();
+        $dataDokters= Dokter::with('layanan')->get();
+
+        return Inertia::render('admin/menuMaster/DataJadwalDokter',[
+            'currentUser'=>$currentUser,
+            'dataSpesialis'=>$dataSpesialis,
             'dataDokters'=>$dataDokters,
 
         ]);

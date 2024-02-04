@@ -6,20 +6,6 @@ import Logo2 from "../../../../public/asset/logo/adminkes.png";
 import FormLogin from "@/Components/login/FormLogin";
 
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const dataLogin = [
-        {
-            name: "username",
-            value: username,
-        },
-        {
-            name: "password",
-            value: password,
-        },
-    ];
-
     return (
         <div>
             <Head title="Login" />
@@ -61,11 +47,7 @@ const Login = () => {
 
                         {/* form */}
                         <div>
-                            <FormLogin
-                                setUsername={setUsername}
-                                setPassword={setPassword}
-                                dataLogin={dataLogin}
-                            />
+                            <FormLogin />
                         </div>
                     </div>
                 </div>

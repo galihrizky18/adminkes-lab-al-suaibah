@@ -27,10 +27,10 @@ const SideBarAdmin = () => {
             <div
                 className={`${
                     sideOpen ? "" : "hidden"
-                }  lg:flex flex-col w-full h-full justify-between bg-gradient-to-r from-[#346681] to-[#1E4356] text-white transition duration-500`}
+                }  lg:flex flex-col w-full h-full  bg-gradient-to-r from-[#346681] to-[#1E4356] text-white transition duration-500 `}
             >
                 {/* body */}
-                <div className=" p-5 h-full flex flex-col">
+                <div className=" p-5 flex flex-col ">
                     {/* logo */}
                     <div className="logo flex flex-col items-center justify-center gap-2 font-bold text-2xl pb-3 border-b-2 border-white">
                         <img src={Logo1} alt="" width={50} />
@@ -38,7 +38,7 @@ const SideBarAdmin = () => {
                     </div>
 
                     {/* body */}
-                    <ScrollArea h={420} type="never" scrollbarSize={8}>
+                    <ScrollArea h={420} type="never">
                         <div className="mt-3 flex flex-col gap-3">
                             <CardSideBarAdmin
                                 img={IconDashboard}
@@ -63,6 +63,12 @@ const SideBarAdmin = () => {
                                     imgHover={IconBooksSolid}
                                     title={"Data Dokter"}
                                     href={"/admin/master-menu/dokter"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Jadwal Dokter"}
+                                    href={"/admin/master-menu/jadwal-dokter"}
                                 />
                                 <CardSideBarAdmin
                                     img={IconBooks}
@@ -119,7 +125,7 @@ const SideBarAdmin = () => {
                 </div>
 
                 {/* logout */}
-                <div className=" mt-7 mb-5">
+                <div className=" lg:mb-5">
                     <Logout />
                 </div>
             </div>

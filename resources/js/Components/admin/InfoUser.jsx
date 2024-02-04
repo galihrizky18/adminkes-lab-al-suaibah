@@ -17,6 +17,7 @@ const InfoUser = ({ titlePage, user }) => {
 
     useEffect(() => {
         makeIntialUser();
+        console.log(user);
     }, []);
 
     return (

@@ -14,6 +14,7 @@ class User extends Authenticatable
 
     // Karena primary id saya custom, artinya harus mendefisinikan primary id
     protected $primaryKey = 'id_user';
+    protected $username = 'username';
 
 
     /**
@@ -23,6 +24,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id_user',
+        'second_identifyer ',
         'name',
         'username',
         'password',
