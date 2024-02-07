@@ -15,6 +15,7 @@ class User extends Authenticatable
     // Karena primary id saya custom, artinya harus mendefisinikan primary id
     protected $primaryKey = 'id_user';
     protected $username = 'username';
+    protected $table= "users";
 
 
     /**
@@ -50,4 +51,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class, 'id_admin', 'id_admin');
+    }
 }

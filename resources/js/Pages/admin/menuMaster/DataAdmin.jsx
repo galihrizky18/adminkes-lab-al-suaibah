@@ -30,7 +30,7 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
                         opened={opened}
                         onClose={close}
                         title="Tambah Admin"
-                        size="md"
+                        size="90%"
                     >
                         <AddAdminModal setIsSuccessSave={setIsSuccessSave} />
                     </Modal>

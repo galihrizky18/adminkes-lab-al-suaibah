@@ -15,7 +15,6 @@ class Authenticate extends Middleware
     protected function redirectTo(Request $request): ?string
     {
         // Regenerasi sesi sebelum meredirect ke halaman login
-        Inertia::regenerate();
         Session::regenerate();
 
         return $request->expectsJson() ? null : route('login');

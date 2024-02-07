@@ -17,10 +17,10 @@ const EditAdminModal = ({ data }) => {
     const form = useForm({
         initialValues: {
             id_user: data.id_user,
-            name: "",
-            username: "",
-            password: "",
-            email: "",
+            name: data.name,
+            username: data.username,
+            password: data.password,
+            email: data.email,
         },
 
         validate: {

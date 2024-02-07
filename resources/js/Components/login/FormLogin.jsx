@@ -35,7 +35,9 @@ const FormLogin = () => {
     // upload
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/login", { data: data });
+            const response = await axios.post("/login", {
+                data: data,
+            });
 
             console.log(response.data.message);
 
@@ -45,6 +47,7 @@ const FormLogin = () => {
                     title: "Login Success",
                     text: "Login Berhasil",
                 });
+                // window.location.href = "/admin";
                 router.get("/admin");
             } else {
                 Swal.fire({
@@ -54,7 +57,12 @@ const FormLogin = () => {
                 });
             }
         } catch (error) {
-            console.log("error : " + error.message);
+            console.error("Error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Internal Server Error",
+                text: "Terjadi kesalahan internal server.",
+            });
         }
     };
 

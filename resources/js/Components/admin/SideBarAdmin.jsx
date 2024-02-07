@@ -46,7 +46,14 @@ const SideBarAdmin = () => {
                                 title={"Dashboard"}
                                 href={"/admin"}
                             />
+                            <CardSideBarAdmin
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
+                                title={"Detail Admin"}
+                                href={"/admin/detail/admin"}
+                            />
 
+                            {/* Menu Master */}
                             <CollapseSideBarAdmin
                                 img={IconMenuMaster}
                                 imgHover={IconMenuMasterSolid}
@@ -70,6 +77,14 @@ const SideBarAdmin = () => {
                                     title={"Jadwal Dokter"}
                                     href={"/admin/master-menu/jadwal-dokter"}
                                 />
+                            </CollapseSideBarAdmin>
+
+                            {/* Menu Input */}
+                            <CollapseSideBarAdmin
+                                img={IconBooks}
+                                imgHover={IconBooksSolid}
+                                title={"Menu Input"}
+                            >
                                 <CardSideBarAdmin
                                     img={IconBooks}
                                     imgHover={IconBooksSolid}
@@ -98,23 +113,14 @@ const SideBarAdmin = () => {
                                 />
                             </CollapseSideBarAdmin>
 
-                            <CollapseSideBarAdmin
-                                img={IconUser}
-                                imgHover={IconUserSolid}
-                                title={"Patient"}
-                            >
-                                <CardSideBarAdmin
-                                    img={IconPeople}
-                                    imgHover={IconPeoples}
-                                    title={"Data Patient"}
-                                    href={"/admin/patient"}
-                                />
-                            </CollapseSideBarAdmin>
+                            {/* Menu REport */}
                             <CollapseSideBarAdmin
                                 img={IconUser}
                                 imgHover={IconUserSolid}
                                 title={"Report"}
                             />
+
+                            {/* Menu Pembayaranm */}
                             <CollapseSideBarAdmin
                                 img={IconUser}
                                 imgHover={IconUserSolid}

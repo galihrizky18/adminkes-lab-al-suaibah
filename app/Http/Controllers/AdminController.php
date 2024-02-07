@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admins;
 use App\Models\Dokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
@@ -12,19 +13,23 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
 
     public function dashboard(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        
         return Inertia::render('admin/Dashboard',['currentUser'=>$currentUser]);
     }
 
     // Menu Master Admin
     public function dataAdmin(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataAdmins = User::all();
         $admin = User::where('username', 'admin')->first();
 
@@ -36,7 +41,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataDokter(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataLayanan = Layanan::all();
         $dataDokters= Dokter::with('layanan')->get();
 
@@ -48,7 +54,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataJadwalDokter(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataSpesialis = TableSpesialis::all();
         $dataDokters= Dokter::with('layanan')->get();
 
@@ -60,7 +67,8 @@ class AdminController extends Controller
         ]);
     }
     public function KRJPoliUmumLansia(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataDoker = Dokter::all();
         $dataUmumLansia = krjPoliUmumLansia::with('dokter')->get();
         
@@ -71,7 +79,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataPoliGigi(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataGigi = krjPoliGigi::with('dokter')->get();
         $dataDoker = Dokter::all();
         return Inertia::render('admin/menuMaster/DataGigi',[
@@ -81,7 +90,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataLaboratorium(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataDoker = Dokter::all();
         $dataLab = Laboratorium::all();
         $dataPoli = Layanan::all();
@@ -94,7 +104,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataFarmasi(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         return Inertia::render('admin/menuMaster/DataFarmasi',['currentUser'=>$currentUser]);
     }
 

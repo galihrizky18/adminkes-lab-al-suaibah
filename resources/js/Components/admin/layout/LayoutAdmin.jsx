@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import SideBarAdmin from "@/Components/admin/SideBarAdmin";
 import InfoUser from "@/Components/admin/InfoUser";
 import { MantineProvider } from "@mantine/core";
-import { useEffect } from "react";
+
 
 const LayoutAdmin = (props) => {
     const { children, title, titlePage, user } = props;

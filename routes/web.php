@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApotekController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\KIAController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LoginController;
@@ -59,6 +60,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/farmasi', [AdminController::class, 'dataFarmasi'])->name('dataFarmasi');
     });
 
+    // Detail
+    Route::prefix('detail')->group(function(){
+        Route::get('admin', [DetailController::class, 'detailAdmin']);
+    });
+
     // Add Data
     Route::prefix('add-data')->group(function (){
         Route::post('/admin', [AdminController::class, 'addAdmin'])->name("addAdmin");
@@ -109,7 +115,6 @@ Route::post('/pendaftaran/pasien-lama/search', [PendaftaranController::class, 's
 
 
  
-Route::get('/cek', [LoginController::class, 'cekVerifikasi'])->name('cek');
+
 Route::get('/tes', [LoginController::class, 'tesPage']);
-Route::get('/pindah', [LoginController::class, 'pindah'])->name('pindah');
 
