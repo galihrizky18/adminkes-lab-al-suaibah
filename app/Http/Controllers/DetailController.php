@@ -9,6 +9,10 @@ use Inertia\Inertia;
 
 class DetailController extends Controller
 {
+
+
+
+    // tes merge
     
     public function detailAdmin(Request $request){
 
