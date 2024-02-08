@@ -62,7 +62,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // Detail
     Route::prefix('detail')->group(function(){
-        Route::get('admin', [DetailController::class, 'detailAdmin']);
+        Route::post('admin', [DetailController::class, 'detailAdmin']);
     });
 
     // Add Data

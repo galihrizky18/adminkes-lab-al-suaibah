@@ -30,7 +30,7 @@ class AdminController extends Controller
     public function dataAdmin(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
-        $dataAdmins = User::all();
+        $dataAdmins = User::with('admin')->get();
         $admin = User::where('username', 'admin')->first();
 
         return Inertia::render('admin/menuMaster/DataAdmin',[
@@ -117,7 +117,8 @@ class AdminController extends Controller
          // format waktu
          $currentTime = time();
          $time = date('YmdHis', $currentTime);
-         $idNewAdmin = "USR-".$time;
+         $idNewUser = "USR-".$time;
+         $idNewAdmin = "ADM-".$time;
 
         //  Take users data from database
         $dataUser = User::all();
@@ -130,14 +131,27 @@ class AdminController extends Controller
 
             if(!collect($usernames)->contains($newAdmin['username'])){
                 $user = new User();
-                $user->id_user = $idNewAdmin;
-                $user->second_identifyer = $idNewAdmin;
-                $user->name = $newAdmin['name'];
+                $user->id_user = $idNewUser;
+                $user->second_identifyer = $idNewUser;
+                $user->id_admin  = $idNewAdmin;
                 $user->username = $newAdmin['username'];
                 $user->password = Hash::make($newAdmin['password']);
-                $user->email  = $newAdmin['email'];
-    
-                if($user->save()){
+
+                $admin = new Admins();
+                $admin->id_admin = $idNewAdmin;
+                $admin->id_staff = $newAdmin['idStaff'];
+                $admin->name = $newAdmin['name'];
+                $admin->phone = $newAdmin['phone'];
+                $admin->email = $newAdmin['email'];
+                $admin->gender = $newAdmin['gender'];
+                $admin->birth = $newAdmin['birth'];
+                $admin->religion = $newAdmin['religion'];
+                $admin->province = $newAdmin['province'];
+                $admin->city = $newAdmin['city'];
+                $admin->nationality = $newAdmin['nationality'];
+                $admin->address = $newAdmin['address'];
+          
+                if($user->save() && $admin->save()){
                     return response()->json(['message'=>'Success Save Data']);
                 }
                 return response()->json(['message'=>'Failed Save Data']);
@@ -353,23 +367,33 @@ class AdminController extends Controller
         try {
             $dataEditAdmin = $request->input('dataEditAdmin');
 
-            $checkId = User::where('id_user', $dataEditAdmin['id_user'])->first();
+            
+            $checkIdUser = User::where('id_user', $dataEditAdmin['id_user'])->first();
 
             // // Check if Super Admin
-            if ($checkId && $checkId->username === 'admin') {
+            if ($checkIdUser && $checkIdUser->username === 'admin') {
                 return response()->json(['message' => 'Super Admin']);
             }
+
+                // return response()->json(['message' => $dataEditAdmin]);
             
-            if($checkId){
-                $admin = $checkId ;
-                $admin->name = $dataEditAdmin['name'];
-                $admin->username = $dataEditAdmin['username'];
-                $admin->password = $dataEditAdmin['password'];
-                $admin->email = $dataEditAdmin['email'];
-
-                if($admin->save()){
-
-                    return response()->json(['message'=>"Success Edit Admin"]);
+            if($checkIdUser){
+                $updateAdmin = Admins::where('id_admin', $checkIdUser['id_admin'])->update([
+                    "id_staff" => $dataEditAdmin['idStaff'],
+                    "name" => $dataEditAdmin['name'],
+                    "phone" => $dataEditAdmin['phone'],
+                    "email" => $dataEditAdmin['email'],
+                    "gender" => $dataEditAdmin['gender'],
+                    "birth" => $dataEditAdmin['birth'],
+                    "religion" => $dataEditAdmin['religion'],
+                    "province" => $dataEditAdmin['province'],
+                    "city" => $dataEditAdmin['city'],
+                    "nationality" => $dataEditAdmin['nationality'],
+                    "address" => $dataEditAdmin['address'],
+                ]);
+            
+                if ($updateAdmin) {
+                    return response()->json(['message' => "Success Edit Admin"]);
                 }
                 return response()->json(['message'=>"Failed Edit Admin"]);
 
@@ -509,16 +533,21 @@ class AdminController extends Controller
         try {
             $idAdmin = $request->input('id');
 
-            $checkId = User::where('id_user', $idAdmin)->first();
+            $checkIdUser = User::with('admin')->where('id_user', $idAdmin)->first();
 
             // Check if Super Admin
-            if ($checkId && $checkId->username === 'admin') {
+            if ($checkIdUser && $checkIdUser->admin->username === 'admin') {
                 return response()->json(['message' => 'Super Admin']);
             }
+
             
-            if($checkId){
-                $checkId->delete();
-                return response()->json(['message'=>"Success Delete Admin"]);
+            if($checkIdUser){
+                $checkIdAdmin = Admins::where('id_admin', $checkIdUser->admin->id_admin)->delete();
+                $checkDeleteUser = $checkIdUser->delete();
+                
+                if($checkDeleteUser && $checkIdAdmin){
+                    return response()->json(['message'=>"Success Delete Admin"]);
+                }
             }
             return response()->json(['message'=>"Failed Delete Admin"]);
 

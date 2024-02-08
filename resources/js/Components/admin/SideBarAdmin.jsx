@@ -46,12 +46,14 @@ const SideBarAdmin = () => {
                                 title={"Dashboard"}
                                 href={"/admin"}
                             />
-                            <CardSideBarAdmin
+
+                            {/* Detail Admin */}
+                            {/* <CardSideBarAdmin
                                 img={IconBooks}
                                 imgHover={IconBooksSolid}
                                 title={"Detail Admin"}
                                 href={"/admin/detail/admin"}
-                            />
+                            /> */}
 
                             {/* Menu Master */}
                             <CollapseSideBarAdmin

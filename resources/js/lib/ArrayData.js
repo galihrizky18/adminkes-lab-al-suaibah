@@ -1,3 +1,4 @@
+// Data Layanan
 export const layanan = [
     { value: "layanan1", label: "Poli Umum" },
     { value: "layanan2", label: "Poli Anak" },
@@ -5,6 +6,16 @@ export const layanan = [
     { value: "layanan4", label: "Apotek" },
     { value: "layanan5", label: "Laboratorium" },
     { value: "layanan6", label: "Kesehatan Ibu Anak" },
+];
+
+// Data Agama
+export const agama = [
+    { value: "Islam", label: "Islam" },
+    { value: "Kristen", label: "Kristen" },
+    { value: "Hindu", label: "Hindu" },
+    { value: "Buddha", label: "Buddha" },
+    { value: "Konghucu", label: "Konghucu" },
+    { value: "Lainnya", label: "Lainnya" },
 ];
 
 // data Hematologi

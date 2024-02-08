@@ -10,6 +10,12 @@ const DataJadwalDokter = ({ currentUser, dataSpesialis, dataDokters }) => {
     const [opened, { open, close }] = useDisclosure(false);
     const [isSuccessSave, setIsSuccessSave] = useState(false);
 
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Jadwal Dokter", href: "/admin/master-menu/jadwal-dokter" },
+    ];
+
     useEffect(() => {
         if (isSuccessSave) {
             close();
@@ -20,6 +26,7 @@ const DataJadwalDokter = ({ currentUser, dataSpesialis, dataDokters }) => {
         <LayoutAdmin
             title="Jadwal Dokter"
             titlePage="JADWAL DOKTER"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">

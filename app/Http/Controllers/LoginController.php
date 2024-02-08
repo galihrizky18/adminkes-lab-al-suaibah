@@ -41,6 +41,7 @@ class LoginController extends Controller
             $dataLogin = $request->input('data');
 
             if (Auth::attempt(['username' => $dataLogin['username'], 'password' => $dataLogin['password']])) {
+                $request->session()->regenerate();
                 $authUser = Auth::user();
                 session([
                     'current_user'=>$authUser
@@ -48,6 +49,7 @@ class LoginController extends Controller
                 return response()->json(['isLoggedIn' => true]);
                 
             } else {
+                $request->session()->regenerate();
                 return response()->json(['isLoggedIn' => false]);
             }
         } catch (\Throwable $th) {
@@ -67,6 +69,7 @@ class LoginController extends Controller
 
 
     public function logout(Request $request){
+        $request->session()->regenerate();
         Auth::logout();
         // Menghapus semua data sesi
         Session::flush();

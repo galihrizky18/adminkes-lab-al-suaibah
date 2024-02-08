@@ -7,11 +7,17 @@ import TableLaboratorium from "@/Components/admin/table/TableLaboratorium";
 
 const DataLab = ({ currentUser, dataDoker, dataLab, dataPoli }) => {
     const [opened, { open, close }] = useDisclosure(false);
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Data Laboratorium", href: "/admin/master-menu/laboratorium" },
+    ];
 
     return (
         <LayoutAdmin
             title="Laboratorium"
             titlePage="DATA LABORATORIUM"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">

@@ -138,9 +138,6 @@ const AddLabModal = () => {
         }
     };
 
-    // useEffect
-    useEffect(() => {}, []);
-
     return (
         <Box
             className="flex flex-col gap-3"

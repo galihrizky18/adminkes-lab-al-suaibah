@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
-import { Avatar, Grid } from "@mantine/core";
+import { Avatar, Grid, Breadcrumbs } from "@mantine/core";
 
 // gambar
 import avatarImage from "../../../../../../public/asset/icon/admin/avatar.png";
 
-const DetailAdmin = ({ currentUser }) => {
-    // useState(() => {
-    //     console.log(currentUser);
-    // }, []);
+const DetailAdmin = ({ currentUser, dataAdmin }) => {
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Admins", href: "/admin/master-menu/admin" },
+        { title: "Detail Admin", href: "/admin/detail/admin" },
+    ];
+
     return (
         <LayoutAdmin
             title="Detail Admin"
             titlePage="Detail Admin"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             {/* Personal Info */}
@@ -29,10 +33,10 @@ const DetailAdmin = ({ currentUser }) => {
                             <div className="w-full ">
                                 {/* Name */}
                                 <div className="font-bold text-xl pb-1 mb-1 border-b border-black">
-                                    Galih Rizky
+                                    {dataAdmin.admin.name}
                                 </div>
                                 {/* id Staff */}
-                                <div>412362189361</div>
+                                <div>{dataAdmin.admin.id_staff}</div>
                             </div>
                         </div>
                     </Grid.Col>
@@ -45,7 +49,7 @@ const DetailAdmin = ({ currentUser }) => {
                                 <div className="">Phone Number </div>
 
                                 <div className="font-bold col-start-2">
-                                    081234126312
+                                    {dataAdmin.admin.phone}
                                 </div>
                             </div>
 
@@ -54,7 +58,7 @@ const DetailAdmin = ({ currentUser }) => {
                                 <div className="">Email </div>
 
                                 <div className="font-bold col-start-2">
-                                    Garix@gmail.com
+                                    {dataAdmin.admin.email}
                                 </div>
                             </div>
                         </div>
@@ -84,7 +88,15 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 Gender
                                             </div>
-                                            <div>Laki Laki</div>
+                                            <div>
+                                                {dataAdmin.admin.gender ===
+                                                "male"
+                                                    ? "Laki - Laki"
+                                                    : dataAdmin.admin.gender ===
+                                                      "female"
+                                                    ? "Perempuan"
+                                                    : "Tidak Diketahui"}
+                                            </div>
                                         </div>
 
                                         {/* Birth of Date */}
@@ -92,7 +104,7 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 Birth of Date
                                             </div>
-                                            <div>18-02-2002</div>
+                                            <div>{dataAdmin.admin.birth}</div>
                                         </div>
 
                                         {/* Religion */}
@@ -100,7 +112,9 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 Religion
                                             </div>
-                                            <div>Islam</div>
+                                            <div>
+                                                {dataAdmin.admin.religion}
+                                            </div>
                                         </div>
 
                                         {/* Birth of Date */}
@@ -108,7 +122,9 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 Province
                                             </div>
-                                            <div>Sumatera Selatan</div>
+                                            <div>
+                                                {dataAdmin.admin.province}
+                                            </div>
                                         </div>
                                     </Grid.Col>
 
@@ -121,7 +137,7 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 City
                                             </div>
-                                            <div>Palembang</div>
+                                            <div>{dataAdmin.admin.city}</div>
                                         </div>
 
                                         {/* Nationality */}
@@ -129,7 +145,9 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 Nationality
                                             </div>
-                                            <div>Indonesia</div>
+                                            <div>
+                                                {dataAdmin.admin.nationality}
+                                            </div>
                                         </div>
 
                                         {/* Addrees */}
@@ -137,16 +155,7 @@ const DetailAdmin = ({ currentUser }) => {
                                             <div className="text-gray-400">
                                                 Address
                                             </div>
-                                            <div>
-                                                Lorem ipsum dolor sit amet
-                                                consectetur, adipisicing elit.
-                                                Odit veniam aliquid dicta
-                                                mollitia, quaerat doloremque
-                                                nisi quisquam, eligendi tempora,
-                                                fugit doloribus illo minima
-                                                sint! Eos blanditiis fugit modi
-                                                nam temporibus?
-                                            </div>
+                                            <div>{dataAdmin.admin.address}</div>
                                         </div>
                                     </Grid.Col>
                                 </Grid>
@@ -168,7 +177,7 @@ const DetailAdmin = ({ currentUser }) => {
                                     <div className="">Id User </div>
 
                                     <div className="font-bold col-start-2 col-span-2">
-                                        ADM-48912673129
+                                        {dataAdmin.admin.id_admin}
                                     </div>
                                 </div>
                                 {/* Username */}
@@ -176,7 +185,7 @@ const DetailAdmin = ({ currentUser }) => {
                                     <div className="">Username </div>
 
                                     <div className="font-bold col-start-2">
-                                        garix
+                                        {dataAdmin.username}
                                     </div>
                                 </div>
                             </div>
