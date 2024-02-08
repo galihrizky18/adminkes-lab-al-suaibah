@@ -2,28 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admins;
 use App\Models\Dokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
+use App\Models\Laboratorium;
 use App\Models\Layanan;
+use App\Models\TableSpesialis;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
 
     public function dashboard(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        
         return Inertia::render('admin/Dashboard',['currentUser'=>$currentUser]);
     }
 
     // Menu Master Admin
     public function dataAdmin(){
-        $currentUser = Auth::user();
-        $dataAdmins = User::all();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        $dataAdmins = User::with('admin')->get();
         $admin = User::where('username', 'admin')->first();
 
         return Inertia::render('admin/menuMaster/DataAdmin',[
@@ -34,7 +41,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataDokter(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataLayanan = Layanan::all();
         $dataDokters= Dokter::with('layanan')->get();
 
@@ -45,8 +53,22 @@ class AdminController extends Controller
 
         ]);
     }
+    public function dataJadwalDokter(){
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        $dataSpesialis = TableSpesialis::all();
+        $dataDokters= Dokter::with('layanan')->get();
+
+        return Inertia::render('admin/menuMaster/DataJadwalDokter',[
+            'currentUser'=>$currentUser,
+            'dataSpesialis'=>$dataSpesialis,
+            'dataDokters'=>$dataDokters,
+
+        ]);
+    }
     public function KRJPoliUmumLansia(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataDoker = Dokter::all();
         $dataUmumLansia = krjPoliUmumLansia::with('dokter')->get();
         
@@ -57,7 +79,8 @@ class AdminController extends Controller
         ]);
     }
     public function dataPoliGigi(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataGigi = krjPoliGigi::with('dokter')->get();
         $dataDoker = Dokter::all();
         return Inertia::render('admin/menuMaster/DataGigi',[
@@ -67,13 +90,22 @@ class AdminController extends Controller
         ]);
     }
     public function dataLaboratorium(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataDoker = Dokter::all();
+        $dataLab = Laboratorium::all();
+        $dataPoli = Layanan::all();
         
-        return Inertia::render('admin/menuMaster/DataLab',['currentUser'=>$currentUser,'dataDoker'=>$dataDoker]);
+        return Inertia::render('admin/menuMaster/DataLab',[
+            'currentUser'=>$currentUser,
+            'dataDoker'=>$dataDoker,
+            'dataLab'=>$dataLab,
+            'dataPoli'=>$dataPoli,
+        ]);
     }
     public function dataFarmasi(){
-        $currentUser = Auth::user();
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         return Inertia::render('admin/menuMaster/DataFarmasi',['currentUser'=>$currentUser]);
     }
 
@@ -85,7 +117,8 @@ class AdminController extends Controller
          // format waktu
          $currentTime = time();
          $time = date('YmdHis', $currentTime);
-         $idNewAdmin = "USR-".$time;
+         $idNewUser = "USR-".$time;
+         $idNewAdmin = "ADM-".$time;
 
         //  Take users data from database
         $dataUser = User::all();
@@ -98,14 +131,27 @@ class AdminController extends Controller
 
             if(!collect($usernames)->contains($newAdmin['username'])){
                 $user = new User();
-                $user->id_user = $idNewAdmin;
-                $user->second_identifyer = $idNewAdmin;
-                $user->name = $newAdmin['name'];
+                $user->id_user = $idNewUser;
+                $user->second_identifyer = $idNewUser;
+                $user->id_admin  = $idNewAdmin;
                 $user->username = $newAdmin['username'];
                 $user->password = Hash::make($newAdmin['password']);
-                $user->email  = $newAdmin['email'];
-    
-                if($user->save()){
+
+                $admin = new Admins();
+                $admin->id_admin = $idNewAdmin;
+                $admin->id_staff = $newAdmin['idStaff'];
+                $admin->name = $newAdmin['name'];
+                $admin->phone = $newAdmin['phone'];
+                $admin->email = $newAdmin['email'];
+                $admin->gender = $newAdmin['gender'];
+                $admin->birth = $newAdmin['birth'];
+                $admin->religion = $newAdmin['religion'];
+                $admin->province = $newAdmin['province'];
+                $admin->city = $newAdmin['city'];
+                $admin->nationality = $newAdmin['nationality'];
+                $admin->address = $newAdmin['address'];
+          
+                if($user->save() && $admin->save()){
                     return response()->json(['message'=>'Success Save Data']);
                 }
                 return response()->json(['message'=>'Failed Save Data']);
@@ -119,7 +165,6 @@ class AdminController extends Controller
     public function addDokters(Request $request){
         $newDokter = $request->input('dataNewDokter');
 
-
         //  format waktu
          $currentTime = time();
          $time = date('YmdHis', $currentTime);
@@ -131,7 +176,6 @@ class AdminController extends Controller
         if($isExistDokter){
             return response()->json(['message'=>'Found Dokter']);
         }
-
 
         if($newDokter){
             $dokter = new Dokter();
@@ -255,7 +299,67 @@ class AdminController extends Controller
        
 
     }
+    public function addLab(Request $request){
+        try {
+            $dataInput = $request->input('data');
 
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idLab = "LAB-".$time;
+    
+            //  check Data
+            $cekData = Laboratorium::where('name', $dataInput['name'])
+                ->where('jk', $dataInput['jk'])
+                ->where('age', $dataInput['age'])
+                ->where('phone', $dataInput['phone'])
+                ->where('card_number', $dataInput['card_number'])
+                ->exists();
+
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+
+            if($dataInput){
+                $dataLab = new Laboratorium();
+                $dataLab->id_laboratorium   = $idLab;
+                $dataLab->name = $dataInput['name'];
+                $dataLab->jk = $dataInput['jk'];
+                $dataLab->ttl = $dataInput['ttl'];
+                $dataLab->age = $dataInput['age'];
+                $dataLab->address = $dataInput['address'];
+                $dataLab->phone = $dataInput['phone'];
+                $dataLab->card_number = $dataInput['card_number'];
+                $dataLab->request_date = $dataInput['request_date'];
+                $dataLab->officer = $dataInput['officer'];
+                $dataLab->poli = $dataInput['poli'];
+                $dataLab->clinical_desc = $dataInput['clinical_desc'];
+                $dataLab->responsible = $dataInput['responsible'];
+                $dataLab->hematologi = $dataInput['hematologi'];
+                $dataLab->serologis = $dataInput['serologis'];
+                $dataLab->urinalisa = $dataInput['urinalisa'];
+                $dataLab->mikrobiologi = $dataInput['mikrobiologi'];
+                $dataLab->faeces = $dataInput['faeces'];
+                $dataLab->faal_hati = $dataInput['faal_hati'];
+                $dataLab->faal_ginjal = $dataInput['faal_ginjal'];
+                $dataLab->faal_jantung = $dataInput['faal_jantung'];
+                $dataLab->metabolisme_karbo = $dataInput['metabolisme_karbo'];
+                $dataLab->profil_lipid = $dataInput['profil_lipid'];
+                $dataLab->pemeriksaan_lainnya = $dataInput['pemeriksaan_lainnya'];
+    
+                if($dataLab->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            // return response()->json(['message'=>'Fail Request']);
+            return response()->json(['message'=>$th->getMessage()]);
+        }
+       
+
+    }
 
 
     // Edit Data
@@ -263,23 +367,33 @@ class AdminController extends Controller
         try {
             $dataEditAdmin = $request->input('dataEditAdmin');
 
-            $checkId = User::where('id_user', $dataEditAdmin['id_user'])->first();
+            
+            $checkIdUser = User::where('id_user', $dataEditAdmin['id_user'])->first();
 
             // // Check if Super Admin
-            if ($checkId && $checkId->username === 'admin') {
+            if ($checkIdUser && $checkIdUser->username === 'admin') {
                 return response()->json(['message' => 'Super Admin']);
             }
+
+                // return response()->json(['message' => $dataEditAdmin]);
             
-            if($checkId){
-                $admin = $checkId ;
-                $admin->name = $dataEditAdmin['name'];
-                $admin->username = $dataEditAdmin['username'];
-                $admin->password = $dataEditAdmin['password'];
-                $admin->email = $dataEditAdmin['email'];
-
-                if($admin->save()){
-
-                    return response()->json(['message'=>"Success Edit Admin"]);
+            if($checkIdUser){
+                $updateAdmin = Admins::where('id_admin', $checkIdUser['id_admin'])->update([
+                    "id_staff" => $dataEditAdmin['idStaff'],
+                    "name" => $dataEditAdmin['name'],
+                    "phone" => $dataEditAdmin['phone'],
+                    "email" => $dataEditAdmin['email'],
+                    "gender" => $dataEditAdmin['gender'],
+                    "birth" => $dataEditAdmin['birth'],
+                    "religion" => $dataEditAdmin['religion'],
+                    "province" => $dataEditAdmin['province'],
+                    "city" => $dataEditAdmin['city'],
+                    "nationality" => $dataEditAdmin['nationality'],
+                    "address" => $dataEditAdmin['address'],
+                ]);
+            
+                if ($updateAdmin) {
+                    return response()->json(['message' => "Success Edit Admin"]);
                 }
                 return response()->json(['message'=>"Failed Edit Admin"]);
 
@@ -390,6 +504,26 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database']);
         }
     }
+    public function editLab(Request $request)
+    {
+        try {
+            $dataLab = $request->input('newData');
+
+            $dataUpdate = Laboratorium::where('id_laboratorium', $dataLab['id_laboratorium'])->update($dataLab);
+
+            if ($dataUpdate) {
+                return response()->json(['message' => "Success Edit Data"]);
+            }
+            
+            return response()->json(['message' => "Failed Edit Data"]);
+
+    
+    
+        } catch (\Throwable $th) {
+
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
     
 
 
@@ -399,16 +533,21 @@ class AdminController extends Controller
         try {
             $idAdmin = $request->input('id');
 
-            $checkId = User::where('id_user', $idAdmin)->first();
+            $checkIdUser = User::with('admin')->where('id_user', $idAdmin)->first();
 
             // Check if Super Admin
-            if ($checkId && $checkId->username === 'admin') {
+            if ($checkIdUser && $checkIdUser->admin->username === 'admin') {
                 return response()->json(['message' => 'Super Admin']);
             }
+
             
-            if($checkId){
-                $checkId->delete();
-                return response()->json(['message'=>"Success Delete Admin"]);
+            if($checkIdUser){
+                $checkIdAdmin = Admins::where('id_admin', $checkIdUser->admin->id_admin)->delete();
+                $checkDeleteUser = $checkIdUser->delete();
+                
+                if($checkDeleteUser && $checkIdAdmin){
+                    return response()->json(['message'=>"Success Delete Admin"]);
+                }
             }
             return response()->json(['message'=>"Failed Delete Admin"]);
 
@@ -467,6 +606,28 @@ class AdminController extends Controller
             $idKRJPoliGigi = $request->input('id');
 
             $checkData = krjPoliGigi::where('id_krj_poli_gigi', $idKRJPoliGigi)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
+    public function deleteLab(Request $request)
+    {
+        try {
+            $idLab = $request->input('id');
+
+
+            $checkData = Laboratorium::where('id_laboratorium', $idLab)->delete();
 
             if (!$checkData) {
                 return response()->json(['message' => "Data not found"], 404);

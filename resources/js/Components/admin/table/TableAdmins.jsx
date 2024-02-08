@@ -20,28 +20,46 @@ const TableAdmins = ({ dataAdmins }) => {
     // Fungsi untuk mengonversi dataAdmins
     const convertData = (data) => {
         return data.map((e) => ({
-            // username: e.username,
             id_user: e.second_identifyer,
+            id_admin: e.id_admin,
+            idStaff: e.admin.id_staff,
             username: e.username,
-            name: e.name,
-            email: e.email,
+            password: e.password,
+            name: e.admin.name,
+            phone: e.admin.phone,
+            email: e.admin.email,
+            gender: e.admin.gender,
+            birth: e.admin.birth,
+            religion: e.admin.religion,
+            province: e.admin.province,
+            city: e.admin.city,
+            nationality: e.admin.nationality,
+            address: e.admin.address,
+
             action: (
                 <div
                     className="grid gap-1 py-2"
                     style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
                 >
+                    {/* View Button */}
                     <Button
                         leftSection={<IconTrash width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"
-                        color="red"
+                        color="blue"
                         radius="sm"
-                        onClick={() => confirmDelete(e.second_identifyer)}
+                        onClick={() => {
+                            const data = {
+                                id_user: e.second_identifyer,
+                            };
+                            router.post("/admin/detail/admin", data);
+                        }}
                     >
-                        Delete
+                        View
                     </Button>
 
+                    {/* Edit Button */}
                     <Button
                         leftSection={<IconEdit width={20} />}
                         variant="filled"
@@ -52,15 +70,39 @@ const TableAdmins = ({ dataAdmins }) => {
                         onClick={() => {
                             const data = {
                                 id_user: e.second_identifyer,
+                                idStaff: e.admin.id_staff,
+                                id_admin: e.id_admin,
                                 username: e.username,
-                                name: e.name,
-                                email: e.email,
+                                password: e.password,
+                                name: e.admin.name,
+                                phone: e.admin.phone,
+                                email: e.admin.email,
+                                gender: e.admin.gender,
+                                birth: e.admin.birth,
+                                religion: e.admin.religion,
+                                province: e.admin.province,
+                                city: e.admin.city,
+                                nationality: e.admin.nationality,
+                                address: e.admin.address,
                             };
                             setSendDataEdit(data);
                             open();
                         }}
                     >
                         Edit
+                    </Button>
+
+                    {/* Delete Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="red"
+                        radius="sm"
+                        onClick={() => confirmDelete(e.second_identifyer)}
+                    >
+                        Delete
                     </Button>
                 </div>
             ),
@@ -162,9 +204,10 @@ const TableAdmins = ({ dataAdmins }) => {
                 id: id,
             });
 
+            console.log(response.data.message);
             if (response.data.message === "Success Delete Admin") {
                 Swal.fire({
-                    title: "Success Delete!",
+                    title: "Success Delete Admin",
                     text: "Data Berhasil Di Hapus!",
                     icon: "success",
                 });
@@ -201,7 +244,12 @@ const TableAdmins = ({ dataAdmins }) => {
     return (
         <div className="w-full flex flex-col gap-3 p-3">
             {/* modal */}
-            <Modal opened={opened} onClose={close} title="Edit Admin" size="md">
+            <Modal
+                opened={opened}
+                onClose={close}
+                title="Edit Admin"
+                size="90%"
+            >
                 <EditAdminModal data={sendDataEdit} />
             </Modal>
             {/* BUtton */}

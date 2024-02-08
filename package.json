@@ -6,33 +6,33 @@
         "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
-        "@headlessui/react": "^1.4.2",
-        "@inertiajs/react": "^1.0.0",
-        "@tailwindcss/forms": "^0.5.3",
-        "@vitejs/plugin-react": "^4.0.3",
-        "autoprefixer": "^10.4.12",
-        "axios": "^1.6.1",
-        "daisyui": "^4.4.20",
-        "laravel-vite-plugin": "^0.8.0",
-        "postcss": "^8.4.32",
-        "postcss-preset-mantine": "^1.12.0",
+        "@headlessui/react": "^1.7.18",
+        "@inertiajs/react": "^1.0.14",
+        "@tailwindcss/forms": "^0.5.7",
+        "@vitejs/plugin-react": "^4.2.1",
+        "autoprefixer": "^10.4.17",
+        "axios": "^1.6.7",
+        "daisyui": "^4.6.1",
+        "laravel-vite-plugin": "^0.8.1",
+        "postcss": "^8.4.33",
+        "postcss-preset-mantine": "^1.13.0",
         "postcss-simple-vars": "^7.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "tailwindcss": "^3.2.1",
-        "vite": "^4.0.0"
+        "tailwindcss": "^3.4.1",
+        "vite": "^4.5.2"
     },
     "dependencies": {
-        "@mantine/carousel": "^7.3.2",
-        "@mantine/core": "^7.3.2",
-        "@mantine/form": "^7.4.2",
-        "@mantine/hooks": "^7.3.2",
-        "@mantine/modals": "^7.3.2",
-        "@tabler/icons-react": "^2.46.0",
-        "embla-carousel-autoplay": "^8.0.0-rc15",
+        "@mantine/carousel": "^7.5.1",
+        "@mantine/core": "^7.5.1",
+        "@mantine/form": "^7.5.1",
+        "@mantine/hooks": "^7.5.1",
+        "@mantine/modals": "^7.5.1",
+        "@tabler/icons-react": "^2.47.0",
+        "embla-carousel-autoplay": "8.0.0-rc22",
         "embla-carousel-react": "^7.1.0",
         "react-data-table-component": "^7.6.2",
         "styled-components": "^6.1.8",
-        "sweetalert2": "^11.6.13"
+        "sweetalert2": "^11.10.5"
     }
 }

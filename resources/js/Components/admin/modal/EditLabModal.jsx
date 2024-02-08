@@ -28,34 +28,35 @@ import {
     dataProfilLipid,
 } from "@/lib/ArrayData";
 
-const AddLabModal = () => {
+const EditLabModal = ({ baseData }) => {
     // Validator Form
     const form = useForm({
         initialValues: {
-            officer: "",
-            name: "",
-            jk: "",
-            ttl: "",
-            age: "",
-            address: "",
-            phone: "",
-            card_number: "",
-            request_date: "",
-            poli: "",
-            clinical_desc: "",
-            responsible: "",
+            id_laboratorium: baseData.id_laboratorium,
+            officer: baseData.officer,
+            name: baseData.name,
+            jk: baseData.jk,
+            ttl: baseData.ttl,
+            age: baseData.age,
+            address: baseData.address,
+            phone: baseData.phone,
+            card_number: baseData.card_number,
+            request_date: baseData.request_date,
+            poli: baseData.poli[0].id_layanan,
+            clinical_desc: baseData.clinical_desc,
+            responsible: baseData.responsible,
             // Col2
-            hematologi: "",
-            serologis: "",
-            urinalisa: "",
-            mikrobiologi: "",
-            faeces: "",
-            faal_hati: "",
-            faal_ginjal: "",
-            faal_jantung: "",
-            metabolisme_karbo: "",
-            profil_lipid: "",
-            pemeriksaan_lainnya: "",
+            hematologi: baseData.hematologi,
+            serologis: baseData.serologis,
+            urinalisa: baseData.urinalisa,
+            mikrobiologi: baseData.mikrobiologi,
+            faeces: baseData.faeces,
+            faal_hati: baseData.faal_hati,
+            faal_ginjal: baseData.faal_ginjal,
+            faal_jantung: baseData.faal_jantung,
+            metabolisme_karbo: baseData.metabolisme_karbo,
+            profil_lipid: baseData.profil_lipid,
+            pemeriksaan_lainnya: baseData.pemeriksaan_lainnya,
         },
 
         validate: {
@@ -101,8 +102,8 @@ const AddLabModal = () => {
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/add-data/lab", {
-                data: data,
+            const response = await axios.post("/admin/edit-data/lab", {
+                newData: data,
             });
 
             console.log(response.data.message);
@@ -138,6 +139,9 @@ const AddLabModal = () => {
         }
     };
 
+    // useEffect
+    // useEffect(() => {}, [console.log(baseData)]);
+
     return (
         <Box
             className="flex flex-col gap-3"
@@ -145,7 +149,6 @@ const AddLabModal = () => {
             mx="auto"
             onSubmit={form.onSubmit((data) => {
                 handleSubmit(data);
-                // console.log(data);
             })}
         >
             {/* Data Pasien Section */}
@@ -706,4 +709,4 @@ const AddLabModal = () => {
     );
 };
 
-export default AddLabModal;
+export default EditLabModal;

@@ -7,11 +7,20 @@ import TableUmumLansia from "@/Components/admin/table/TableUmumLansia";
 
 const KRJUmumLansia = ({ currentUser, dataUmumLansia, dataDoker }) => {
     const [opened, { open, close }] = useDisclosure(false);
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        {
+            title: "KRJ Poli Umum dan Lansia",
+            href: "/admin/master-menu/rawat-jalan-umum-lansia",
+        },
+    ];
 
     return (
         <LayoutAdmin
             title="Poli Umum dan Lansia"
             titlePage="DATA POLI UMUM DAN LANSIA"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">

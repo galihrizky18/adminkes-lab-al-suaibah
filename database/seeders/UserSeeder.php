@@ -16,14 +16,24 @@ class UserSeeder extends Seeder
         //
 
         $dataUser = [
+            
             [
                 "id_user" => "USR-",
                 "second_identifyer" => "USR-",
-                "name" => "admin",
+                "id_admin" => "ADM-1",
                 "username" => "admin",
                 "password" => bcrypt('123'),
-                "email" => "admin@gmail.com",
-            ]
+
+            ],
+            [
+                "id_user" => "USR-",
+                "second_identifyer" => "USR-",
+                "id_admin" => "ADM-2",
+                "username" => "garix",
+                "password" => bcrypt('123'),
+      
+            ],
+           
         ];
 
         // format waktu
@@ -32,12 +42,12 @@ class UserSeeder extends Seeder
 
         foreach($dataUser as $i=>$data){
             User::create([
-                'id_user'=> $data['id_user'].$time,
-                'second_identifyer'=> $data['second_identifyer'].$time,
-                'name'=> $data['name'],
+                'id_user'=> $data['id_user'].$i+1,
+                'second_identifyer'=> $data['second_identifyer'].$i+1,
+                'id_admin'=> $data['id_admin'],
                 'username'=> $data['username'],
                 'password'=> $data['password'],
-                'email'=> $data['email'],
+        
                 ]
             );
 

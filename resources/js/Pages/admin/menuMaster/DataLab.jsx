@@ -2,17 +2,22 @@ import React from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import AddKRJPoliGigi from "@/Components/admin/modal/AddKRJPoliGigi";
-import TablePoliGigi from "@/Components/admin/table/TablePoliGigi";
 import AddLabModal from "@/Components/admin/modal/AddLabModal";
+import TableLaboratorium from "@/Components/admin/table/TableLaboratorium";
 
-const DataLab = ({ currentUser, dataGigi, dataDoker }) => {
+const DataLab = ({ currentUser, dataDoker, dataLab, dataPoli }) => {
     const [opened, { open, close }] = useDisclosure(false);
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Data Laboratorium", href: "/admin/master-menu/laboratorium" },
+    ];
 
     return (
         <LayoutAdmin
             title="Laboratorium"
             titlePage="DATA LABORATORIUM"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">
@@ -40,7 +45,7 @@ const DataLab = ({ currentUser, dataGigi, dataDoker }) => {
 
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
-                    {/* <TablePoliGigi dataGigi={dataGigi} dataDoker={dataDoker} /> */}
+                    <TableLaboratorium dataLab={dataLab} dataPoli={dataPoli} />
                 </div>
             </div>
         </LayoutAdmin>

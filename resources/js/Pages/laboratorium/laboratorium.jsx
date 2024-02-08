@@ -23,9 +23,8 @@ const laboratorium = () => {
                 {/* Body */}
                 <div className="w-full sm:w-[90%] flex flex-col gap-5 rounded-xl px-5 py-7 shadow-lg bg-white ">
                     <CollapseComponents title="Persyaratan Pelayanan" />
-                    <CollapseComponents title="Prosedur" />
-                    <CollapseComponents title="Waktu Pelayanan" />
-                    <CollapseComponents title="Biaya dan Tarif" />
+                    <CollapseComponents title="Galih" />
+                    <CollapseComponents title="Rifvo" />
                 </div>
             </div>
 

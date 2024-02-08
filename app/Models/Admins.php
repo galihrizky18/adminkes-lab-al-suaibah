@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admins extends Model
 {
-    use HasFactory;
+     use HasFactory;
+
+    protected $table = 'admins';
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id_admin', 'id_admin');
+    }
 }

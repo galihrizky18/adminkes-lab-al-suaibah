@@ -72,9 +72,6 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
         }));
     };
 
-    // handle Name Layann
-    const convertNameLayanan = () => {};
-
     // mengatur kolom table
     const columns = [
         {
