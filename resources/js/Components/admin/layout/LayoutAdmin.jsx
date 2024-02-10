@@ -34,7 +34,7 @@ const LayoutAdmin = (props) => {
                     <SideBarAdmin />
 
                     {/* Body */}
-                    <div className="lg:ml-[20%] border border-black">
+                    <div className="lg:ml-[20%]">
                         {/* User Info */}
                         <InfoUser titlePage={titlePage} user={user} />
 

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('jadwal_dokters', function (Blueprint $table) {
             $table->string('id_jadwal_dokter')->primary();
             $table->string('id_dokter');
-            $table->string('id_spesialis');
             $table->string('senin');
             $table->string('selasa');
             $table->string('rabu');

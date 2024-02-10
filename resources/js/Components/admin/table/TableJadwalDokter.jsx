@@ -10,24 +10,19 @@ import { router } from "@inertiajs/react";
 import { IconTrash, IconEdit } from "@tabler/icons-react";
 import EditDokterModal from "../modal/EditDokterModal";
 
-const TableDokters = ({ dataDokters, dataLayanan }) => {
-    const [originalData, setOriginalData] = useState(dataDokters);
+const TableJadwalDokter = ({ dataSpesialis, dataJadwalDokter }) => {
+    const [originalData, setOriginalData] = useState(dataJadwalDokter);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
-    // Fungsi untuk mengonversi dataDokters
+    // Fungsi untuk mengonversi dataJadwalDokter
     const convertData = (data) => {
         return data.map((e) => ({
-            id_dokter: e.id_dokter,
-            nip_dokter: e.nip,
-            layanan: e.layanan.layanan,
-            nama: e.nama_dokter,
-            spesialis: e.spesialis,
-            email: e.email,
-            noHp: e.noHp,
-            alamat: e.alamat,
+            nip_dokter: e.dokter.nip,
+            spesialis: e.dokter.spesialis,
+            nama: e.dokter.nama_dokter,
             action: (
                 <div
                     className="grid gap-1 py-2"
@@ -43,37 +38,12 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_dokter: e.id_dokter,
+                                id_jadwal: e.id_jadwal_dokter,
                             };
-                            router.post("/admin/detail/dokter", data);
+                            router.post("/admin/detail/jadwal-dokter", data);
                         }}
                     >
                         View
-                    </Button>
-
-                    {/* Edit Button */}
-                    <Button
-                        leftSection={<IconEdit width={20} />}
-                        variant="filled"
-                        width="auto"
-                        size="xs"
-                        color="rgba(184, 169, 11, 1"
-                        radius="sm"
-                        onClick={() => {
-                            const data = {
-                                id_dokter: e.id_dokter,
-                                layanan: e.id_layanan,
-                                nama: e.nama_dokter,
-                                spesialis: e.spesialis,
-                                email: e.email,
-                                noHp: e.noHp,
-                                alamat: e.alamat,
-                            };
-                            setSendDataEdit(data);
-                            open();
-                        }}
-                    >
-                        Edit
                     </Button>
 
                     {/* Delete Button */}
@@ -84,7 +54,7 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_dokter)}
+                        onClick={() => confirmDelete(e.id_jadwal_dokter)}
                     >
                         Delete
                     </Button>
@@ -101,12 +71,6 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
             sortable: true,
         },
         {
-            name: "Layanan",
-            selector: (row) => row.layanan,
-            sortable: true,
-            width: "150px",
-        },
-        {
             name: "Nama",
             selector: (row) => row.nama,
             sortable: true,
@@ -115,21 +79,6 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
         {
             name: "Spesialis",
             selector: (row) => row.spesialis,
-            sortable: true,
-        },
-        {
-            name: "Email",
-            selector: (row) => row.email,
-            sortable: true,
-        },
-        {
-            name: "No HP",
-            selector: (row) => row.noHp,
-            sortable: true,
-        },
-        {
-            name: "Alamat",
-            selector: (row) => row.alamat,
             sortable: true,
         },
         {
@@ -162,23 +111,17 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const cekIdUser = d.id_dokter
+            const cekNip = d.dokter.nip
                 .toLowerCase()
                 .includes(event.toLowerCase());
-            const cekName = d.nama_dokter
+            const cekDokter = d.dokter.nama_dokter
                 .toLowerCase()
                 .includes(event.toLowerCase());
-            const cekEmail = d.email
+            const cekSpesialis = d.dokter.spesialis
                 .toLowerCase()
                 .includes(event.toLowerCase());
-            const cekSpesialis = d.spesialis
-                .toLowerCase()
-                .includes(event.toLowerCase());
-            const cekNoHp = d.noHp.toLowerCase().includes(event.toLowerCase());
-
-            return cekName || cekSpesialis || cekIdUser || cekEmail || cekNoHp;
+            return cekDokter || cekSpesialis || cekNip;
         });
-
         setDataFilter(convertData(filterData));
     };
 
@@ -194,31 +137,33 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                // Handle Delete
                 handleDelete(id);
             }
         });
     };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post("/admin/delete-data/dokter", {
-                id: id,
-            });
+            const response = await axios.post(
+                "/admin/delete-data/jadwal-dokter",
+                {
+                    id: id,
+                }
+            );
 
-            if (response.data.message === "Success Delete Dokter") {
+            if (response.data.message === "Success Delete Data") {
                 Swal.fire({
                     title: "Success Delete!",
-                    text: "Dokter Berhasil Di Hapus!",
+                    text: "Jadwal Berhasil Di Hapus!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/dokter");
-            } else if (response.data.message === "Failed Delete Dokter") {
+                router.get("/admin/master-menu/jadwal-dokter");
+            } else if (response.data.message === "Failed Delete Data") {
                 Swal.fire({
                     title: "Failed Delete!",
-                    text: "Data Gagal Di Hapus!",
+                    text: "Jadwal Gagal Di Hapus!",
                     icon: "error",
                 });
-            } else if (response.data.message === "FFailed Request Database") {
+            } else if (response.data.message === "Failed Request Database") {
                 Swal.fire({
                     title: "Failed to Connect Database!",
                     text: "Gagal Terhubung ke Database!",
@@ -232,9 +177,9 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
     };
 
     useEffect(() => {
-        setOriginalData(dataDokters);
-        setDataFilter(convertData(dataDokters));
-    }, [dataDokters]);
+        setOriginalData(dataJadwalDokter);
+        setDataFilter(convertData(dataJadwalDokter));
+    }, [dataJadwalDokter]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
@@ -247,7 +192,7 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
             >
                 <EditDokterModal
                     data={sendDataEdit}
-                    dataLayanan={dataLayanan}
+                    dataSpesialis={dataSpesialis}
                 />
             </Modal>
             {/* BUtton */}
@@ -278,4 +223,4 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
     );
 };
 
-export default TableDokters;
+export default TableJadwalDokter;

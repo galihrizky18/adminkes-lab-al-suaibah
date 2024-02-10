@@ -62,7 +62,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // Detail
     Route::prefix('detail')->group(function(){
-        Route::post('admin', [DetailController::class, 'detailAdmin']);
+        Route::match(['get', 'post'],'admin', [DetailController::class, 'detailAdmin']);
+        Route::match(['get', 'post'],'dokter', [DetailController::class, 'detailDokter']);
+        Route::match(['get', 'post'],'rawat-jalan-umum-lansia', [DetailController::class, 'detailKRJPoliUmumLansia']);
+        Route::match(['get', 'post'],'poli-gigi', [DetailController::class, 'detailPoliGigi']);
+        Route::match(['get', 'post'],'jadwal-dokter', [DetailController::class, 'detailJadwalDokter']);
     });
 
     // Add Data
@@ -72,6 +76,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/umum-lansia', [AdminController::class, 'addKRJPoliUmumLansia'])->name("addKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'addKRJPoliGigi'])->name("addKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'addLab'])->name("addLab");
+        Route::post('/jadwal-dokter', [AdminController::class, 'addJadwalDokter'])->name("addJadwalDokter");
     });
 
     // Edit Data
@@ -90,6 +95,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/umum-lansia', [AdminController::class, 'deleteKRJPoliUmumLansia'])->name("deleteKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'deleteLab'])->name("deleteLab");
+        Route::post('/jadwal-dokter', [AdminController::class, 'deleteJadwalDokter'])->name("deleteLab");
     });
 
 

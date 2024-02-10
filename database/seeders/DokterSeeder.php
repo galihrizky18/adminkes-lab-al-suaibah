@@ -104,7 +104,7 @@ class DokterSeeder extends Seeder
         foreach ($dokter as $i=>$nm) {
             Dokter::create([
                 'id_dokter' =>"DKTR-".$i+1,
-                'nip' =>$i+1,
+                'nip' =>"8127228178429"+$i,
                 "nama_dokter" => $nm['nama_dokter'],
                 "spesialis" => $nm['spesialis'],
                 "email" => $nm['email'],

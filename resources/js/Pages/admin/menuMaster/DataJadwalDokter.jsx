@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { router } from "@inertiajs/react";
-import AddDokterModal from "@/Components/admin/modal/AddDokterModal";
-import TableDokters from "@/Components/admin/table/TableDokters";
+import AddJadwalDokter from "@/Components/admin/modal/AddJadwalDokter";
+import TableJadwalDokter from "@/Components/admin/table/TableJadwalDokter";
 
-const DataJadwalDokter = ({ currentUser, dataSpesialis, dataDokters }) => {
+const DataJadwalDokter = ({
+    currentUser,
+    dataSpesialis,
+    dataDokters,
+    dataJadwalDokter,
+}) => {
     const [opened, { open, close }] = useDisclosure(false);
-    const [isSuccessSave, setIsSuccessSave] = useState(false);
 
     // BreadCrumbs
     const breadCrumbs = [
@@ -16,12 +19,6 @@ const DataJadwalDokter = ({ currentUser, dataSpesialis, dataDokters }) => {
         { title: "Jadwal Dokter", href: "/admin/master-menu/jadwal-dokter" },
     ];
 
-    useEffect(() => {
-        if (isSuccessSave) {
-            close();
-            router.get("/admin/master-menu/admin");
-        }
-    }, [isSuccessSave]);
     return (
         <LayoutAdmin
             title="Jadwal Dokter"
@@ -37,9 +34,12 @@ const DataJadwalDokter = ({ currentUser, dataSpesialis, dataDokters }) => {
                         opened={opened}
                         onClose={close}
                         title="Tambah Jadwal Dokter"
-                        size="lg"
+                        size="70%"
                     >
-                        {/* <AddDokterModal dataLayanan={dataLayanan} /> */}
+                        <AddJadwalDokter
+                            dataSpesialis={dataSpesialis}
+                            dataDokters={dataDokters}
+                        />
                     </Modal>
                     {/* BUtton */}
                     <div>
@@ -54,10 +54,11 @@ const DataJadwalDokter = ({ currentUser, dataSpesialis, dataDokters }) => {
 
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
-                    {/* <TableDokters
+                    <TableJadwalDokter
+                        dataSpesialis={dataSpesialis}
                         dataDokters={dataDokters}
-                        dataLayanan={dataLayanan}
-                    /> */}
+                        dataJadwalDokter={dataJadwalDokter}
+                    />
                 </div>
             </div>
         </LayoutAdmin>

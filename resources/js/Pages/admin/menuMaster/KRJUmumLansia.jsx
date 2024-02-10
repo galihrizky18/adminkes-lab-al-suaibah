@@ -18,7 +18,7 @@ const KRJUmumLansia = ({ currentUser, dataUmumLansia, dataDoker }) => {
 
     return (
         <LayoutAdmin
-            title="Poli Umum dan Lansia"
+            title="Poli Umum dPan Lansia"
             titlePage="DATA POLI UMUM DAN LANSIA"
             breadCrumbs={breadCrumbs}
             user={currentUser}

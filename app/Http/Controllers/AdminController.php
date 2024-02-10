@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admins;
 use App\Models\Dokter;
+use App\Models\JadwalDokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
 use App\Models\Laboratorium;
@@ -57,11 +58,13 @@ class AdminController extends Controller
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataSpesialis = TableSpesialis::all();
-        $dataDokters= Dokter::with('layanan')->get();
+        $dataDokters = Dokter::with('layanan')->get();
+        $dataJadwalDokter = JadwalDokter::with('dokter')->get();
 
         return Inertia::render('admin/menuMaster/DataJadwalDokter',[
             'currentUser'=>$currentUser,
             'dataSpesialis'=>$dataSpesialis,
+            'dataJadwalDokter'=>$dataJadwalDokter,
             'dataDokters'=>$dataDokters,
 
         ]);
@@ -360,6 +363,47 @@ class AdminController extends Controller
        
 
     }
+    public function addJadwalDokter(Request $request){
+        try {
+            $dataInput = $request->input('dataNewJadwal');
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idJadwalDokter = "JDWLD-".$time;
+    
+            //  check Data
+            $cekData = JadwalDokter::where('id_dokter', $dataInput['id_dokter'])->exists();
+
+
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+  
+            if($dataInput){
+                $dataJadwal = new JadwalDokter();
+                $dataJadwal->id_jadwal_dokter  = $idJadwalDokter;
+                $dataJadwal->id_dokter = $dataInput['id_dokter'];
+                $dataJadwal->senin = $dataInput['senin']. " - " . $dataInput['seninSampai'];
+                $dataJadwal->selasa = $dataInput['selasa']. " - " . $dataInput['selasaSampai'];
+                $dataJadwal->rabu = $dataInput['rabu']. " - " . $dataInput['rabuSampai'];
+                $dataJadwal->kamis = $dataInput['kamis']. " - " . $dataInput['kamisSampai'];
+                $dataJadwal->jumat = $dataInput['jumat']. " - " . $dataInput['jumatSampai'];
+                $dataJadwal->sabtu = $dataInput['sabtu']. " - " . $dataInput['sabtuSampai'];
+                
+                if($dataJadwal->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            // return response()->json(['message'=>'Fail Request']);
+            return response()->json(['message'=>$th->getMessage()]);
+        }
+       
+
+    }
 
 
     // Edit Data
@@ -628,6 +672,28 @@ class AdminController extends Controller
 
 
             $checkData = Laboratorium::where('id_laboratorium', $idLab)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
+    public function deleteJadwalDokter(Request $request)
+    {
+        try {
+            $idJadwal = $request->input('id');
+
+
+            $checkData = JadwalDokter::where('id_jadwal_dokter', $idJadwal)->delete();
 
             if (!$checkData) {
                 return response()->json(['message' => "Data not found"], 404);
