@@ -106,25 +106,17 @@ const EditLabModal = ({ baseData }) => {
                 newData: data,
             });
 
-            console.log(response.data.message);
-
-            if (response.data.message === "Success Save Data") {
+            if (response.data.message === "Success Edit Data") {
                 Swal.fire({
                     title: "Save Data!",
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
                 router.get("/admin/master-menu/laboratorium");
-            } else if (response.data.message === "Failed Save Data") {
+            } else if (response.data.message === "Failed Edit Data") {
                 Swal.fire({
                     title: "Failed",
                     text: "Gagal Menyimpan Data!",
-                    icon: "error",
-                });
-            } else if (response.data.message === "Found Data") {
-                Swal.fire({
-                    title: "Duplicate Data",
-                    text: "Data Telah Ada",
                     icon: "error",
                 });
             } else if (response.data.message === "Fail Request") {

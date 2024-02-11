@@ -552,7 +552,31 @@ class AdminController extends Controller
         try {
             $dataLab = $request->input('newData');
 
-            $dataUpdate = Laboratorium::where('id_laboratorium', $dataLab['id_laboratorium'])->update($dataLab);
+            $dataUpdate = Laboratorium::where('id_laboratorium', $dataLab['id_laboratorium'])->update([
+                "name" => $dataLab['name'],
+                "jk" => $dataLab['jk'],
+                "ttl" => $dataLab['ttl'],
+                "age" => $dataLab['age'],
+                "address" => $dataLab['address'],
+                "phone" => $dataLab['phone'],
+                "card_number" => $dataLab['card_number'],
+                "request_date" => $dataLab['request_date'],
+                "officer" =>$dataLab['officer'],
+                "id_layanan" => $dataLab['poli'],
+                "clinical_desc" => $dataLab['clinical_desc'],
+                "responsible" => $dataLab['responsible'],
+                "hematologi" => $dataLab['hematologi'],
+                "serologis" =>$dataLab['serologis'],
+                "urinalisa" =>$dataLab['urinalisa'],
+                "mikrobiologi" => $dataLab['mikrobiologi'],
+                "faeces" => $dataLab['faeces'],
+                "faal_hati" =>$dataLab['faal_hati'],
+                "faal_ginjal" => $dataLab['faal_ginjal'],
+                "faal_jantung" => $dataLab['faal_jantung'],
+                "metabolisme_karbo" => $dataLab['metabolisme_karbo'],
+                "profil_lipid" => $dataLab['profil_lipid'],
+                "pemeriksaan_lainnya" => $dataLab['pemeriksaan_lainnya'],
+            ]);
 
             if ($dataUpdate) {
                 return response()->json(['message' => "Success Edit Data"]);
