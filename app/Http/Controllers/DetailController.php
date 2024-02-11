@@ -7,6 +7,7 @@ use App\Models\Dokter;
 use App\Models\JadwalDokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
+use App\Models\Laboratorium;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -106,6 +107,24 @@ class DetailController extends Controller
             ]);
         }
         return redirect('/admin/master-menu/jadwal-dokter');
+
+    }
+    public function detailLab(Request $request){
+
+        $idLab =  $request->input('id_lab');
+        
+        $dataLab = Laboratorium::with('layanan')->where('id_laboratorium',$idLab)->first();
+
+        $currentUserData = session('current_user');
+        $currentUser = Admins::with('user')->where('id_admin',$currentUserData->id_admin)->first();
+
+        if($dataLab){
+            return Inertia::render('admin/menuMaster/detail/DetailLab',[
+                'currentUser'=>$currentUser,
+                'dataLab'=>$dataLab,
+            ]);
+        }
+        return redirect('/admin/master-menu/laboratorium');
 
     }
 

@@ -67,6 +67,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::match(['get', 'post'],'rawat-jalan-umum-lansia', [DetailController::class, 'detailKRJPoliUmumLansia']);
         Route::match(['get', 'post'],'poli-gigi', [DetailController::class, 'detailPoliGigi']);
         Route::match(['get', 'post'],'jadwal-dokter', [DetailController::class, 'detailJadwalDokter']);
+        Route::match(['get', 'post'],'laboratorium', [DetailController::class, 'detailLab']);
     });
 
     // Add Data
@@ -86,6 +87,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/umum-lansia', [AdminController::class, 'editKRJPoliUmumLansia'])->name("editKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'editKRJPoliGigi'])->name("editKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'editLab'])->name("editLab");
+        Route::post('/jadwal-dokter', [AdminController::class, 'editJadwalDokter'])->name("editJadwalDokter");
     });
 
     // Delete Data
@@ -95,7 +97,13 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/umum-lansia', [AdminController::class, 'deleteKRJPoliUmumLansia'])->name("deleteKRJPoliUmumLansia");
         Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'deleteLab'])->name("deleteLab");
-        Route::post('/jadwal-dokter', [AdminController::class, 'deleteJadwalDokter'])->name("deleteLab");
+        Route::post('/jadwal-dokter', [AdminController::class, 'deleteJadwalDokter'])->name("deleteJadwalDokter");
+    });
+
+    // Report Pasien Baru
+    Route::prefix('report')->group(function (){
+        Route::post('/pasien-baru', [AdminController::class, 'reportPasienBaru'])->name("reportPasienBaru");
+
     });
 
 

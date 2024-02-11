@@ -5,12 +5,12 @@ import { useDisclosure } from "@mantine/hooks";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
+import EditJadwalDokter from "../modal/EditJadwalDokter";
 
 // icon
 import { IconTrash, IconEdit } from "@tabler/icons-react";
-import EditDokterModal from "../modal/EditDokterModal";
 
-const TableJadwalDokter = ({ dataSpesialis, dataJadwalDokter }) => {
+const TableJadwalDokter = ({ dataJadwalDokter }) => {
     const [originalData, setOriginalData] = useState(dataJadwalDokter);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
@@ -44,6 +44,25 @@ const TableJadwalDokter = ({ dataSpesialis, dataJadwalDokter }) => {
                         }}
                     >
                         View
+                    </Button>
+
+                    {/* Edit Button */}
+                    <Button
+                        leftSection={<IconEdit width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="rgba(184, 169, 11, 1"
+                        radius="sm"
+                        onClick={() => {
+                            const data = {
+                                jadwal: e,
+                            };
+                            setSendDataEdit(data);
+                            open();
+                        }}
+                    >
+                        Edit
                     </Button>
 
                     {/* Delete Button */}
@@ -188,12 +207,9 @@ const TableJadwalDokter = ({ dataSpesialis, dataJadwalDokter }) => {
                 opened={opened}
                 onClose={close}
                 title="Edit Dokter"
-                size="md"
+                size="lg"
             >
-                <EditDokterModal
-                    data={sendDataEdit}
-                    dataSpesialis={dataSpesialis}
-                />
+                <EditJadwalDokter data={sendDataEdit} />
             </Modal>
             {/* BUtton */}
 

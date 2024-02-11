@@ -14,44 +14,41 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 
-const AddJadwalDokter = ({ dataDokters }) => {
+const EditJadwalDokter = ({ data }) => {
     const [dokterConvert, setDokterConvert] = useState();
 
-    // Convert Data Layanan
-    const handleConvertDokter = (data) => {
-        return data.map((e) => ({
-            value: e.id_dokter,
-            label: e.nama_dokter,
-        }));
-    };
+    // Split waktu
+    const splitWaktu = (waktu) => {
+        const waktuSplit = waktu.split(" - ");
 
-    // Convert Data Layanan
-    const handleConvertSpesialis = (data) => {
-        return data.map((e) => ({
-            value: e.id_spesialis,
-            label: e.spesialis,
-        }));
+        return {
+            waktuAwal: waktuSplit[0],
+            waktuAkhir: waktuSplit[1],
+        };
     };
 
     // Validator Form
     const form = useForm({
         initialValues: {
-            id_dokter: "",
-            senin: "00:00",
-            seninSampai: "00:00",
-            selasa: "00:00",
-            selasaSampai: "00:00",
-            rabu: "00:00",
-            rabuSampai: "00:00",
-            kamis: "00:00",
-            kamisSampai: "00:00",
-            jumat: "00:00",
-            jumatSampai: "00:00",
-            sabtu: "00:00",
-            sabtuSampai: "00:00",
+            id_jadwal_dokter: data.jadwal.id_jadwal_dokter,
+            id_dokter: data.jadwal.dokter.id_dokter,
+
+            senin: splitWaktu(data.jadwal.senin).waktuAwal,
+            seninSampai: splitWaktu(data.jadwal.senin).waktuAkhir,
+            selasa: splitWaktu(data.jadwal.selasa).waktuAwal,
+            selasaSampai: splitWaktu(data.jadwal.selasa).waktuAkhir,
+            rabu: splitWaktu(data.jadwal.rabu).waktuAwal,
+            rabuSampai: splitWaktu(data.jadwal.rabu).waktuAkhir,
+            kamis: splitWaktu(data.jadwal.kamis).waktuAwal,
+            kamisSampai: splitWaktu(data.jadwal.kamis).waktuAkhir,
+            jumat: splitWaktu(data.jadwal.jumat).waktuAwal,
+            jumatSampai: splitWaktu(data.jadwal.jumat).waktuAkhir,
+            sabtu: splitWaktu(data.jadwal.sabtu).waktuAwal,
+            sabtuSampai: splitWaktu(data.jadwal.sabtu).waktuAkhir,
         },
 
         validate: {
+            id_jadwal_dokter: isNotEmpty("Dokter tidak boleh kosong"),
             id_dokter: isNotEmpty("Dokter tidak boleh kosong"),
             senin: isNotEmpty("Hari tidak boleh kosong"),
             selasa: isNotEmpty("Hari tidak boleh kosong"),
@@ -65,27 +62,30 @@ const AddJadwalDokter = ({ dataDokters }) => {
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/add-data/jadwal-dokter", {
-                dataNewJadwal: data,
-            });
+            const response = await axios.post(
+                "/admin/edit-data/jadwal-dokter",
+                {
+                    dataNewJadwal: data,
+                }
+            );
 
-            if (response.data.message == "Success Save Data") {
+            if (response.data.message == "Success Edit Data") {
                 Swal.fire({
                     title: "Save Data!",
-                    text: "Jadwal Berhasil Ditambahkaan!",
+                    text: "Jadwal Berhasil DiEdit!",
                     icon: "success",
                 });
                 router.get("/admin/master-menu/jadwal-dokter");
-            } else if (response.data.message == "Failed Save Data") {
+            } else if (response.data.message == "Failed Edit Data") {
                 Swal.fire({
                     title: "Failed",
-                    text: "Gagal Menyimpan Data!",
+                    text: "Gagal Edit Data!",
                     icon: "error",
                 });
-            } else if (response.data.message == "Found Data") {
+            } else if (response.data.message == "Data not found") {
                 Swal.fire({
-                    title: "Found Dokter",
-                    text: "Jadwal Sudah Ada!",
+                    title: "Data Not Found",
+                    text: "Data Tidak Ada!",
                     icon: "error",
                 });
             } else if (response.data.message == "Fail Request") {
@@ -119,14 +119,13 @@ const AddJadwalDokter = ({ dataDokters }) => {
 
                         {/* Dokter */}
                         <div>
-                            <div className="font-bold">Dokter :</div>
-                            <Select
-                                placeholder="--- Dokter ---"
-                                data={handleConvertDokter(dataDokters)}
-                                radius="md"
-                                searchable
-                                className="border border-b-violet-50"
-                                {...form.getInputProps("id_dokter")}
+                            <TextInput
+                                label="Dokter"
+                                placeholder="Dokter"
+                                withAsterisk
+                                mt="md"
+                                disabled
+                                value={data.jadwal.dokter.nama_dokter}
                             />
                         </div>
                     </div>
@@ -280,4 +279,4 @@ const AddJadwalDokter = ({ dataDokters }) => {
     );
 };
 
-export default AddJadwalDokter;
+export default EditJadwalDokter;

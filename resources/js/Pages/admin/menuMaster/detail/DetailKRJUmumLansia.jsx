@@ -159,15 +159,16 @@ const DetailKRJUmumLansia = ({ currentUser, dataPoliUmumLansia }) => {
                         <div className="px-3 py-1 mt-3 grid grid-cols-5 border">
                             <div className="col-span-2">Dokter Pemeriksa</div>
 
-                            <div className="col-span-2 ">
+                            <div className="col-span-3 ">
                                 :{" "}
                                 <span className="font-bold">
-                                    {dataPoliUmumLansia.dokter.nama_dokter}
+                                    {dataPoliUmumLansia.dokter.nama_dokter} - (
+                                    {dataPoliUmumLansia.dokter.spesialis})
                                 </span>
                             </div>
                         </div>
 
-                        {/* Dokter Pemeriksa*/}
+                        {/* Penanggung JAwab*/}
                         <div className="px-3 py-1 mt-3 grid grid-cols-5 border">
                             <div className="col-span-2">
                                 Petugas Penanggung Jawab

@@ -5,12 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import AddJadwalDokter from "@/Components/admin/modal/AddJadwalDokter";
 import TableJadwalDokter from "@/Components/admin/table/TableJadwalDokter";
 
-const DataJadwalDokter = ({
-    currentUser,
-    dataSpesialis,
-    dataDokters,
-    dataJadwalDokter,
-}) => {
+const DataJadwalDokter = ({ currentUser, dataDokters, dataJadwalDokter }) => {
     const [opened, { open, close }] = useDisclosure(false);
 
     // BreadCrumbs
@@ -36,10 +31,7 @@ const DataJadwalDokter = ({
                         title="Tambah Jadwal Dokter"
                         size="70%"
                     >
-                        <AddJadwalDokter
-                            dataSpesialis={dataSpesialis}
-                            dataDokters={dataDokters}
-                        />
+                        <AddJadwalDokter dataDokters={dataDokters} />
                     </Modal>
                     {/* BUtton */}
                     <div>
@@ -55,7 +47,6 @@ const DataJadwalDokter = ({
                 {/* Data Admins */}
                 <div className="w-full border border-gray-300 rounded-xl">
                     <TableJadwalDokter
-                        dataSpesialis={dataSpesialis}
                         dataDokters={dataDokters}
                         dataJadwalDokter={dataJadwalDokter}
                     />

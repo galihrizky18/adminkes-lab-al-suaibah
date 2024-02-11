@@ -69,7 +69,7 @@ const AddKRJPoliGigi = ({ dataDoker }) => {
     const handleConvertDokter = (data) => {
         return data.map((e) => ({
             value: e.id_dokter,
-            label: e.nama_dokter,
+            label: `${e.nama_dokter} - (${e.spesialis})`,
         }));
     };
 

@@ -57,13 +57,12 @@ class AdminController extends Controller
     public function dataJadwalDokter(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
-        $dataSpesialis = TableSpesialis::all();
+  
         $dataDokters = Dokter::with('layanan')->get();
         $dataJadwalDokter = JadwalDokter::with('dokter')->get();
 
         return Inertia::render('admin/menuMaster/DataJadwalDokter',[
             'currentUser'=>$currentUser,
-            'dataSpesialis'=>$dataSpesialis,
             'dataJadwalDokter'=>$dataJadwalDokter,
             'dataDokters'=>$dataDokters,
 
@@ -335,7 +334,7 @@ class AdminController extends Controller
                 $dataLab->card_number = $dataInput['card_number'];
                 $dataLab->request_date = $dataInput['request_date'];
                 $dataLab->officer = $dataInput['officer'];
-                $dataLab->poli = $dataInput['poli'];
+                $dataLab->id_layanan = $dataInput['poli'];
                 $dataLab->clinical_desc = $dataInput['clinical_desc'];
                 $dataLab->responsible = $dataInput['responsible'];
                 $dataLab->hematologi = $dataInput['hematologi'];
@@ -566,6 +565,29 @@ class AdminController extends Controller
         } catch (\Throwable $th) {
 
             return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
+    public function editJadwalDokter(Request $request)
+    {
+        try {
+            $dataJadwal = $request->input('dataNewJadwal');
+
+            $dataUpdate = JadwalDokter::where('id_jadwal_dokter', $dataJadwal['id_jadwal_dokter'])->update([
+                "senin" => $dataJadwal['senin'] . " - " . $dataJadwal['seninSampai'],
+                "selasa" => $dataJadwal['selasa'] . " - " . $dataJadwal['selasaSampai'],
+                "rabu" => $dataJadwal['rabu'] . " - " . $dataJadwal['rabuSampai'],
+                "kamis" => $dataJadwal['kamis'] . " - " . $dataJadwal['kamisSampai'],
+                "jumat" => $dataJadwal['jumat'] . " - " . $dataJadwal['jumatSampai'],
+                "sabtu" => $dataJadwal['sabtu'] . " - " . $dataJadwal['sabtuSampai'],
+            ]);
+
+            if ($dataUpdate) {
+                return response()->json(['message' => "Success Edit Data"]);
+            } else {
+                return response()->json(['message' => "Failed Edit Data"], 500);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database: ' . $th->getMessage()], 500);
         }
     }
     
