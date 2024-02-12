@@ -9,6 +9,7 @@ use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
 use App\Models\Laboratorium;
 use App\Models\Layanan;
+use App\Models\Registration;
 use App\Models\TableSpesialis;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,6 +27,11 @@ class AdminController extends Controller
         
         return Inertia::render('admin/Dashboard',['currentUser'=>$currentUser]);
     }
+
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
 
     // Menu Master Admin
     public function dataAdmin(){
@@ -111,6 +117,10 @@ class AdminController extends Controller
         return Inertia::render('admin/menuMaster/DataFarmasi',['currentUser'=>$currentUser]);
     }
 
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
 
     // Add Data
     public function addAdmin(Request $request){
@@ -404,6 +414,10 @@ class AdminController extends Controller
 
     }
 
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
 
     // Edit Data
     public function editAdmin(Request $request){
@@ -615,8 +629,10 @@ class AdminController extends Controller
         }
     }
     
-
-
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
 
     // delete Data
     public function deleteAdmin(Request $request){
@@ -755,7 +771,50 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
         }
     }
+    
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
 
+    // Report
+    public function reportPasienBaru(){
+        $dataPasiens = Registration::with('patient')->get();
+
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        
+        return Inertia::render('admin/report/ReportPasienBaru',[
+            'currentUser'=>$currentUser,
+            'dataPasiens'=>$dataPasiens,
+        ]);
+    }
+
+
+
+    // Delete
+    public function deletePasienBaru(Request $request)
+    {
+        try {
+            $idPasienBaru = $request->input('id');
+            // return response()->json(['message' => $idPasienBaru]);
+
+            $checkData = Registration::where('id_registration', $idPasienBaru)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
 
 
 

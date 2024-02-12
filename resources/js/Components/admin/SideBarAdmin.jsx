@@ -120,14 +120,14 @@ const SideBarAdmin = () => {
                                 img={IconUser}
                                 imgHover={IconUserSolid}
                                 title={"Report"}
-                            />
-
-                            {/* Menu Pembayaranm */}
-                            <CollapseSideBarAdmin
-                                img={IconUser}
-                                imgHover={IconUserSolid}
-                                title={"Pembayaran"}
-                            />
+                            >
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Pasien Baru"}
+                                    href={"/admin/report/pasien-baru"}
+                                />
+                            </CollapseSideBarAdmin>
                         </div>
                     </ScrollArea>
                 </div>

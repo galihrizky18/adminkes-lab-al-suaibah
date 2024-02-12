@@ -39,9 +39,9 @@ const LayoutAdmin = (props) => {
                         <InfoUser titlePage={titlePage} user={user} />
 
                         {/* isi  */}
-                        <div className="mt-[90px] py-2 px-5">
+                        <div className="mt-[90px] py-2 px-5 overflow-x-auto">
                             {/* BreadCrumbs */}
-                            <div className="w-full px-5 py-3 mb-5 bg-white  rounded-xl shadow-xl border border-gray-300">
+                            <div className="w-full px-5 py-3 mb-5 bg-white rounded-xl shadow-xl border border-gray-300">
                                 <Breadcrumbs>{items}</Breadcrumbs>
                             </div>
                             {children}

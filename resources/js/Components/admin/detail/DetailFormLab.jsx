@@ -11,7 +11,7 @@ import {
     dataMetabolismeKarbo,
     dataProfilLipid,
 } from "@/lib/ArrayData";
-import { Grid, Textarea, Radio } from "@mantine/core";
+import { Grid, Textarea } from "@mantine/core";
 
 const DetailFormLab = ({ dataLab }) => {
     return (

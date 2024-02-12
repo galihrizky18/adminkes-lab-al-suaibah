@@ -8,6 +8,7 @@ use App\Models\JadwalDokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
 use App\Models\Laboratorium;
+use App\Models\Registration;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -127,6 +128,29 @@ class DetailController extends Controller
         return redirect('/admin/master-menu/laboratorium');
 
     }
+
+
+    // Menu Report
+    // Detail Pasien BAru
+    public function detailPasienBaru(Request $request){
+
+        $idDataPasienBaru =  $request->input('id_reg');
+        
+        $dataPasienBaru = Registration::with('patient','layanan','dokters')->where('id_registration',$idDataPasienBaru)->first();
+
+        $currentUserData = session('current_user');
+        $currentUser = Admins::with('user')->where('id_admin',$currentUserData->id_admin)->first();
+
+        if($dataPasienBaru){
+            return Inertia::render('admin/menuMaster/detail/DetailDataPasienBaru',[
+                'currentUser'=>$currentUser,
+                'dataPasienBaru'=>$dataPasienBaru,
+            ]);
+        }
+        return redirect('/admin/report/pasien-baru');
+
+    }
+
 
     
 
