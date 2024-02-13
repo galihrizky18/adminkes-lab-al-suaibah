@@ -18,17 +18,17 @@ const TestimonialCarousel = () => {
       imageSrc: '/asset/image/penamgi.png'
     },
     {
-      name: 'Fahreza Putra',
+      name: 'Hanif Aqil',
       testimonial: 'Saya selalu khawatir dengan kunjungan ke dokter gigi, tetapi setelah mengunjungi klinik ini, semua kekhawatiran saya hilang. Dokternya sangat sabar dan menjelaskan setiap langkah perawatan dengan detail. Saya sangat puas dengan hasilnya.',
       imageSrc: '/asset/image/pgs.png'
     },
     {
-      name: 'Dinitra Romzi',
+      name: 'Alvino Adiananta',
       testimonial: 'Klinik gigi ini benar-benar memberikan perawatan yang berkualitas. Mereka sangat memperhatikan kebersihan dan keamanan selama pandemi COVID-19. Saya merasa aman dan nyaman selama perawatan.',
       imageSrc: '/asset/image/sclng.png'
     },
     {
-      name: 'Adiguna Winata',
+      name: 'Adiguna W Putra',
       testimonial: 'Saya sudah menjadi pelanggan setia klinik gigi ini selama bertahun-tahun. Mereka selalu memberikan pelayanan yang terbaik dan hasil perawatan yang konsisten. Saya tidak akan pernah ragu untuk merekomendasikan klinik ini kepada teman dan keluarga.',
       imageSrc: '/asset/image/psg.png'
     },

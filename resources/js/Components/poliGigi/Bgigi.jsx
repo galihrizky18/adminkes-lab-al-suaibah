@@ -3,7 +3,8 @@ import React from "react";
 const Bgigi = () => {
   return (
     <div className="p-4 rounded-lg">
-      <h1 className="text-lg font-bold mb-2 text-center">BEFORE DAN AFTER</h1>
+       <marquee behavior="scroll" direction="left">
+      <h1 className="text-lg font-bold mb-2 text-center">BEFORE AND AFTER</h1></marquee>
       <div className="flex flex-col md:flex-row items-center">
         <img src="/asset/image/dkt.png" alt="New Photo" className="w-32 h-32 md:w-48 md:h-48 mb-4 md:mb-0 mx-auto md:mx-0" />
         <img src="/asset/image/bgigi.png" alt="" className="rounded-lg shadow-lg hover:opacity-75 transition duration-300 w-32 md:w-48 h-auto mx-auto md:mx-0" />

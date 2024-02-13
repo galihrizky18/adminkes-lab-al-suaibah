@@ -36,7 +36,7 @@ const PoliGigi = () => {
         <Atas />
         <Box />
         <div className="flex flex-col sm:flex-row items-center justify-center mt-4">
-        <img src={Imagee} alt="" className="mr-4 w-full sm:w-auto mb-4 sm:mb-0 object-cover h-65 w-65" />
+        <img src={Imagee} alt="" className="mr-4 w-full sm:w-auto mb-4 sm:mb-0 object-cover h-40 w-40 transition-transform transform hover:scale-105" />
           <div>
             <h1 className="text-green-600 text-2xl sm:text-3xl font-bold">Berani Tunjukkan Senyum Sehatmu!</h1>
             <p className="text-gray-600 mt-2 md:text-justify lg:text-left">
