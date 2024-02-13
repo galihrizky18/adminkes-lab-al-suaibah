@@ -79,11 +79,41 @@ class AdminController extends Controller
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
         $dataDoker = Dokter::all();
         $dataUmumLansia = krjPoliUmumLansia::with('dokter')->get();
+
+        // data perbulan
+        $dataJanuari = $dataUmumLansia->where('bulan_input', "01")->count();
+        $dataFebruari = $dataUmumLansia->where('bulan_input', "02")->count();
+        $dataMaret = $dataUmumLansia->where('bulan_input', "03")->count();
+        $dataApril = $dataUmumLansia->where('bulan_input', "04")->count();
+        $dataMei = $dataUmumLansia->where('bulan_input', "05")->count();
+        $dataJuni = $dataUmumLansia->where('bulan_input', "06")->count();
+        $dataJuli = $dataUmumLansia->where('bulan_input', "07")->count();
+        $dataAgustus = $dataUmumLansia->where('bulan_input', "08")->count();
+        $dataSeptember = $dataUmumLansia->where('bulan_input', "09")->count();
+        $dataOktober = $dataUmumLansia->where('bulan_input', "10")->count();
+        $dataNovember = $dataUmumLansia->where('bulan_input', "11")->count();
+        $dataDesember = $dataUmumLansia->where('bulan_input', "12")->count();
+
+        $dataPerBulan = [
+            "januari" => $dataJanuari,
+            "februari" => $dataFebruari,
+            "maret" => $dataMaret,
+            "april" => $dataApril,
+            "mei" => $dataMei,
+            "juni" => $dataJuni,
+            "juli" => $dataJuli,
+            "agustus" => $dataAgustus,
+            "september" => $dataSeptember,
+            "oktober" => $dataOktober,
+            "november" => $dataNovember,
+            "desember" => $dataDesember,
+        ];
         
         return Inertia::render('admin/menuMaster/KRJUmumLansia',[
             'currentUser'=>$currentUser,
             'dataUmumLansia'=>$dataUmumLansia,
-            'dataDoker'=>$dataDoker
+            'dataDoker'=>$dataDoker,
+            'dataPerBulan'=>$dataPerBulan,
         ]);
     }
     public function dataPoliGigi(){
@@ -217,6 +247,7 @@ class AdminController extends Controller
             //  format waktu
              $currentTime = time();
              $time = date('YmdHis', $currentTime);
+             $month = date('m', $currentTime);
              $idKRJUmumLansia = "KRJUL-".$time;
     
             //  check Data
@@ -233,6 +264,7 @@ class AdminController extends Controller
             if($dataInput){
                 $KRJUmumLansia = new krjPoliUmumLansia();
                 $KRJUmumLansia->id_krj_poli_umum_lansia = $idKRJUmumLansia;
+                $KRJUmumLansia->bulan_input = $month;
                 $KRJUmumLansia->id_dokter = $dataInput['id_dokter'];
                 $KRJUmumLansia->penanggung_jawab = $dataInput['penanggung_jawab'];
                 $KRJUmumLansia->name = $dataInput['name'];

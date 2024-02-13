@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('krj_poli_umum_lansias', function (Blueprint $table) {
             $table->string('id_krj_poli_umum_lansia')->primary();
+            $table->string('id_farmasi')->unique()->nullable();
             $table->string('id_dokter');
             $table->string('penanggung_jawab');
             $table->string('name');
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->text('diagnosis');
             $table->text('terapi');
             $table->text('rujukan');
+            $table->string('bulan_input');
             
        
 
