@@ -32,13 +32,7 @@ const CollapseComponents = ({ title }) => {
 
             <Collapse in={opened} className="px-10 ">
                 <Text className="select-none ">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab
-                    minus ex corporis labore harum doloribus distinctio sint
-                    consequuntur nulla accusantium, doloremque veniam itaque
-                    necessitatibus! Vel facere magni suscipit delectus
-                    voluptates ea. Molestiae animi velit asperiores ipsum,
-                    error, tempora dicta quas iusto distinctio nulla recusandae,
-                    perferendis natus sint nostrum? Numquam, rerum!
+                    
                 </Text>
             </Collapse>
         </Box>
