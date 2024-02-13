@@ -67,140 +67,74 @@ const laboratorium = () => {
                     </p>
                 </div>
 
+
+                {/* new */}
                 {/* obat 1 */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between md:mr-4 md:px-5 md:py-3 md:mt-0 xl:pr-[80px]">
-                    <div className="md:mr-4 md:mt-0 ">
-                        <img
-                            src={obat1}
-                            alt=""
-                            className="w-full md:w-[270px] h-[200px]"
-                        />
-                    </div>
-                    <div className="md:mr-4 md:mt-0 flex flex-col md:text-left text-center xl:px-10">
-                        <span className="text-[25px]">Paket Mikro</span>
-                        <div className="flex flex-col ">
-                            <ul className="list-disc ml-4">
-                                <li>GDA (Gula Darah Acak)</li>
-                                <li>Asam Urat</li>
-                                <li>Cholesterol</li>
-                                <li>Trigliserida</li>
-                            </ul>
+                <div className="flex flex-row gap-4">
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[100px] sm:h-[200px] rounded-xl">
+                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Mikro</span>
+                            <img src={obat1} alt="" className="mt-[10px]"/>
+                                <span className="">1. GDA (Gula Darah Acak)</span>
+                                <span>2. Asam Urat</span>
+                                <span>3. Cholesterol</span>
+                                <span>4. Trigliserida</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 90.000</span>
                         </div>
                     </div>
-                    <div className="mt-4 md:mt-0 md:text-left text-center ">
-                        <span className="text-[25px]">Rp 90.000</span>
-                    </div>
-                </div>
 
-                {/* obat 2 */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between md:mr-4 md:px-5 md:py-3 md:mt-0 xl:pr-[128px]">
-                    <div className="md:mr-4 md:mt-0">
-                        <img
-                            src={obat1}
-                            alt=""
-                            className="w-full md:w-[270px] h-[200px]"
-                        />
-                    </div>
-                    <div className="md:mr-4 md:mt-0 flex flex-col md:text-left text-center xl:px-14">
-                        <span className="text-[25px]">Paket Mikro</span>
-                        <div className="flex flex-col">
-                            <ul className="list-disc ml-4">
-                                <li>Darah Lengkap</li>
-                                <li>GDP</li>
-                                <li>Asam Urat</li>
-                                <li>SGOT</li>
-                                <li>SGPT</li>
-                                <li>Cholesterol</li>
-                                <li>Trigliserida</li>
-                            </ul>
+                    {/* obat 2 */}
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[100px] sm:h-[200px] ">
+                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Mili</span>
+                            <img src={obat1} alt="" className="mt-[10px]"/>
+                                <span className="">1. Darah lengkap</span>
+                                <span>2. GDP</span>
+                                <span>3. Urin Lengkap</span>
+                                <span>4. SGOT</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 280.000</span>
                         </div>
                     </div>
-                    <div className="mt-4 md:mt-0 md:text-left text-center ">
-                        <span className="text-[25px]">Rp 135.000</span>
-                    </div>
-                </div>
 
-                {/* obat 3 */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between md:mr-4 md:px-5 md:py-3 md:mt-0 xl:pr-[128px]">
-                    <div className="md:mr-4 md:mt-0">
-                        <img
-                            src={obat1}
-                            alt=""
-                            className="w-full md:w-[270px] h-[200px]"
-                        />
-                    </div>
-                    <div className="md:mr-4 md:mt-0 flex flex-col md:text-left text-center xl:px-14">
-                        <span className="text-[25px]">Paket Mili</span>
-                        <div className="flex flex-col">
-                            <ul className="list-disc ml-4">
-                                <li>Darah Lengkap</li>
-                                <li>Urin Lengkap</li>
-                                <li>GDP</li>
-                                <li>2JPP</li>
-                                <li>Urea</li>
-                                <li>Creatinin</li>
-                                <li>Asam Urat</li>
-                            </ul>
+                    {/* obat 3 */}
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[20px] sm:h-[170px] ">
+                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Kilo</span>
+                            <img src={obat1} alt="" className="mt-[10px]"/>
+                                <span className="">1. Darah Lengkap</span>
+                                <span>2. Urin Lengkap</span>
+                                <span>3. Cholesterol</span>
+                                <span>4. Trigliserida</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 645.000</span>
                         </div>
-                    </div>
-                    <div className="mt-4 md:mt-0 md:text-left text-center">
-                        <span className="text-[25px]">Rp 280.000</span>
                     </div>
                 </div>
 
                 {/* obat 4 */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between md:mr-4 md:px-5 md:py-3 md:mt-0 xl:pr-[128px]">
-                    <div className="md:mr-4 md:mt-0">
-                        <img
-                            src={obat1}
-                            alt=""
-                            className="w-full md:w-[270px] h-[200px]"
-                        />
-                    </div>
-                    <div className="md:mr-4 md:mt-0 flex flex-col md:text-left text-center xl:px-14">
-                        <span className="text-[25px]">Paket Kilo</span>
-                        <div className="flex flex-col">
-                            <ul className="list-disc ml-4">
-                                <li>Darah Lengkap</li>
-                                <li>Urin Lengkap</li>
-                                <li>GDP</li>
-                                <li>2JPP</li>
-                                <li>Urea</li>
-                                <li>Creatinin</li>
-                                <li>Asam Urat</li>
-                            </ul>
+                <div className="flex flex-row gap-4">
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[10px] sm:h-[170px] rounded-xl sm:px-5">
+                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Mega</span>
+                            <img src={obat1} alt="" className="mt-[10px]"/>
+                                <span className="">1. Asam Urat</span>
+                                <span>2. Asam Urat</span>
+                                <span>3. Cholesterol</span>
+                                <span>4. Trigliserida</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 1.060.000</span>
                         </div>
                     </div>
-                    <div className="mt-4 md:mt-0 md:text-left text-center">
-                        <span className="text-[25px]">Rp 645.000</span>
-                    </div>
-                </div>
 
                 {/* obat 5 */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between md:mr-4 md:px-5 md:py-3 md:mt-0 xl:pr-[128px]">
-                    <div className="md:mr-4 md:mt-0">
-                        <img
-                            src={obat1}
-                            alt=""
-                            className="w-full md:w-[270px] h-[200px]"
-                        />
-                    </div>
-                    <div className="md:mr-4 md:mt-0 flex flex-col md:text-left text-center xl:px-14">
-                        <span className="text-[25px]">Paket Mega</span>
-                        <div className="flex flex-col">
-                            <ul className="list-disc ml-4">
-                                <li>Darah Lengkap</li>
-                                <li>Urin Lengkap</li>
-                                <li>GDP</li>
-                                <li>2JPP</li>
-                                <li>Urea</li>
-                                <li>Creatinin</li>
-                                <li>Asam Urat</li>
-                            </ul>
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[10px] sm:h-[200px] sm:px-5">
+                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Nino</span>
+                            <img src={obat1} alt="" className="mt-[10px]"/>
+                                <span className="">1. GDA (Gula Darah Acak)</span>
+                                <span>2. Asam Urat</span>
+                                <span>3. Cholesterol</span>
+                                <span>4. Trigliserida</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 135.000</span>
                         </div>
-                    </div>
-                    <div className="mt-4 md:mt-0 md:text-left text-center">
-                        <span className="text-[25px]">Rp 1.060.000</span>
                     </div>
                 </div>
 
@@ -209,7 +143,7 @@ const laboratorium = () => {
                     <span>Layanan Kami</span>
                 </div>
                 <div className="flex flex-row gap-4 ">
-                    <div className="bg-green-700 px-5 py-3 text-white sm:w-[50px] md:w-[25px] xl:w-full">
+                    <div className="bg-green-700 px-5 py-3  text-white sm:text-[10px] xl:text-[18px] sm:w-[30px] sm:h-[50px] md:w-[25px] xl:w-full xl:h-full ">
                         <span>1. Pengujian Kesehatan</span>
                         <br />
                         <span>
@@ -218,7 +152,7 @@ const laboratorium = () => {
                             lengkap, tes urine lengkap dan tes fungsi organ.
                         </span>
                     </div>
-                    <div className="bg-green-700  w-full px-5 py-3  text-white sm:w-[50px] md:w-[25px] xl:w-full">
+                    <div className="bg-green-700 px-5 py-6  text-white sm:text-[10px] xl:text-[18px] sm:w-[50px] md:w-[25px] xl:w-full sm:h-[50px] xl:h-full">
                         <span>2. Pengujian penyakit manular </span>
                         <br />
                         <span>
@@ -228,7 +162,7 @@ const laboratorium = () => {
                     </div>
                 </div>
                 <div className="flex flex-row gap-4">
-                    <div className="bg-green-700 px-5 py-3 sm:w-[50%] text-white">
+                    <div className="bg-green-700 px-5 py-3  text-white sm:h-[50px] sm:w-[50px] xl:h-full xl:w-full"> 
                         <span>3. Pengujian Klinis</span>
                         <br />
                         <span>
@@ -237,7 +171,7 @@ const laboratorium = () => {
                             untuk obat baru dan prosedur diagnostik
                         </span>
                     </div>
-                    <div className="bg-green-700  w-full px-5 py-3 sm:w-[50%] text-white">
+                    <div className="bg-green-700  w-full px-5 py-3  text-white sm:h-[50px] sm:w-[50px] xl:h-full xl:w-full">
                         <span>4. Pengujian Lingkungan</span>
                         <br />
                         <span>
@@ -255,7 +189,7 @@ const laboratorium = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-7">
                     {image.map((data, i) => (
-                        <div key={i} className="">
+                        <div key={i} className="sm:w-[30px] sm:h-[30px] md:w-[100px] md:h-[100px] xl:w-full xl:h-full">
                             <a href="#">
                                 <img
                                     src={data}
@@ -290,30 +224,7 @@ const laboratorium = () => {
                         biomedis. Pemeriksaan patologi klinik berperan memeriksa
                         specimen darah, urin, feses, dan cairan tubuh untuk
                         melakukan penapisan penyakit, penegakan diagnosis, dan
-                        pemantauan terapi. Pemeriksaan laboratorium memegang
-                        peran kunci dalam penegakan diagnosis penyakit dan
-                        penanganan penyakit tersebut. Pemeriksaan patologi
-                        anatomi berperan dalam menilai gambaran sel yang diambil
-                        dari dalam tubuh yang dianggap abnormal, misalnya suatu
-                        benjolan abnormal. Patologi anatomi merupakan standar
-                        baku emas diagnosis yang berkaitan dengan tumor atau
-                        kanker. Pemeriksaan mikrobiologi klinik dapat membantu
-                        penegakan diagnosis serta evaluasi berbagai penyakit
-                        infeksi, baik pada infeksi akut maupun kronik.
-                        Pemeriksaan pewarnaan langsung, seperti pewarnaan Gram
-                        atau BTA, dapat digunakan sebagai penapisan awal
-                        manifestasi infeksi pada berbagai spesimen. Identifikasi
-                        patogen dapat dilakukan dengan pemeriksaan biakan, yang
-                        akan dilanjutkan dengan uji kepekaan antimikroba untuk
-                        membantu klinisi memilih pemberian antimikroba yang
-                        sesuai. Pemeriksaan mikrobiologi klinik juga dilakukan
-                        pada sampel yang diperoleh di lingkungan Rumah Sakit dan
-                        membantu memastikan kaitan antara kejadian penyakit
-                        infeksi pada pasien dengan pengendalian infeksi yang
-                        dilakukan di rumah sakit tersebut. Bank darah berperan
-                        menyediakan produk darah yang aman untuk pasien yang
-                        mengalami kekurangan darah seperti pada anemia,
-                        kekurangan trombosit, zat pembekuan darah.
+                        pemantauan terapi. 
                     </span>
                 </div>
 
