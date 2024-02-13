@@ -267,11 +267,13 @@ const laboratorium = () => {
             </div>
 
                 {/* sjhdsdsjhdshdjsdg */}
-          {/* shdssfdfdkjfdfhkjh */}
+          
+                
 
             {/* Footer */}
             <Footer />
         </MantineProvider>
+    
     );
 };
 
