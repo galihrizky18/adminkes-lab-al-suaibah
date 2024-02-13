@@ -4,6 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import ArrowRight from "../../../../public/asset/arrow-right.svg";
 import ArrowDown from "../../../../public/asset/arrow-bottom.svg";
 
+
 const CollapseComponents = ({ title }) => {
     const [opened, { toggle }] = useDisclosure(false);
     return (
@@ -20,6 +21,7 @@ const CollapseComponents = ({ title }) => {
                             <img src={ArrowRight} alt="" width={30} />
                         )}
                     </div>
+                    
                     <div
                         className={`${
                             opened ? " text-lg text-[#237939] font-bold" : ""
@@ -46,3 +48,4 @@ const CollapseComponents = ({ title }) => {
 };
 
 export default CollapseComponents;
+
