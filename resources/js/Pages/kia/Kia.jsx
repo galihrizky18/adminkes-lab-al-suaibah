@@ -36,78 +36,75 @@ const Kia = () => {
                 </div>
 
                 {/* foto utama */}
-                <div className="w-full h-[480px] mt-8 ">
-                    <img src={Fotoutama} alt="" className="w-[100%] h-[100%] "/>
+                <div className="w-full xl:h-[480px] sm:h-[200px] mt-8 ">
+                    <img src={Fotoutama} alt="" className="xl:w-[100%] xl:h-[100%] sm:w-[100%] sm:h-[100%] "/>
+                </div>
+
+                <div className="w-[360px] h-[50px] flex justify-center items-center  mt-[10px]">
+                    <h2 className="text-[22px] text-center font-sans-serif">Layanan RU KIA Stikes AL-Suaibah</h2>
                 </div>
 
                 {/* body */}
-                <div className="flex flex-col w-full h-[280px] bg-white-100 mt-8">
-                    <div className="w-full">
-                        <div className="w-[360px] h-[50px] flex justify-center items-center mx-auto border-b-2 border-black">
-                            <h2 className="text-[22px] text-center font-sans-serif">Layanan RU KIA Stikes AL-Suaibah</h2>
-                        </div>
-                        <div className="w-[900px] h-[230px] flex flex-row bg-white-100 p-6 gap-12 mx-auto items-center">
-                            <div className="flex flex-col items-center w-[160px] h-[200px] bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200"> 
-                                <img src={iconsenam} alt="" className="w-[120px] mt-6"/>
-                                <h2 className="text-[16px] font-sans-serif mt-7">Senam hamil</h2>
-                            </div>
-                            <div className="flex flex-col items-center w-[160px] h-[200px] bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200"> 
-                                <img src={iconbabyspa} alt="" className="w-[120px] h-[100px] mt-6"/>
-                                <h2 className="text-[16px] font-sans-serif mt-4">Baby Spa</h2>
-                            </div>
-                            <div className="flex flex-col items-center w-[160px] h-[200px] bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200">
-                                <img src={iconpijatbayi} alt="" className="w-[120px] mt-7"/>
-                                <h2 className="text-[16px] font-sans-serif mt-8">Pijat Bayi</h2>
-                            </div>
-                            <div className="flex flex-col items-center w-[160px] h-[200px] bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200"> 
-                                <img src={iconlaktasi} alt="" className="w-[120px] mt-6" />
-                                <h2 className="text-[16px] font-sans-serif mt-6">Laktasi</h2>
-                            </div>
-                            <div className="flex flex-col items-center w-[160px] h-[200px] bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200"> 
-                                <img src={iconkehamilan} alt="" className="w-[90px] mt-6" />
-                                <h2 className="text-[16px] font-sans-serif mt-7">Cek Kehamilan</h2>
-                            </div>
-                        </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 ">
+                    <div className="w-full h-full  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={iconsenam} alt="" className="  xl:ml-[32px] xl:mt-[40px]"/>
+                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[50px] sm:text-center sm:mt-[90px]">Senam hamil</h2>
+                    </div>
+                    <div className="h-full w-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={iconbabyspa} alt="" className="xl:ml-[45px] xl:mt-[20px]"/>
+                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[35px] sm:text-center sm:mt-[90px]">Baby</h2>
+                    </div>
+                    <div className="w-full h-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]" >
+                        <img src={iconpijatbayi} alt="" className="xl:w-[180px] xl:ml-[15px] xl:mt-[24px]"/>
+                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[45px] sm:text-center sm:mt-[90px]">Pijat Bayi</h2>
+                    </div>
+                    <div className="h-full w-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={iconlaktasi} alt="" className="xl:w-[150px] xl:ml-[28px] xl:mt-[35px]"/>
+                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[38px] sm:text-center sm:mt-[90px]">Loktasi</h2>
+                    </div>
+                    <div className="w-full h-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={iconkehamilan} alt="" className="w-[120px] xl:ml-[38px] xl:mt-[35px]"/>
+                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[50px] sm:text-center sm:mt-[90px]">Cek kehamilan</h2>
                     </div>
                 </div>
 
                 {/* galeri */}
-                <div className="flex w-[100px] justify-center items-center mx-auto mt-8 items-center border-b-2 border-black ">
+                <div className="flex w-[100px] justify-center items-center mx-auto mt-8 border-b-2 border-black ">
                     <h2 className="text-[22px]">Galeri</h2>
                 </div> 
-                <div className="flex flex-col mx-auto mt-4"> 
-                    <div className="flex flex row">
-                        <div className="flex flex-col items-center w-[360px] h-[320px] hover:scale-105 transition all duration 200"> 
-                            <img src={galerilaktasi} alt="" className="w-[310px] h-[286px]"/>
-                            <h2 className="text-[16px] font-sans-serif mt-2">Laktasi</h2>
-                        </div>
-                        <div className="flex flex-col items-center w-[360px] h-[320px] hover:scale-105 transition all duration 200"> 
-                            <img src={galerispa} alt="" className="w-[300px] h-[310px]"/>
-                            <h2 className="text-[16px] font-sans-serif mt-2">Spa Untuk Bayi</h2>
-                        </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2">
+                    <div className="flex flex-col items-center xl:w-[360px] xl:h-[320px] hover:scale-105 transition all duration 200 ">
+                        <img src={galerilaktasi} alt="" className="xl:w-[310px] xl:h-[286px]" />
+                        <span>rifvo</span>
                     </div>
-                    <div className="flex flex-row mt-12">
-                        <div className="flex flex-col items-center w-[360px] h-[320px] hover:scale-105 transition all duration 200"> 
-                            <img src={galerisenamhamil} alt="" className="w-[310px] h-[270px]"/>
-                            <h2 className="text-[16px] font-sans-serif mt-2">Senam Hamil</h2>
-                        </div>
-                        <div className="flex flex-col items-center w-[360px] h-[320px] hover:scale-105 transition all duration 200"> 
-                            <img src={galeripijat} alt="" className="w-[310px] h-[270px]"/>
-                            <h2 className="text-[16px] font-sans-serif mt-2">Pijat Bayi</h2>
-                        </div>
+                    <div className="flex flex-col items-center xl:w-[360px] xl:h-[320px] sm:h-[400px] hover:scale-105 transition all duration 200 ">
+                        <img src={galerispa} alt="" className="xl:w-[300px] xl:h-[310px] sm:h-[400px]"/>
+                        <span>enek</span>
+                    </div>
+                    <div className="flex flex-col items-center xl:w-[360px] xl:h-[320px] hover:scale-105 transition all duration 200 ">
+                        <img src={galerisenamhamil} alt="" className="xl:w-[310] xl:h-[270px]"/>
+                        <span>dia</span>
+                    </div>
+                    <div className="flex flex-col items-center xl:w-[360px] xlh-[320px] hover:scale-105 transition all duration 200">
+                        <img src={galeripijat} alt="" className="xl:w-[310] xl:h-[270px]"/>
+                        <span>kamu</span>
                     </div>
                 </div>
+
+                {/* xl:w-[560px] xl:h-[320px]  */}
 
                 {/* penutup */}
                 <div className="w-[200px] h-[50px] border-b-2 border-black flex justify-center items-center ">
                     <h2 className="text-[22px] font-sans-serif ">Our Location</h2>
                 </div>
-                <div className="w-[996px] h-[380px] flex flex-row justify-center items-center mt-2 bg-green-200 rounded-xl">
-                    <div className="w-[560px] h-[320px] ">
-                        <img src={fotoklinik} alt="" className="w-[520px] h-[320px] rounded-xl ml-6" />
+                <div className="xl:w-[996px] xl:h-[380px] sm:h-full sm:w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-2 justify-center items-center mt-2 bg-green-200 ">
+                    <div className="xl:w-auto xl:h-auto sm:max-w-full sm:max-h-full ">
+                        <img src={fotoklinik} alt="" className=" rounded-xl ml-6" />
                     </div>
                     <div className="w-[430px] h-[320px] flex flex-col bg-green-200 ">
-                        <div className="w-[400px] h-[40px] flex flex-col ml-4 mt-4 ">
+                        <div className="w-[400px] h-[40px] flex flex-col xl:ml-4 xl:mt-4 sm:ml-4 sm:mt-4">
                             <div className=" bg-blue-200">
                                 <h2 className="text-[20px] flex justify-center mt-1">Alamat Klinik</h2>
                             </div>
@@ -115,7 +112,7 @@ const Kia = () => {
                                 <p className="text 14px font-sans-serif mt-2 text-black">Jl. Suka Bangun II No.1451, Suka Bangun, Kec. Sukarami, Kota Palembang, Sumatera Selatan 30961</p>
                             </div>
                             <div className="">
-                                <img src={lokasi} alt="" className="w-[400px] h-[186px] mt-4"/>
+                                <img src={lokasi} alt="" className="xl:w-[400px] xl:h-[186px] sm:w-[50px] sm:h-[50px] mt-4"/>
                             </div>
                         </div>
                     </div>
@@ -125,7 +122,7 @@ const Kia = () => {
                 </div>
 
                 {/* about us */}
-                <div className="w-full h-[200px] mt-6 bg-gray-400 rounded-xl ">
+                <div className="w-full xl:h-[200px]  bg-gray-400 rounded-xl sm:h-[250px]">
                     <div className=" flex mx-auto justify-center items-center mt-2">
                         <h2 className="text-[32px] font-sans-serif ">About us</h2>
                     </div>
