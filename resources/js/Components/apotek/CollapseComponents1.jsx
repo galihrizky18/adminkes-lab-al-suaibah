@@ -39,7 +39,10 @@ const CollapseComponents1  = ({ title}) => {
                 <p style={{  marginTop: '20px' }}>Badan Pengawas Obat dan Makanan (BPOM RI) mengeluarkan peraturan PerKa BPOM Nomor 8 Tahun 2020 tentang Pengawasan Obat dan Makanan yang Diedarkan Secara Daring. Objek dari peraturan ini meliputi obat, obat tradisional, suplemen kesehatan, kosmetik, dan pangan olahan. Peraturan ini mengatur siapa saja yang berhak melakukan penjualan obat dan makanan secara online dan daftar obat dan makanan yang boleh maupun dilarang untuk dijual secara online.</p>
                 <p style={{ fontWeight: 'bold', fontSize: '24px', marginTop: '20px' }}>Edukasi yang Harus Diberikan Apoteker kepada Masyarakat</p>
                 <p style={{  marginTop: '20px' }}>Peredaran obat secara online membuka kesempatan bagi peredaran obat ilegal. Baik obat palsu yang tidak memiliki izin edar sehingga tidak terjamin mutu, khasiat dan keamanannya. Oleh karena itu diperlukan peran Apoteker dan TTK untuk turut serta mencegah peredaran dan penggunaan obat ilegal, salah satunya melalui edukasi kepada masyarakat.</p>
-
+                <p style={{ fontWeight: 'bold', fontSize: '24px', marginTop: '20px' }}>Sarankan pelanggan untuk selalu melakukan pengecekan legalitas obat melalui Cek BPOM</p>
+                <p style={{  marginTop: '20px' }}>Perlu diketahui salah satu syarat penjualan obat secara online ini adalah harus memberikan informasi produk secara detail terkait izin edar, komposisi, kegunaan, dan dosis obat pada setiap produknya. Jika tidak ada informasi yang jelas, lebih baik cari yang lain. Bisa jadi itu adalah penjual ilegal!</p>
+                <p style={{  marginTop: '20px' }}>Maka dari itu, pengecekan legalitas obat ini penting dilakukan saat pelanggan akan membeli secara online ataupun saat menerima obat untuk memastikan bahwa produk yang diberikan memiliki izin edar dari BPOM sehingga dipastikan sudah teruji aman, bermutu dan berkhasiat serta telah memenuhi seluruh persyaratan dan peraturan perundang-undangan yang berlaku. Selanjutnya, berikan penjelasan kepada pelanggan mengenai laman website resmi untuk pengecekannya hanya di  </p>
+                <p style={{ color: 'skyblue' }}>" https://cekbpom.pom.go.id/ ".</p>
                 </Text>
             </Collapse>
         </Box>
