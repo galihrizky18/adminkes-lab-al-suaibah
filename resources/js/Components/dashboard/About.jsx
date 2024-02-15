@@ -13,13 +13,13 @@ const About = () => {
                 }}
             >
                 <div
-                    className="caps  h-[105%] px-16 py-10 w-full relative z-5 bg-[#278645] text-white "
+                    className="caps  h-[105%] px-16 py-10 w-full relative z-5 bg-[#278645] text-white  "
                     style={{
                         clipPath: "polygon(0 0, 75% 0, 50% 100%, 0 100%)",
                     }}
                 >
                     <div className="caption w-[70%]  ">
-                        <div className="title font-bold text-2xl font-open pb-2 px-3 border-b border-white">
+                        <div className="title font-bold text-2xl font-open pb-2 px-3 border-b border-white ">
                             LABORATORIUM PRODI S1 ADMINISTRASI KESEHATAN
                         </div>
                         <div className="desc mt-5 mr-36">

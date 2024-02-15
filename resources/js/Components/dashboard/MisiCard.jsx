@@ -2,7 +2,7 @@ import React from "react";
 
 const MisiCard = () => {
     return (
-        <div className="bg-[#1e4aa8] w-[80%] shadow-lg text-white px-7 py-5 rounded-xl hover:scale-105 transition-all">
+        <div className="bg-[#1e4aa8] xl:w-[80%] sm:w-[120%] shadow-lg text-white px-7 justify-center py-5 rounded-xl hover:scale-105 transition-all  xl:ml-[130px]">
             <div className="title w-full bg-[#ffffff] text-[#1e4aa8] px-3 py-1 shadow-lg rounded-xl text-center text-2xl font-bold ">
                 Misi
             </div>
@@ -12,12 +12,12 @@ const MisiCard = () => {
                         className="grid "
                         style={{ gridTemplateColumns: "0.5fr 5fr" }}
                     >
-                        <div className="w-[70px] flex flex-col justify-center items-center ">
+                        <div className="xl:w-[70%] sm:w-[20px] flex flex-col justify-center items-center ">
                             <span className="bg-[#ffffff] text-[#1e4aa8] flex justify-center items-center font-bold w-full text-xl rounded-lg  ">
                                 1
                             </span>
                         </div>
-                        <div>
+                        <div className="xl:text-[16px] sm:text-[18%]">
                             Menyelenggarakan proses pendidikan Sarjana
                             Administrasi Kesehatan, unggul dibidang standar mutu
                             pelayanan kesehatan berbasis IT dengan menghasilkan
@@ -29,7 +29,7 @@ const MisiCard = () => {
                         className="grid "
                         style={{ gridTemplateColumns: "0.5fr 5fr" }}
                     >
-                        <div className="w-[70px] flex flex-col justify-center items-center">
+                        <div className="xl:w-[70px] flex flex-col justify-center items-center">
                             <span className="bg-[#ffffff] text-[#1e4aa8] flex justify-center items-center font-bold w-full text-xl rounded-lg  ">
                                 2
                             </span>
@@ -45,7 +45,7 @@ const MisiCard = () => {
                         className="grid "
                         style={{ gridTemplateColumns: "0.5fr 5fr" }}
                     >
-                        <div className="w-[70px] flex flex-col justify-center items-center">
+                        <div className="xl:w-[70px] flex flex-col justify-center items-center">
                             <span className="bg-[#ffffff] text-[#1e4aa8] flex justify-center items-center font-bold w-full text-xl rounded-lg  ">
                                 3
                             </span>
@@ -60,7 +60,7 @@ const MisiCard = () => {
                         className="grid "
                         style={{ gridTemplateColumns: "0.5fr 5fr" }}
                     >
-                        <div className="w-[70px] flex flex-col justify-center items-center">
+                        <div className="xl:w-[70px] flex flex-col justify-center items-center">
                             <span className="bg-[#ffffff] text-[#1e4aa8] flex justify-center items-center font-bold w-full text-xl rounded-lg  ">
                                 4
                             </span>
@@ -75,7 +75,7 @@ const MisiCard = () => {
                         className="grid "
                         style={{ gridTemplateColumns: "0.5fr 5fr" }}
                     >
-                        <div className="w-[70px] flex flex-col justify-center items-center">
+                        <div className="xl:w-[70px] flex flex-col justify-center items-center">
                             <span className="bg-[#ffffff] text-[#1e4aa8] flex justify-center items-center font-bold w-full text-xl rounded-lg  ">
                                 5
                             </span>
