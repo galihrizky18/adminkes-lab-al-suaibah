@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className="flex flex-col">
             <div className="grid grid-cols-1 md:grid-cols-3 py-5 gap-x-5 px-4 md:px-16 bg-[#278645] text-white">
-                {/* Desc */}
+                {/* Deskripsi */}
                 <div className="p-2">
                     <div className="title h-[30%] pb-5 flex items-center text-xl text-center md:text-left font-bold border-b border-white">
                         Laboratorium Prodi S1 Administrasi Kesehatan Stikes Al-Su'aibah Palembang
@@ -17,13 +17,13 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Contact Us */}
+                {/* Hubungi Kami */}
                 <div className="p-2">
                     <div className="title h-[30%] justify-center flex items-center text-xl pb-2 font-bold border-b border-white md:justify-start">
-                        Contact Us
+                        Hubungi Kami
                     </div>
                     <div className="content mt-3 pl-3 flex flex-col gap-3">
-                        {/* location */}
+                        {/* Lokasi */}
                         <div className="flex flex-row gap-3 items-start">
                             <img src={IconLocation} alt="" width={25} />
                             <span className="flex items-center">
@@ -31,7 +31,7 @@ const Footer = () => {
                             </span>
                         </div>
 
-                        {/* Telephone */}
+                        {/* Telepon */}
                         <div className="flex flex-row gap-3 items-start">
                             <img src={IconTelephone} alt="" width={25} />
                             <span className="flex items-center">
