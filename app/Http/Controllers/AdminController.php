@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admins;
 use App\Models\Dokter;
+use App\Models\Farmasi;
 use App\Models\JadwalDokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
@@ -142,9 +143,18 @@ class AdminController extends Controller
         ]);
     }
     public function dataFarmasi(){
+
+        $dataLayanan = Layanan::all();
+        $dataFarmasi = Farmasi::with('layanan', 'krjPoliUmumLansia.dokter', 'krjPoliGigi.dokter')->get();
+
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
-        return Inertia::render('admin/menuMaster/DataFarmasi',['currentUser'=>$currentUser]);
+
+        return Inertia::render('admin/menuMaster/DataFarmasi',[
+            'currentUser'=>$currentUser,
+            'dataLayanan'=>$dataLayanan,
+            'dataFarmasi'=>$dataFarmasi,
+        ]);
     }
 
     // ==================================================================================
@@ -268,6 +278,7 @@ class AdminController extends Controller
                 $KRJUmumLansia->id_dokter = $dataInput['id_dokter'];
                 $KRJUmumLansia->penanggung_jawab = $dataInput['penanggung_jawab'];
                 $KRJUmumLansia->name = $dataInput['name'];
+                $KRJUmumLansia->jk = $dataInput['jk'];
                 $KRJUmumLansia->birth = $dataInput['birth'];
                 $KRJUmumLansia->bb = $dataInput['bb'];
                 $KRJUmumLansia->tb = $dataInput['tb'];
@@ -319,6 +330,7 @@ class AdminController extends Controller
                 $KRJUmumLansia->id_dokter = $dataInput['id_dokter'];
                 $KRJUmumLansia->penanggung_jawab = $dataInput['penanggung_jawab'];
                 $KRJUmumLansia->name = $dataInput['name'];
+                $KRJUmumLansia->jk = $dataInput['jk'];
                 $KRJUmumLansia->birth = $dataInput['birth'];
                 $KRJUmumLansia->bb = $dataInput['bb'];
                 $KRJUmumLansia->tb = $dataInput['tb'];
@@ -433,6 +445,162 @@ class AdminController extends Controller
                 $dataJadwal->sabtu = $dataInput['sabtu']. " - " . $dataInput['sabtuSampai'];
                 
                 if($dataJadwal->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            // return response()->json(['message'=>'Fail Request']);
+            return response()->json(['message'=>$th->getMessage()]);
+        }
+       
+
+    }
+    public function addFarmasi(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            // return response()->json(['message'=>$dataInput]);
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idFarmasi = "FRM-".$time;
+    
+            //  check Data
+            $cekData = Farmasi::where('id_pemeriksaan', $dataInput['id_pemeriksaan'])->exists();
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+  
+            if($dataInput['id_layanan'] === "layanan1"){
+                krjPoliUmumLansia::where('id_krj_poli_umum_lansia', $dataInput['id_pemeriksaan'])->update([
+                    'id_farmasi' => $idFarmasi
+                ]);
+            }
+            // else if($dataInput['id_layanan'] === "layanan2"){
+                
+            // }
+            else if($dataInput['id_layanan'] === "layanan3"){
+                krjPoliGigi::where('id_krj_poli_gigi', $dataInput['id_pemeriksaan'])->update([
+                    'id_farmasi'=>$idFarmasi
+                ]);
+            }
+            // else if($dataInput['id_layanan'] === "layanan6"){
+
+            // }
+
+            
+
+            if($dataInput){
+                $dataFarmasi = new Farmasi();
+                $dataFarmasi->id_farmasi  = $idFarmasi;
+                $dataFarmasi->id_pemeriksaan = $dataInput['id_pemeriksaan'];
+                $dataFarmasi->id_layanan = $dataInput['id_layanan'];
+                $dataFarmasi->tipe_farmasi = $dataInput['jenis_farmasi'];
+                $dataFarmasi->tanggal_resep = $dataInput['tanggal_resep'];
+
+                if($dataInput['jenis_farmasi'] === "non asuransi"){
+                    $dataFarmasi->asuransi_nama = "-";
+                    $dataFarmasi->asuransi_umur = "-";
+                    $dataFarmasi->asuransi_jk = "-";
+                    $dataFarmasi->asuransi_bb = "-";
+                    $dataFarmasi->asuransi_dokter = "-";
+                    $dataFarmasi->asuransi_unit_asal = "-";
+                }
+
+                $dataFarmasi->nama_obat = $dataInput['nama_obat'];
+                $dataFarmasi->bentuk_sediaan = $dataInput['bentuk_sediaan'];
+                $dataFarmasi->dosis_obat = $dataInput['dosis_obat'];
+                $dataFarmasi->jumlah_obat = $dataInput['jumlah_obat'];
+                $dataFarmasi->aturan_pakai = $dataInput['aturan_pakai'];
+                $dataFarmasi->stabilitas = $dataInput['stabilitas'];
+                $dataFarmasi->tepat_obat = $dataInput['tepat_obat'];
+                $dataFarmasi->tepat_indikasi = $dataInput['tepat_indikasi'];
+                $dataFarmasi->tepat_dosis = $dataInput['tepat_dosis'];
+                $dataFarmasi->tepat_waktu_penggunaan = $dataInput['tepat_waktu_penggunaan'];
+                $dataFarmasi->tepat_rute = $dataInput['tepat_rute'];
+                $dataFarmasi->interaksi = $dataInput['interaksi'];
+                $dataFarmasi->duplikasi = $dataInput['duplikasi'];
+                $dataFarmasi->alergi = $dataInput['alergi'];
+                $dataFarmasi->kontra_indikasi = $dataInput['kontra_indikasi'];
+                $dataFarmasi->pioKie = $dataInput['pio'];
+                $dataFarmasi->konseling = $dataInput['konseling'];
+                $dataFarmasi->telah_diberikan = $dataInput['telah_diberikan'];
+                
+                
+                if($dataFarmasi->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            // return response()->json(['message'=>'Fail Request']);
+            return response()->json(['message'=>$th->getMessage()]);
+        }
+       
+
+    }
+    public function addFarmasiAsuransi(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            // return response()->json(['message'=>$dataInput]);
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idFarmasi = "FRM-".$time;
+    
+
+  
+            if($dataInput){
+                $dataFarmasi = new Farmasi();
+                $dataFarmasi->id_farmasi  = $idFarmasi;
+                $dataFarmasi->id_pemeriksaan = $dataInput['id_pemeriksaan'];
+                $dataFarmasi->id_layanan = $dataInput['id_layanan'];
+                $dataFarmasi->tipe_farmasi = $dataInput['jenis_farmasi'];
+                $dataFarmasi->tanggal_resep = $dataInput['tanggal_resep'];
+
+                if($dataInput['jenis_farmasi'] === "non asuransi"){
+                    $dataFarmasi->asuransi_nama = "-";
+                    $dataFarmasi->asuransi_umur = "-";
+                    $dataFarmasi->asuransi_jk = "-";
+                    $dataFarmasi->asuransi_bb = "-";
+                    $dataFarmasi->asuransi_dokter = "-";
+                    $dataFarmasi->asuransi_unit_asal = "-";
+                }else if($dataInput['jenis_farmasi'] === "asuransi"){
+                    $dataFarmasi->asuransi_nama = $dataInput['asuransi_nama'];
+                    $dataFarmasi->asuransi_umur = $dataInput['asuransi_umur'];
+                    $dataFarmasi->asuransi_jk = $dataInput['asuransi_jk'];
+                    $dataFarmasi->asuransi_bb = $dataInput['asuransi_bb'];
+                    $dataFarmasi->asuransi_dokter = $dataInput['asuransi_dokter'];
+                    $dataFarmasi->asuransi_unit_asal = $dataInput['asuransi_unit_asal'];
+                }
+
+                $dataFarmasi->nama_obat = $dataInput['nama_obat'];
+                $dataFarmasi->bentuk_sediaan = $dataInput['bentuk_sediaan'];
+                $dataFarmasi->dosis_obat = $dataInput['dosis_obat'];
+                $dataFarmasi->jumlah_obat = $dataInput['jumlah_obat'];
+                $dataFarmasi->aturan_pakai = $dataInput['aturan_pakai'];
+                $dataFarmasi->stabilitas = $dataInput['stabilitas'];
+                $dataFarmasi->tepat_obat = $dataInput['tepat_obat'];
+                $dataFarmasi->tepat_indikasi = $dataInput['tepat_indikasi'];
+                $dataFarmasi->tepat_dosis = $dataInput['tepat_dosis'];
+                $dataFarmasi->tepat_waktu_penggunaan = $dataInput['tepat_waktu_penggunaan'];
+                $dataFarmasi->tepat_rute = $dataInput['tepat_rute'];
+                $dataFarmasi->interaksi = $dataInput['interaksi'];
+                $dataFarmasi->duplikasi = $dataInput['duplikasi'];
+                $dataFarmasi->alergi = $dataInput['alergi'];
+                $dataFarmasi->kontra_indikasi = $dataInput['kontra_indikasi'];
+                $dataFarmasi->pioKie = $dataInput['pio'];
+                $dataFarmasi->konseling = $dataInput['konseling'];
+                $dataFarmasi->telah_diberikan = $dataInput['telah_diberikan'];
+                
+                
+                if($dataFarmasi->save()){
                     return response()->json(['message'=>'Success Save Data']);
                 }
                 return response()->json(['message'=>'Failed Save Data']);
@@ -803,6 +971,28 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
         }
     }
+    public function deleteFarmasi(Request $request)
+    {
+        try {
+            $idFarmasi = $request->input('id');
+
+
+            $checkData = Farmasi::where('id_farmasi', $idFarmasi)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
     
     // ==================================================================================
     // ==================================================================================
@@ -847,6 +1037,14 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
         }
     }
+
+
+
+
+
+
+
+
 
 
 

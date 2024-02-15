@@ -19,8 +19,6 @@ const DetailDataPasienBaru = ({ currentUser, dataPasienBaru }) => {
         return { tanggal, jam };
     };
 
-    console.log(dataPasienBaru);
-
     return (
         <LayoutAdmin
             title="Detail Pasien Baru"
@@ -176,7 +174,10 @@ const DetailDataPasienBaru = ({ currentUser, dataPasienBaru }) => {
                     </Grid.Col>
 
                     {/* Col 2 */}
-                    <Grid.Col span={{ base: 12, md: 6 }}>
+                    <Grid.Col
+                        span={{ base: 12, md: 6 }}
+                        className="flex flex-col gap-5"
+                    >
                         <div className="bg-white rounded-xl px-5 py-5 flex flex-col gap-3 shadow-xl ">
                             {/* Asal Poli */}
                             <div className="grid grid-cols-3">
@@ -208,6 +209,36 @@ const DetailDataPasienBaru = ({ currentUser, dataPasienBaru }) => {
 
                                 <div className="lg:col-span-2 font-bold">
                                     : <span> {dataPasienBaru.jadwal}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className="bg-white rounded-xl px-5 py-5 flex flex-col gap-3 shadow-xl ">
+                            {/* Jadwal Kunjungan */}
+                            <div className="grid grid-cols-3">
+                                <div>Jadwal Kunjungan </div>
+
+                                <div className="col-span-2 font-bold">
+                                    : <span>{dataPasienBaru.jadwal}</span>
+                                </div>
+                            </div>
+
+                            {/* Nomor Telepon */}
+                            <div className="grid grid-cols-3">
+                                <div>Nomor Telepon </div>
+
+                                <div className="lg:col-span-2 font-bold">
+                                    : <span>{dataPasienBaru.no_telepon}</span>
+                                </div>
+                            </div>
+
+                            {/* JAdwal */}
+                            <div className="grid grid-cols-3">
+                                <div>Email </div>
+
+                                <div className="lg:col-span-2 font-bold">
+                                    : <span> {dataPasienBaru.email}</span>
                                 </div>
                             </div>
                         </div>

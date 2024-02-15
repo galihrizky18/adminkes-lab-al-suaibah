@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Farmasi extends Model
 {
     use HasFactory;
+
+    public function layanan(){
+        return $this->belongsTo(Layanan::class, 'id_layanan', 'id_layanan');
+    }
+
+    public function krjPoliUmumLansia(){
+        return $this->belongsTo(krjPoliUmumLansia::class, 'id_pemeriksaan', 'id_krj_poli_umum_lansia');
+    }
+
+    public function krjPoliGigi(){
+        return $this->belongsTo(krjPoliGigi::class, 'id_pemeriksaan', 'id_krj_poli_gigi');
+    }
+
+
 }

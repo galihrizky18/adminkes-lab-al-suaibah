@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admins;
 use App\Models\Dokter;
+use App\Models\Farmasi;
 use App\Models\JadwalDokter;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliUmumLansia;
@@ -126,6 +127,24 @@ class DetailController extends Controller
             ]);
         }
         return redirect('/admin/master-menu/laboratorium');
+
+    }
+    public function detailFarmasi(Request $request){
+
+        $idFarmasi =  $request->input('id_farmasi');
+        
+        $dataFarmasi = Farmasi::with('layanan','krjPoliUmumLansia','krjPoliGigi')->where('id_farmasi',$idFarmasi)->first();
+
+        $currentUserData = session('current_user');
+        $currentUser = Admins::with('user')->where('id_admin',$currentUserData->id_admin)->first();
+
+        if($dataFarmasi){
+            return Inertia::render('admin/menuMaster/detail/DetailFarmasi',[
+                'currentUser'=>$currentUser,
+                'dataFarmasi'=>$dataFarmasi,
+            ]);
+        }
+        return redirect('/admin/master-menu/farmasi');
 
     }
 

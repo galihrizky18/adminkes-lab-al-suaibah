@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('id_dokter');
             $table->string('penanggung_jawab');
             $table->string('name');
+            $table->string('jk');
             $table->date('birth');
             $table->string('bb');
             $table->string('tb');

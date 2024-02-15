@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useForm, isNotEmpty } from "@mantine/form";
-import { Button, Group, TextInput, Box, Grid, Select } from "@mantine/core";
+import { Button, Group, TextInput, Box, Grid, Radio } from "@mantine/core";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 
-const AddFarmasiUmumLansia = ({ dataLayanan }) => {
+const AddFarmasiUmumLansiaAsuransi = ({ dataLayanan }) => {
     // State
     const [layanan, setLayanan] = useState();
     const [idSelectedPatient, setIdSelectedPatient] = useState();
@@ -15,10 +15,19 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
     // Validator Form
     const form = useForm({
         initialValues: {
-            jenis_farmasi: "non asuransi",
-            id_pemeriksaan: "",
-            id_layanan: "",
+            jenis_farmasi: "asuransi",
+            id_pemeriksaan: "asuransi",
+            id_layanan: "asuransi",
             tanggal_resep: "",
+
+            // Asuransi
+            asuransi_nama: "",
+            asuransi_umur: "",
+            asuransi_jk: "",
+            asuransi_bb: "",
+            asuransi_dokter: "",
+            asuransi_unit_asal: "",
+
             nama_obat: "",
             bentuk_sediaan: "",
             dosis_obat: "",
@@ -46,6 +55,15 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
             nama_obat: isNotEmpty("Nama Obat tidak boleh kosong"),
             bentuk_sediaan: isNotEmpty("Bentuk Sediaan tidak boleh kosong"),
             dosis_obat: isNotEmpty("Dosis Obat tidak boleh kosong"),
+
+            // asuransi
+            asuransi_nama: isNotEmpty(" Nama tidak boleh kosong"),
+            asuransi_umur: isNotEmpty(" Tanggal Lahir tidak boleh kosong"),
+            asuransi_jk: isNotEmpty(" Jenis Kelamin tidak boleh kosong"),
+            asuransi_bb: isNotEmpty(" Berat Badan tidak boleh kosong"),
+            asuransi_dokter: isNotEmpty(" Dokter tidak boleh kosong"),
+            asuransi_unit_asal: isNotEmpty(" Unit Asal tidak boleh kosong"),
+
             jumlah_obat: isNotEmpty("Jumlah Obat tidak boleh kosong"),
             aturan_pakai: isNotEmpty("Aturan Pakai tidak boleh kosong"),
             stabilitas: isNotEmpty("Stablitas tidak boleh kosong"),
@@ -65,8 +83,6 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
             telah_diberikan: isNotEmpty("Telah Diberikan tidak boleh kosong"),
         },
     });
-
-    // console.log(dataLayanan);
 
     // Convert Data
     // Conver Layanan
@@ -103,9 +119,14 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/add-data/farmasi", {
-                data: data,
-            });
+            const response = await axios.post(
+                "/admin/add-data/farmasi-asuransi",
+                {
+                    data: data,
+                }
+            );
+
+            console.log(response.data.message);
 
             if (response.data.message === "Success Save Data") {
                 Swal.fire({
@@ -166,6 +187,10 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
         getDataSelectedPatient(idSelectedPatient);
     }, [idSelectedPatient]);
 
+    // useEffect(() => {
+    //     console.log(idSelectedPatient);
+    // }, [idSelectedPatient]);
+
     return (
         <Box
             component="form"
@@ -179,151 +204,100 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
                 <div className="font-bold text-xl py-1 text-center bg-gray-500 text-white">
                     DETAIL PATIENT
                 </div>
-                {/* Selected PAtient */}
-                <Grid>
-                    {/* Layanan */}
-                    <Grid.Col
-                        className="mt-4 flex flex-col gap-3"
-                        span={{ base: 12, md: 6 }}
-                    >
-                        {/* Ruangan / Unit Asal */}
-                        <div className="flex flex-col gap-2">
-                            <div className="flex items-center font-bold">
-                                Ruangan / Unit Asal
-                            </div>
-                            <div className="">
-                                <Select
-                                    placeholder="Ruangan / Unit Asal"
-                                    data={convertLayanan(dataLayanan)}
-                                    radius="md"
-                                    searchable
-                                    className="border border-b-violet-50"
-                                    onChange={(selectedLayanan) => {
-                                        form.setFieldValue(
-                                            "id_layanan",
-                                            selectedLayanan
-                                        );
-                                        setLayanan(selectedLayanan);
-                                        // getKotas(selectedProvince); // Panggil getKotas saat provinsi dipilih
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    </Grid.Col>
-
-                    {/* Patient */}
-                    <Grid.Col
-                        className="lg:mt-4 flex flex-col gap-3"
-                        span={{ base: 12, md: 6 }}
-                    >
-                        {/* Patient */}
-                        <div className="flex flex-col gap-2">
-                            <div className="flex items-center font-bold">
-                                Patient
-                            </div>
-                            <div className="">
-                                <Select
-                                    placeholder="Patient"
-                                    data={
-                                        dataPatient
-                                            ? convertPatient(dataPatient)
-                                            : ""
-                                    }
-                                    radius="md"
-                                    searchable
-                                    className="border border-b-violet-50"
-                                    onChange={(SelectedPatient) => {
-                                        form.setFieldValue(
-                                            "id_pemeriksaan",
-                                            SelectedPatient
-                                        );
-                                        setIdSelectedPatient(SelectedPatient);
-                                        // getKotas(selectedProvince); // Panggil getKotas saat provinsi dipilih
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    </Grid.Col>
-                </Grid>
 
                 {/* Detail Information PAtien */}
-                <Grid>
-                    {/* Col 1 */}
-                    <Grid.Col
-                        className=" flex flex-col gap-3"
-                        span={{ base: 12, md: 6 }}
-                    >
-                        {/* Nama  */}
-                        <div>
-                            <div>Nama</div>
-                            <input
-                                className="w-full rounded-lg font-bold"
-                                type="text"
+                <div className="mt-5">
+                    <Grid>
+                        {/* Col 1 */}
+                        <Grid.Col
+                            className=" flex flex-col gap-3"
+                            span={{ base: 12, md: 6 }}
+                        >
+                            {/* Nama  */}
+                            <TextInput
+                                label="Nama "
                                 placeholder="Nama"
-                                value={
-                                    dataSelectedPatient
-                                        ? dataSelectedPatient.name
-                                        : ""
-                                }
-                                disabled
+                                size="md"
+                                withAsterisk
+                                {...form.getInputProps("asuransi_nama")}
                             />
-                        </div>
 
-                        {/* Tanggal Lahir */}
-                        <div>
-                            <div>Tanggal Lahir</div>
-                            <input
-                                className="w-full rounded-lg"
-                                type="text"
-                                placeholder="Tanggal Lahir"
-                                value={
-                                    dataSelectedPatient
-                                        ? dataSelectedPatient.birth
-                                        : ""
-                                }
-                                disabled
+                            {/* Tanggal Lahir */}
+                            <div className="flex flex-col">
+                                <label className="font-bold">
+                                    Tanggal Lahir
+                                </label>
+                                <input
+                                    className="w-full border border-gray-300 text-gray-400 rounded-lg"
+                                    label="Tanggal Lahir"
+                                    type="date"
+                                    {...form.getInputProps("asuransi_umur")}
+                                />
+                            </div>
+
+                            {/* Ruangan / Unit Asal */}
+                            <TextInput
+                                label="Ruangan / Unit Asal "
+                                placeholder="Ruangan / Unit Asal"
+                                size="md"
+                                withAsterisk
+                                {...form.getInputProps("asuransi_unit_asal")}
                             />
-                        </div>
-                    </Grid.Col>
+                        </Grid.Col>
 
-                    {/* Col 2 */}
-                    <Grid.Col
-                        className=" flex flex-col gap-3"
-                        span={{ base: 12, md: 6 }}
-                    >
-                        {/* BB */}
-                        <div>
-                            <div>Berat Badan</div>
-                            <input
-                                className="w-full rounded-lg"
-                                type="text"
+                        {/* Col 2 */}
+                        <Grid.Col
+                            className=" flex flex-col gap-3"
+                            span={{ base: 12, md: 6 }}
+                        >
+                            {/* Jenis Kelamin */}
+                            <div className="item h-10 my-3 flex flex-col gap-2">
+                                <div className="title w-[50%] flex items-center">
+                                    Jenis Kelamin
+                                </div>
+                                <div className=" w-full flex flex-row ">
+                                    <Radio.Group
+                                        name="gender"
+                                        className="w-full h-full"
+                                        {...form.getInputProps("asuransi_jk")}
+                                    >
+                                        <div className="w-full h-full flex flex-row items-center gap-3 sm:gap-7">
+                                            <Radio
+                                                value="male"
+                                                label="Laki-Laki"
+                                                size="md"
+                                            />
+                                            <Radio
+                                                value="female"
+                                                label="Perempuan"
+                                                size="md"
+                                            />
+                                        </div>
+                                    </Radio.Group>
+                                </div>
+                            </div>
+
+                            {/* BB */}
+                            <TextInput
+                                label="Berat Badan "
                                 placeholder="Berat Badan"
-                                value={
-                                    dataSelectedPatient
-                                        ? dataSelectedPatient.bb
-                                        : ""
-                                }
-                                disabled
+                                type="number"
+                                size="md"
+                                withAsterisk
+                                {...form.getInputProps("asuransi_bb")}
                             />
-                        </div>
 
-                        {/* TB */}
-                        <div>
-                            <div>Tinggi Badan</div>
-                            <input
-                                className="w-full rounded-lg"
-                                type="text"
-                                placeholder="Tinggi Badan"
-                                value={
-                                    dataSelectedPatient
-                                        ? dataSelectedPatient.tb
-                                        : ""
-                                }
-                                disabled
+                            {/* Dokter */}
+                            <TextInput
+                                label="Dokter"
+                                placeholder="Dokter"
+                                size="md"
+                                withAsterisk
+                                {...form.getInputProps("asuransi_dokter")}
                             />
-                        </div>
-                    </Grid.Col>
-                </Grid>
+                        </Grid.Col>
+                    </Grid>
+                </div>
             </div>
 
             {/* ISI */}
@@ -344,23 +318,6 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
 
                                 {/* Isi */}
                                 <div className="flex flex-col gap-3">
-                                    {/* Dokter  */}
-                                    <div>
-                                        <div className="font-bold">Dokter</div>
-                                        <input
-                                            className="w-full rounded-lg "
-                                            type="text"
-                                            placeholder="Nama"
-                                            value={
-                                                dataSelectedPatient
-                                                    ? dataSelectedPatient.dokter
-                                                          .nama_dokter
-                                                    : ""
-                                            }
-                                            disabled
-                                        />
-                                    </div>
-
                                     {/* Tanggal Resep  */}
                                     <div>
                                         <div className="font-bold">
@@ -474,7 +431,7 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
                                     {/* Tepat Indikasi  */}
                                     <TextInput
                                         label="Tepat Indikasi"
-                                        placeholder="BTepat Indikasi"
+                                        placeholder="Tepat Indikasi"
                                         size="md"
                                         withAsterisk
                                         {...form.getInputProps(
@@ -597,4 +554,4 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
     );
 };
 
-export default AddFarmasiUmumLansia;
+export default AddFarmasiUmumLansiaAsuransi;

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->string("id_farmasi")->primary();
             $table->string("id_pemeriksaan")->unique();
             $table->string("id_layanan");
+            $table->string("tipe_farmasi");
             $table->date("tanggal_resep");
+            $table->string('status_resep')->default("belum lunas");
 
             // Patient Asuransi
             $table->string("asuransi_nama")->nullable();
@@ -43,7 +45,7 @@ return new class extends Migration
             $table->string("duplikasi");
             $table->string("alergi");
             $table->string("kontra_indikasi");
-            $table->string("pio/kie");
+            $table->string("pioKie");
             $table->string("konseling");
             $table->string("telah_diberikan");
 

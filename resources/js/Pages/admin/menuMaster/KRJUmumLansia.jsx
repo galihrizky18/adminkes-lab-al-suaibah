@@ -22,7 +22,6 @@ const KRJUmumLansia = ({
         },
     ];
 
-    console.log(dataPerBulan);
     return (
         <LayoutAdmin
             title="Poli Umum dPan Lansia"

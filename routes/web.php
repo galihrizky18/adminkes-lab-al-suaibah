@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApotekController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\GetData;
 use App\Http\Controllers\KIAController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LoginController;
@@ -34,6 +35,22 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 // Login Validation
 Route::post('/login', [LoginController::class, 'loginValidation']);
 
+// Public Page
+// Upload Data
+Route::post('/pendaftaran/pasien-baru', [PendaftaranController::class, 'saveToDatabase']);
+Route::post('/pendaftaran/pasien-lama/search', [PendaftaranController::class, 'searchPatientData']);
+
+Route::get('/pendaftaran', [PendaftaranController::class, 'pagePendaftaran']);
+Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasienBaru']);
+Route::get('/pendaftaran/pasien-lama', [PendaftaranController::class, 'pagePasienLama']);
+
+Route::get('/poli-umum', [PoliUmumController::class, 'dashboard'])->name('poli-umum');
+Route::get('/poli-anak', [PoliAnakController::class, 'dashboard']);
+Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
+Route::get('/apotek', [ApotekController::class, 'dashboard']);
+Route::get('/laboratorium', [LabController::class, 'dashboard']);
+Route::get('/kia', [KIAController::class, 'dashboard']);
+
 
 
 // Admin Page
@@ -50,6 +67,15 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/laboratorium', [AdminController::class, 'dataLaboratorium'])->name('dataLaboratorium');
         Route::get('/farmasi', [AdminController::class, 'dataFarmasi'])->name('dataFarmasi');
     });
+    
+    // Get Data
+    Route::prefix('get-data')->group(function(){
+        Route::get('/get-data-umum', [GetData::class, 'getDataKRJUMumLansia'])->name('getDataKRJUMumLansia');
+        Route::get('/get-data-gigi', [GetData::class, 'getDataKRJGigi'])->name('getDataKRJGigi');
+        
+        
+    });
+
 
     // Detail
     Route::prefix('detail')->group(function(){
@@ -59,6 +85,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::match(['get', 'post'],'poli-gigi', [DetailController::class, 'detailPoliGigi']);
         Route::match(['get', 'post'],'jadwal-dokter', [DetailController::class, 'detailJadwalDokter']);
         Route::match(['get', 'post'],'laboratorium', [DetailController::class, 'detailLab']);
+        Route::match(['get', 'post'],'farmasi', [DetailController::class, 'detailFarmasi']);
     });
 
     // Add Data
@@ -69,6 +96,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/gigi', [AdminController::class, 'addKRJPoliGigi'])->name("addKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'addLab'])->name("addLab");
         Route::post('/jadwal-dokter', [AdminController::class, 'addJadwalDokter'])->name("addJadwalDokter");
+        Route::post('/farmasi', [AdminController::class, 'addFarmasi'])->name("addFarmasi");
+        Route::post('/farmasi-asuransi', [AdminController::class, 'addFarmasiAsuransi'])->name("addFarmasiAsuransi");
     });
 
     // Edit Data
@@ -89,6 +118,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'deleteLab'])->name("deleteLab");
         Route::post('/jadwal-dokter', [AdminController::class, 'deleteJadwalDokter'])->name("deleteJadwalDokter");
+        Route::post('/farmasi', [AdminController::class, 'deleteFarmasi'])->name("deleteFarmasi");
     });
 
     // Report Pasien Baru
@@ -122,23 +152,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 // ==================================================================================
 
 
-// Public Page
-// Upload Data
-Route::post('/pendaftaran/pasien-baru', [PendaftaranController::class, 'saveToDatabase']);
-Route::post('/pendaftaran/pasien-lama/search', [PendaftaranController::class, 'searchPatientData']);
 
-
-
-Route::get('/pendaftaran', [PendaftaranController::class, 'pagePendaftaran']);
-Route::get('/pendaftaran/pasien-baru', [PendaftaranController::class, 'pagePasienBaru']);
-Route::get('/pendaftaran/pasien-lama', [PendaftaranController::class, 'pagePasienLama']);
-
-Route::get('/poli-umum', [PoliUmumController::class, 'dashboard'])->name('poli-umum');
-Route::get('/poli-anak', [PoliAnakController::class, 'dashboard']);
-Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
-Route::get('/apotek', [ApotekController::class, 'dashboard']);
-Route::get('/laboratorium', [LabController::class, 'dashboard']);
-Route::get('/kia', [KIAController::class, 'dashboard']);
 
 
 

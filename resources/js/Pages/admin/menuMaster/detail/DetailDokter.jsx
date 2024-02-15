@@ -13,10 +13,6 @@ const DetailDokter = ({ currentUser, dataDokter }) => {
         { title: "Detail Dokter", href: "/admin/detail/dokter" },
     ];
 
-    useEffect(() => {
-        console.log(dataDokter);
-    }, []);
-
     return (
         <LayoutAdmin
             title="Detail Dokter"
