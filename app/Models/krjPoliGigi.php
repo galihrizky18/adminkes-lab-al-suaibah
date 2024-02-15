@@ -14,6 +14,6 @@ class krjPoliGigi extends Model
     }
 
     public function farmasi(){
-        return $this->hasOne(Farmasi::class, 'id_pemeriksaan' , 'id_krj_poli_gigi');
+        return $this->hasOne(Farmasi::class, 'id_krj_poli_gigi' , 'id_pemeriksaan');
     }
 }

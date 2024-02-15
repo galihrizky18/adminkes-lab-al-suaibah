@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && vite build --ssr"
+        "build": "vite build && vite build --ssr",
+        "clear-all": "php artisan cache:clear && php artisan route:clear && php artisan config:clear && php artisan view:clear && php artisan clear-compiled"
     },
     "devDependencies": {
         "@headlessui/react": "^1.7.18",

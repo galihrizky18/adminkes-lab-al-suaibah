@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditPoliGigi from "../modal/EditPoliGigi";
 import EditLabModal from "../modal/EditLabModal";
 
@@ -54,7 +54,7 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
                 >
                     {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"

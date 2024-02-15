@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditPoliGigi from "../modal/EditPoliGigi";
 
 const TablePoliGigi = ({ dataGigi, dataDoker }) => {
@@ -45,7 +45,7 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                 >
                     {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"

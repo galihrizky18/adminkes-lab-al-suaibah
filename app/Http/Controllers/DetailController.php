@@ -133,7 +133,7 @@ class DetailController extends Controller
 
         $idFarmasi =  $request->input('id_farmasi');
         
-        $dataFarmasi = Farmasi::with('layanan','krjPoliUmumLansia','krjPoliGigi')->where('id_farmasi',$idFarmasi)->first();
+        $dataFarmasi = Farmasi::with('layanan','krjPoliUmumLansia.dokter','krjPoliGigi.dokter')->where('id_farmasi',$idFarmasi)->first();
 
         $currentUserData = session('current_user');
         $currentUser = Admins::with('user')->where('id_admin',$currentUserData->id_admin)->first();

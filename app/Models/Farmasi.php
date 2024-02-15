@@ -14,11 +14,11 @@ class Farmasi extends Model
     }
 
     public function krjPoliUmumLansia(){
-        return $this->belongsTo(krjPoliUmumLansia::class, 'id_pemeriksaan', 'id_krj_poli_umum_lansia');
+        return $this->belongsTo(KrjPoliUmumLansia::class, 'id_pemeriksaan', 'id_krj_poli_umum_lansia');
     }
 
     public function krjPoliGigi(){
-        return $this->belongsTo(krjPoliGigi::class, 'id_pemeriksaan', 'id_krj_poli_gigi');
+        return $this->belongsTo(KrjPoliGigi::class, 'id_pemeriksaan', 'id_krj_poli_gigi');
     }
 
 

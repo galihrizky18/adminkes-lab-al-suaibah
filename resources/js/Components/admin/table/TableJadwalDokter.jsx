@@ -8,7 +8,7 @@ import { router } from "@inertiajs/react";
 import EditJadwalDokter from "../modal/EditJadwalDokter";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 
 const TableJadwalDokter = ({ dataJadwalDokter }) => {
     const [originalData, setOriginalData] = useState(dataJadwalDokter);
@@ -30,7 +30,7 @@ const TableJadwalDokter = ({ dataJadwalDokter }) => {
                 >
                     {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"

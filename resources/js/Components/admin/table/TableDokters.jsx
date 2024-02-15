@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditDokterModal from "../modal/EditDokterModal";
 
 const TableDokters = ({ dataDokters, dataLayanan }) => {
@@ -35,7 +35,7 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                 >
                     {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"

@@ -145,7 +145,7 @@ class AdminController extends Controller
     public function dataFarmasi(){
 
         $dataLayanan = Layanan::all();
-        $dataFarmasi = Farmasi::with('layanan', 'krjPoliUmumLansia.dokter', 'krjPoliGigi.dokter')->get();
+        $dataFarmasi = Farmasi::with('krjPoliUmumLansia.dokter', 'krjPoliGigi.dokter','layanan' )->get();
 
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -154,6 +154,7 @@ class AdminController extends Controller
             'currentUser'=>$currentUser,
             'dataLayanan'=>$dataLayanan,
             'dataFarmasi'=>$dataFarmasi,
+         
         ]);
     }
 
