@@ -68,82 +68,89 @@ const laboratorium = () => {
                 </div>
 
 
+
                 {/* new */}
                 {/* obat 1 */}
-                <div className="flex flex-row gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4">
                     <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[100px] sm:h-[200px] rounded-xl">
                         <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Mikro</span>
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mikro</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. GDA (Gula Darah Acak)</span>
                                 <span>2. Asam Urat</span>
                                 <span>3. Cholesterol</span>
                                 <span>4. Trigliserida</span>
-                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 90.000</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 90.000</span>
                         </div>
                     </div>
 
                     {/* obat 2 */}
                     <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[100px] sm:h-[200px] ">
                         <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Mili</span>
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mili</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Darah lengkap</span>
                                 <span>2. GDP</span>
                                 <span>3. Urin Lengkap</span>
                                 <span>4. SGOT</span>
-                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 280.000</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 280.000</span>
                         </div>
                     </div>
 
                     {/* obat 3 */}
                     <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[20px] sm:h-[170px] ">
                         <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Kilo</span>
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Kilo</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Darah Lengkap</span>
                                 <span>2. Urin Lengkap</span>
                                 <span>3. Cholesterol</span>
                                 <span>4. Trigliserida</span>
-                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 645.000</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 645.000</span>
                         </div>
                     </div>
-                </div>
 
-                {/* obat 4 */}
-                <div className="flex flex-row gap-4">
+                    {/* obat 4 */}
                     <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[10px] sm:h-[170px] rounded-xl sm:px-5">
                         <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Mega</span>
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mega</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Asam Urat</span>
                                 <span>2. Asam Urat</span>
                                 <span>3. Cholesterol</span>
                                 <span>4. Trigliserida</span>
-                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 1.060.000</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 1.060.000</span>
                         </div>
                     </div>
 
-                {/* obat 5 */}
+                    {/* obat 5 */}
                     <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[10px] sm:h-[200px] sm:px-5">
                         <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px]">Paket Nino</span>
+                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Nino</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. GDA (Gula Darah Acak)</span>
                                 <span>2. Asam Urat</span>
                                 <span>3. Cholesterol</span>
                                 <span>4. Trigliserida</span>
-                                <span className="xl:mt-[80px] sm:mt-[10px]">Rp 135.000</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 135.000</span>
                         </div>
                     </div>
+                </div>
+
+                {/* obat 4 */}
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-4">
+                    
+
+                {/* obat 5 */}
+                   
                 </div>
 
                 {/* Layanan */}
                 <div className="w-full sm:w-[20%] bg-white px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
                     <span>Layanan Kami</span>
                 </div>
-                <div className="flex flex-row gap-4 ">
-                    <div className="bg-green-700 px-5 py-3  text-white sm:text-[10px] xl:text-[18px] sm:w-[30px] sm:h-[50px] md:w-[25px] xl:w-full xl:h-full ">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-4 ">
+                    <div className="bg-green-700 px-5 py-6 text-white sm:text-[50px] xl:text-[18px] sm:w-[30px] sm:h-[50px] md:w-[25px] xl:w-full xl:h-full ">
                         <span>1. Pengujian Kesehatan</span>
                         <br />
                         <span>
@@ -152,7 +159,7 @@ const laboratorium = () => {
                             lengkap, tes urine lengkap dan tes fungsi organ.
                         </span>
                     </div>
-                    <div className="bg-green-700 px-5 py-6  text-white sm:text-[10px] xl:text-[18px] sm:w-[50px] md:w-[25px] xl:w-full sm:h-[50px] xl:h-full">
+                    <div className="bg-green-700 px-5 py-6  text-white sm:text-[50px] xl:text-[18px] sm:w-[50px] md:w-[25px] xl:w-full sm:h-[50px] xl:h-full">
                         <span>2. Pengujian penyakit manular </span>
                         <br />
                         <span>
@@ -161,8 +168,8 @@ const laboratorium = () => {
                         </span>
                     </div>
                 </div>
-                <div className="flex flex-row gap-4">
-                    <div className="bg-green-700 px-5 py-3  text-white sm:h-[50px] sm:w-[50px] xl:h-full xl:w-full"> 
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-4 ">
+                    <div className="bg-green-700 px-5 py-6 text-white sm:text-[50px] xl:text-[18px] sm:w-[30px] sm:h-[50px] md:w-[25px] xl:w-full xl:h-full ">
                         <span>3. Pengujian Klinis</span>
                         <br />
                         <span>
@@ -171,25 +178,25 @@ const laboratorium = () => {
                             untuk obat baru dan prosedur diagnostik
                         </span>
                     </div>
-                    <div className="bg-green-700  w-full px-5 py-3  text-white sm:h-[50px] sm:w-[50px] xl:h-full xl:w-full">
+                    <div className="bg-green-700 px-5 py-6  text-white sm:text-[50px] xl:text-[18px] sm:w-[50px] md:w-[25px] xl:w-full sm:h-[50px] xl:h-full">
                         <span>4. Pengujian Lingkungan</span>
                         <br />
                         <span>
                             Menyediakan pengujian untuk air, tanah, udara, dan
                             bahan kimia lainnya untuk memantau kualitas
-                            lingkungan dan memastikan kepatuhan terhadap
-                            peraturan lingkungan
+                            lingkungan.
                         </span>
                     </div>
                 </div>
+         
 
                 {/* Galeri Laboratorium */}
                 <div className="w-full sm:w-[20%] mt-[40px] bg-white hover:text-[#101611]  px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
                     <span>Galeri</span>
                 </div>
-                <div className="grid grid-cols-3 gap-7">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-7">
                     {image.map((data, i) => (
-                        <div key={i} className="sm:w-[30px] sm:h-[30px] md:w-[100px] md:h-[100px] xl:w-full xl:h-full">
+                        <div key={i} className="sm:w-[20px] sm:h-[2S0px] md:w-[100px] md:h-[100px] xl:w-full xl:h-full">
                             <a href="#">
                                 <img
                                     src={data}
@@ -213,18 +220,7 @@ const laboratorium = () => {
                         biomolekuler, dan bank darah. Semua unit tersebut berada
                         dalam area bersama yang berdampingan satu sama lain.
                         Dengan konsep laboratorium terpadu, diharapkan pelayanan
-                        laboratorium dapat dilakukan secara komprehensif. Dokter
-                        di laboratorium terpadu RSUI terdiri dari empat
-                        spesialisasi dokter laboratorium, yaitu spesialis
-                        patologi klinik, spesialis patologi anatomi, spesialis
-                        mikrobiologi klinik, dan spesialis parasitologi klinik.
-                        Selain itu, pelayanan di laboratorium terpadu RSUI
-                        didukung oleh ATLM (Ahli Teknologi Laboratorium Medis),
-                        teknisi pelayanan darah, dan sarjana di bidang sains dan
-                        biomedis. Pemeriksaan patologi klinik berperan memeriksa
-                        specimen darah, urin, feses, dan cairan tubuh untuk
-                        melakukan penapisan penyakit, penegakan diagnosis, dan
-                        pemantauan terapi. 
+                        laboratorium dapat dilakukan secara komprehensif.
                     </span>
                 </div>
 
