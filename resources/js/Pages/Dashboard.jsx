@@ -12,52 +12,53 @@ import VisiMisi from "@/Components/dashboard/VisiMisi";
 
 const Dashboard = () => {
     return (
-        <div className="">
+        <div className="bg-gray-100 min-h-screen">
             <Head title="Dashboard" />
 
             {/* Header Section */}
-            <section className="bg-[#278645] flex flex-row px-20 items-center h-14 font-open ">
-                <div className=" flex flex-row w-full text-white items-center gap-3 ">
+            <section className="bg-[#278645] flex flex-row px-5 sm:px-20 items-center h-14 font-open text-white">
+                <div className="flex flex-row items-center gap-3">
                     <div className="icon">
                         <img src={iconPhone} alt="" width={30} />
                     </div>
-                    <div className="number mr-5">0817-7999-2808</div>
+                    <div className="number mr-3 text-sm sm:text-base">0817-7999-2808</div>
                     <span>|</span>
-                    <div className="email">abcdefgh@gmail.com</div>
+                    <div className="email ml-3 text-sm sm:text-base">abcdefgh@gmail.com</div>
                 </div>
             </section>
 
             {/* Navbar */}
-            <section className="sticky top-0 z-10 ">
+            <section className="sticky top-0 z-10">
                 <Navbar />
             </section>
 
             {/* Hero */}
-            <section className="">
+            <section className="my-5">
                 <Hero />
             </section>
 
             {/* Layanan */}
-            <section className="p-3 sm:p-10">
+            <section className="px-3 sm:px-10">
                 <LayananSection />
             </section>
 
             {/* Visi dan Misi  */}
-            <section className="p-3 sm:p-10">
+            <section className="px-3 sm:px-10">
                 <VisiMisi />
             </section>
 
             {/* About */}
-            <section className="mt-5 sm:h-[85vh]">
+            <section className="my-5">
                 <About />
             </section>
 
             {/* Jadwal Dokter */}
-            <section className="p-3 sm:p-10">
+            <section className="px-3 sm:px-10">
                 <JadwalDokter />
             </section>
 
-            <h1 className=" h-[300px] " />
+            {/* Spacer */}
+            <div className="h-40" />
 
             {/* Footer */}
             <section>
