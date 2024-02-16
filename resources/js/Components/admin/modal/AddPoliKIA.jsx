@@ -9,34 +9,36 @@ import {
     NumberInput,
     Select,
     Textarea,
+    Radio,
 } from "@mantine/core";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 
-const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
+const AddPoliKIA = ({ dataDoker }) => {
     // State
     const [dokterConvert, setDokerConvert] = useState();
 
     // Validator Form
     const form = useForm({
         initialValues: {
-            id_krjUmumLansia: baseData.id_krjUmumLansia,
-            id_dokter: baseData.id_dokter,
-            name: baseData.name,
-            birth: baseData.birth,
-            bb: baseData.bb,
-            tb: baseData.tb,
-            tdSistolik: baseData.td.tdSistolik,
-            tdDiastolik: baseData.td.tdDiastolik,
-            rr: baseData.rr,
-            n: baseData.n,
-            anamnesis: baseData.anamnesis,
-            pemeriksaan_fisik: baseData.pemeriksaan_fisik,
-            pemeriksaan_penunjang: baseData.pemeriksaan_penunjang,
-            diagnosis: baseData.diagnosis,
-            terapi: baseData.terapi,
-            rujukan: baseData.rujukan,
+            id_dokter: "",
+            penanggung_jawab: "",
+            name: "",
+            jk: "",
+            birth: "",
+            bb: "",
+            tb: "",
+            tdSistolik: "",
+            tdDiastolik: "",
+            rr: "",
+            n: "",
+            anamnesis: "",
+            pemeriksaan_fisik: "",
+            pemeriksaan_penunjang: "",
+            diagnosis: "",
+            terapi: "",
+            rujukan: "",
         },
 
         validate: {
@@ -45,7 +47,12 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                 { min: 1, max: 32 },
                 "Panjang nama harus 1-32 kata"
             ),
+            penanggung_jawab: hasLength(
+                { min: 1, max: 32 },
+                "Panjang nama harus 1-32 kata"
+            ),
             birth: isNotEmpty("Tanggal Lahir tidak boleh kosong"),
+            jk: isNotEmpty("Jenis Kelamin tidak boleh kosong"),
             bb: isNotEmpty("Berat Badan tidak boleh kosong"),
             tb: isNotEmpty("Tinggi Badan tidak boleh kosong"),
             tdSistolik: isNotEmpty("Tekanan Darah Sistolik tidak boleh kosong"),
@@ -71,31 +78,37 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
     const handleConvertDokter = (data) => {
         return data.map((e) => ({
             value: e.id_dokter,
-            label: e.nama_dokter,
+            label: `${e.nama_dokter} - (${e.spesialis})`,
         }));
     };
 
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/edit-data/umum-lansia", {
-                newData: data,
+            const response = await axios.post("/admin/add-data/kia", {
+                data: data,
             });
 
-            if (response.data.message === "Success Edit Data") {
+            if (response.data.message === "Success Save Data") {
                 Swal.fire({
                     title: "Save Data!",
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
-            } else if (response.data.message === "Failed Edit Data") {
+                router.get("/admin/master-menu/rawat-jalan-kia");
+            } else if (response.data.message === "Failed Save Data") {
                 Swal.fire({
                     title: "Failed",
                     text: "Gagal Menyimpan Data!",
                     icon: "error",
                 });
-            } else if (response.data.message === "Failed Request Database") {
+            } else if (response.data.message === "Found Data") {
+                Swal.fire({
+                    title: "Duplicate Data",
+                    text: "Data Telah Ada",
+                    icon: "error",
+                });
+            } else if (response.data.message === "Fail Request") {
                 Swal.fire({
                     title: "Failed Request",
                     text: "Failed Request To Database",
@@ -122,7 +135,10 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
         >
             <Grid gutter="xl">
                 {/* kolom 1 */}
-                <Grid.Col className="mt-4" span={6}>
+                <Grid.Col
+                    className="mt-4 flex flex-col gap-3"
+                    span={{ base: 12, md: 6 }}
+                >
                     <Select
                         data={dokterConvert}
                         label="Dokter Penanggung Jawab"
@@ -132,11 +148,45 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                         {...form.getInputProps("id_dokter")}
                     />
                     <TextInput
+                        label="Penanggung Jawab"
+                        placeholder="Penanggung Jawab"
+                        withAsterisk
+                        {...form.getInputProps("penanggung_jawab")}
+                    />
+
+                    <TextInput
                         label="Nama Pasien"
                         placeholder="Nama Pasien"
                         withAsterisk
                         {...form.getInputProps("name")}
                     />
+
+                    {/* Jenis Kelamin */}
+                    <div className="item h-10 my-3 flex flex-col gap-2">
+                        <div className="title w-[50%] flex items-center">
+                            Jenis Kelamin
+                        </div>
+                        <div className=" w-full flex flex-row ">
+                            <Radio.Group
+                                name="gender"
+                                className="w-full h-full"
+                                {...form.getInputProps("jk")}
+                            >
+                                <div className="w-full h-full flex flex-row items-center gap-3 sm:gap-7">
+                                    <Radio
+                                        value="male"
+                                        label="Laki-Laki"
+                                        size="md"
+                                    />
+                                    <Radio
+                                        value="female"
+                                        label="Perempuan"
+                                        size="md"
+                                    />
+                                </div>
+                            </Radio.Group>
+                        </div>
+                    </div>
 
                     {/* Input Tanggal Lahir */}
                     <div className="flex flex-col mt-3">
@@ -164,7 +214,7 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     />
 
                     {/* Tekanan Darta */}
-                    <div className="my-3 border border-gray-300 p-2">
+                    <div className=" border border-gray-300 p-2">
                         <div className="bg-gray-400 text-white py-1  text-center font-bold text-lg">
                             Tekanan Darah
                         </div>
@@ -200,11 +250,11 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                 </Grid.Col>
 
                 {/* Kolom 2 */}
-                <Grid.Col className="mt-4" span={6}>
+                <Grid.Col className="mt-4" span={{ base: 12, md: 6 }}>
                     <div>
                         <Textarea
-                            label="Anamnesis"
-                            placeholder="Anamnesis"
+                            label="Anamnesis (S)"
+                            placeholder="Anamnesis (S)"
                             withAsterisk
                             mt="md"
                             autosize
@@ -218,8 +268,8 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     </div>
                     <div>
                         <Textarea
-                            label="Pemeriksaan Fisik"
-                            placeholder="Pemeriksaan Fisik"
+                            label="Pemeriksaan Fisik (O)"
+                            placeholder="Pemeriksaan Fisik (O)"
                             withAsterisk
                             mt="md"
                             autosize
@@ -248,8 +298,8 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     </div>
                     <div>
                         <Textarea
-                            label="Diagnosis"
-                            placeholder="Diagnosis"
+                            label="Diagnosis (A)"
+                            placeholder="Diagnosis (A)"
                             withAsterisk
                             mt="md"
                             autosize
@@ -263,8 +313,8 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     </div>
                     <div>
                         <Textarea
-                            label="Terapi"
-                            placeholder="Terapi"
+                            label="Terapi (P)"
+                            placeholder="Terapi (P)"
                             withAsterisk
                             mt="md"
                             autosize
@@ -278,7 +328,7 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     </div>
                     <div>
                         <Textarea
-                            label="Rujukan"
+                            label="Rencana Pengobatan Lanjutan / Rujukan"
                             placeholder="Rujukan"
                             withAsterisk
                             mt="md"
@@ -301,4 +351,4 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
     );
 };
 
-export default EditPoliUmumLansiaModal;
+export default AddPoliKIA;

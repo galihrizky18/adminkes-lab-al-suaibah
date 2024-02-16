@@ -7,6 +7,7 @@ use App\Models\Dokter;
 use App\Models\Farmasi;
 use App\Models\JadwalDokter;
 use App\Models\krjPoliGigi;
+use App\Models\krjPoliKIA;
 use App\Models\krjPoliUmumLansia;
 use App\Models\Laboratorium;
 use App\Models\Layanan;
@@ -117,6 +118,50 @@ class AdminController extends Controller
             'dataPerBulan'=>$dataPerBulan,
         ]);
     }
+
+    // BELUM BERUBAH DATANYA
+    public function KRJPoliKIA(){
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        $dataDoker = Dokter::all();
+        $dataKIA = krjPoliKIA::with('dokter')->get();
+
+        // data perbulan
+        $dataJanuari = $dataKIA->where('bulan_input', "01")->count();
+        $dataFebruari = $dataKIA->where('bulan_input', "02")->count();
+        $dataMaret = $dataKIA->where('bulan_input', "03")->count();
+        $dataApril = $dataKIA->where('bulan_input', "04")->count();
+        $dataMei = $dataKIA->where('bulan_input', "05")->count();
+        $dataJuni = $dataKIA->where('bulan_input', "06")->count();
+        $dataJuli = $dataKIA->where('bulan_input', "07")->count();
+        $dataAgustus = $dataKIA->where('bulan_input', "08")->count();
+        $dataSeptember = $dataKIA->where('bulan_input', "09")->count();
+        $dataOktober = $dataKIA->where('bulan_input', "10")->count();
+        $dataNovember = $dataKIA->where('bulan_input', "11")->count();
+        $dataDesember = $dataKIA->where('bulan_input', "12")->count();
+
+        $dataPerBulan = [
+            "januari" => $dataJanuari,
+            "februari" => $dataFebruari,
+            "maret" => $dataMaret,
+            "april" => $dataApril,
+            "mei" => $dataMei,
+            "juni" => $dataJuni,
+            "juli" => $dataJuli,
+            "agustus" => $dataAgustus,
+            "september" => $dataSeptember,
+            "oktober" => $dataOktober,
+            "november" => $dataNovember,
+            "desember" => $dataDesember,
+        ];
+        
+        return Inertia::render('admin/menuMaster/KRJKIA',[
+            'currentUser'=>$currentUser,
+            'dataKIA'=>$dataKIA,
+            'dataDoker'=>$dataDoker,
+            'dataPerBulan'=>$dataPerBulan,
+        ]);
+    }
     public function dataPoliGigi(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -145,7 +190,7 @@ class AdminController extends Controller
     public function dataFarmasi(){
 
         $dataLayanan = Layanan::all();
-        $dataFarmasi = Farmasi::with('krjPoliUmumLansia.dokter', 'krjPoliGigi.dokter','layanan' )->get();
+        $dataFarmasi = Farmasi::with('krjPoliUmumLansia.dokter','krjPoliKIA.dokter', 'krjPoliGigi.dokter','layanan' )->get();
 
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -294,6 +339,60 @@ class AdminController extends Controller
                 $KRJUmumLansia->rujukan = $dataInput['rujukan'];
     
                 if($KRJUmumLansia->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message'=>'Fail Request']);
+        }
+       
+
+    }
+    public function addKRJPoliKIA(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $month = date('m', $currentTime);
+             $idKRJKIA = "KRJKIA-".$time;
+    
+            //  check Data
+            $cekData = krjPoliKIA::where('id_dokter', $dataInput['id_dokter'])->where('name', $dataInput['name'])->where('birth',$dataInput['birth'])->exists();
+    
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+    
+            // Format Tekanan Dara
+            $tdarah = $dataInput['tdSistolik'] . '/' . $dataInput['tdDiastolik'];
+    
+    
+            if($dataInput){
+                $KRJKIA = new krjPoliKIA();
+                $KRJKIA->id_krj_poli_KIA  = $idKRJKIA;
+                $KRJKIA->bulan_input = $month;
+                $KRJKIA->id_dokter = $dataInput['id_dokter'];
+                $KRJKIA->penanggung_jawab = $dataInput['penanggung_jawab'];
+                $KRJKIA->name = $dataInput['name'];
+                $KRJKIA->jk = $dataInput['jk'];
+                $KRJKIA->birth = $dataInput['birth'];
+                $KRJKIA->bb = $dataInput['bb'];
+                $KRJKIA->tb = $dataInput['tb'];
+                $KRJKIA->td = $tdarah;
+                $KRJKIA->rr = $dataInput['rr'];
+                $KRJKIA->n = $dataInput['n'];
+                $KRJKIA->anamnesis = $dataInput['anamnesis'];
+                $KRJKIA->pemeriksaan_fisik = $dataInput['pemeriksaan_fisik'];
+                $KRJKIA->pemeriksaan_penunjang = $dataInput['pemeriksaan_penunjang'];
+                $KRJKIA->diagnosis = $dataInput['diagnosis'];
+                $KRJKIA->terapi = $dataInput['terapi'];
+                $KRJKIA->rujukan = $dataInput['rujukan'];
+    
+                if($KRJKIA->save()){
                     return response()->json(['message'=>'Success Save Data']);
                 }
                 return response()->json(['message'=>'Failed Save Data']);
@@ -725,6 +824,43 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database']);
         }
     }
+    public function editKRJKIA(Request $request)
+    {
+        try {
+            $dataEditKRJKIA = $request->input('newData');
+    
+            $tekananDarah = $dataEditKRJKIA['tdSistolik'].'/'.$dataEditKRJKIA['tdDiastolik'];
+            
+            $dataUpdate = krjPoliKIA::where('id_krj_poli_KIA', $dataEditKRJKIA['id_krj_poli_KIA'])->update([
+                'id_dokter'=>$dataEditKRJKIA['id_dokter'],
+                'name'=>$dataEditKRJKIA['name'],
+                'birth'=>$dataEditKRJKIA['birth'],
+                'bb'=>$dataEditKRJKIA['bb'],
+                'tb'=>$dataEditKRJKIA['tb'],
+                'td'=>$tekananDarah,
+                'rr'=>$dataEditKRJKIA['rr'],
+                'n'=>$dataEditKRJKIA['n'],
+                'anamnesis'=>$dataEditKRJKIA['anamnesis'],
+                'pemeriksaan_fisik'=>$dataEditKRJKIA['pemeriksaan_fisik'],
+                'pemeriksaan_penunjang'=>$dataEditKRJKIA['pemeriksaan_penunjang'],
+                'diagnosis'=>$dataEditKRJKIA['diagnosis'],
+                'terapi'=>$dataEditKRJKIA['terapi'],
+                'rujukan'=>$dataEditKRJKIA['rujukan'],
+            ]);
+
+            if ($dataUpdate) {
+                return response()->json(['message' => "Success Edit Data"]);
+            }
+            
+            return response()->json(['message' => "Failed Edit Data"]);
+
+    
+    
+        } catch (\Throwable $th) {
+
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
     public function editKRJPoliGigi(Request $request)
     {
         try {
@@ -871,6 +1007,29 @@ class AdminController extends Controller
             // return response()->json(['message' => $idKRJPoliUmumLansia]);
 
             $checkData = krjPoliUmumLansia::where('id_krj_poli_umum_lansia', $idKRJPoliUmumLansia)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
+    public function deleteKRJKIA(Request $request)
+    {
+        try {
+            $idKRJKIA = $request->input('id');
+
+            // return response()->json(['message' => $idKRJPoliUmumLansia]);
+
+            $checkData = krjPoliKIA::where('id_krj_poli_KIA', $idKRJKIA)->delete();
 
             if (!$checkData) {
                 return response()->json(['message' => "Data not found"], 404);

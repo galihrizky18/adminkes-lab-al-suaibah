@@ -78,9 +78,14 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
     };
     const convertPatient = (data) => {
         return dataPatient.map((item) => ({
-            value: item.id_krj_poli_umum_lansia || item.id_krj_poli_gigi,
+            value:
+                item.id_krj_poli_umum_lansia ||
+                item.id_krj_poli_gigi ||
+                item.id_krj_poli_KIA,
             label: `${item.name} - ${
-                item.id_krj_poli_umum_lansia || item.id_krj_poli_gigi
+                item.id_krj_poli_umum_lansia ||
+                item.id_krj_poli_gigi ||
+                item.id_krj_poli_KIA
             }`,
         }));
     };
@@ -92,7 +97,8 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
             const selectedPatient = dataPatient.filter(
                 (patient) =>
                     patient.id_krj_poli_umum_lansia === id ||
-                    patient.id_krj_poli_gigi === id
+                    patient.id_krj_poli_gigi === id ||
+                    patient.id_krj_poli_KIA === id
             );
             const firstSelectedPatient =
                 selectedPatient.length > 0 ? selectedPatient[0] : null;
@@ -139,21 +145,39 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
     };
 
     // useEffect
+    // Handle Get Data From DB
     useEffect(() => {
         if (layanan === "layanan1") {
             axios
                 .get("/admin/get-data/get-data-umum")
                 .then((response) => {
+                    if (response.data.message === "Empty Data") {
+                        console.log("Empty Data");
+                    }
                     setDataPatient(response.data.data);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-        }
-        if (layanan === "layanan3") {
+        } else if (layanan === "layanan3") {
             axios
                 .get("/admin/get-data/get-data-gigi")
                 .then((response) => {
+                    if (response.data.message === "Empty Data") {
+                        console.log("Empty Data");
+                    }
+                    setDataPatient(response.data.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else if (layanan === "layanan6") {
+            axios
+                .get("/admin/get-data/get-data-kia")
+                .then((response) => {
+                    if (response.data.message === "Empty Data") {
+                        console.log("Empty Data");
+                    }
                     setDataPatient(response.data.data);
                 })
                 .catch((error) => {
@@ -474,7 +498,7 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
                                     {/* Tepat Indikasi  */}
                                     <TextInput
                                         label="Tepat Indikasi"
-                                        placeholder="BTepat Indikasi"
+                                        placeholder="Tepat Indikasi"
                                         size="md"
                                         withAsterisk
                                         {...form.getInputProps(

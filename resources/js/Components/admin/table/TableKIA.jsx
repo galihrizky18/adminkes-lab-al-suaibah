@@ -9,18 +9,19 @@ import { router } from "@inertiajs/react";
 // icon
 import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditPoliUmumLansiaModal from "../modal/EditPoliUmumLansiaModal";
+import EditKIA from "../modal/EditKIA";
 
-const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
-    const [originalData, setOriginalData] = useState(dataUmumLansia);
+const TableKIA = ({ dataKIA, dataDoker }) => {
+    const [originalData, setOriginalData] = useState(dataKIA);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
-    // Fungsi untuk mengonversi dataUmumLansia
+    // Fungsi untuk mengonversi dataKIA
     const convertData = (data) => {
         return data.map((e) => ({
-            id_krjUmumLansia: e.id_krj_poli_umum_lansia,
+            id_krj_poli_KIA: e.id_krj_poli_KIA,
             id_dokter: e.dokter.nama_dokter,
             penanggung_jawab: e.penanggung_jawab,
             name: e.name,
@@ -53,12 +54,9 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_poli: e.id_krj_poli_umum_lansia,
+                                id_poli: e.id_krj_poli_KIA,
                             };
-                            router.post(
-                                "/admin/detail/rawat-jalan-umum-lansia",
-                                data
-                            );
+                            router.post("/admin/detail/rawat-jalan-kia", data);
                         }}
                     >
                         View
@@ -74,7 +72,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_krjUmumLansia: e.id_krj_poli_umum_lansia,
+                                id_krj_poli_KIA: e.id_krj_poli_KIA,
                                 id_dokter: e.dokter.id_dokter,
                                 name: e.name,
                                 birth: e.birth,
@@ -106,7 +104,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_krj_poli_umum_lansia)}
+                        onClick={() => confirmDelete(e.id_krj_poli_KIA)}
                     >
                         Delete
                     </Button>
@@ -157,7 +155,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
         },
         {
             name: "Nama Pasien",
-            selector: (row) => row.name,
+            selector: (row) => <div className="font-bold">{row.name}</div>,
             sortable: true,
             width: "200px",
         },
@@ -207,7 +205,7 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const cekId = d.id_krj_poli_umum_lansia
+            const cekId = d.id_krj_poli_KIA
                 .toLowerCase()
                 .includes(event.toLowerCase());
             const cekName = d.name.toLowerCase().includes(event.toLowerCase());
@@ -239,20 +237,16 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post(
-                "/admin/delete-data/umum-lansia",
-                {
-                    id: id,
-                }
-            );
-
+            const response = await axios.post("/admin/delete-data/kia", {
+                id: id,
+            });
             if (response.data.message === "Success Delete Data") {
                 Swal.fire({
                     title: "Success Delete!",
                     text: "Data Berhasil Di Hapus!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+                router.get("/admin/master-menu/rawat-jalan-kia");
             } else if (response.data.message === "Failed Delete Data") {
                 Swal.fire({
                     title: "Failed Delete!",
@@ -272,10 +266,10 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     };
 
     useEffect(() => {
-        setOriginalData(dataUmumLansia);
-        setDataFilter(convertData(dataUmumLansia));
-        // console.log(dataUmumLansia);
-    }, [dataUmumLansia]);
+        setOriginalData(dataKIA);
+        setDataFilter(convertData(dataKIA));
+        // console.log(dataKIA);
+    }, [dataKIA]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
@@ -283,13 +277,10 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
             <Modal
                 opened={opened}
                 onClose={close}
-                title="EDIT KARTU RAWAT JAAN POLI UMUM DAN LANSIA"
+                title="EDIT KARTU RAWAT JAAN KESEHATAN IBU DAN ANAK"
                 size="80%"
             >
-                <EditPoliUmumLansiaModal
-                    baseData={sendDataEdit}
-                    dataDoker={dataDoker}
-                />
+                <EditKIA baseData={sendDataEdit} dataDoker={dataDoker} />
             </Modal>
 
             {/* Filter */}
@@ -318,4 +309,4 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
     );
 };
 
-export default TableUmumLansia;
+export default TableKIA;

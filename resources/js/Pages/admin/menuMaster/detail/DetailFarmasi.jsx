@@ -9,7 +9,7 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
         { title: "Data Farmasi", href: "/admin/master-menu/farmasi" },
         { title: "Detail Resep", href: "/admin/detail/farmasi" },
     ];
-
+    console.log(dataFarmasi);
     return (
         <LayoutAdmin
             title="Detail Resep Obat"
@@ -43,6 +43,9 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi
                                                     .name) ||
+                                            (dataFarmasi.krj_poli_k_i_a &&
+                                                dataFarmasi.krj_poli_k_i_a
+                                                    .name) ||
                                             dataFarmasi.asuransi_nama}
                                     </div>
                                 </div>
@@ -56,6 +59,9 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                                 .jk) ||
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi.jk) ||
+                                            (dataFarmasi.krj_poli_k_i_a &&
+                                                dataFarmasi.krj_poli_k_i_a
+                                                    .jk) ||
                                             dataFarmasi.asuransi_jk}
                                     </div>
                                 </div>
@@ -69,6 +75,9 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                                 .bb) ||
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi.bb) ||
+                                            (dataFarmasi.krj_poli_k_i_a &&
+                                                dataFarmasi.krj_poli_k_i_a
+                                                    .bb) ||
                                             dataFarmasi.asuransi_bb}
                                     </div>
                                 </div>
@@ -83,6 +92,9 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi.dokter
                                                     .nama_dokter) ||
+                                            (dataFarmasi.krj_poli_k_i_a &&
+                                                dataFarmasi.krj_poli_k_i_a
+                                                    .dokter.nama_dokter) ||
                                             dataFarmasi.asuransi_dokter}
                                     </div>
                                 </div>
@@ -102,6 +114,8 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                         {(dataFarmasi.krj_poli_umum_lansia &&
                                             dataFarmasi.layanan.layanan) ||
                                             (dataFarmasi.krj_poli_gigi &&
+                                                dataFarmasi.layanan.layanan) ||
+                                            (dataFarmasi.krj_poli_k_i_a &&
                                                 dataFarmasi.layanan.layanan) ||
                                             dataFarmasi.asuransi_unit_asal}
                                     </div>

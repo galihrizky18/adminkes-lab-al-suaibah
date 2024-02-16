@@ -17,16 +17,20 @@ const TableFarmasi = ({ dataFarmasi }) => {
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
+   
+
     // Fungsi untuk mengonversi dataFarmasi
     const convertData = (data) => {
         return data.map((e) => ({
             id_pemeriksaan: e.id_pemeriksaan,
             name:
                 (e.krj_poli_umum_lansia && e.krj_poli_umum_lansia.name) ||
+                (e.krj_poli_k_i_a && e.krj_poli_k_i_a.name) ||
                 (e.krj_poli_gigi && e.krj_poli_gigi.name) ||
                 e.asuransi_nama,
             birth:
                 (e.krj_poli_umum_lansia && e.krj_poli_umum_lansia.birth) ||
+                (e.krj_poli_k_i_a && e.krj_poli_k_i_a.birth) ||
                 (e.krj_poli_gigi && e.krj_poli_gigi.birth) ||
                 e.asuransi_umur,
             tipe_farmasi: e.tipe_farmasi,
@@ -182,15 +186,15 @@ const TableFarmasi = ({ dataFarmasi }) => {
                     d.krj_poli_umum_lansia.name
                         .toLowerCase()
                         .includes(event.toLowerCase())) ||
+                (d.krj_poli_k_i_a &&
+                    d.krj_poli_k_i_a.name
+                        .toLowerCase()
+                        .includes(event.toLowerCase())) ||
                 (d.krj_poli_gigi &&
                     d.krj_poli_gigi.name
                         .toLowerCase()
                         .includes(event.toLowerCase())) ||
-                (d.krj_poli_gigi &&
-                    !d.krj_poli_umum_lansia &&
-                    d.krj_poli_gigi.name
-                        .toLowerCase()
-                        .includes(event.toLowerCase()));
+                d.asuransi_nama.toLowerCase().includes(event.toLowerCase());
 
             return (
                 cekName ||

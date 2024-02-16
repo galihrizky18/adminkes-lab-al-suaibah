@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\krjPoliGigi;
+use App\Models\krjPoliKIA;
 use App\Models\krjPoliUmumLansia;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class GetData extends Controller
         $data = krjPoliUmumLansia::with('dokter')->where("id_farmasi", null)->get();
 
         if ($data->isEmpty()) {
-            return response()->json(['message' => 'Failed Get Data'], 400);
+            return response()->json(['message' => 'Empty Data']);
         }
     
         return response()->json(['message' => 'Success Get Data', 'data' => $data]);
@@ -23,7 +24,18 @@ class GetData extends Controller
         $data = krjPoliGigi::with('dokter')->where("id_farmasi", null)->get();
 
         if ($data->isEmpty()) {
-            return response()->json(['message' => 'Failed Get Data'], 400);
+            return response()->json(['message' => 'Empty Data']);
+        }
+    
+        return response()->json(['message' => 'Success Get Data', 'data' => $data]);
+    }
+    public function getDataKRJKIA() {
+
+        $data = krjPoliKIA::with('dokter')->where("id_farmasi", null)->get();
+        // return response()->json(['message' => $data]);
+
+        if ($data->isEmpty()) {
+            return response()->json(['message' => 'Empty Data']);
         }
     
         return response()->json(['message' => 'Success Get Data', 'data' => $data]);

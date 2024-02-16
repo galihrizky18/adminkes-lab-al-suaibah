@@ -14,14 +14,14 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { router } from "@inertiajs/react";
 
-const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
+const EditKIA = ({ dataDoker, baseData }) => {
     // State
     const [dokterConvert, setDokerConvert] = useState();
 
     // Validator Form
     const form = useForm({
         initialValues: {
-            id_krjUmumLansia: baseData.id_krjUmumLansia,
+            id_krj_poli_KIA: baseData.id_krj_poli_KIA,
             id_dokter: baseData.id_dokter,
             name: baseData.name,
             birth: baseData.birth,
@@ -78,7 +78,7 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
     // Handle Submit
     const handleSubmit = async (data) => {
         try {
-            const response = await axios.post("/admin/edit-data/umum-lansia", {
+            const response = await axios.post("/admin/edit-data/kia", {
                 newData: data,
             });
 
@@ -88,7 +88,7 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
-                router.get("/admin/master-menu/rawat-jalan-umum-lansia");
+                router.get("/admin/master-menu/rawat-jalan-kia");
             } else if (response.data.message === "Failed Edit Data") {
                 Swal.fire({
                     title: "Failed",
@@ -301,4 +301,4 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
     );
 };
 
-export default EditPoliUmumLansiaModal;
+export default EditKIA;

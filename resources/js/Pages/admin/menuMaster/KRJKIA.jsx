@@ -2,30 +2,26 @@ import React from "react";
 import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal, Grid } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import AddPoliUmumLansiaModal from "@/Components/admin/modal/AddPoliUmumLansiaModal";
 import TableUmumLansia from "@/Components/admin/table/TableUmumLansia";
 import ChartPoliUmumLansia from "@/Components/admin/chart/ChartPoliUmumLansia";
+import AddPoliKIA from "@/Components/admin/modal/AddPoliKIA";
+import TableKIA from "@/Components/admin/table/TableKIA";
 
-const KRJUmumLansia = ({
-    currentUser,
-    dataUmumLansia,
-    dataDoker,
-    dataPerBulan,
-}) => {
+const KRJKIA = ({ currentUser, dataKIA, dataDoker, dataPerBulan }) => {
     const [opened, { open, close }] = useDisclosure(false);
     // BreadCrumbs
     const breadCrumbs = [
         { title: "Home", href: "/admin" },
         {
-            title: "KRJ Poli Umum dan Lansia",
-            href: "/admin/master-menu/rawat-jalan-umum-lansia",
+            title: "KRJ Poli KIA",
+            href: "/admin/master-menu/rawat-jalan-kia",
         },
     ];
 
     return (
         <LayoutAdmin
-            title="Poli Umum dan Lansia"
-            titlePage="DATA POLI UMUM DAN LANSIA"
+            title="Poli Kesehatan Ibu dan Anak "
+            titlePage="DATA POLI KESEHATAN IBU DAN ANAK"
             breadCrumbs={breadCrumbs}
             user={currentUser}
         >
@@ -40,10 +36,10 @@ const KRJUmumLansia = ({
                         <Modal
                             opened={opened}
                             onClose={close}
-                            title="Tambah Kartu Rawat Jalan Poli Umum dan Lansia"
+                            title="Tambah Kartu Rawat Jalan Kesehatan Ibu dan Anak"
                             size="80%"
                         >
-                            <AddPoliUmumLansiaModal dataDoker={dataDoker} />
+                            <AddPoliKIA dataDoker={dataDoker} />
                         </Modal>
                         {/* BUtton */}
                         <div>
@@ -58,10 +54,7 @@ const KRJUmumLansia = ({
 
                     {/* Data Admins */}
                     <div className="w-full border border-gray-300 rounded-xl">
-                        <TableUmumLansia
-                            dataUmumLansia={dataUmumLansia}
-                            dataDoker={dataDoker}
-                        />
+                        <TableKIA dataKIA={dataKIA} dataDoker={dataDoker} />
                     </div>
                 </div>
             </div>
@@ -69,4 +62,4 @@ const KRJUmumLansia = ({
     );
 };
 
-export default KRJUmumLansia;
+export default KRJKIA;
