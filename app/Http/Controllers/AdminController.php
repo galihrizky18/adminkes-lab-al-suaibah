@@ -27,8 +27,26 @@ class AdminController extends Controller
     public function dashboard(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+
+        // Total Data
+        $totalUmumLansia = krjPoliUmumLansia::count();
+        $totalAnak = krjPoliAnak::count();
+        $totalGigi = krjPoliGigi::count();
+        $totalKIA = krjPoliKIA::count();
+        $totalLaboratorium = Laboratorium::count();
+        $totalFarmasi = Farmasi::count();
+
+        $totalData = [
+            "totalUmumLansia" => $totalUmumLansia,
+            "totalAnak" => $totalAnak,
+            "totalGigi" => $totalGigi,
+            "totalKIA" => $totalKIA,
+            "totalLaboratorium" => $totalLaboratorium,
+            "totalFarmasi" => $totalFarmasi,
+        ];
+
         
-        return Inertia::render('admin/Dashboard',['currentUser'=>$currentUser]);
+        return Inertia::render('admin/Dashboard',['currentUser'=>$currentUser, 'totalData'=>$totalData]);
     }
 
     // ==================================================================================
