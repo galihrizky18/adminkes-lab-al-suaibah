@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('krj_poli_k_i_a_s', function (Blueprint $table) {
             $table->string('id_krj_poli_KIA')->primary();
             $table->string('id_farmasi')->nullable();
-            $table->foreign('id_farmasi')->references('id_farmasi')->on('farmasis')->onDelete('cascade');
+            $table->foreign('id_farmasi')->references('id_farmasi')->on('farmasis')->onDelete('SET NULL');
             $table->string('id_dokter');
             $table->string('penanggung_jawab');
             $table->string('name');
