@@ -110,7 +110,7 @@ const SideBarAdmin = () => {
                                 <CardSideBarAdmin
                                     img={IconBooks}
                                     imgHover={IconBooksSolid}
-                                    title={"Kartu Rawat Anak"}
+                                    title={"Kartu Rawat Jalan Anak"}
                                     href={"/admin/master-menu/rawat-jalan-anak"}
                                 />
                                 <CardSideBarAdmin

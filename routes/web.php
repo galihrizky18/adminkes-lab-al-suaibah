@@ -65,6 +65,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/jadwal-dokter', [AdminController::class, 'dataJadwalDokter'])->name('dataJadwalDokter');
         Route::get('/rawat-jalan-umum-lansia', [AdminController::class, 'KRJPoliUmumLansia'])->name('KRJPoliUmumLansia');
         Route::get('/rawat-jalan-kia', [AdminController::class, 'KRJPoliKIA'])->name('KRJPoliKIA');
+        Route::get('/rawat-jalan-anak', [AdminController::class, 'KRJPoliAnak'])->name('KRJPoliAnak');
         Route::get('/poli-gigi', [AdminController::class, 'dataPoliGigi'])->name('dataPoliGigi');
         Route::get('/laboratorium', [AdminController::class, 'dataLaboratorium'])->name('dataLaboratorium');
         Route::get('/farmasi', [AdminController::class, 'dataFarmasi'])->name('dataFarmasi');
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/get-data-umum', [GetData::class, 'getDataKRJUMumLansia'])->name('getDataKRJUMumLansia');
         Route::get('/get-data-gigi', [GetData::class, 'getDataKRJGigi'])->name('getDataKRJGigi');
         Route::get('/get-data-kia', [GetData::class, 'getDataKRJKIA'])->name('getDataKRJKIA');
+        Route::get('/get-data-anak', [GetData::class, 'getDataKRJAnak'])->name('getDataKRJAnak');
         
         
     });
@@ -86,6 +88,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::match(['get', 'post'],'dokter', [DetailController::class, 'detailDokter']);
         Route::match(['get', 'post'],'rawat-jalan-umum-lansia', [DetailController::class, 'detailKRJPoliUmumLansia']);
         Route::match(['get', 'post'],'rawat-jalan-kia', [DetailController::class, 'detailKRJKIA']);
+        Route::match(['get', 'post'],'rawat-jalan-anak', [DetailController::class, 'detailKRJAnak']);
         Route::match(['get', 'post'],'poli-gigi', [DetailController::class, 'detailPoliGigi']);
         Route::match(['get', 'post'],'jadwal-dokter', [DetailController::class, 'detailJadwalDokter']);
         Route::match(['get', 'post'],'laboratorium', [DetailController::class, 'detailLab']);
@@ -98,6 +101,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/dokters', [AdminController::class, 'addDokters'])->name("addDokters");
         Route::post('/umum-lansia', [AdminController::class, 'addKRJPoliUmumLansia'])->name("addKRJPoliUmumLansia");
         Route::post('/kia', [AdminController::class, 'addKRJPoliKIA'])->name("addKRJPoliKIA");
+        Route::post('/anak', [AdminController::class, 'addKRJPoliAnak'])->name("addKRJPoliAnak");
         Route::post('/gigi', [AdminController::class, 'addKRJPoliGigi'])->name("addKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'addLab'])->name("addLab");
         Route::post('/jadwal-dokter', [AdminController::class, 'addJadwalDokter'])->name("addJadwalDokter");
@@ -111,6 +115,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/dokter', [AdminController::class, 'editDokter'])->name("editDokter");
         Route::post('/umum-lansia', [AdminController::class, 'editKRJPoliUmumLansia'])->name("editKRJPoliUmumLansia");
         Route::post('/kia', [AdminController::class, 'editKRJKIA'])->name("editKRJKIA");
+        Route::post('/anak', [AdminController::class, 'editKRJAnak'])->name("editKRJAnak");
         Route::post('/gigi', [AdminController::class, 'editKRJPoliGigi'])->name("editKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'editLab'])->name("editLab");
         Route::post('/jadwal-dokter', [AdminController::class, 'editJadwalDokter'])->name("editJadwalDokter");
@@ -122,6 +127,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/dokter', [AdminController::class, 'deleteDokter'])->name("deleteDokter");
         Route::post('/umum-lansia', [AdminController::class, 'deleteKRJPoliUmumLansia'])->name("deleteKRJPoliUmumLansia");
         Route::post('/kia', [AdminController::class, 'deleteKRJKIA'])->name("deleteKRJKIA");
+        Route::post('/anak', [AdminController::class, 'deleteKRJAnak'])->name("deledeleteKRJAnakteKRJKIA");
         Route::post('/gigi', [AdminController::class, 'deleteKRJPoliGigi'])->name("deleteKRJPoliGigi");
         Route::post('/lab', [AdminController::class, 'deleteLab'])->name("deleteLab");
         Route::post('/jadwal-dokter', [AdminController::class, 'deleteJadwalDokter'])->name("deleteJadwalDokter");

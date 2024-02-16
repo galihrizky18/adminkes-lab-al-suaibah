@@ -66,8 +66,6 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
         },
     });
 
-    // console.log(dataLayanan);
-
     // Convert Data
     // Conver Layanan
     const convertLayanan = (data) => {
@@ -77,14 +75,16 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
         }));
     };
     const convertPatient = (data) => {
-        return dataPatient.map((item) => ({
+        return data.map((item) => ({
             value:
                 item.id_krj_poli_umum_lansia ||
                 item.id_krj_poli_gigi ||
+                item.id_krj_poli_anak ||
                 item.id_krj_poli_KIA,
             label: `${item.name} - ${
                 item.id_krj_poli_umum_lansia ||
                 item.id_krj_poli_gigi ||
+                item.id_krj_poli_anak ||
                 item.id_krj_poli_KIA
             }`,
         }));
@@ -98,6 +98,7 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
                 (patient) =>
                     patient.id_krj_poli_umum_lansia === id ||
                     patient.id_krj_poli_gigi === id ||
+                    patient.id_krj_poli_anak === id ||
                     patient.id_krj_poli_KIA === id
             );
             const firstSelectedPatient =
@@ -113,6 +114,7 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
                 data: data,
             });
 
+            console.log(response.data.message);
             if (response.data.message === "Success Save Data") {
                 Swal.fire({
                     title: "Save Data!",
@@ -159,6 +161,18 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
                 .catch((error) => {
                     console.log(error);
                 });
+        } else if (layanan === "layanan2") {
+            axios
+                .get("/admin/get-data/get-data-anak")
+                .then((response) => {
+                    if (response.data.message === "Empty Data") {
+                        console.log("Empty Data");
+                    }
+                    setDataPatient(response.data.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         } else if (layanan === "layanan3") {
             axios
                 .get("/admin/get-data/get-data-gigi")
@@ -196,6 +210,7 @@ const AddFarmasiUmumLansia = ({ dataLayanan }) => {
             mx="auto"
             onSubmit={form.onSubmit((data) => {
                 handleSubmit(data);
+                // console.log(data);
             })}
         >
             {/* Detailatient */}

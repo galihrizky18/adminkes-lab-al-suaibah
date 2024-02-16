@@ -6,6 +6,7 @@ use App\Models\Admins;
 use App\Models\Dokter;
 use App\Models\Farmasi;
 use App\Models\JadwalDokter;
+use App\Models\krjPoliAnak;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliKIA;
 use App\Models\krjPoliUmumLansia;
@@ -119,7 +120,7 @@ class AdminController extends Controller
         ]);
     }
 
-    // BELUM BERUBAH DATANYA
+
     public function KRJPoliKIA(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -162,6 +163,48 @@ class AdminController extends Controller
             'dataPerBulan'=>$dataPerBulan,
         ]);
     }
+    public function KRJPoliAnak(){
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        $dataDoker = Dokter::all();
+        $dataAnak = krjPoliAnak::with('dokter')->get();
+
+        // data perbulan
+        $dataJanuari = $dataAnak->where('bulan_input', "01")->count();
+        $dataFebruari = $dataAnak->where('bulan_input', "02")->count();
+        $dataMaret = $dataAnak->where('bulan_input', "03")->count();
+        $dataApril = $dataAnak->where('bulan_input', "04")->count();
+        $dataMei = $dataAnak->where('bulan_input', "05")->count();
+        $dataJuni = $dataAnak->where('bulan_input', "06")->count();
+        $dataJuli = $dataAnak->where('bulan_input', "07")->count();
+        $dataAgustus = $dataAnak->where('bulan_input', "08")->count();
+        $dataSeptember = $dataAnak->where('bulan_input', "09")->count();
+        $dataOktober = $dataAnak->where('bulan_input', "10")->count();
+        $dataNovember = $dataAnak->where('bulan_input', "11")->count();
+        $dataDesember = $dataAnak->where('bulan_input', "12")->count();
+
+        $dataPerBulan = [
+            "januari" => $dataJanuari,
+            "februari" => $dataFebruari,
+            "maret" => $dataMaret,
+            "april" => $dataApril,
+            "mei" => $dataMei,
+            "juni" => $dataJuni,
+            "juli" => $dataJuli,
+            "agustus" => $dataAgustus,
+            "september" => $dataSeptember,
+            "oktober" => $dataOktober,
+            "november" => $dataNovember,
+            "desember" => $dataDesember,
+        ];
+        
+        return Inertia::render('admin/menuMaster/KRJAnak',[
+            'currentUser'=>$currentUser,
+            'dataAnak'=>$dataAnak,
+            'dataDoker'=>$dataDoker,
+            'dataPerBulan'=>$dataPerBulan,
+        ]);
+    }
     public function dataPoliGigi(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -189,8 +232,10 @@ class AdminController extends Controller
     }
     public function dataFarmasi(){
 
+
+        // Tambahkan untuk Poli Anak
         $dataLayanan = Layanan::all();
-        $dataFarmasi = Farmasi::with('krjPoliUmumLansia.dokter','krjPoliKIA.dokter', 'krjPoliGigi.dokter','layanan' )->get();
+        $dataFarmasi = Farmasi::with('krjPoliUmumLansia.dokter','krjPoliKIA.dokter','krjPoliAnak.dokter', 'krjPoliGigi.dokter','layanan' )->get();
 
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -404,6 +449,59 @@ class AdminController extends Controller
        
 
     }
+    public function addKRJPoliAnak(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $month = date('m', $currentTime);
+             $idKRJAnak = "KRJANK-".$time;
+    
+            //  check Data
+            $cekData = krjPoliAnak::where('id_dokter', $dataInput['id_dokter'])->where('name', $dataInput['name'])->where('birth',$dataInput['birth'])->exists();
+    
+            if($cekData){
+                return response()->json(['message'=>'Found Data']);
+            }
+    
+            // Format Tekanan Darah
+            $tdarah = $dataInput['tdSistolik'] . '/' . $dataInput['tdDiastolik'];
+    
+            if($dataInput){
+                $KRJANK = new krjPoliAnak();
+                $KRJANK->id_krj_poli_anak = $idKRJAnak;
+                $KRJANK->bulan_input = $month;
+                $KRJANK->id_dokter = $dataInput['id_dokter'];
+                $KRJANK->penanggung_jawab = $dataInput['penanggung_jawab'];
+                $KRJANK->name = $dataInput['name'];
+                $KRJANK->jk = $dataInput['jk'];
+                $KRJANK->birth = $dataInput['birth'];
+                $KRJANK->bb = $dataInput['bb'];
+                $KRJANK->tb = $dataInput['tb'];
+                $KRJANK->td = $tdarah;
+                $KRJANK->rr = $dataInput['rr'];
+                $KRJANK->n = $dataInput['n'];
+                $KRJANK->anamnesis = $dataInput['anamnesis'];
+                $KRJANK->pemeriksaan_fisik = $dataInput['pemeriksaan_fisik'];
+                $KRJANK->pemeriksaan_penunjang = $dataInput['pemeriksaan_penunjang'];
+                $KRJANK->diagnosis = $dataInput['diagnosis'];
+                $KRJANK->terapi = $dataInput['terapi'];
+                $KRJANK->rujukan = $dataInput['rujukan'];
+    
+                if($KRJANK->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message'=>'Fail Request']);
+        }
+       
+
+    }
     public function addKRJPoliGigi(Request $request){
         try {
             $dataInput = $request->input('data');
@@ -568,33 +666,19 @@ class AdminController extends Controller
              $time = date('YmdHis', $currentTime);
              $idFarmasi = "FRM-".$time;
     
+
+
             //  check Data
             $cekData = Farmasi::where('id_pemeriksaan', $dataInput['id_pemeriksaan'])->exists();
             if($cekData){
                 return response()->json(['message'=>'Found Data']);
             }
-  
-            if($dataInput['id_layanan'] === "layanan1"){
-                krjPoliUmumLansia::where('id_krj_poli_umum_lansia', $dataInput['id_pemeriksaan'])->update([
-                    'id_farmasi' => $idFarmasi
-                ]);
-            }
-            // else if($dataInput['id_layanan'] === "layanan2"){
-                
-            // }
-            else if($dataInput['id_layanan'] === "layanan3"){
-                krjPoliGigi::where('id_krj_poli_gigi', $dataInput['id_pemeriksaan'])->update([
-                    'id_farmasi'=>$idFarmasi
-                ]);
-            }
-            // else if($dataInput['id_layanan'] === "layanan6"){
-
-            // }
-
             
 
             if($dataInput){
                 $dataFarmasi = new Farmasi();
+
+                
                 $dataFarmasi->id_farmasi  = $idFarmasi;
                 $dataFarmasi->id_pemeriksaan = $dataInput['id_pemeriksaan'];
                 $dataFarmasi->id_layanan = $dataInput['id_layanan'];
@@ -631,8 +715,32 @@ class AdminController extends Controller
                 
                 
                 if($dataFarmasi->save()){
-                    return response()->json(['message'=>'Success Save Data']);
+                     // Update data per Poli
+                    if($dataInput['id_layanan'] === "layanan1"){
+                        krjPoliUmumLansia::where('id_krj_poli_umum_lansia', $dataInput['id_pemeriksaan'])->update([
+                            'id_farmasi' => $idFarmasi
+                        ]);
+                    }
+                    else if($dataInput['id_layanan'] === "layanan2"){
+                        krjPoliAnak::where('id_krj_poli_anak', $dataInput['id_pemeriksaan'])->update([
+                            'id_farmasi'=>$idFarmasi
+                        ]);
+                    }
+                    else if($dataInput['id_layanan'] === "layanan3"){
+                        krjPoliGigi::where('id_krj_poli_gigi', $dataInput['id_pemeriksaan'])->update([
+                            'id_farmasi'=>$idFarmasi
+                        ]);
+                    }
+                    else if($dataInput['id_layanan'] === "layanan6"){
+                        krjPoliKIA::where('id_krj_poli_KIA', $dataInput['id_pemeriksaan'])->update([
+                            'id_farmasi'=>$idFarmasi
+                        ]);
+                    }
+
+                        return response()->json(['message'=>'Success Save Data']);
                 }
+
+                        
                 return response()->json(['message'=>'Failed Save Data']);
             }
 
@@ -861,6 +969,43 @@ class AdminController extends Controller
             return response()->json(['message' => 'Failed Request Database']);
         }
     }
+    public function editKRJAnak(Request $request)
+    {
+        try {
+            $dataEditKRJAnak = $request->input('newData');
+    
+            $tekananDarah = $dataEditKRJAnak['tdSistolik'].'/'.$dataEditKRJAnak['tdDiastolik'];
+            
+            $dataUpdate = krjPoliAnak::where('id_krj_poli_anak', $dataEditKRJAnak['id_krj_poli_anak'])->update([
+                'id_dokter'=>$dataEditKRJAnak['id_dokter'],
+                'name'=>$dataEditKRJAnak['name'],
+                'birth'=>$dataEditKRJAnak['birth'],
+                'bb'=>$dataEditKRJAnak['bb'],
+                'tb'=>$dataEditKRJAnak['tb'],
+                'td'=>$tekananDarah,
+                'rr'=>$dataEditKRJAnak['rr'],
+                'n'=>$dataEditKRJAnak['n'],
+                'anamnesis'=>$dataEditKRJAnak['anamnesis'],
+                'pemeriksaan_fisik'=>$dataEditKRJAnak['pemeriksaan_fisik'],
+                'pemeriksaan_penunjang'=>$dataEditKRJAnak['pemeriksaan_penunjang'],
+                'diagnosis'=>$dataEditKRJAnak['diagnosis'],
+                'terapi'=>$dataEditKRJAnak['terapi'],
+                'rujukan'=>$dataEditKRJAnak['rujukan'],
+            ]);
+
+            if ($dataUpdate) {
+                return response()->json(['message' => "Success Edit Data"]);
+            }
+            
+            return response()->json(['message' => "Failed Edit Data"]);
+
+    
+    
+        } catch (\Throwable $th) {
+
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+    }
     public function editKRJPoliGigi(Request $request)
     {
         try {
@@ -1030,6 +1175,29 @@ class AdminController extends Controller
             // return response()->json(['message' => $idKRJPoliUmumLansia]);
 
             $checkData = krjPoliKIA::where('id_krj_poli_KIA', $idKRJKIA)->delete();
+
+            if (!$checkData) {
+                return response()->json(['message' => "Data not found"], 404);
+            }
+
+            if ($checkData) {
+                return response()->json(['message' => "Success Delete Data"]);
+            } else {
+                return response()->json(['message' => "Failed Delete Data"]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
+        }
+    }
+    public function deleteKRJAnak(Request $request)
+    {
+        try {
+            $idKRJKIA = $request->input('id');
+
+            // return response()->json(['message' => $idKRJPoliUmumLansia]);
+
+            $checkData = krjPoliAnak::where('id_krj_poli_anak', $idKRJKIA)->delete();
 
             if (!$checkData) {
                 return response()->json(['message' => "Data not found"], 404);

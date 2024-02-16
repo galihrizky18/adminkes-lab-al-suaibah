@@ -6,6 +6,7 @@ use App\Models\Admins;
 use App\Models\Dokter;
 use App\Models\Farmasi;
 use App\Models\JadwalDokter;
+use App\Models\krjPoliAnak;
 use App\Models\krjPoliGigi;
 use App\Models\krjPoliKIA;
 use App\Models\krjPoliUmumLansia;
@@ -94,6 +95,24 @@ class DetailController extends Controller
         return redirect('/admin/master-menu/rawat-jalan-kia');
 
     }
+    public function detailKRJAnak(Request $request){
+
+        $idPoli =  $request->input('id_poli');
+        
+        $dataPoliAnak = krjPoliAnak::with('dokter')->where('id_krj_poli_anak',$idPoli)->first();
+
+        $currentUserData = session('current_user');
+        $currentUser = Admins::with('user')->where('id_admin',$currentUserData->id_admin)->first();
+
+        if($dataPoliAnak){
+            return Inertia::render('admin/menuMaster/detail/DetailAnak',[
+                'currentUser'=>$currentUser,
+                'dataPoliAnak'=>$dataPoliAnak,
+            ]);
+        }
+        return redirect('/admin/master-menu/rawat-jalan-kia');
+
+    }
     public function detailPoliGigi(Request $request){
 
         $idPoli =  $request->input('id_poli');
@@ -152,7 +171,7 @@ class DetailController extends Controller
 
         $idFarmasi =  $request->input('id_farmasi');
         
-        $dataFarmasi = Farmasi::with('layanan','krjPoliUmumLansia.dokter', 'krjPoliKIA.dokter' ,'krjPoliGigi.dokter')->where('id_farmasi',$idFarmasi)->first();
+        $dataFarmasi = Farmasi::with('layanan','krjPoliUmumLansia.dokter', 'krjPoliKIA.dokter', 'krjPoliAnak.dokter','krjPoliGigi.dokter')->where('id_farmasi',$idFarmasi)->first();
 
         $currentUserData = session('current_user');
         $currentUser = Admins::with('user')->where('id_admin',$currentUserData->id_admin)->first();

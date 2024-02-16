@@ -5,11 +5,10 @@ import { useDisclosure } from "@mantine/hooks";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
+import EditKIA from "../modal/EditKIA";
 
 // icon
 import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
-import EditPoliUmumLansiaModal from "../modal/EditPoliUmumLansiaModal";
-import EditKIA from "../modal/EditKIA";
 
 const TableKIA = ({ dataKIA, dataDoker }) => {
     const [originalData, setOriginalData] = useState(dataKIA);

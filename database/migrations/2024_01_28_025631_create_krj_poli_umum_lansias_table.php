@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('krj_poli_umum_lansias', function (Blueprint $table) {
             $table->string('id_krj_poli_umum_lansia')->primary();
-            $table->string('id_farmasi')->unique()->nullable();
+            $table->string('id_farmasi')->nullable();
+            $table->foreign('id_farmasi')->references('id_farmasi')->on('farmasis')->onDelete('cascade');
             $table->string('id_dokter');
             $table->string('penanggung_jawab');
             $table->string('name');

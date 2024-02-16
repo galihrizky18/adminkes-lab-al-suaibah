@@ -43,6 +43,9 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi
                                                     .name) ||
+                                            (dataFarmasi.krj_poli_anak &&
+                                                dataFarmasi.krj_poli_anak
+                                                    .name) ||
                                             (dataFarmasi.krj_poli_k_i_a &&
                                                 dataFarmasi.krj_poli_k_i_a
                                                     .name) ||
@@ -59,6 +62,8 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                                 .jk) ||
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi.jk) ||
+                                            (dataFarmasi.krj_poli_anak &&
+                                                dataFarmasi.krj_poli_anak.jk) ||
                                             (dataFarmasi.krj_poli_k_i_a &&
                                                 dataFarmasi.krj_poli_k_i_a
                                                     .jk) ||
@@ -75,6 +80,8 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                                 .bb) ||
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi.bb) ||
+                                            (dataFarmasi.krj_poli_anak &&
+                                                dataFarmasi.krj_poli_anak.bb) ||
                                             (dataFarmasi.krj_poli_k_i_a &&
                                                 dataFarmasi.krj_poli_k_i_a
                                                     .bb) ||
@@ -91,6 +98,9 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                                 .dokter.nama_dokter) ||
                                             (dataFarmasi.krj_poli_gigi &&
                                                 dataFarmasi.krj_poli_gigi.dokter
+                                                    .nama_dokter) ||
+                                            (dataFarmasi.krj_poli_anak &&
+                                                dataFarmasi.krj_poli_anak.dokter
                                                     .nama_dokter) ||
                                             (dataFarmasi.krj_poli_k_i_a &&
                                                 dataFarmasi.krj_poli_k_i_a
@@ -114,6 +124,8 @@ const DetailFarmasi = ({ currentUser, dataFarmasi }) => {
                                         {(dataFarmasi.krj_poli_umum_lansia &&
                                             dataFarmasi.layanan.layanan) ||
                                             (dataFarmasi.krj_poli_gigi &&
+                                                dataFarmasi.layanan.layanan) ||
+                                            (dataFarmasi.krj_poli_anak &&
                                                 dataFarmasi.layanan.layanan) ||
                                             (dataFarmasi.krj_poli_k_i_a &&
                                                 dataFarmasi.layanan.layanan) ||
