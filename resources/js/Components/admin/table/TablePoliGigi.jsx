@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditPoliGigi from "../modal/EditPoliGigi";
 
 const TablePoliGigi = ({ dataGigi, dataDoker }) => {
@@ -43,17 +43,22 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                     className="grid gap-1 py-2"
                     style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
                 >
-                    {/* Delete Button */}
+                    {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"
-                        color="red"
+                        color="blue"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_krj_poli_gigi)}
+                        onClick={() => {
+                            const data = {
+                                id_poli: e.id_krj_poli_gigi,
+                            };
+                            router.post("/admin/detail/poli-gigi", data);
+                        }}
                     >
-                        Delete
+                        View
                     </Button>
 
                     {/* Edit Button */}
@@ -88,6 +93,19 @@ const TablePoliGigi = ({ dataGigi, dataDoker }) => {
                         }}
                     >
                         Edit
+                    </Button>
+
+                    {/* Delete Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="red"
+                        radius="sm"
+                        onClick={() => confirmDelete(e.id_krj_poli_gigi)}
+                    >
+                        Delete
                     </Button>
                 </div>
             ),

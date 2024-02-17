@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditAdminModal from "../modal/EditAdminModal";
 
 const TableAdmins = ({ dataAdmins }) => {
@@ -43,7 +43,7 @@ const TableAdmins = ({ dataAdmins }) => {
                 >
                     {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"

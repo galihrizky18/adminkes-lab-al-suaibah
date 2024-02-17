@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('krj_poli_gigis', function (Blueprint $table) {
             $table->string('id_krj_poli_gigi')->primary();
+            $table->string('id_farmasi')->nullable();
+            $table->foreign('id_farmasi')->references('id_farmasi')->on('farmasis')->onDelete('SET NULL');
             $table->string('penanggung_jawab');
             $table->string('id_dokter');
             $table->string('name');
+            $table->string('jk');
             $table->date('birth');
             $table->string('bb');
             $table->string('tb');

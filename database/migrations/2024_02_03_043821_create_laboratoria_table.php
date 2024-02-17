@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('card_number');
             $table->string('request_date');
             $table->string('officer');
-            $table->string('poli');
+            $table->string('id_layanan');
             $table->string('clinical_desc');
             $table->string('responsible');
             $table->string('hematologi');

@@ -98,8 +98,20 @@ const SideBarAdmin = () => {
                                 <CardSideBarAdmin
                                     img={IconBooks}
                                     imgHover={IconBooksSolid}
-                                    title={"Data Gigi"}
+                                    title={"Kartu Rawat Jalan Gigi"}
                                     href={"/admin/master-menu/poli-gigi"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Kartu Rawat Jalan KIA"}
+                                    href={"/admin/master-menu/rawat-jalan-kia"}
+                                />
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Kartu Rawat Jalan Anak"}
+                                    href={"/admin/master-menu/rawat-jalan-anak"}
                                 />
                                 <CardSideBarAdmin
                                     img={IconBooks}
@@ -120,14 +132,14 @@ const SideBarAdmin = () => {
                                 img={IconUser}
                                 imgHover={IconUserSolid}
                                 title={"Report"}
-                            />
-
-                            {/* Menu Pembayaranm */}
-                            <CollapseSideBarAdmin
-                                img={IconUser}
-                                imgHover={IconUserSolid}
-                                title={"Pembayaran"}
-                            />
+                            >
+                                <CardSideBarAdmin
+                                    img={IconBooks}
+                                    imgHover={IconBooksSolid}
+                                    title={"Pasien Baru"}
+                                    href={"/admin/report/pasien-baru"}
+                                />
+                            </CollapseSideBarAdmin>
                         </div>
                     </ScrollArea>
                 </div>

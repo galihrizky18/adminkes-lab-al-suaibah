@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditPoliGigi from "../modal/EditPoliGigi";
 import EditLabModal from "../modal/EditLabModal";
 
@@ -31,7 +31,7 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
             card_number: e.card_number,
             request_date: e.request_date,
             officer: e.officer,
-            poli: handleLayanan(e.poli),
+            poli: handleLayanan(e.id_layanan),
             clinical_desc: e.clinical_desc,
             responsible: e.responsible,
             hematologi: e.hematologi,
@@ -52,17 +52,22 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
                     className="grid gap-1 py-2"
                     style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
                 >
-                    {/* Delete Button */}
+                    {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"
-                        color="red"
+                        color="blue"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_laboratorium)}
+                        onClick={() => {
+                            const data = {
+                                id_lab: e.id_laboratorium,
+                            };
+                            router.post("/admin/detail/laboratorium", data);
+                        }}
                     >
-                        Delete
+                        View
                     </Button>
 
                     {/* Edit Button */}
@@ -85,7 +90,7 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
                                 card_number: e.card_number,
                                 request_date: e.request_date,
                                 officer: e.officer,
-                                poli: handleLayanan(e.poli),
+                                poli: handleLayanan(e.id_layanan),
                                 clinical_desc: e.clinical_desc,
                                 responsible: e.responsible,
                                 hematologi: e.hematologi,
@@ -106,6 +111,19 @@ const TableLaboratorium = ({ dataLab, dataPoli }) => {
                         }}
                     >
                         Edit
+                    </Button>
+
+                    {/* Delete Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="red"
+                        radius="sm"
+                        onClick={() => confirmDelete(e.id_laboratorium)}
+                    >
+                        Delete
                     </Button>
                 </div>
             ),

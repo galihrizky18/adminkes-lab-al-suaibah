@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditDokterModal from "../modal/EditDokterModal";
 
 const TableDokters = ({ dataDokters, dataLayanan }) => {
@@ -20,6 +20,7 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
     // Fungsi untuk mengonversi dataDokters
     const convertData = (data) => {
         return data.map((e) => ({
+            id_dokter: e.id_dokter,
             nip_dokter: e.nip,
             layanan: e.layanan.layanan,
             nama: e.nama_dokter,
@@ -32,18 +33,25 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                     className="grid gap-1 py-2"
                     style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
                 >
+                    {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"
-                        color="red"
+                        color="blue"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_dokter)}
+                        onClick={() => {
+                            const data = {
+                                id_dokter: e.id_dokter,
+                            };
+                            router.post("/admin/detail/dokter", data);
+                        }}
                     >
-                        Delete
+                        View
                     </Button>
 
+                    {/* Edit Button */}
                     <Button
                         leftSection={<IconEdit width={20} />}
                         variant="filled"
@@ -66,6 +74,19 @@ const TableDokters = ({ dataDokters, dataLayanan }) => {
                         }}
                     >
                         Edit
+                    </Button>
+
+                    {/* Delete Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="red"
+                        radius="sm"
+                        onClick={() => confirmDelete(e.id_dokter)}
+                    >
+                        Delete
                     </Button>
                 </div>
             ),
