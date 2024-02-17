@@ -10,6 +10,12 @@ const DataDokter = ({ currentUser, dataLayanan, dataDokters }) => {
     const [opened, { open, close }] = useDisclosure(false);
     const [isSuccessSave, setIsSuccessSave] = useState(false);
 
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Data Dokter", href: "/admin/master-menu/dokter" },
+    ];
+
     useEffect(() => {
         if (isSuccessSave) {
             close();
@@ -20,6 +26,7 @@ const DataDokter = ({ currentUser, dataLayanan, dataDokters }) => {
         <LayoutAdmin
             title="Dokter Data"
             titlePage="DATA DOKTER"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">

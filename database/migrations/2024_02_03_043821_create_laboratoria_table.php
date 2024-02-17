@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('laboratorium', function (Blueprint $table) {
+        Schema::create('laboratoria', function (Blueprint $table) {
             $table->string('id_laboratorium')->primary();
             $table->string('name');
             $table->string('jk');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('card_number');
             $table->string('request_date');
             $table->string('officer');
-            $table->string('poli');
+            $table->string('id_layanan');
             $table->string('clinical_desc');
             $table->string('responsible');
             $table->string('hematologi');
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('faal_ginjal');
             $table->string('faal_jantung');
             $table->string('metabolisme_karbo');
+            $table->string('profil_lipid');
             $table->text('pemeriksaan_lainnya');
 
 

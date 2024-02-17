@@ -8,18 +8,18 @@ import { router } from "@inertiajs/react";
 
 const DataAdmin = ({ currentUser, dataAdmins }) => {
     const [opened, { open, close }] = useDisclosure(false);
-    const [isSuccessSave, setIsSuccessSave] = useState(false);
 
-    useEffect(() => {
-        if (isSuccessSave) {
-            close();
-            router.get("/admin/master-menu/admin");
-        }
-    }, [isSuccessSave]);
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Admins", href: "/admin/master-menu/admin" },
+    ];
+
     return (
         <LayoutAdmin
             title="Admin Data"
             titlePage="DATA ADMIN"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">
@@ -30,9 +30,9 @@ const DataAdmin = ({ currentUser, dataAdmins }) => {
                         opened={opened}
                         onClose={close}
                         title="Tambah Admin"
-                        size="md"
+                        size="90%"
                     >
-                        <AddAdminModal setIsSuccessSave={setIsSuccessSave} />
+                        <AddAdminModal />
                     </Modal>
                     {/* BUtton */}
                     <div>
