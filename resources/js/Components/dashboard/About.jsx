@@ -21,12 +21,11 @@ const About = () => {
                     }}
                 >
 
-                    <div className="caption w-[70%]  ">
-                        <div className="title font-bold text-2xl font-open pb-2 px-3 border-b border-white ">
-
+                    <div className="caption w-[70%] sm:text-sm md:text-base xl:text-lg">
+                        <div className="title font-bold  text-2xl font-open pb-2 px-3 border-b border-white ">
                             LABORATORIUM PRODI S1 ADMINISTRASI KESEHATAN
                         </div>
-                        <div className="desc mt-5 mr-36">
+                        <div className="desc mt-5 mr-36 text-sm sm:text-base md:text-lg xl:text-base">
                             Laboratorium Program Studi S1 Administrasi Kesehatan
                             di STIKES AL-SU'AIBAH Palembang merupakan suatu
                             fasilitas penting yang mendukung keberhasilan
