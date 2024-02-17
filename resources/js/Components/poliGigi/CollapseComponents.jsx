@@ -31,7 +31,11 @@ const CollapseComponents = ({ title }) => {
             </Group>
 
             <Collapse in={opened} className="px-10 ">
-                <Text className="select-none ">Heru Ganteng</Text>
+
+                <Text className="select-none ">
+                    
+                </Text>
+
             </Collapse>
         </Box>
     );
