@@ -50,8 +50,9 @@ const Navbar = () => {
                         >
                             Beranda
                         </Link>
-                        <Link className="flex flex-row items-center hover:text-[#278645] hover:scale-110 transition-all">
+                        <Link  href="/profil" className="flex flex-row items-center hover:text-[#278645] hover:scale-110 transition-all">
                             Profil
+
                         </Link>
                         <li className="flex flex-row items-center ">
                             <DropdownLayanan />

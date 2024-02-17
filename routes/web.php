@@ -12,10 +12,10 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliAnakController;
 use App\Http\Controllers\PoliGigiController;
 use App\Http\Controllers\PoliUmumController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [DashboardController::class, 'dashbaord']);
+Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
 
 // Login Page
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -50,6 +51,7 @@ Route::get('/poli-gigi', [PoliGigiController::class, 'dashboard']);
 Route::get('/apotek', [ApotekController::class, 'dashboard']);
 Route::get('/laboratorium', [LabController::class, 'dashboard']);
 Route::get('/kia', [KIAController::class, 'dashboard']);
+
 
 
 
@@ -164,6 +166,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 // ==================================================================================
 // ==================================================================================
 // ==================================================================================
+
+
 
 
 
