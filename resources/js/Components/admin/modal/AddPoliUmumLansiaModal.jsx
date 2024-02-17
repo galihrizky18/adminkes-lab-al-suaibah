@@ -9,6 +9,7 @@ import {
     NumberInput,
     Select,
     Textarea,
+    Radio,
 } from "@mantine/core";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -24,6 +25,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
             id_dokter: "",
             penanggung_jawab: "",
             name: "",
+            jk: "",
             birth: "",
             bb: "",
             tb: "",
@@ -50,6 +52,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                 "Panjang nama harus 1-32 kata"
             ),
             birth: isNotEmpty("Tanggal Lahir tidak boleh kosong"),
+            jk: isNotEmpty("Jenis Kelamin tidak boleh kosong"),
             bb: isNotEmpty("Berat Badan tidak boleh kosong"),
             tb: isNotEmpty("Tinggi Badan tidak boleh kosong"),
             tdSistolik: isNotEmpty("Tekanan Darah Sistolik tidak boleh kosong"),
@@ -75,7 +78,7 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
     const handleConvertDokter = (data) => {
         return data.map((e) => ({
             value: e.id_dokter,
-            label: e.nama_dokter,
+            label: `${e.nama_dokter} - (${e.spesialis})`,
         }));
     };
 
@@ -157,6 +160,33 @@ const AddPoliUmumLansiaModal = ({ dataDoker }) => {
                         withAsterisk
                         {...form.getInputProps("name")}
                     />
+
+                    {/* Jenis Kelamin */}
+                    <div className="item h-10 my-3 flex flex-col gap-2">
+                        <div className="title w-[50%] flex items-center">
+                            Jenis Kelamin
+                        </div>
+                        <div className=" w-full flex flex-row ">
+                            <Radio.Group
+                                name="gender"
+                                className="w-full h-full"
+                                {...form.getInputProps("jk")}
+                            >
+                                <div className="w-full h-full flex flex-row items-center gap-3 sm:gap-7">
+                                    <Radio
+                                        value="male"
+                                        label="Laki-Laki"
+                                        size="md"
+                                    />
+                                    <Radio
+                                        value="female"
+                                        label="Perempuan"
+                                        size="md"
+                                    />
+                                </div>
+                            </Radio.Group>
+                        </div>
+                    </div>
 
                     {/* Input Tanggal Lahir */}
                     <div className="flex flex-col mt-3">

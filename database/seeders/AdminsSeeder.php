@@ -16,12 +16,34 @@ class AdminsSeeder extends Seeder
     {
         $dataUser = [
             [
-                "id_user" => "USR-",
+                "id_admin" => "ADM-1",
+                "id_staff" => "41231231313",
                 "name" => "admin",
-                "username" => "admin",
-                "password" => bcrypt('123'),
+                "phone" => '084512476127831',
                 "email" => "admin@gmail.com",
-            ]
+                "gender" => "male",
+                "birth" => "2018-04-28",
+                "religion" => "Islam",
+                "province" => "Sumatera Selatan",
+                "city" => "Kota Palembang",
+                "nationality" => "Indonesia",
+                "address" => "Sulaiman Amin No 10 Rt24 Rw 07",
+            ],
+            [
+                "id_admin" => "ADM-2",
+                "id_staff" => "1231231512",
+                "name" => "Galih Rizky",
+                "phone" => "084217863187",
+                "email" => "garix@gmail.com",
+                "gender" => "male",
+                "birth" => "2002-02-18",
+                "religion" => "Islam",
+                "province" => "Sumatera Selatan",
+                "city" => "Kota Palembang",
+                "nationality" => "Indonesia",
+                "address" => "Sulaiman Amin No 10 Rt24 Rw 07",
+            ],
+           
         ];
 
         // format waktu
@@ -30,11 +52,18 @@ class AdminsSeeder extends Seeder
 
         foreach($dataUser as $i=>$data){
             Admins::create([
-                'id_user'=> $data['id_user'].$time,
+                'id_admin'=> $data['id_admin'],
+                'id_staff'=> $data['id_staff'],
                 'name'=> $data['name'],
-                'username'=> $data['username'],
-                'password'=> $data['password'],
+                'phone'=> $data['phone'],
                 'email'=> $data['email'],
+                'gender'=> $data['gender'],
+                'birth'=> $data['birth'],
+                'religion'=> $data['religion'],
+                'province'=> $data['province'],
+                'city'=> $data['city'],
+                'nationality'=> $data['nationality'],
+                'address'=> $data['address'],
                 ]
             );
 

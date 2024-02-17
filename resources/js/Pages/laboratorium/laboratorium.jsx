@@ -224,12 +224,14 @@ const laboratorium = () => {
                     </span>
                 </div>
 
+
                 {/* Ucapaan */}
                 <div className="bg-green-600  w-full px-5 py-3 sm:w-[50%] rounded-xl">
                     <marquee behavior="" direction="" className="text-white ">
                         Copyright © 2024 STIKES Al-Su'aibah Palembang | Made
                         with 🌟 5 Codes
                     </marquee>
+
                 </div>
             </div>
 

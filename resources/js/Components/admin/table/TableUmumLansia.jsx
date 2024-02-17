@@ -7,8 +7,7 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit } from "@tabler/icons-react";
-import EditAdminModal from "../modal/EditAdminModal";
+import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
 import EditPoliUmumLansiaModal from "../modal/EditPoliUmumLansiaModal";
 
 const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
@@ -44,17 +43,25 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                     className="grid gap-1 py-2"
                     style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
                 >
-                    {/* Delete Button */}
+                    {/* View Button */}
                     <Button
-                        leftSection={<IconTrash width={20} />}
+                        leftSection={<IconEye width={20} />}
                         variant="filled"
                         width="auto"
                         size="xs"
-                        color="red"
+                        color="blue"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_krj_poli_umum_lansia)}
+                        onClick={() => {
+                            const data = {
+                                id_poli: e.id_krj_poli_umum_lansia,
+                            };
+                            router.post(
+                                "/admin/detail/rawat-jalan-umum-lansia",
+                                data
+                            );
+                        }}
                     >
-                        Delete
+                        View
                     </Button>
 
                     {/* Edit Button */}
@@ -89,6 +96,19 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                         }}
                     >
                         Edit
+                    </Button>
+
+                    {/* Delete Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="red"
+                        radius="sm"
+                        onClick={() => confirmDelete(e.id_krj_poli_umum_lansia)}
+                    >
+                        Delete
                     </Button>
                 </div>
             ),
@@ -126,38 +146,38 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
             name: "Penanggung Jawab",
             selector: (row) => row.penanggung_jawab,
             sortable: true,
-            minWidth: "220px",
+            width: "220px",
             wrap: true,
         },
         {
             name: "Dokter",
             selector: (row) => row.id_dokter,
             sortable: true,
-            minWidth: "200px",
+            width: "200px",
         },
         {
             name: "Nama Pasien",
             selector: (row) => row.name,
             sortable: true,
-            minWidth: "200px",
+            width: "200px",
         },
         {
             name: "Tanggal Lahir",
             selector: (row) => row.birth,
             sortable: true,
-            minWidth: "200px",
+            width: "200px",
         },
         {
             name: "Tanggal Dibuat",
             selector: (row) => row.createDate,
             sortable: true,
-            minWidth: "200px",
+            width: "200px",
         },
         {
             name: "Action",
             selector: (row) => row.action,
             sortable: true,
-            minWidth: "150px",
+            width: "150px",
         },
     ];
 
@@ -226,7 +246,6 @@ const TableUmumLansia = ({ dataUmumLansia, dataDoker }) => {
                 }
             );
 
-            console.log(response.data.message);
             if (response.data.message === "Success Delete Data") {
                 Swal.fire({
                     title: "Success Delete!",
