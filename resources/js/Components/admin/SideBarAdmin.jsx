@@ -11,12 +11,14 @@ import IconUser from "../../../../public/asset/icon/admin/icon-user.svg";
 import IconUserSolid from "../../../../public/asset/icon/admin/icon-user-solid.svg";
 import IconDashboard from "../../../../public/asset/icon/admin/icon-dashboard.svg";
 import IconDashboardSolid from "../../../../public/asset/icon/admin/icon-dashboard-solid.svg";
-import IconPeople from "../../../../public/asset/icon/admin/icon-people.png";
-import IconPeoples from "../../../../public/asset/icon/admin/icon-group-people.png";
 import IconMenuMaster from "../../../../public/asset/icon/admin/icon-menu-master.svg";
 import IconMenuMasterSolid from "../../../../public/asset/icon/admin/icon-menu-master-solid.svg";
 import IconBooks from "../../../../public/asset/icon/admin/icon-books.svg";
 import IconBooksSolid from "../../../../public/asset/icon/admin/icon-books-solid.svg";
+import iconMoney from "../../../../public/asset/icon/admin/icon-money.svg";
+
+// Icon
+import { IconReportMoney } from "@tabler/icons-react";
 
 const SideBarAdmin = () => {
     const [sideOpen, setSideOpen] = useState(false);
@@ -47,6 +49,14 @@ const SideBarAdmin = () => {
                                 href={"/admin"}
                             />
 
+                            {/* Menu Kasir */}
+                            <CardSideBarAdmin
+                                img={iconMoney}
+                                imgHover={iconMoney}
+                                title={"Kasir"}
+                                href={"/admin/kasir"}
+                            />
+
                             {/* Detail Admin */}
                             {/* <CardSideBarAdmin
                                 img={IconBooks}
@@ -57,7 +67,7 @@ const SideBarAdmin = () => {
 
                             {/* Menu Master */}
                             <CollapseSideBarAdmin
-                                img={IconMenuMaster}
+                                img={IconMenuMasterSolid}
                                 imgHover={IconMenuMasterSolid}
                                 title={"Menu Master"}
                             >

@@ -14,7 +14,9 @@ use App\Models\Laboratorium;
 use App\Models\Layanan;
 use App\Models\Registration;
 use App\Models\TableSpesialis;
+use App\Models\Tagihan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -137,8 +139,6 @@ class AdminController extends Controller
             'dataPerBulan'=>$dataPerBulan,
         ]);
     }
-
-
     public function KRJPoliKIA(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
@@ -839,6 +839,46 @@ class AdminController extends Controller
        
 
     }
+    public function addTagihan(Request $request){
+        try {
+            $dataInput = $request->input('data');
+
+            // return response()->json(['message'=>$dataInput]);
+
+            //  format waktu
+             $currentTime = time();
+             $time = date('YmdHis', $currentTime);
+             $idTagihan = "TGHN-".$time;
+
+            $checkData = Tagihan::where('id_pemeriksaan', $dataInput['id_pemeriksaan'])->where('status_tagihan', 'belum lunas')->first();
+
+            if($checkData){
+                return response()->json(['message'=>'Found Data']);
+            }
+  
+            if($dataInput){
+                $dataTagihan = new Tagihan();
+                $dataTagihan->no_tagihan  = $idTagihan;
+                $dataTagihan->id_pemeriksaan = $dataInput['id_pemeriksaan'];
+                $dataTagihan->biaya_dokter = $dataInput['biaya_dokter'];
+                $dataTagihan->biaya_perawat = $dataInput['biaya_perawat'];
+                $dataTagihan->biaya_resep = $dataInput['biaya_resep'];
+                $dataTagihan->status_tagihan = "belum lunas";
+
+                
+                if($dataTagihan->save()){
+                    return response()->json(['message'=>'Success Save Data']);
+                }
+                return response()->json(['message'=>'Failed Save Data']);
+            }
+
+        } catch (\Throwable $th) {
+            // return response()->json(['message'=>'Fail Request']);
+            return response()->json(['message'=>$th->getMessage()]);
+        }
+       
+
+    }
 
     // ==================================================================================
     // ==================================================================================
@@ -1358,8 +1398,6 @@ class AdminController extends Controller
         ]);
     }
 
-
-
     // Delete
     public function deletePasienBaru(Request $request)
     {
@@ -1382,6 +1420,62 @@ class AdminController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Failed Request Database', 'error' => $th->getMessage()]);
         }
+    }
+
+
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+    // ==================================================================================
+
+    // KASIR
+    public function adminKasir(){
+        $currentUserData = session('current_user');
+        $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        $dataTagihan = Tagihan::with('krjPoliUmumLansia','krjPoliKIA','krjPoliAnak','krjPoliGigi')->get();
+
+        $dataLayanan = Layanan::all();
+      
+
+        return Inertia::render('admin/kasir/AdminKasir',[
+            'currentUser'=>$currentUser,
+            'dataTagihan'=>$dataTagihan,
+            'dataLayanan'=>$dataLayanan,
+
+            
+        ]);
+    }
+
+    public function pembayaran(Request $request){
+        try {
+            $no_tagihan = $request->input('no_tagihan');
+            // return response()->json(['message' => $no_tagihan]);
+
+            // Ambil data waktu
+            $waktuSekarang = Carbon::now();
+
+            $checkData = Tagihan::where('no_tagihan',$no_tagihan['no_tagihan'])->where('status_tagihan','lunas')->first();
+            if($checkData){
+                return response()->json(['message' => "Data Sudah Lunas"]);
+            }
+
+            $data = Tagihan::where('no_tagihan',$no_tagihan['no_tagihan'])->update([
+                'status_tagihan'=>'lunas',
+                'uang_pembayaran'=>$no_tagihan['uang_pembayaran'],
+                'tanggal_pelunasan'=>$waktuSekarang,
+            ]);
+
+           
+
+            if ($data) {
+                return response()->json(['message' => "Success Pembayaran"]);
+            }
+            
+            return response()->json(['message' => "Failed Pembayaran"]);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed Request Database']);
+        }
+       
     }
 
 
