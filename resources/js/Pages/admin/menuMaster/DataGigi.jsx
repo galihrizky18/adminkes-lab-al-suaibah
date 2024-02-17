@@ -7,11 +7,17 @@ import TablePoliGigi from "@/Components/admin/table/TablePoliGigi";
 
 const DataGigi = ({ currentUser, dataGigi, dataDoker }) => {
     const [opened, { open, close }] = useDisclosure(false);
+    // BreadCrumbs
+    const breadCrumbs = [
+        { title: "Home", href: "/admin" },
+        { title: "Data Poli Gigi", href: "/admin/master-menu/poli-gigi" },
+    ];
 
     return (
         <LayoutAdmin
             title="Poli Gigi"
             titlePage="DATA POLI GIGI"
+            breadCrumbs={breadCrumbs}
             user={currentUser}
         >
             <div className="bg-white p-5 rounded-xl shadow-xl flex flex-col gap-4 ">

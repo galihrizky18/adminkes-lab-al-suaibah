@@ -16,4 +16,11 @@ class Layanan extends Model
     public function registration(){
         return $this->hasOne(Registration::class, 'id_layanan', 'id_layanan');
     }
+    public function lab(){
+        return $this->belongsTo(Laboratorium::class, 'id_layanan', 'id_layanan');
+    }
+
+    public function farmasi(){
+        return $this->hasMany(Farmasi::class, 'id_layanan', 'id_layanan');
+    }
 }
