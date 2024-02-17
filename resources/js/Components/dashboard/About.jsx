@@ -23,22 +23,15 @@ const About = () => {
 
                     <div className="caption w-[70%]  ">
                         <div className="title font-bold text-2xl font-open pb-2 px-3 border-b border-white ">
-
-                            LABORATORIUM PRODI S1 ADMINISTRASI KESEHATAN
+                        KEUNGGULAN PRODI
                         </div>
                         <div className="desc mt-5 mr-36">
-                            Laboratorium Program Studi S1 Administrasi Kesehatan
-                            di STIKES AL-SU'AIBAH Palembang merupakan suatu
-                            fasilitas penting yang mendukung keberhasilan
-                            pendidikan dan pengembangan mahasiswa. Laboratorium
-                            ini dirancang untuk memenuhi kebutuhan praktikum,
-                            penelitian, dan pengembangan keilmuan dalam bidang
-                            administrasi kesehatan. Dengan memadukan konsep
-                            administrasi, manajemen, keuangan, dan kepemimpinan
-                            dengan nilai-nilai islami, laboratorium ini
-                            bertujuan untuk melahirkan tenaga administrasi
-                            kesehatan yang unggul, berintegritas, dan mampu
-                            bersaing di tingkat nasional.
+                            <h1>1.Dosen yang profesional berasal dari Universitas Ternama di Indonesia dan praktisi kesehatan berpengalaman</h1>
+                            <h1>2.Rancangan perkuliahan dan kurikulum yang up to date sesuai kebutuhan</h1>
+                            <h1>3.Tempat magang dan praktik yang berkualitas di beberapa institusi pemerintah,swasta,dan lembaga masyarakat</h1>
+                            <h1>4.Lulusan prodi Administrasi Kesehatan dibekali dasar administrasi,manajemen,keuangan,dan kepeminpinan yang menjamin siap kerja di berbagai jenis dan jenjang pelayanan kesehatan</h1>
+                            <h1>5.Memfasilitasi alumni jika ingin melanjutkan Pendidikan Magister S2 Kesehatan di kampus terbaik di Indonesia maupun luar negeri</h1>
+                            <h1>6.Biaya akademik dapat diangsur secara fleksibel</h1>
                         </div>
                     </div>
                 </div>
@@ -47,20 +40,15 @@ const About = () => {
             {/* Layar Android */}
             <div className="sm:hidden flex flex-col h-full w-full px-3 py-5 text-white bg-[#278645]">
                 <div className="title font-bold text-2xl text-center font-open pb-2 px-3 border-b border-white">
-                    LABORATORIUM PRODI S1 ADMINISTRASI KESEHATAN
+                KEUNGGULAN PRODI
                 </div>
                 <div className="desc text-justify mt-3 overflow-auto">
-                    Laboratorium Program Studi S1 Administrasi Kesehatan di
-                    STIKES AL-SU'AIBAH Palembang merupakan suatu fasilitas
-                    penting yang mendukung keberhasilan pendidikan dan
-                    pengembangan mahasiswa. Laboratorium ini dirancang untuk
-                    memenuhi kebutuhan praktikum, penelitian, dan pengembangan
-                    keilmuan dalam bidang administrasi kesehatan. Dengan
-                    memadukan konsep administrasi, manajemen, keuangan, dan
-                    kepemimpinan dengan nilai-nilai islami, laboratorium ini
-                    bertujuan untuk melahirkan tenaga administrasi kesehatan
-                    yang unggul, berintegritas, dan mampu bersaing di tingkat
-                    nasional.
+                            <h1>1.Dosen yang profesional berasal dari Universitas Ternama di Indonesia dan praktisi kesehatan berpengalaman</h1>
+                            <h1>2.Rancangan perkuliahan dan kurikulum yang up to date sesuai kebutuhan</h1>
+                            <h1>3.Tempat magang dan praktik yang berkualitas di beberapa institusi pemerintah,swasta,dan lembaga masyarakat</h1>
+                            <h1>4.Lulusan prodi Administrasi Kesehatan dibekali dasar administrasi,manajemen,keuangan,dan kepeminpinan yang menjamin siap kerja di berbagai jenis dan jenjang pelayanan kesehatan</h1>
+                            <h1>5.Memfasilitasi alumni jika ingin melanjutkan Pendidikan Magister S2 Kesehatan di kampus terbaik di Indonesia maupun luar negeri</h1>
+                            <h1>6.Biaya akademik dapat diangsur secara fleksibel</h1>
                 </div>
             </div>
         </div>
