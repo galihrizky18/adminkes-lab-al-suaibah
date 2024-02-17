@@ -16,4 +16,7 @@ class krjPoliUmumLansia extends Model
     public function farmasi(){
         return $this->hasOne(Farmasi::class, 'id_krj_poli_umum_lansia' , 'id_pemeriksaan');
     }
+    public function Tagihan(){
+        return $this->hasOne(Tagihan::class, 'id_krj_poli_umum_lansia' , 'id_pemeriksaan');
+    }
 }

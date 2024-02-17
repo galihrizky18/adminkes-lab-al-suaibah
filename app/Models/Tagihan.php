@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Farmasi extends Model
+class Tagihan extends Model
 {
     use HasFactory;
 
@@ -25,6 +25,4 @@ class Farmasi extends Model
     public function krjPoliGigi(){
         return $this->belongsTo(KrjPoliGigi::class, 'id_pemeriksaan', 'id_krj_poli_gigi');
     }
-
-
 }

@@ -7,37 +7,44 @@ import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 
 // icon
-import { IconTrash, IconEdit, IconEye } from "@tabler/icons-react";
-import EditAdminModal from "../modal/EditAdminModal";
+import { IconTrash, IconEye } from "@tabler/icons-react";
+// import EditAdminModal from "../modal/EditAdminModal";
 
-const TableAdmins = ({ dataFarmasi }) => {
-    const [originalData, setOriginalData] = useState(dataFarmasi);
+const TableTagihan = ({ dataTagihan }) => {
+    const [originalData, setOriginalData] = useState(dataTagihan);
     const [dataFilter, setDataFilter] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [sendDataEdit, setSendDataEdit] = useState("");
     const [opened, { open, close }] = useDisclosure(false);
 
-    // Fungsi untuk mengonversi dataFarmasi
+    // Fungsi untuk mengonversi dataTagihan
     const convertData = (data) => {
         return data.map((e) => ({
+            no_tagihan: e.no_tagihan,
             id_pemeriksaan: e.id_pemeriksaan,
             name:
                 (e.krj_poli_umum_lansia && e.krj_poli_umum_lansia.name) ||
                 (e.krj_poli_k_i_a && e.krj_poli_k_i_a.name) ||
                 (e.krj_poli_anak && e.krj_poli_anak.name) ||
                 (e.krj_poli_gigi && e.krj_poli_gigi.name) ||
-                e.asuransi_nama,
+                "",
             birth:
                 (e.krj_poli_umum_lansia && e.krj_poli_umum_lansia.birth) ||
                 (e.krj_poli_k_i_a && e.krj_poli_k_i_a.birth) ||
                 (e.krj_poli_anak && e.krj_poli_anak.birth) ||
                 (e.krj_poli_gigi && e.krj_poli_gigi.birth) ||
-                e.asuransi_umur,
-            tipe_farmasi: e.tipe_farmasi,
-            id_layanan:
-                e.id_layanan === "asuransi" ? "Asuransi" : e.layanan.layanan,
-            tanggal_resep: e.tanggal_resep,
-            status_resep: e.status_resep,
+                "",
+            id_layanan: e.krj_poli_umum_lansia
+                ? "Poli Umum"
+                : e.krj_poli_k_i_a
+                ? "Poli Kesehatan Ibu dan Anak"
+                : e.krj_poli_anak
+                ? "Poli Anak"
+                : e.krj_poli_gigi
+                ? "Poli Gigi"
+                : "",
+            tanggal_tagihan: handleDate(e.updated_at),
+            status_tagihan: e.status_tagihan,
             action: (
                 <div
                     className="grid gap-1 py-2"
@@ -53,7 +60,7 @@ const TableAdmins = ({ dataFarmasi }) => {
                         radius="sm"
                         onClick={() => {
                             const data = {
-                                id_farmasi: e.id_farmasi,
+                                no_tagihan: e.no_tagihan,
                             };
                             router.post("/admin/detail/farmasi", data);
                         }}
@@ -69,7 +76,7 @@ const TableAdmins = ({ dataFarmasi }) => {
                         size="xs"
                         color="red"
                         radius="sm"
-                        onClick={() => confirmDelete(e.id_farmasi)}
+                        onClick={() => confirmDelete(e.no_tagihan)}
                     >
                         Delete
                     </Button>
@@ -78,38 +85,43 @@ const TableAdmins = ({ dataFarmasi }) => {
         }));
     };
 
+    // Handle convet Updated_at
+    const handleDate = (date) => {
+        const updatedAtDate = new Date(date);
+
+        const tanggal = updatedAtDate.toISOString().slice(0, 10);
+        return tanggal;
+    };
+
     // mengatur kolom table
     const columns = [
         {
+            name: "Nomor Tagihan",
+            selector: (row) => <label className="">{row.no_tagihan}</label>,
+            sortable: true,
+            width: "250px",
+        },
+        {
             name: "ID Pemeriksaan",
-            selector: (row) => <div className="">{row.id_pemeriksaan}</div>,
+            selector: (row) => <label className="">{row.id_pemeriksaan}</label>,
             sortable: true,
             width: "250px",
         },
         {
             name: "Nama",
             selector: (row) => (
-                <div className="overflow-hidden">
+                <label className="overflow-hidden">
                     <div className="whitespace-normal font-bold">
                         {row.name}
                     </div>
-                </div>
+                </label>
             ),
             sortable: true,
             width: "150px",
         },
         {
-            name: <div className="text-center">Tanggal Lahir</div>,
-            selector: (row) => (
-                <div className="overflow-hidden">
-                    <div className="whitespace-normal">{row.birth}</div>
-                </div>
-            ),
-            sortable: true,
-        },
-        {
-            name: "Tipe",
-            selector: (row) => row.tipe_farmasi,
+            name: <label className="text-center">Tanggal Lahir</label>,
+            selector: (row) => row.birth,
             sortable: true,
         },
         {
@@ -118,27 +130,27 @@ const TableAdmins = ({ dataFarmasi }) => {
             sortable: true,
         },
         {
-            name: "Tanggal Resep",
-            selector: (row) => row.tanggal_resep,
+            name: "Tanggal Tagihan",
+            selector: (row) => row.tanggal_tagihan,
             sortable: true,
         },
         {
-            name: <div className="text-center">Status Resep</div>,
+            name: <label className="text-center">Status Tagihan</label>,
             selector: (row) => (
-                <div className="overflow-hidden">
+                <label className="overflow-hidden">
                     <div className="whitespace-normal font-bold">
-                        {row.status_resep}
+                        {row.status_tagihan}
                     </div>
-                </div>
+                </label>
             ),
             sortable: true,
             width: "150px",
         },
-        {
-            name: "Action",
-            selector: (row) => row.action,
-            sortable: true,
-        },
+        // {
+        //     name: "Action",
+        //     selector: (row) => row.action,
+        //     sortable: true,
+        // },
     ];
 
     // mengatur style table
@@ -165,19 +177,11 @@ const TableAdmins = ({ dataFarmasi }) => {
     // Filtering
     const handleFilter = (event) => {
         const filterData = originalData.filter((d) => {
-            const id_farmasi = d.id_farmasi
+            const no_tagihan = d.no_tagihan
                 .toLowerCase()
                 .includes(event.toLowerCase());
 
-            const tipe_farmasi = d.tipe_farmasi
-                .toLowerCase()
-                .includes(event.toLowerCase());
-
-            const status_resep = d.status_resep
-                .toLowerCase()
-                .includes(event.toLowerCase());
-
-            const tanggal_resep = d.tanggal_resep
+            const status_tagihan = d.status_tagihan
                 .toLowerCase()
                 .includes(event.toLowerCase());
 
@@ -197,18 +201,12 @@ const TableAdmins = ({ dataFarmasi }) => {
                 (d.krj_poli_gigi &&
                     d.krj_poli_gigi.name
                         .toLowerCase()
-                        .includes(event.toLowerCase())) ||
-                d.asuransi_nama.toLowerCase().includes(event.toLowerCase());
+                        .includes(event.toLowerCase()));
 
-            return (
-                cekName ||
-                id_farmasi ||
-                tipe_farmasi ||
-                status_resep ||
-                tanggal_resep
-            );
+            return cekName || no_tagihan || status_tagihan;
         });
 
+        console.log(filterData);
         setDataFilter(convertData(filterData));
     };
 
@@ -268,9 +266,9 @@ const TableAdmins = ({ dataFarmasi }) => {
     };
 
     useEffect(() => {
-        setOriginalData(dataFarmasi);
-        setDataFilter(convertData(dataFarmasi));
-    }, [dataFarmasi]);
+        setOriginalData(dataTagihan);
+        setDataFilter(convertData(dataTagihan));
+    }, [dataTagihan]);
 
     return (
         <div className="w-full flex flex-col gap-3 p-3">
@@ -281,7 +279,7 @@ const TableAdmins = ({ dataFarmasi }) => {
                 title="Edit Admin"
                 size="90%"
             >
-                <EditAdminModal data={sendDataEdit} />
+                {/* <EditAdminModal data={sendDataEdit} /> */}
             </Modal>
 
             {/* Filter */}
@@ -310,4 +308,4 @@ const TableAdmins = ({ dataFarmasi }) => {
     );
 };
 
-export default TableAdmins;
+export default TableTagihan;
