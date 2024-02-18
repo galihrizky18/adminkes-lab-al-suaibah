@@ -14,14 +14,21 @@ class Dokter extends Model
     public function layanan(){
         return $this->belongsTo(Layanan::class, "id_layanan", "id_layanan");
     }
+    public function jadwalDokter(){
+        return $this->belongsTo(JadwalDokter::class, "id_dokter", "id_dokter");
+    }
     public function registration(){
         return $this->hasOne(Registration::class, 'id_dokter', 'id_dokter');
     }
-
     public function krjPoliUmumLansia(){
         return $this->hasOne(krjPoliUmumLansia::class, 'id_dokter', 'id_dokter');
     }
-    
+    public function krjPoliKIA(){
+        return $this->hasOne(krjPoliKIA::class, 'id_dokter', 'id_dokter');
+    }
+    public function krjPoliAnak(){
+        return $this->hasOne(krjPoliAnak::class, 'id_dokter', 'id_dokter');
+    }
     public function krjPoliGigi(){
         return $this->hasOne(krjPoliGigi::class, 'id_dokter', 'id_dokter');
     }

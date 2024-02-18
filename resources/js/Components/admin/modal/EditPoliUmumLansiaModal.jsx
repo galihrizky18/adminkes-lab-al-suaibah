@@ -82,8 +82,6 @@ const EditPoliUmumLansiaModal = ({ dataDoker, baseData }) => {
                 newData: data,
             });
 
-            console.log(response.data.message);
-
             if (response.data.message === "Success Edit Data") {
                 Swal.fire({
                     title: "Save Data!",

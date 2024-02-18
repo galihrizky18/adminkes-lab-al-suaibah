@@ -9,6 +9,7 @@ import youtube from "../../../../public/asset/image/youtube.png";
 const Footer = () => {
     return (
         <div className="flex flex-col">
+
             <div className="grid grid-cols-1 md:grid-cols-3 py-5 gap-x-5 px-4 md:px-16 bg-[#278645] text-white">
                 {/* Deskripsi */}
                 <div className="p-2">
@@ -23,8 +24,14 @@ const Footer = () => {
               
                 {/* Hubungi Kami */}
                 <div className="p-2">
+<<<<<<< HEAD
                     <div className="title h-[30%]  text-xl pb-2 font-bold border-b border-white md:justify-start">
                         <span className="flex justify-center items-center pt-5">Contact Us</span>
+=======
+
+                    <div className="title h-[30%] justify-center flex items-center text-xl pb-2 font-bold border-b border-white md:justify-start">
+                        Contact Us
+>>>>>>> 6549ce2f9475e411a0f639bfbe44b66d7370cb88
                     </div>
                     <div className="content mt-3 pl-3 flex flex-col gap-3 ">
                         {/* Instagram */}
@@ -35,6 +42,7 @@ const Footer = () => {
                             </span>
                         </div>
 
+
                         {/* Fecebook */}
                         <div className="flex flex-row gap-3 items-start">
                             <img src={IconTelephone} alt="" width={25} />
@@ -42,6 +50,7 @@ const Footer = () => {
                             0817-7999-2808
                             </span>
                         </div>
+
 
                         {/* You Tube */}
                         <div className="flex flex-row gap-3 items-start">
@@ -91,8 +100,10 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+
             <div className="flex justify-center items-center bg-[#21753c] text-white w-full h-[75px]">
                 Copyright © 2024 STIKES Al-Su'aibah Palembang | Made with 🌟 5 Codes
+
             </div>
         </div>
     );
