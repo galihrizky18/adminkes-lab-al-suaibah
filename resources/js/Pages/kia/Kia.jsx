@@ -12,8 +12,8 @@ import iconlaktasi from "../../../../public/asset/icon/kia/laktasi.png";
 import iconkehamilan from "../../../../public/asset/icon/kia/iconhamil.png";
 import galerilaktasi from "../../../../public/asset/image/galerikia/laktasi2.jpg";
 import galerispa from "../../../../public/asset/image/galerikia/galerispabayi.jpg";
-import galeripijat from "../../../../public/asset/image/galerikia/galeripijatbayi.jpg";
-import galerisenamhamil from "../../../../public/asset/image/galerikia/galerisenamhamil.jpg";
+import galeripijat from "../../../../public/asset/image/pijatbayinew.jpg";
+import galerisenamhamil from "../../../../public/asset/image/senamhamilnew.jpg";
 import fotoklinik from "../../../../public/asset/image/dashboard.png";
 import lokasi from "../../../../public/asset/image/galerikia/lokasi.jpeg";
 import mahasiswakes from "../../../../public/asset/image/galerikia/suster.jpg";
@@ -75,21 +75,21 @@ const Kia = () => {
                 </div> 
 
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2">
-                    <div className="flex flex-col items-center xl:w-[360px] xl:h-[320px] hover:scale-105 transition all duration 200 ">
-                        <img src={galerilaktasi} alt="" className="xl:w-[310px] xl:h-[286px]" />
-                        <span>rifvo</span>
+                    <div className="flex flex-col items-center xl:w-[320px] xl:h-[320px] hover:scale-105 transition all duration 200 border border-black">
+                        <img src={galerilaktasi} alt="" className="xl:w-[80%] xl:h-[80%]" />
+                        <span>Laktasi</span>
                     </div>
-                    <div className="flex flex-col items-center xl:w-[360px] xl:h-[320px] sm:h-[400px] hover:scale-105 transition all duration 200 ">
-                        <img src={galerispa} alt="" className="xl:w-[300px] xl:h-[310px] sm:h-[400px]"/>
-                        <span>enek</span>
+                    <div className="flex flex-col items-center xl:w-[320px] xl:h-[320px] hover:scale-105 transition all duration 200 border border-black">
+                        <img src={galerispa} alt="" className="xl:w-[80%] xl:h-[80%] "/>
+                        <span>Spa Bayi</span>
                     </div>
-                    <div className="flex flex-col items-center xl:w-[360px] xl:h-[320px] hover:scale-105 transition all duration 200 ">
-                        <img src={galerisenamhamil} alt="" className="xl:w-[310] xl:h-[270px]"/>
-                        <span>dia</span>
+                    <div className="flex flex-col items-center xl:w-[320px] xl:h-[320px] hover:scale-105 transition all duration 200 border border-black ">
+                        <img src={galerisenamhamil} alt="" className="xl:w-[80%] xl:h-[80%]"/>
+                        <span>Senam ibu Hamil</span>
                     </div>
-                    <div className="flex flex-col items-center xl:w-[360px] xlh-[320px] hover:scale-105 transition all duration 200">
-                        <img src={galeripijat} alt="" className="xl:w-[310] xl:h-[270px]"/>
-                        <span>kamu</span>
+                    <div className="flex flex-col items-center xl:w-[320px] xlh-[320px] hover:scale-105 transition all duration 200 border border-black">
+                        <img src={galeripijat} alt="" className="xl:w-[80%] xl:h-{80%}"/>
+                        <span>Pijat Bayi</span>
                     </div>
                 </div>
 
