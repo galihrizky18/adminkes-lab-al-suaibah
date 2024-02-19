@@ -39,16 +39,13 @@ const laboratorium = () => {
 
             {/* Body */}
             <div className=" w-full h-full flex flex-col gap-5 justify-center items-center p-5 sm:p-10 ">
-                {/* Bodyyy editt
-                <div className="clas">
-                         <img src={Gambar1} alt="" />
-                </div> */}
+                
                 {/* Title */}
-                <div className="w-full sm:w-[50px] xl:w-[20%] bg-white px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
+                <div className="w-full sm:w-[50px] md:w-[100%] xl:w-[20%] bg-white px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
                     Laboratorium
                 </div>
-                <div className="sm:w-[90%] px-5 py-3  rounded-xl text-center">
-                    <span className="sm:text-[5px] md:text-[10px] xl:text-[17px]">
+                <div className="sm:w-[90%] px-5 py-3 rounded-xl text-center">
+    <               span className="sm:text-sm md:text-base xl:text-lg">
                         Laboratorium Klinik Al-Su'ibah merupakan salah satu unit
                         pelayanan diagnostik terkemuka di STIKES Al-Su'ibah
                         Palembang. Dengan layanan yang tersedia selama 24 jam,
@@ -59,22 +56,18 @@ const laboratorium = () => {
                         nyaman.
                     </span>
                 </div>
-
                 <div className="flex flex-col">
-                    <h4 className=" text-[28px]">Paket Medical CheckUp</h4>
-                    <p className="text-bold text-[15px] text-[#3e433f] text-center">
+                    <h4 className="sm:text-sm md:text-base xl:text-[25px] font-bold">Paket Medical CheckUp</h4>
+                    <p className="sm:text-xs md:text-sm xl:text-[15px] text-[#3e433f] text-center">
                         *Paket Masa Diskon 50%*
                     </p>
                 </div>
 
-
-
-                {/* new */}
                 {/* obat 1 */}
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4">
-                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[100px] sm:h-[200px] rounded-xl">
-                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mikro</span>
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-4">
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[300px] sm:h-[350px] rounded-xl">
+                        <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
+                            <span className=" font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mikro</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. GDA (Gula Darah Acak)</span>
                                 <span>2. Asam Urat</span>
@@ -85,9 +78,9 @@ const laboratorium = () => {
                     </div>
 
                     {/* obat 2 */}
-                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[100px] sm:h-[200px] ">
-                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mili</span>
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[300px] sm:h-[350px] ">
+                        <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
+                            <span className="font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mili</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Darah lengkap</span>
                                 <span>2. GDP</span>
@@ -98,9 +91,9 @@ const laboratorium = () => {
                     </div>
 
                     {/* obat 3 */}
-                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[20px] sm:h-[170px] ">
-                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Kilo</span>
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[300px] sm:h-[350px] rounded-xl">
+                        <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
+                            <span className="sm:mt-[20px] xl:mt-[40px] font-bold">Paket Kilo</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Darah Lengkap</span>
                                 <span>2. Urin Lengkap</span>
@@ -111,9 +104,9 @@ const laboratorium = () => {
                     </div>
 
                     {/* obat 4 */}
-                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[10px] sm:h-[170px] rounded-xl sm:px-5">
-                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mega</span>
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[300px] sm:h-[350px] rounded-xl">
+                        <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
+                            <span className="sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mega</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Asam Urat</span>
                                 <span>2. Asam Urat</span>
@@ -124,9 +117,9 @@ const laboratorium = () => {
                     </div>
 
                     {/* obat 5 */}
-                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] rounded-xl  sm:w-[10px] sm:h-[200px] sm:px-5">
-                        <div className="flex flex-col text-center xl:text-[17px] sm:text-[24px]">
-                            <span className="xl:text-[20px] sm:text-[15px] font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Nino</span>
+                    <div className="bg-white shadow-xl xl:h-[500px] xl:w-[370px] sm:w-[300px] sm:h-[350px] rounded-xl">
+                        <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
+                            <span className="sm:mt-[20px] xl:mt-[40px] font-bold">Paket Nino</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. GDA (Gula Darah Acak)</span>
                                 <span>2. Asam Urat</span>
@@ -137,71 +130,62 @@ const laboratorium = () => {
                     </div>
                 </div>
 
-                {/* obat 4 */}
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-4">
-                    
-
-                {/* obat 5 */}
-                   
-                </div>
-
                 {/* Layanan */}
-                <div className="w-full sm:w-[20%] bg-white px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
+                <div className="w-full sm:w-[20%] sm:text-sm md:text-base xl:text-2xl bg-white px-5 py-3 text-center font-bold font-roboto text-[#237939] rounded-xl shadow-lg ">
                     <span>Layanan Kami</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-4 ">
-                    <div className="bg-green-700 px-5 py-6 text-white sm:text-[50px] xl:text-[18px] sm:w-[30px] sm:h-[50px] md:w-[25px] xl:w-full xl:h-full ">
+                    <div className="bg-green-700 px-5 py-6 text-white sm:text-sm md:text-base xl:text-[18px] sm:h-[150px] md:h-[200px] xl:h-full">
                         <span>1. Pengujian Kesehatan</span>
                         <br />
-                        <span>
+                        <span>  
                             Menyediakan berbagai jenis pengujian untuk diagnosis
                             dan pemantauan kondisi kesehatan, seperti tes darah
                             lengkap, tes urine lengkap dan tes fungsi organ.
                         </span>
                     </div>
-                    <div className="bg-green-700 px-5 py-6  text-white sm:text-[50px] xl:text-[18px] sm:w-[50px] md:w-[25px] xl:w-full sm:h-[50px] xl:h-full">
-                        <span>2. Pengujian penyakit manular </span>
+                    <div className="bg-green-700 px-5 py-6 text-white sm:text-sm md:text-base xl:text-[18px] sm:h-[150px] md:h-[200px] xl:h-full">
+                        <span>2. Pengujian penyakit manular</span>
                         <br />
-                        <span>
+                        <span>  
                             menyediakan pengujian untuk penyakit manular seperti
                             HIV, hepatitis, dan penyakit manular lainnya.
                         </span>
                     </div>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-4 ">
-                    <div className="bg-green-700 px-5 py-6 text-white sm:text-[50px] xl:text-[18px] sm:w-[30px] sm:h-[50px] md:w-[25px] xl:w-full xl:h-full ">
-                        <span>3. Pengujian Klinis</span>
+                    <div className="bg-green-700 px-5 py-6 text-white sm:text-sm md:text-base xl:text-[18px] sm:h-[150px] md:h-[200px] xl:h-full">
+                        <span>3.  Pengujian Klinis</span>
                         <br />
-                        <span>
+                        <span>  
                             Menyediakan pengujian untuk mendukung penelitian
                             klinis dan pengembangan obat, termasuk uji klinis
                             untuk obat baru dan prosedur diagnostik
                         </span>
                     </div>
-                    <div className="bg-green-700 px-5 py-6  text-white sm:text-[50px] xl:text-[18px] sm:w-[50px] md:w-[25px] xl:w-full sm:h-[50px] xl:h-full">
+                    <div className="bg-green-700 px-5 py-6 text-white sm:text-sm md:text-base xl:text-[18px] sm:h-[150px] md:h-[200px] xl:h-full">
                         <span>4. Pengujian Lingkungan</span>
                         <br />
-                        <span>
+                        <span>  
                             Menyediakan pengujian untuk air, tanah, udara, dan
                             bahan kimia lainnya untuk memantau kualitas
                             lingkungan.
                         </span>
                     </div>
                 </div>
-         
 
                 {/* Galeri Laboratorium */}
-                <div className="w-full sm:w-[20%] mt-[40px] bg-white hover:text-[#101611]  px-5 py-3 text-center font-bold text-2xl font-roboto text-[#237939] rounded-xl shadow-lg ">
+                <div className="w-full sm:w-1/6 mt-40px xl:w-1/5 bg-white hover:text-[#101611] px-5 py-3 text-center font-bold sm:text-sm md:text-base xl:text-2xl font-roboto text-[#237939] rounded-xl shadow-lg">
                     <span>Galeri</span>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-7">
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-7">
                     {image.map((data, i) => (
-                        <div key={i} className="sm:w-[20px] sm:h-[2S0px] md:w-[100px] md:h-[100px] xl:w-full xl:h-full">
+                        <div key={i} class="sm:w-full sm:h-auto md:w-[100px] md:h-[100px] lg:w-[200px] lg:h-[200px] xl:w-[350px] xl:h-[250px]">
                             <a href="#">
                                 <img
                                     src={data}
                                     alt=""
-                                    className="w-[350px] h-[250px] shadow-lg rounded-xl hover:brightness-75 transition-all duration-200 hover:scale-110"
+                                    class="w-full h-auto sm:w-[250px] sm:h-[190px] md:w-full md:h-auto lg:w-[250px] lg:h-[250px] xl:w-full xl:h-[250px] shadow-lg rounded-xl hover:brightness-75 transition-all duration-200 hover:scale-110"
                                 />
                             </a>
                         </div>
@@ -209,11 +193,10 @@ const laboratorium = () => {
                 </div>
 
                 {/* Deskripsi Laboratorium */}
-
                 <div className="w-full sm:w-[90%] bg-white px-5 py-3 rounded-xl">
                     <span>Deskripsi :</span>
                     <br />
-                    <span>
+                    <span className="sm:text-sm md:text-base xl:text-lg">
                         Laboratorium Al-Su'ibah menerapkan konsep laboratorium
                         terpadu sehingga memiliki laboratorium patologi klinik,
                         patologi anatomi, mikrobiologi, parasitologi,
@@ -234,8 +217,6 @@ const laboratorium = () => {
 
                 </div>
             </div>
-
-            {/* sjhdsdsjhdshdjsdg */}
 
             {/* Footer */}
             <Footer />

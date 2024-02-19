@@ -12,10 +12,10 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliAnakController;
 use App\Http\Controllers\PoliGigiController;
 use App\Http\Controllers\PoliUmumController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [DashboardController::class, 'dashbaord']);
+Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
 
 // Login Page
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -53,10 +54,14 @@ Route::get('/kia', [KIAController::class, 'dashboard']);
 
 
 
+
 // Admin Page
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/patient', [AdminController::class, 'patientDashboardAdmin'])->name('patientDashboardAdmin');
+    
+    Route::get('/kasir', [AdminController::class, 'adminKasir'])->name('adminKasir');
+    Route::post('/pembayaran', [AdminController::class, 'pembayaran'])->name('pembayaran');
 
     // Menu Master
     Route::prefix('master-menu')->group(function(){
@@ -77,7 +82,15 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/get-data-gigi', [GetData::class, 'getDataKRJGigi'])->name('getDataKRJGigi');
         Route::get('/get-data-kia', [GetData::class, 'getDataKRJKIA'])->name('getDataKRJKIA');
         Route::get('/get-data-anak', [GetData::class, 'getDataKRJAnak'])->name('getDataKRJAnak');
-        
+        Route::post('/get-data-farmasi', [GetData::class, 'getDataFarmasi'])->name('getDataFarmasi');
+
+        // Kasir
+        Route::get('/get-data-umum-kasir', [GetData::class, 'getDataKRJUMumLansiaKasir'])->name('getDataKRJUMumLansiaKasir');
+        Route::get('/get-data-gigi-kasir', [GetData::class, 'getDataKRJGigiKasir'])->name('getDataKRJGigiKasir');
+        Route::get('/get-data-kia-kasir', [GetData::class, 'getDataKRJKIAKasir'])->name('getDataKRJKIAKasir');
+        Route::get('/get-data-anak-kasir', [GetData::class, 'getDataKRJAnakKasir'])->name('getDataKRJAnakKasir');
+        Route::get('/get-data-tagihan', [GetData::class, 'getDataTagihanAll'])->name('getDataTagihanAll');
+        Route::post('/get-data-tagihan', [GetData::class, 'getDataTagihanWithId'])->name('getDataTagihanWithId');
         
     });
 
@@ -107,6 +120,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/jadwal-dokter', [AdminController::class, 'addJadwalDokter'])->name("addJadwalDokter");
         Route::post('/farmasi', [AdminController::class, 'addFarmasi'])->name("addFarmasi");
         Route::post('/farmasi-asuransi', [AdminController::class, 'addFarmasiAsuransi'])->name("addFarmasiAsuransi");
+        Route::post('/tagihan', [AdminController::class, 'addTagihan'])->name("addTagihan");
+
+
     });
 
     // Edit Data
@@ -164,6 +180,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 // ==================================================================================
 // ==================================================================================
 // ==================================================================================
+
+
 
 
 

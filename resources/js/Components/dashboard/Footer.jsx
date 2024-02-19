@@ -24,14 +24,8 @@ const Footer = () => {
               
                 {/* Hubungi Kami */}
                 <div className="p-2">
-<<<<<<< HEAD
-                    <div className="title h-[30%]  text-xl pb-2 font-bold border-b border-white md:justify-start">
-                        <span className="flex justify-center items-center pt-5">Contact Us</span>
-=======
-
                     <div className="title h-[30%] justify-center flex items-center text-xl pb-2 font-bold border-b border-white md:justify-start">
                         Contact Us
->>>>>>> 6549ce2f9475e411a0f639bfbe44b66d7370cb88
                     </div>
                     <div className="content mt-3 pl-3 flex flex-col gap-3 ">
                         {/* Instagram */}
