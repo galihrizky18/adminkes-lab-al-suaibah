@@ -41,31 +41,30 @@ const Kia = () => {
                 </div>
 
                 <div className="w-[360px] h-[50px] flex justify-center items-center  mt-[10px]">
-                    <h2 className="text-[22px] text-center font-sans-serif">Layanan RU KIA Stikes AL-Suaibah</h2>
+                    <h2 className="text-[22px] text-center font-sans-serif sm:text-sm md:text-base xl:text-lg">Layanan RU KIA Stikes AL-Suaibah</h2>
                 </div>
 
                 {/* body */}
-
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 ">
-                    <div className="w-full h-full  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
-                        <img src={iconsenam} alt="" className="  xl:ml-[32px] xl:mt-[40px]"/>
-                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[50px] sm:text-center sm:mt-[90px]">Senam hamil</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-5 gap-5">
+                    <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center rounded-xl hover:scale-105 transition-all duration-200">
+                        <img src={iconpijatbayi} alt="" className="object-cover w-full h-full sm:w-full sm:h-[70px] xl:w-[190px] xl:h-[150px]" />
+                        <span className="text-white">Pijat Bayi</span>
                     </div>
-                    <div className="h-full w-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
-                        <img src={iconbabyspa} alt="" className="xl:ml-[45px] xl:mt-[20px]"/>
-                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[35px] sm:text-center sm:mt-[90px]">Baby</h2>
+                    <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center rounded-xl hover:scale-105 transition-all duration-200">
+                        <img src={iconlaktasi} alt="" className="object-cover w-full h-full sm:w-full sm:h-[70px] xl:w-[170px] xl:h-[140px]" />
+                        <span className="text-white">Laktasi</span>
                     </div>
-                    <div className="w-full h-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]" >
-                        <img src={iconpijatbayi} alt="" className="xl:w-[180px] xl:ml-[15px] xl:mt-[24px]"/>
-                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[45px] sm:text-center sm:mt-[90px]">Pijat Bayi</h2>
+                    <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center rounded-xl hover:scale-105 transition-all duration-200">
+                        <img src={iconsenam} alt="" className="object-cover w-full h-full sm:w-full sm:h-[30px] xl:w-[130px] xl:h-[130px]" />
+                        <span className="text-white">Senam Hamil</span>
                     </div>
-                    <div className="h-full w-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
-                        <img src={iconlaktasi} alt="" className="xl:w-[150px] xl:ml-[28px] xl:mt-[35px]"/>
-                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[38px] sm:text-center sm:mt-[90px]">Loktasi</h2>
+                    <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center rounded-xl hover:scale-105 transition-all duration-200">
+                        <img src={iconkehamilan} alt="" className="object-cover w-full h-full sm:w-full sm:h-[70px] xl:w-[170px] xl:h-[140px]" />
+                        <span className="text-white">dgffhgj</span>
                     </div>
-                    <div className="w-full h-full items-center  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
-                        <img src={iconkehamilan} alt="" className="w-[120px] xl:ml-[38px] xl:mt-[35px]"/>
-                        <h2 className="text-[16px] font-sans-serif xl:text-center xl:mt-[50px] sm:text-center sm:mt-[90px]">Cek kehamilan</h2>
+                    <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center rounded-xl hover:scale-105 transition-all duration-200">
+                        <img src={iconlaktasi} alt="" className="object-cover w-full h-full sm:w-full sm:h-[30px] xl:w-[130px] xl:h-[130px]" />
+                        <span className="text-white">sdhshdjs</span>
                     </div>
                 </div>
 
@@ -73,52 +72,51 @@ const Kia = () => {
                 <div className="flex w-[100px] justify-center items-center mx-auto mt-8 border-b-2 border-black ">
                     <h2 className="text-[22px]">Galeri</h2>
                 </div> 
-
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2">
-                    <div className="flex flex-col items-center xl:w-[320px] xl:h-[320px] hover:scale-105 transition all duration 200 border border-black">
-                        <img src={galerilaktasi} alt="" className="xl:w-[80%] xl:h-[80%]" />
-                        <span>Laktasi</span>
-                    </div>
-                    <div className="flex flex-col items-center xl:w-[320px] xl:h-[320px] hover:scale-105 transition all duration 200 border border-black">
-                        <img src={galerispa} alt="" className="xl:w-[80%] xl:h-[80%] "/>
-                        <span>Spa Bayi</span>
-                    </div>
-                    <div className="flex flex-col items-center xl:w-[320px] xl:h-[320px] hover:scale-105 transition all duration 200 border border-black ">
-                        <img src={galerisenamhamil} alt="" className="xl:w-[80%] xl:h-[80%]"/>
-                        <span>Senam ibu Hamil</span>
-                    </div>
-                    <div className="flex flex-col items-center xl:w-[320px] xlh-[320px] hover:scale-105 transition all duration 200 border border-black">
-                        <img src={galeripijat} alt="" className="xl:w-[80%] xl:h-{80%}"/>
-                        <span>Pijat Bayi</span>
-                    </div>
-                </div>
-
-                {/* xl:w-[560px] xl:h-[320px]  */}
-
-                {/* penutup */}
-                <div className="w-[200px] h-[50px] border-b-2 border-black flex justify-center items-center ">
-                    <h2 className="text-[22px] font-sans-serif ">Our Location</h2>
-                </div>
-                <div className="xl:w-[996px] xl:h-[380px] sm:h-full sm:w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-2 justify-center items-center mt-2 bg-green-200 ">
-                    <div className="xl:w-auto xl:h-auto sm:max-w-full sm:max-h-full ">
-                        <img src={fotoklinik} alt="" className=" rounded-xl ml-6" />
-                    </div>
-                    <div className="w-[430px] h-[320px] flex flex-col bg-green-200 ">
-                        <div className="w-[400px] h-[40px] flex flex-col xl:ml-4 xl:mt-4 sm:ml-4 sm:mt-4">
-                            <div className=" bg-blue-200">
-                                <h2 className="text-[20px] flex justify-center mt-1">Alamat Klinik</h2>
-                            </div>
-                            <div className=" ">
-                                <p className="text 14px font-sans-serif mt-2 text-black">Jl. Suka Bangun II No.1451, Suka Bangun, Kec. Sukarami, Kota Palembang, Sumatera Selatan 30961</p>
-                            </div>
-                            <div className="">
-                                <img src={lokasi} alt="" className="xl:w-[400px] xl:h-[186px] sm:w-[50px] sm:h-[50px] mt-4"/>
-                            </div>
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2  gap-7">
+                    {/* gambar 1 */}
+                    <div className="w-full h-full  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={galerilaktasi} alt="" className="w-full h-full rounded-xl" />
+                        <div className="flex flex-col items-center">
+                            <span className="text-center">Laktasi</span>
                         </div>
                     </div>
-                    {/* <div className="w-[272px] h-[320px] border border-black ">
-                        <img src={mahasiswakes} alt="" className="w-[80%] " />
-                    </div> */}
+                    <div className="w-full h-full  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={galerispa} alt="" className="w-full h-full rounded-xl" />
+                        <div className="flex flex-col items-center">
+                            <span className="text-center">Spa Bayi</span>
+                        </div>
+                    </div>
+                    {/* gambar 2 */}
+                    <div className="w-full h-full  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]">
+                        <img src={galerisenamhamil} alt="" className="w-full h-full rounded-xl" />
+                        <div className="flex flex-col items-center">
+                            <span className="text-center">Senam ibu Hamil</span>
+                        </div>
+                    </div>
+                    <div className="w-full h-full  bg-blue-300 rounded-xl shadow-md hover:scale-105 transition all duration 200 sm:w-[120px] md:w-[180px] xl:w-[200px] xl:h-[250px]x]">
+                        <img src={galeripijat} alt="" className="w-full h-full rounded-xl" />
+                        <div className="flex flex-col items-center">
+                            <span className="text-center">Pijat Bayi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* penutup */}
+                <div className="bg-green-300 w-full h-full  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 mt-10 justify-center  ">
+                    <div className="xl:w-auto xl:h-auto sm:max-w-full sm:max-h-full px-5 py-5 ">
+                        <img src={fotoklinik} alt="" className=" rounded-xl "/>
+                    </div>
+                    <div className="bg-green-300 py-5 px-5">
+                        <div className="bg-blue-200 rounded-lg ">
+                            <span className="text-[20px] flex justify-center mt-1">Alamat Klinik</span>
+                        </div>
+                        <div className="mt-3">
+                            <span className="text 14px font-sans-serif  text-black">Jl. Suka Bangun II No.1451, Suka Bangun, Kec. Sukarami, Kota Palembang, Sumatera Selatan 30961> </span>
+                        </div>
+                        <div className="mt-1 sm:px-0 xl:px-[50px] w-full h-full">
+                            <img src={lokasi} alt="" className="xl:w-[500px] xl:h-[250px] sm:w-[50px] sm:h-[50px] mt-4 rounded-xl"/>
+                        </div>
+                    </div>
                 </div>
 
                 {/* about us */}
@@ -136,9 +134,6 @@ const Kia = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Blank */}
-            <div className="h-[20px] bg-[#F5F7FA]"></div>
                 
             {/* Footer */}
             <Footer />
