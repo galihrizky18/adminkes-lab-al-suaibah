@@ -69,11 +69,11 @@ const laboratorium = () => {
                         <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
                             <span className=" font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mikro</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
-                                <span className="">1. GDA (Gula Darah Acak)</span>
+                                <span className="">1. GDA (Gula Darah)</span>
                                 <span>2. Asam Urat</span>
                                 <span>3. Cholesterol</span>
                                 <span>4. Trigliserida</span>
-                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 90.000</span>
+                                <span className="xl:mt-[80px] sm:mt-[10px] font-bold ">Rp 90.000</span>
                         </div>
                     </div>
 
@@ -83,9 +83,9 @@ const laboratorium = () => {
                             <span className="font- sm:mt-[20px] xl:mt-[40px] font-bold">Paket Mili</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
                                 <span className="">1. Darah lengkap</span>
-                                <span>2. GDP</span>
-                                <span>3. Urin Lengkap</span>
-                                <span>4. SGOT</span>
+                                <span>2. Urin Lengkap</span>
+                                <span>3. SGOT</span>
+                                <span>4. GDP</span>
                                 <span className="xl:mt-[80px] sm:mt-[10px] font-bold">Rp 280.000</span>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ const laboratorium = () => {
                         <div className="flex flex-col text-center sm:text-sm md:text-base xl:text-lg">
                             <span className="sm:mt-[20px] xl:mt-[40px] font-bold">Paket Nino</span>
                             <img src={obat1} alt="" className="mt-[10px]"/>
-                                <span className="">1. GDA (Gula Darah Acak)</span>
+                                <span className="">1. GDA (Gula Darah)</span>
                                 <span>2. Asam Urat</span>
                                 <span>3. Cholesterol</span>
                                 <span>4. Trigliserida</span>
