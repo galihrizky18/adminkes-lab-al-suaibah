@@ -24,7 +24,6 @@ const Footer = () => {
               
                 {/* Hubungi Kami */}
                 <div className="p-2">
-
                     <div className="title h-[30%] justify-center flex items-center text-xl pb-2 font-bold border-b border-white md:justify-start">
                         Contact Us
                     </div>
@@ -59,32 +58,38 @@ const Footer = () => {
 
                 {/* Ikuti Kami */}
                 <div className="p-2">
-                    <div className="title h-[30%] justify-center flex items-center text-xl pb-2 font-bold border-b border-white md:justify-start ">
-                        Ikuti Kami
+                    <div className="title h-[30%]  text-xl pb-2 font-bold border-b border-white md:justify-start ">
+                        <span className="flex justify-center items-center pt-5">Ikuti Kami</span>
                     </div>
                     <div className="content mt-3 pl-2 flex flex-col gap-3 ">
                         {/* Instagram */}
                         <div className="flex flex-row gap-3 items-start">
-                            <img src={instagram} alt="" width={45} />
-                            <span className="flex items-center mt-[8px]">
-                                stikesalsuaibah
-                            </span>
+                            <a href="#" className="flex flex-row">
+                                <img src={instagram} alt="" width={45} />
+                                <span className="flex items-center mt-[2px]">
+                                    stikesalsuaibah
+                                </span>
+                            </a>
                         </div>
 
                         {/* Fecebook */}
                         <div className="flex flex-row gap-3 items-start">
-                            <img src={fecebook} alt="" width={45} />
-                            <span className="flex items-center mt-[8px]">
-                                Stikes Al-Suaibah
-                            </span>
+                            <a href="#" className="flex flex-row">
+                                <img src={fecebook} alt="" width={45} />
+                                <span className="flex items-center mt-[2px]">
+                                    Stikes Al-Suaibah
+                                </span>
+                            </a>
                         </div>
 
                         {/* You Tube */}
                         <div className="flex flex-row gap-3 items-start">
-                            <img src={youtube} alt="" width={43} />
-                            <span className="flex items-center mt-[8px]">
-                                AdminitrasiKesehatanAlsuaibah
-                            </span>
+                            <a href="#" className="flex flex-row">
+                                <img src={youtube} alt="" width={43} />
+                                <span className="flex items-center mt-[2px]">
+                                    AdminitrasiKesehatanAlsuaibah
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>

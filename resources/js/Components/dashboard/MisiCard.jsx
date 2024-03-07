@@ -2,8 +2,9 @@ import React from "react";
 
 const MisiCard = () => {
     return (
-        <div className="bg-[#1e4aa8] xl:w-[80%] sm:w-[120%] shadow-lg text-white px-7 justify-center py-5 rounded-xl hover:scale-105 transition-all  xl:ml-[130px]">
-            <div className="title w-full bg-[#ffffff] text-[#1e4aa8] px-3 py-1 shadow-lg rounded-xl text-center text-2xl font-bold ">
+    <div className="flex justify-center">
+        <div className="bg-[#1e4aa8] xl:w-[80%] sm:w-[120%] shadow-lg text-white px-7 justify-center py-5 rounded-xl hover:scale-105 transition-all sm:text-sm md:text-base xl:text-base ">
+            <div className="title w-full bg-[#ffffff] text-[#1e4aa8] px-3 py-1 shadow-lg rounded-xl text-center text-sm sm:text-base md:text-lg xl:text-2xl font-bold ">
                 Misi
             </div>
             <div className="mt-7">
@@ -17,7 +18,7 @@ const MisiCard = () => {
                                 1
                             </span>
                         </div>
-                        <div className="xl:text-[16px] sm:text-[18%]">
+                        <div className="text-sm sm:text-base md:text-lg xl:text-base">
                             Menyelenggarakan proses pendidikan Sarjana
                             Administrasi Kesehatan, unggul dibidang standar mutu
                             pelayanan kesehatan berbasis IT dengan menghasilkan
@@ -34,7 +35,7 @@ const MisiCard = () => {
                                 2
                             </span>
                         </div>
-                        <div>
+                        <div className="text-sm sm:text-base md:text-lg xl:text-base">
                             Menyelenggarakan penelitian dan pengembangan skill
                             administrasi kesehatan yang bermanfaat bagi ilmu
                             pengetahuan dan IT di instansi dan institusi
@@ -50,7 +51,7 @@ const MisiCard = () => {
                                 3
                             </span>
                         </div>
-                        <div>
+                        <div className="text-sm sm:text-base md:text-lg xl:text-base">
                             Menyelenggarakan pengabdian kepada masyarakat
                             dibidang administrasi kesehatan dalam upaya
                             penerapan hasil riset dan mutu pelayanan kesehatan.
@@ -65,7 +66,7 @@ const MisiCard = () => {
                                 4
                             </span>
                         </div>
-                        <div>
+                        <div className="text-sm sm:text-base md:text-lg xl:text-base">
                             Menyelenggarakan sistem manajemen pendidikan tinggi
                             administrasi kesehatan yang berkompeten serta
                             bertanggung jawab sesuai dengan disiplin ilmu.
@@ -80,7 +81,7 @@ const MisiCard = () => {
                                 5
                             </span>
                         </div>
-                        <div>
+                        <div className="text-sm sm:text-base md:text-lg xl:text-base">
                             Menjalin kemitraan dan kerja sama dibidang keilmuan
                             administrasi kesehatan yang berbasis IT dengan
                             berbagai instansi dan institusi kesehatan.
@@ -89,6 +90,7 @@ const MisiCard = () => {
                 </ul>
             </div>
         </div>
+    </div>
     );
 };
 
