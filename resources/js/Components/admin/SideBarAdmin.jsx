@@ -29,7 +29,7 @@ const SideBarAdmin = () => {
             <div
                 className={`${
                     sideOpen ? "" : "hidden"
-                }  lg:flex flex-col w-full h-full  bg-gradient-to-r from-[#346681] to-[#1E4356] text-white transition duration-500 `}
+                }  lg:flex flex-col w-full h-full justify-between bg-gradient-to-r from-[#346681] to-[#1E4356] text-white transition duration-500 `}
             >
                 {/* body */}
                 <div className=" p-5 flex flex-col ">
@@ -40,7 +40,7 @@ const SideBarAdmin = () => {
                     </div>
 
                     {/* body */}
-                    <ScrollArea h={420} type="never">
+                    <ScrollArea mah={450} type="never">
                         <div className="mt-3 flex flex-col gap-3">
                             <CardSideBarAdmin
                                 img={IconDashboard}

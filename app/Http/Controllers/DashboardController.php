@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JadwalDokter;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -9,6 +10,9 @@ use Inertia\Inertia;
 class DashboardController extends Controller
 {
     public function dashbaord(){
-        return Inertia::render('Dashboard');
+
+        $jadwalDokter = JadwalDokter::with('dokter')->get();
+
+        return Inertia::render('Dashboard',['jadwalDokter'=>$jadwalDokter]);
     }
 }

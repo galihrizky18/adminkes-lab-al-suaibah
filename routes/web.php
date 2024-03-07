@@ -8,6 +8,7 @@ use App\Http\Controllers\GetData;
 use App\Http\Controllers\KIAController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliAnakController;
 use App\Http\Controllers\PoliGigiController;
@@ -53,9 +54,19 @@ Route::get('/laboratorium', [LabController::class, 'dashboard']);
 Route::get('/kia', [KIAController::class, 'dashboard']);
 
 
+// Generate PDF
+Route::prefix('pdf')->group(function(){
+    // Tampilan
+    Route::get('laporanUmumPasien', [PDFController::class, 'LaporanDataUmumPasien']);
+    Route::get('laporanPoliGigi', [PDFController::class, 'LaporanPoliGigi']);
+    Route::get('laporanUmumLansia', [PDFController::class, 'LaporanUmumLansia']);
 
 
-// Admin Page
+    Route::get('tesRender', [PDFController::class, 'tesRenderPDF']);
+});
+
+
+// Admin PagedataAdmins
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/patient', [AdminController::class, 'patientDashboardAdmin'])->name('patientDashboardAdmin');
@@ -122,7 +133,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::post('/farmasi-asuransi', [AdminController::class, 'addFarmasiAsuransi'])->name("addFarmasiAsuransi");
         Route::post('/tagihan', [AdminController::class, 'addTagihan'])->name("addTagihan");
 
-
     });
 
     // Edit Data
@@ -168,9 +178,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     });
 
-    // tes
-
-   
 
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -180,23 +187,4 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 // ==================================================================================
 // ==================================================================================
 // ==================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-Route::get('/tes', [LoginController::class, 'tesPage']);
 

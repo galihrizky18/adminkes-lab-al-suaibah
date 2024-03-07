@@ -7,6 +7,9 @@
 
     <title inertia>{{ config('app.name', 'Laboratorium Adminkes Al-Suaibah Palembang') }}</title>
 
+    {{-- Tailwind --}}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     {{-- Favicon --}}
     <link rel="icon" href="{{ asset('asset/logo/al-suaibah.png') }}" type="image/x-icon">
 

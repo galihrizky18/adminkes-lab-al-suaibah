@@ -15,8 +15,6 @@ const Dashboard = ({ currentUser, totalData }) => {
         "Farmasi",
     ];
 
-    console.log(currentUser);
-
     return (
         <>
             <LayoutAdmin
@@ -31,7 +29,7 @@ const Dashboard = ({ currentUser, totalData }) => {
                         <div className="font-bold text-xl">Total Data :</div>
 
                         {/* Card */}
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3  gap-y-3 items-center ">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 place-items-center ">
                             <Link
                                 href="/admin/master-menu/rawat-jalan-umum-lansia"
                                 className="w-[90%]"
@@ -103,7 +101,7 @@ const Dashboard = ({ currentUser, totalData }) => {
                     </div>
 
                     {/* Ucapan */}
-                    <div className="order-1 bg-[#275167] text-white px-5 md:px-10 py-5 md:text-xl text-center">
+                    <div className="order-1 bg-[#275167] text-white px-5 md:px-10 py-2 md:text-xl text-center">
                         <marquee behavior="" direction="">
                             Welcome Back,{" "}
                             <span className="font-bold">

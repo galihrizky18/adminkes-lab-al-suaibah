@@ -25,14 +25,6 @@ class UserSeeder extends Seeder
                 "password" => bcrypt('123'),
 
             ],
-            [
-                "id_user" => "USR-",
-                "second_identifyer" => "USR-",
-                "id_admin" => "ADM-2",
-                "username" => "garix",
-                "password" => bcrypt('123'),
-      
-            ],
            
         ];
 

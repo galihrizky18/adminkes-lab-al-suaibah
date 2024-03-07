@@ -29,20 +29,7 @@ class AdminsSeeder extends Seeder
                 "nationality" => "Indonesia",
                 "address" => "Sulaiman Amin No 10 Rt24 Rw 07",
             ],
-            [
-                "id_admin" => "ADM-2",
-                "id_staff" => "1231231512",
-                "name" => "Galih Rizky",
-                "phone" => "084217863187",
-                "email" => "garix@gmail.com",
-                "gender" => "male",
-                "birth" => "2002-02-18",
-                "religion" => "Islam",
-                "province" => "Sumatera Selatan",
-                "city" => "Kota Palembang",
-                "nationality" => "Indonesia",
-                "address" => "Sulaiman Amin No 10 Rt24 Rw 07",
-            ],
+            
            
         ];
 
