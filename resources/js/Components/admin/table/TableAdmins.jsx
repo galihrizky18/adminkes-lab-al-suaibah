@@ -18,7 +18,96 @@ const TableAdmins = ({ dataAdmins }) => {
     const [opened, { open, close }] = useDisclosure(false);
 
     // Fungsi untuk mengonversi dataAdmins
-    const convertData = (data) => {};
+    const convertData = (data) => {
+        return data.map((e) => ({
+            id_user: e.second_identifyer,
+            id_admin: e.id_admin,
+            idStaff: e.admin.id_staff,
+            username: e.username,
+            password: e.password,
+            name: e.admin.name,
+            phone: e.admin.phone,
+            email: e.admin.email,
+            gender: e.admin.gender,
+            birth: e.admin.birth,
+            religion: e.admin.religion,
+            province: e.admin.province,
+            city: e.admin.city,
+            nationality: e.admin.nationality,
+            address: e.admin.address,
+
+            action: (
+                <div
+                    className="grid gap-1 py-2"
+                    style={{ gridTemplateColumns: "repeat(1, 1fr)" }}
+                >
+                    {/* View Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="blue"
+                        radius="sm"
+                        onClick={() => {
+                            const data = {
+                                id_user: e.second_identifyer,
+                            };
+                            router.post("/admin/detail/admin", data);
+                        }}
+                    >
+                        View
+                    </Button>
+
+                    {/* Edit Button */}
+                    <Button
+                        leftSection={<IconEdit width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="rgba(184, 169, 11, 1"
+                        radius="sm"
+                        onClick={() => {
+                            const data = {
+                                id_user: e.second_identifyer,
+                                idStaff: e.admin.id_staff,
+                                id_admin: e.id_admin,
+                                username: e.username,
+                                password: e.password,
+                                name: e.admin.name,
+                                phone: e.admin.phone,
+                                email: e.admin.email,
+                                gender: e.admin.gender,
+                                birth: e.admin.birth,
+                                religion: e.admin.religion,
+                                province: e.admin.province,
+                                city: e.admin.city,
+                                nationality: e.admin.nationality,
+                                address: e.admin.address,
+                            };
+                            setSendDataEdit(data);
+                            open();
+                        }}
+                    >
+                        Edit
+                    </Button>
+
+                    {/* Delete Button */}
+                    <Button
+                        leftSection={<IconTrash width={20} />}
+                        variant="filled"
+                        width="auto"
+                        size="xs"
+                        color="red"
+                        radius="sm"
+                        onClick={() => confirmDelete(e.second_identifyer)}
+                    >
+                        Delete
+                    </Button>
+                </div>
+            ),
+        }));
+    };
 
     // mengatur kolom table
     const columns = [
