@@ -29,6 +29,7 @@ class AdminController extends Controller
     public function dashboard(){
         $currentUserData = session('current_user');
         $currentUser = Admins::where('id_admin',$currentUserData->id_admin)->first();
+        // dd($currentUserData);
 
         // Total Data
         $totalUmumLansia = krjPoliUmumLansia::count();
@@ -1179,6 +1180,12 @@ class AdminController extends Controller
         try {
             $idAdmin = $request->input('id');
 
+            $currentUserData = session('current_user');
+
+            if($currentUserData->id_user === $idAdmin){
+                return response()->json(['message' => 'Super Admin']);
+            }
+
             $checkIdUser = User::with('admin')->where('id_user', $idAdmin)->first();
 
             // Check if Super Admin
@@ -1449,28 +1456,37 @@ class AdminController extends Controller
     public function pembayaran(Request $request){
         try {
             $no_tagihan = $request->input('no_tagihan');
-            // return response()->json(['message' => $no_tagihan]);
-
+            
             // Ambil data waktu
             $waktuSekarang = Carbon::now();
-
-            $checkData = Tagihan::where('no_tagihan',$no_tagihan['no_tagihan'])->where('status_tagihan','lunas')->first();
-            if($checkData){
-                return response()->json(['message' => "Data Sudah Lunas"]);
-            }
-
-            $data = Tagihan::where('no_tagihan',$no_tagihan['no_tagihan'])->update([
-                'status_tagihan'=>'lunas',
-                'uang_pembayaran'=>$no_tagihan['uang_pembayaran'],
-                'tanggal_pelunasan'=>$waktuSekarang,
-            ]);
-
-           
-
-            if ($data) {
-                return response()->json(['message' => "Success Pembayaran"]);
+            
+            $tagihan = Tagihan::where('no_tagihan',$no_tagihan["no_tagihan"])->first();
+            
+            // Periksa apakah tagihan ada dan belum lunas
+            if(!$tagihan || $tagihan->status_tagihan === 'lunas') {
+                return response()->json(['message' => '"Data Sudah Lunas']);
             }
             
+            // Lakukan pembayaran
+            $pembayaran = Tagihan::where('no_tagihan',$no_tagihan["no_tagihan"])->update([
+                'status_tagihan' => 'lunas',
+                'uang_pembayaran' => $no_tagihan['uang_pembayaran'],
+                'tanggal_pelunasan' => $waktuSekarang,
+            ]);
+
+            // Perbarui status resep jika terkait dengan tagihan
+            $dataFarmasi = Farmasi::where('id_pemeriksaan', $tagihan->id_pemeriksaan)->first();
+            if($dataFarmasi){
+                Farmasi::where('id_pemeriksaan', $tagihan->id_pemeriksaan)->update([
+                    "status_resep" => 'lunas',
+                ]);
+
+            }
+           
+            if($pembayaran){
+                return response()->json(['message' => "Success Pembayaran"]);
+            }
+
             return response()->json(['message' => "Failed Pembayaran"]);
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Failed Request Database']);

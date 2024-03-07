@@ -280,7 +280,12 @@ const EditAdminModal = ({ data }) => {
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center font-bold">City</div>
                         <div className="">
-                            <Select
+                            <TextInput 
+                            
+                             value={data.city}
+                             {...form.getInputProps("city")}
+                            />
+                            {/* <Select
                                 placeholder="Kota"
                                 data={kotas}
                                 radius="md"
@@ -289,7 +294,8 @@ const EditAdminModal = ({ data }) => {
                                 onChange={(selectedCity) => {
                                     form.setFieldValue("city", selectedCity);
                                 }}
-                            />
+                                value={data.city}
+                            /> */}
                         </div>
                     </div>
 

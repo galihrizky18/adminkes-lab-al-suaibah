@@ -35,6 +35,9 @@ const Steppers = ({
     dataDokter,
     dataLayanan,
 }) => {
+
+    const [idReg, setIdReg] = useState();
+
     // Stepper
     const [active, setActive] = useState(0);
     const nextStep = () => {
@@ -79,6 +82,7 @@ const Steppers = ({
             const response = await axios.post("/pendaftaran/pasien-baru", {
                 dataPendaftar: dataPendaftar,
             });
+            // console.log(response.data.idReg);
 
             if (response.data && response.data.message === "Success") {
                 Swal.fire({
@@ -86,6 +90,7 @@ const Steppers = ({
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
+                await axios.get(`/pdf-pasien-baru/${response.data.idReg}`);
             } else if (response.data && response.data.message === "Failed") {
                 Swal.fire({
                     icon: "error",
@@ -180,7 +185,7 @@ const Steppers = ({
                         </Stepper.Step>
 
                         <Stepper.Completed>
-                            <ComplateTask />
+                            <ComplateTask idReg={idReg}/>
                         </Stepper.Completed>
                     </Stepper>
 

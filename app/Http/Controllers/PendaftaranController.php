@@ -93,7 +93,7 @@ class PendaftaranController extends Controller
             $pt->save();
             $reg->save();
     
-            return response()->json(['message' => 'Success'], 200);
+            return response()->json(['message' => 'Success', 'idReg'=>$idReg], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed']);
         }

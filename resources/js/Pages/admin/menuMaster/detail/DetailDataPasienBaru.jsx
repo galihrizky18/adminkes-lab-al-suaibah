@@ -11,13 +11,18 @@ const DetailDataPasienBaru = ({ currentUser, dataPasienBaru }) => {
             href: "/admin/report/detail/pasien-baru",
         },
     ];
-    // console.log(dataPasienBaru);
 
     const handleConvertTime = (time) => {
-        const [tanggal, jamWithMillis] = time.split("T");
-        const [jam] = jamWithMillis.split(".");
+        
+        const dateFromDatabase = new Date(time);
+        const tanggal = dateFromDatabase.toLocaleDateString();
+
+        const jam = dateFromDatabase.toLocaleTimeString('en-US', { hour12: false });
+    
         return { tanggal, jam };
     };
+
+ 
 
     return (
         <LayoutAdmin

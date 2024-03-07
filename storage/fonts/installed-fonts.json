@@ -1,0 +1,90 @@
+{
+    "della respira": {
+        "normal": "della_respira_normal_f4141814e729cf9e62020654a128593f"
+    },
+    "istok web": {
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/istok_web_normal_be35f1d423ab976db1ac686a355bb7b2",
+        "bold": "istok_web_bold_47568bcd2d4e8493d361a2e5bd3a4e16"
+    },
+    "jomhuria": {
+        "normal": "jomhuria_normal_69ccb722ad7c35a522a25dac4376a4a7"
+    },
+    "karma": {
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/karma_normal_9f62eb60fe7156e7cf6525f547b8708f",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/karma_500_e98ba1a96566c07f2f6d118b29f8ee25",
+        "bold": "karma_bold_80c9d3b6379379308efb36c646863515"
+    },
+    "libre baskerville": {
+        "italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/libre_baskerville_italic_097eeb3524daba610ae4ec4b6bc23f1e",
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/libre_baskerville_normal_81892df49bc63aa1e1aaec1d3b205b42",
+        "bold": "libre_baskerville_bold_7c51f5bfa4b7edfff6b3ec75409c4ff0"
+    },
+    "lora": {
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/lora_normal_f169b723c8279706927397f5dae1bc64",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/lora_500_c2eb810e6611bbbef3e17b681d51fee5",
+        "600": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/lora_600_934f2432a02abdced32c20f9c31d4175",
+        "bold": "lora_bold_732fdfe4e8f78a0340d9ecf46d664ed0"
+    },
+    "mirza": {
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/mirza_normal_7419e7b688671bb87b4c594f96bd9658",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/mirza_500_03c6eece5ca6442e6bb5fdd934091d93",
+        "600": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/mirza_600_aa1c06bad8066a2774b1e7ddb9214819",
+        "bold": "mirza_bold_ba2acd96c1e01e646644fe7dc3ff4757"
+    },
+    "montserrat": {
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/montserrat_normal_00833106404dc8458cdfb436c759f23d",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/montserrat_500_1236ec90acb329158f494b3fcb44327e",
+        "bold": "montserrat_bold_5da7810bf4e960efe50d20e94a894069"
+    },
+    "open sans": {
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/open_sans_normal_2bf6e8a03908d49a7fa7b1094b0c2804",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/open_sans_500_663f11545dfeea65b44b2da12b5a66b1",
+        "bold": "open_sans_bold_0e7196744e416eea97ecd5b9781a44c2"
+    },
+    "playfair display": {
+        "italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_italic_6d5c2c18a1ac1688af54b8052072877c",
+        "500_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_500_italic_f2c89b99fa2063e4859719b8f52ea2d7",
+        "600_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_600_italic_44d36279a8edd400f3fdd680c1fcb905",
+        "bold_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_bold_italic_327419e58dd8257b329a576f313c851c",
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_normal_f926d2a9c906fad63d9213f072753ddb",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_500_0ac07657539920ca389fbeeb39e0e2ed",
+        "600": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_600_08dd37e859fdc61f12ab8c92af6b03de",
+        "bold": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/playfair_display_bold_86457bce79897df81c2468b52eb6a40c",
+        "800": "playfair_display_800_abb27f83cb73ffc75c894da2691a482e"
+    },
+    "poppins": {
+        "300": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/poppins_300_4a08cccbc2911e3077321a0298f4e093",
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/poppins_normal_442dffd12abdf0df26c14405d3f49bfa",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/poppins_500_6a6f5e017da7e062546fd806ab3b249c",
+        "600": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/poppins_600_272b14b77a21dc5827f4570eff556c8f",
+        "bold": "poppins_bold_2d1c4b360c3ac297e98fc2cfd808a2cc"
+    },
+    "quattrocento sans": {
+        "italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/quattrocento_sans_italic_2f64a73d89b1ace4ad166dfbe960bd65",
+        "bold_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/quattrocento_sans_bold_italic_ace86b4b3ffac3c818fad650952d3bc5",
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/quattrocento_sans_normal_7c6cfb7124453e9823f4be37e5572436",
+        "bold": "quattrocento_sans_bold_8f2b6969bb2e299392f4d7646d391f30"
+    },
+    "raleway": {
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/raleway_500_cbb6afd20b706a61ee8bee7b01da71e0",
+        "600": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/raleway_600_66f97d572dacf87031a2ee34cef7ba8d",
+        "bold": "raleway_bold_eed1d397b87ec6162a25e9d3de6556ad"
+    },
+    "roboto": {
+        "100_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_100_italic_71d4fad1ca0f22d70d8be7cc40bb76ab",
+        "italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_italic_e3ef71c7d9eeac822fc7d92d4fc7ff6e",
+        "500_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_500_italic_e69cd621b57d68ed0b47f09bd22a3d7e",
+        "bold_italic": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_bold_italic_76e4a6bfadf19fea9990a367967a3f96",
+        "300": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_300_32acfcb296f555e063ebba2be7db9e2f",
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/roboto_500_5774d6fb05eba3d096525f821dbe4137",
+        "bold": "roboto_bold_8db5cb5d0586c1e891426d13097b1d04"
+    },
+    "tajawal": {
+        "300": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/tajawal_300_023b76a9d5d08e5fbd2c0f7d33145d5d",
+        "normal": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/tajawal_normal_63cabf8402ef20b1d7bd401d9171b8ab",
+        "500": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/tajawal_500_ec707d94676eac797b00e2d96b154b8a",
+        "bold": "G:\\TUGAS AKHIR\\PROJECT\\Lab Adminkes Stikes Al -Su'aibah\\adminkes-lab-al-suaibah\\storage\\fonts\/tajawal_bold_43138cb1b701ab71cf776dcc088f6400",
+        "800": "tajawal_800_b3fc9fd1289c635068668b17629caa7f"
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admins;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,6 +71,7 @@ class LoginController extends Controller
 
 
     public function logout(Request $request){
+
         $request->session()->regenerate();
         Auth::logout();
         // Menghapus semua data sesi

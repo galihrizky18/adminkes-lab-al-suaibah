@@ -92,7 +92,7 @@ const AddAdminModal = () => {
                     text: "Data Berhasil Disimpan!",
                     icon: "success",
                 });
-                router.get("admin/master-menu/admin");
+                router.get("/admin/master-menu/admin");
             } else if (response.data.message == "Failed Save Data") {
                 Swal.fire({
                     title: "Failed",

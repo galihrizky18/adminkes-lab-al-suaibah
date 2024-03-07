@@ -53,6 +53,14 @@ Route::get('/apotek', [ApotekController::class, 'dashboard']);
 Route::get('/laboratorium', [LabController::class, 'dashboard']);
 Route::get('/kia', [KIAController::class, 'dashboard']);
 
+// Pdf Pendaftaran Pasien Baru
+Route::get('/pdf-pasien-baru/{idReg}', [PDFController::class, 'createPDFPasienBaru']);
+Route::get('/pdf-umum', [PDFController::class, 'LaporanDataUmumPasien']);
+
+// Genarate Barcode 
+Route::get('/generateBarcode/{code}', [PDFController::class, 'generateBarcode'])->name('generateBarcode');
+
+
 
 // Generate PDF
 Route::prefix('pdf')->group(function(){

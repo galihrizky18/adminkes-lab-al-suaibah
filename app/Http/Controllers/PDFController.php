@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Milon\Barcode\DNS2D;
 
 class PDFController extends Controller
 {
-    //
+    //Generate Barocde
+    public function generateBarcode(Request $request, $code){
+        $barcode = new DNS2D();
+        $barcodeData = $barcode->getBarcodePNG($code, 'C39');
+        return response($barcodeData)->header('Content-Type', 'image/png');
+    }
 
     public function LaporanDataUmumPasien(){
         $data = [
@@ -31,6 +38,19 @@ class PDFController extends Controller
         ];
 
         return view("pdf/laporanUmumLansia",$data);
+    }
+
+    public function createPDFPasienBaru($idReg){
+       
+        $dataReg = Registration::with('patient', 'layanan', 'dokters')->where('id_registration', $idReg)->first();
+
+        $data = [
+            'dataReg' => $dataReg
+        ];
+
+        $pdf = Pdf::loadView('pdf.createPDFPasienBaru',$data);
+        return $pdf->download('Pendaftaran Online Klinik Al Suaibah Palembang.pdf');
+       
     }
 
 

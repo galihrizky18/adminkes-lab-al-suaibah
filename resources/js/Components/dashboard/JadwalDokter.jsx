@@ -92,7 +92,7 @@ const JadwalDokter = ({jadwalDokter}) => {
     };
 
     useEffect(()=>{
-        console.log(jadwalDokter);
+    
         setData(convertData(jadwalDokter));
     },[jadwalDokter]);
     
