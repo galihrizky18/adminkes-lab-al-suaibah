@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import ArrowRight from "../../../../public/asset/arrow-right.svg";
 import ArrowDown from "../../../../public/asset/arrow-bottom.svg";
 
-const CollapseComponents2  = ({ title}) => {
+const CollapseComponents2 = ({ title }) => {
     const [opened, { toggle }] = useDisclosure(false);
     return (
         <Box maw={1000} mx="auto" className="w-full ">
@@ -30,20 +30,53 @@ const CollapseComponents2  = ({ title}) => {
                 </div>
             </Group>
 
-            <Collapse in={opened} className="px-10 ">
-                <Text className="select-none text-justify ">
-                <div style={{ fontWeight: 'bold', fontSize: '24px', marginTop: '20px' }}>
-                        <h2>Perbedaan Obat Paten dan Obat Generik</h2>
-                        </div>
+            <Collapse in={opened} className="px-10">
+                <Text className="select-none text-justify">
+                    <div className="font-bold text-xl mt-5">
+                        Perbedaan Obat Paten dan Obat Generik
+                    </div>
 
-                        <h2 style={{ fontWeight: 'bold' , color: 'blue', marginTop: '20px', fontSize: '19px' }}>Obat Paten</h2>
-                            <p> Obat paten merupakan obat yang diproduksi pertama kali (obat baru) dan dipasarkan oleh perusahaan farmasi yang telah memiliki hak paten terhadap produksi obat tersebut. Bisa diartikan bahwa perusahaan farmasi ini mempunyai hak penuh untuk mematenkan zat aktif yang mereka temukan dengan nama (brand tertentu) dan memiliki hak eksklusif untuk memasarkan produk secara monopoli dengan harga yang mereka tentukan.
+                    <div className="font-bold text-blue-500 mt-5 text-lg">
+                        Obat Paten
+                    </div>
+                    <p className="mt-3">
+                        Obat paten merupakan obat yang diproduksi pertama kali
+                        (obat baru) dan dipasarkan oleh perusahaan farmasi yang
+                        telah memiliki hak paten terhadap produksi obat
+                        tersebut. Bisa diartikan bahwa perusahaan farmasi ini
+                        mempunyai hak penuh untuk mematenkan zat aktif yang
+                        mereka temukan dengan nama (brand tertentu) dan memiliki
+                        hak eksklusif untuk memasarkan produk secara monopoli
+                        dengan harga yang mereka tentukan.
+                    </p>
+                    <p className="mt-3">
+                        Menyadari proses pengembangan obat yang lama dengan
+                        biaya besar, maka sudah seyogyanya perusahaan farmasi
+                        tersebut mendapatkan hak paten, dimana perusahaan lain
+                        tidak bisa memproduksi dan memasarkan obat yang sama.
+                        Berdasarkan UU Paten Nomor 13 tahun 2016, hak paten
+                        diberikan selama 20 tahun semenjak tanggal penerimaan.
+                        Nah, karena seperti apa yang sudah dijelaskan bahwa obat
+                        baru ini ditemukan berdasarkan penelitian, berbagai
+                        rangkaian pengujian serta harus memenuhi peraturan yang
+                        berlaku. Ini tentu membutuhkan biaya yang tidak sedikit,
+                        maka dari itu harga dari obat tersebut pun cenderung
+                        akan lebih mahal.
+                    </p>
 
-                                <p style={{  marginTop: '20px' }}></p>Menyadari proses pengembangan obat yang lama dengan biaya besar, maka sudah seyogyanya perusahaan farmasi tersebut mendapatkan hak paten, dimana perusahaan lain tidak bisa memproduksi dan memasarkan obat yang sama.
-                                    berdasarkan UU Paten Nomor 13 tahun 2016, hak paten diberikan selama 20 tahun semenjak tanggal penerimaan. Nah, karena seperti apa yang sudah dijelaskan bahwa obat baru ini ditemukan berdasarkan penelitian, berbagai rangkaian pengujian serta harus memenuhi peraturan yang berlaku. Ini tentu membutuhkan biaya yang tidak sedikit, maka dari itu harga dari obat tersebut pun cenderung akan lebih mahal.</p>
-                        
-                        <h2 style={{ fontWeight: 'bold' , color: 'blue', marginTop: '20px', fontSize: '19px' }}>Obat Generik</h2>
-                            <p>Obat generik adalah obat dengan zat aktif  yang masa patennya sudah habis. Atau dapat diartikan ketika hak paten obat suatu perusahaan telah habis, maka jenis obat tersebut dapat diproduksi oleh hampir seluruh perusahaanfarmasi yang ada tanpa harus membayar invensi. Perlu diketahui terlebih dahulu, bahwa obat generik ini terdiri atas 2 jenis yaitu obat generik berlogo dan obat generik bermerk.</p>
+                    <div className="font-bold text-blue-500 mt-5 text-lg">
+                        Obat Generik
+                    </div>
+                    <p className="mt-3">
+                        Obat generik adalah obat dengan zat aktif yang masa
+                        patennya sudah habis. Atau dapat diartikan ketika hak
+                        paten obat suatu perusahaan telah habis, maka jenis obat
+                        tersebut dapat diproduksi oleh hampir seluruh perusahaan
+                        farmasi yang ada tanpa harus membayar invensi. Perlu
+                        diketahui terlebih dahulu, bahwa obat generik ini
+                        terdiri atas 2 jenis yaitu obat generik berlogo dan obat
+                        generik bermerk.
+                    </p>
                 </Text>
             </Collapse>
         </Box>

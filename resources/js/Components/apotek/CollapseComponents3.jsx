@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import ArrowRight from "../../../../public/asset/arrow-right.svg";
 import ArrowDown from "../../../../public/asset/arrow-bottom.svg";
 
-const CollapseComponents3  = ({ title}) => {
+const CollapseComponents3 = ({ title }) => {
     const [opened, { toggle }] = useDisclosure(false);
     return (
         <Box maw={1000} mx="auto" className="w-full ">
@@ -30,14 +30,50 @@ const CollapseComponents3  = ({ title}) => {
                 </div>
             </Group>
 
-            <Collapse in={opened} className="px-10 ">
+            <Collapse in={opened} className="px-10">
                 <Text className="select-none text-justify">
-                Pelayanan telefarmasi merupakan kegiatan pelayanan penyediaan perawatan kefarmasian melalui penggunaan teknologi telekomunikasi dan informasi kepada pasien dari jarak jauh. Konsepnya adalah pelayanan obat dengan menggunakan sistem teknologi, sehingga mempermudah pasien mendapatkan obat yang bermutu dan aman dengan tetap memprioritaskan keamanan pasien. Seiring dengan kemajuan teknologi dan informasi, layanan jarak jauh ini semakin berkembang.
-                <p style={{  marginTop: '20px' }}>Telefarmasi semakin digencarkan sejak pandemi Covid-19, begitu juga dengan telemedicine seperti pelayanan medis jarak jauh (konsultasi dokter secara online, kunjungan virtual). Telefarmasi dilaksanakan oleh Apoteker dengan mengacu pada standar pelayanan kefarmasian di masing-masing fasilitas pelayanan kefarmasian.</p>
-                 <p style={{ fontWeight: 'bold', fontSize: '24px', marginTop: '20px' }}>Telefarmasi dalam rangka telemedisin</p>
-                 <p style={{  marginTop: '20px' }}>Telefarmasi merupakan bagian dari telemedisin dan telehealth. Berikut framework hubungannya :</p>
-                 <p><img src="https://i0.wp.com/blog.apotekdigital.com/wp-content/uploads/2023/06/Screenshot-2023-06-20-10.13.02-AM.png?resize=768%2C365&ssl=1" alt="" /></p>   
-                <p style={{  marginTop: '20px' }}>Sesuai dengan Surat Edaran HK.02.01/Menkes/303/2020, telemedisin semakin digencarkan sejak pandemi Covid-19. Salah satu penerapannya adalah penggunaan resep elektronik. Penulisan resep elektronik dapat dilakukan secara tertutup (melalui aplikasi dari dokter ke fasyanfar) atau terbuka (pemberian e-resep secara langsung kepada pasien dengan kode identifikasi). Dalam hal ini, apoteker di apotek berperan dalam melakukan praktik kefarmasian sesuai standar, contohnya pengkajian resep, dispensing, dan penyiapan obat sesuai dengan resep dokter.</p>
+                    <p>
+                        Pelayanan telefarmasi merupakan kegiatan pelayanan
+                        penyediaan perawatan kefarmasian melalui penggunaan
+                        teknologi telekomunikasi dan informasi kepada pasien
+                        dari jarak jauh. Konsepnya adalah pelayanan obat dengan
+                        menggunakan sistem teknologi, sehingga mempermudah
+                        pasien mendapatkan obat yang bermutu dan aman dengan
+                        tetap memprioritaskan keamanan pasien.
+                    </p>
+                    <p className="mt-4">
+                        Telefarmasi semakin digencarkan sejak pandemi Covid-19,
+                        begitu juga dengan telemedicine seperti pelayanan medis
+                        jarak jauh (konsultasi dokter secara online, kunjungan
+                        virtual). Telefarmasi dilaksanakan oleh Apoteker dengan
+                        mengacu pada standar pelayanan kefarmasian di
+                        masing-masing fasilitas pelayanan kefarmasian.
+                    </p>
+                    <p className="font-bold text-xl mt-5">
+                        Telefarmasi dalam rangka telemedisin
+                    </p>
+                    <p className="mt-4">
+                        Telefarmasi merupakan bagian dari telemedisin dan
+                        telehealth. Berikut framework hubungannya:
+                    </p>
+                    <img
+                        src="https://i0.wp.com/blog.apotekdigital.com/wp-content/uploads/2023/06/Screenshot-2023-06-20-10.13.02-AM.png?resize=768%2C365&ssl=1"
+                        alt=""
+                        className="mt-4"
+                    />
+                    <p className="mt-4">
+                        Sesuai dengan Surat Edaran HK.02.01/Menkes/303/2020,
+                        telemedisin semakin digencarkan sejak pandemi Covid-19.
+                        Salah satu penerapannya adalah penggunaan resep
+                        elektronik. Penulisan resep elektronik dapat dilakukan
+                        secara tertutup (melalui aplikasi dari dokter ke
+                        fasyanfar) atau terbuka (pemberian e-resep secara
+                        langsung kepada pasien dengan kode identifikasi). Dalam
+                        hal ini, apoteker di apotek berperan dalam melakukan
+                        praktik kefarmasian sesuai standar, contohnya pengkajian
+                        resep, dispensing, dan penyiapan obat sesuai dengan
+                        resep dokter.
+                    </p>
                 </Text>
             </Collapse>
         </Box>

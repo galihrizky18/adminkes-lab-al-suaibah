@@ -4,7 +4,7 @@ import MisiCard from "./MisiCard";
 
 const VisiMisi = () => {
     return (
-        <div className="font-montserrat  rounded-xl flex flex-col items-center px-3 py-4 shadow-lg ">
+        <div className="font-montserrat  rounded-xl flex flex-col items-center px-3 py-8 shadow-lg bg-white">
             <div className="title w-full text-center pb-3 font-montserrat text-3xl sm:text-3xl font-bold text-[#27863f] border-b border-gray-300">
                 Visi dan Misi
             </div>

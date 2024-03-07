@@ -3,8 +3,8 @@ import LayoutAdmin from "@/Components/admin/layout/LayoutAdmin";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AddAdminModal from "@/Components/admin/modal/AddAdminModal";
-import TableAdmins from "@/Components/admin/table/TableAdmins";
 import { router } from "@inertiajs/react";
+import TableAdmins from "@/Components/admin/table/TableAdmins";
 
 const DataAdmin = ({ currentUser, dataAdmins }) => {
     const [opened, { open, close }] = useDisclosure(false);
